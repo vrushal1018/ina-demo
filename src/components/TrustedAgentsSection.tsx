@@ -67,7 +67,7 @@ export default function TrustedAgentsSection() {
         {/* Section Heading */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
-            Trusted Real Estate Agent
+            Meet Our Board
           </h2>
         </div>
 

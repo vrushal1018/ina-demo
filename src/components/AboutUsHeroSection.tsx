@@ -40,14 +40,14 @@ export default function AboutUsHeroSection() {
   return (
     <section className="w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Header Section */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C3A62] tracking-tight">
             About Us
           </h1>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-[#585858] font-medium">
-            Helping You Find the Perfect Place to Call Home.
+            Helping You Find the Perfect Place to Call Business.
           </p>
         </div>
 

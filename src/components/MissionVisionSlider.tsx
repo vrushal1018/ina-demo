@@ -3,12 +3,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import missionImg from "../../public/mission.png";
+import visionImg from "../../public/vision.png";
+import goalsImg from "../../public/goals.png";
 
 interface Slide {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image: string | import("next/image").StaticImageData;
   alt: string;
 }
 
@@ -18,27 +21,24 @@ const slides: Slide[] = [
     title: "Our Mission",
     description:
       "Our mission is to help people find the perfect property with confidence, transparency, and expert guidance.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
-    alt: "Happy family standing in front of their modern house",
+    image: missionImg,
+    alt: "Our Mission",
   },
   {
     id: 2,
     title: "Our Vision",
     description:
       "Our vision is to revolutionize real estate by creating sustainable, accessible, and smart living spaces for future generations.",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1600&auto=format&fit=crop",
-    alt: "Modern architectural luxury home exterior",
+    image: visionImg,
+    alt: "Our Vision",
   },
   {
     id: 3,
     title: "Our Goals",
     description:
       "Our goals are to expand our global network, continuously empower client decisions through technology, and exceed satisfaction in every transaction.",
-    image:
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1600&auto=format&fit=crop",
-    alt: "Beautiful suburban estate with lush lawn",
+    image: goalsImg,
+    alt: "Our Goals",
   },
 ];
 
