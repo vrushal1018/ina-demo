@@ -1,0 +1,137 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import {
+  Briefcase,
+  BarChart3,
+  Code2,
+  Cloud,
+  ShieldCheck,
+  Users2,
+  Plus
+} from 'lucide-react';
+
+interface ServiceItem {
+  id: string;
+  icon: React.ElementType | string;
+  title: string;
+  description: string;
+  href: string;
+}
+
+const SERVICES: ServiceItem[] = [
+  {
+    id: 'Hard FM',
+    icon: '/facility-management.png',
+    title: 'Hard FM',
+    description: 'Strategic guidance to align your technology stack with long-term business objectives, ensuring agility and growth.',
+    href: '#',
+  },
+  {
+    id: 'Transition Services',
+    icon: '/transition services.png',
+    title: 'Transition Services',
+    description: 'Transform raw data into actionable insights that drive smarter decisions, improved forecasting, and business innovation.',
+    href: '#',
+  },
+  {
+    id: 'Sustainability Services',
+    icon: '/Sustainability Services.png',
+    title: 'Sustainability Services',
+    description: 'Responsive, user-centric websites built with modern frameworks to deliver performance, accessibility, and brand impact.',
+    href: '#',
+  },
+  {
+    id: 'Technical Services',
+    icon: '/technical services.png',
+    title: 'Technical Services',
+    description: 'We help you design, deploy, and manage secure, scalable, and high-performance cloud infrastructure that supports modern business.',
+    href: '#',
+  },
+  {
+    id: 'Audit & Offerings',
+    icon: '/audit offerings.png',
+    title: 'Audit & Offerings',
+    description: 'We identify system vulnerabilities, assess potential threats, and implement advanced security protocols to safeguard your data and digital assets.',
+    href: '#',
+  },
+  {
+    id: 'Allied Services',
+    icon: '/allied services.png',
+    title: 'Allied Services',
+    description: 'Our team builds secure, scalable SaaS products from the ground up—ensuring seamless performance, intuitive user experiences.',
+    href: '#',
+  },
+];
+
+export default function ServicesSection() {
+  return (
+    <section className="w-full bg-slate-50 py-16 md:py-24 font-['Poppins',sans-serif]">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+          <div className="max-w-2xl">
+            <span className="font-['Integral_CF',sans-serif] text-sm md:text-base font-semibold text-[#2495D3] tracking-wider uppercase block mb-3">
+              Our Service
+            </span>
+            <h2 className="font-['Integral_CF',sans-serif] text-3xl sm:text-4xl md:text-[52px] font-semibold text-[#1C3A62] leading-[1.15] tracking-tight">
+              Comprehensive Solutions, All in One Place
+            </h2>
+          </div>
+
+          <p className="text-[#585858] text-sm md:text-base max-w-md leading-relaxed font-normal">
+            From cloud infrastructure and cybersecurity to custom software and IT consulting—we deliver end-to-end technology services tailored to your business needs.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SERVICES.map((service) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={service.id}
+                className="group relative bg-white hover:bg-white rounded-3xl p-8 sm:p-10 transition-all duration-300 border border-slate-100 hover:border-[#2495D3]/30 hover:shadow-xl hover:shadow-[#2495D3]/10 flex flex-col justify-between"
+              >
+                <div>
+                  {/* Circle Icon Badge */}
+                  <div className="w-14 h-14 rounded-full bg-[#1C3A62] text-[#2495D3] flex items-center justify-center mb-8 group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 overflow-hidden">
+                    {typeof Icon === 'string' ? (
+                      <img src={Icon} alt={service.title} className="w-8 h-8 object-contain" />
+                    ) : (
+                      <Icon className="w-6 h-6 stroke-[1.75]" />
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-['Integral_CF',sans-serif] text-2xl md:text-[26px] font-semibold text-[#1C3A62] mb-4 leading-tight group-hover:text-[#2495D3] transition-colors duration-300">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-[#878787] text-sm md:text-[15px] leading-relaxed font-normal mb-8">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Read More Action */}
+                <Link
+                  href={service.href}
+                  className="inline-flex items-center gap-3 text-[#1C3A62] font-semibold text-sm group-hover:text-[#2495D3] transition-colors duration-200"
+                >
+                  <span className="w-7 h-7 rounded-full bg-[#1C3A62] text-white flex items-center justify-center group-hover:bg-[#2495D3] transition-colors duration-200">
+                    <Plus className="w-4 h-4 stroke-[2.5]" />
+                  </span>
+                  Read More
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
+    </section>
+  );
+}
