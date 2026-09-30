@@ -4,6 +4,7 @@ import StatsSection from "@/components/StatsSection";
 import MissionVisionSlider from "@/components/MissionVisionSlider";
 import CEOQuoteSection from "@/components/CEOQuoteSection";
 import TrustedAgentsSection from "@/components/TrustedAgentsSection";
+import WhereAreWeLocated from "@/components/WhereAreWeLocated";
 import SiteHeader from "@/components/SiteHeader";
 
 export default function AboutPage() {
@@ -16,6 +17,7 @@ export default function AboutPage() {
         <MissionVisionSlider />
         <CEOQuoteSection />
         <TrustedAgentsSection />
+        <WhereAreWeLocated />
       </main>
     </div>
   );

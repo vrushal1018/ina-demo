@@ -3,12 +3,15 @@
 import React from "react";
 import Image from "next/image";
 import { User } from "lucide-react";
+import imgRanjit from "../../public/Ranjit Patil.jpeg";
+import imgJose from "../../public/Jose sir.jpeg";
+import imgLipson from "../../public/Lipson paul.jpeg";
 
 interface Agent {
   id: number;
   name: string;
   role: string;
-  image: string;
+  image: string | import("next/image").StaticImageData;
   socials: {
     facebook?: string;
     twitter?: string;
@@ -20,10 +23,9 @@ interface Agent {
 const agents: Agent[] = [
   {
     id: 1,
-    name: "Jordan Lee",
-    role: "Real Estate Broker",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+    name: "Ranjit Patil",
+    role: "Co-Founder",
+    image: imgRanjit,
     socials: {
       facebook: "#",
       twitter: "#",
@@ -33,10 +35,9 @@ const agents: Agent[] = [
   },
   {
     id: 2,
-    name: "Maya Chen",
-    role: "Certified Residential Specialist",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
+    name: "Jose Sir",
+    role: "Co-Founder",
+    image: imgJose,
     socials: {
       facebook: "#",
       twitter: "#",
@@ -46,10 +47,9 @@ const agents: Agent[] = [
   },
   {
     id: 3,
-    name: "Rafael Ortiz",
-    role: "Accredited Buyer's Representative",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop",
+    name: "Lipson Paul",
+    role: "Co-Founder",
+    image: imgLipson,
     socials: {
       facebook: "#",
       twitter: "#",
@@ -63,7 +63,7 @@ export default function TrustedAgentsSection() {
   return (
     <section className="w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Section Heading */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
@@ -75,7 +75,7 @@ export default function TrustedAgentsSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
           {agents.map((agent) => (
             <div key={agent.id} className="flex flex-col group">
-              
+
               {/* Agent Image Card with Subtle Gradient Background */}
               <div className="relative w-full h-[340px] sm:h-[380px] lg:h-[420px] rounded-3xl overflow-hidden bg-gradient-to-b from-[#F0F6FA] to-[#E2ECF4] mb-5">
                 <Image
