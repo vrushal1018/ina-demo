@@ -120,16 +120,14 @@ export default function HowWeWork() {
                       delay: index * 0.1,
                       ease: [0.215, 0.61, 0.355, 1],
                     }}
-                    className={`pl-16 md:pl-0 w-full md:w-[calc(50%-40px)] ${
-                      isEven ? 'md:mr-auto md:text-right' : 'md:ml-auto md:text-left'
-                    }`}
+                    className={`pl-16 md:pl-0 w-full md:w-[calc(50%-40px)] ${isEven ? 'md:mr-auto md:text-right' : 'md:ml-auto md:text-left'
+                      }`}
                   >
                     <div className="bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-xl shadow-slate-100/80 hover:shadow-2xl hover:border-[#2495D3]/30 transition-all duration-300 group">
                       {/* Step Header */}
                       <div
-                        className={`flex items-center gap-4 mb-6 ${
-                          isEven ? 'md:flex-row-reverse' : 'flex-row'
-                        }`}
+                        className={`flex items-center gap-4 mb-6 ${isEven ? 'md:flex-row-reverse' : 'flex-row'
+                          }`}
                       >
                         <div className="w-12 h-12 rounded-2xl bg-[#1C3A62] text-[#2495D3] flex items-center justify-center group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 flex-shrink-0">
                           <Icon className="w-6 h-6 stroke-[2]" />
@@ -151,9 +149,8 @@ export default function HowWeWork() {
 
                       {/* Key Deliverables Chips */}
                       <div
-                        className={`flex flex-wrap gap-2 ${
-                          isEven ? 'md:justify-end' : 'justify-start'
-                        }`}
+                        className={`flex flex-wrap gap-2 ${isEven ? 'md:justify-end' : 'justify-start'
+                          }`}
                       >
                         {step.deliverables.map((item, i) => (
                           <span
