@@ -76,8 +76,7 @@ export default function AboutUsHeroSection() {
             What we do
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
-            We help people find modern homes and smart real estate investment
-            opportunities designed for better living and long–term value.
+            We enrich your assets through expert repairs and proactive maintenance, extending their lifespan and keeping your facility safe, efficient and reliable.
           </h2>
         </div>
 
