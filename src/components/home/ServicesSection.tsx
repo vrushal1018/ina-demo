@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
   Briefcase,
   BarChart3,
@@ -65,13 +66,18 @@ const SERVICES: ServiceItem[] = [
   },
 ];
 
+// Duplicate items array to guarantee a seamless continuous loop
+const SLIDER_ITEMS = [...SERVICES, ...SERVICES];
+
 export default function ServicesSection() {
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
-    <section className="w-full bg-slate-50 py-16 md:py-24 font-['Poppins',sans-serif]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+    <section className="w-full bg-slate-50 py-16 md:py-24 font-['Poppins',sans-serif] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-16">
 
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl">
             <span className="font-['Integral_CF',sans-serif] text-sm md:text-base font-semibold text-[#2495D3] tracking-wider uppercase block mb-3">
               Our Service
@@ -86,51 +92,71 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service) => {
+      </div>
+
+      {/* Continuous Marquee Slider Container */}
+      <div
+        className="w-full relative overflow-hidden py-4"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Animated Track */}
+        <motion.div
+          className="flex gap-8 w-max px-4"
+          animate={{
+            x: isPaused ? undefined : ['0%', '-50%'],
+          }}
+          transition={{
+            ease: 'linear',
+            duration: 25,
+            repeat: Infinity,
+            repeatType: 'loop',
+          }}
+        >
+          {SLIDER_ITEMS.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
-                key={service.id}
-                className="group relative bg-white hover:bg-white rounded-3xl p-8 sm:p-10 transition-all duration-300 border border-slate-100 hover:border-[#2495D3]/30 hover:shadow-xl hover:shadow-[#2495D3]/10 flex flex-col justify-between"
+                key={`${service.id}-${index}`}
+                className="w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0"
               >
-                <div>
-                  {/* Circle Icon Badge */}
-                  <div className="w-14 h-14 rounded-full bg-[#1C3A62] text-[#2495D3] flex items-center justify-center mb-8 group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 overflow-hidden">
-                    {typeof Icon === 'string' ? (
-                      <img src={Icon} alt={service.title} className="w-8 h-8 object-contain" />
-                    ) : (
-                      <Icon className="w-6 h-6 stroke-[1.75]" />
-                    )}
+                <div className="group relative bg-white hover:bg-white rounded-3xl p-8 sm:p-10 transition-all duration-300 border border-slate-100 hover:border-[#2495D3]/30 hover:shadow-xl hover:shadow-[#2495D3]/10 flex flex-col justify-between h-full min-h-[380px]">
+                  <div>
+                    {/* Circle Icon Badge */}
+                    <div className="w-14 h-14 rounded-full bg-[#1C3A62] text-[#2495D3] flex items-center justify-center mb-8 group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 overflow-hidden">
+                      {typeof Icon === 'string' ? (
+                        <img src={Icon} alt={service.title} className="w-8 h-8 object-contain" />
+                      ) : (
+                        <Icon className="w-6 h-6 stroke-[1.75]" />
+                      )}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-['Integral_CF',sans-serif] text-2xl md:text-[26px] font-semibold text-[#1C3A62] mb-4 leading-tight group-hover:text-[#2495D3] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[#878787] text-sm md:text-[15px] leading-relaxed font-normal mb-8">
+                      {service.description}
+                    </p>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="font-['Integral_CF',sans-serif] text-2xl md:text-[26px] font-semibold text-[#1C3A62] mb-4 leading-tight group-hover:text-[#2495D3] transition-colors duration-300">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-[#878787] text-sm md:text-[15px] leading-relaxed font-normal mb-8">
-                    {service.description}
-                  </p>
+                  {/* Read More Action */}
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center gap-3 text-[#1C3A62] font-semibold text-sm group-hover:text-[#2495D3] transition-colors duration-200 mt-auto"
+                  >
+                    <span className="w-7 h-7 rounded-full bg-[#1C3A62] text-white flex items-center justify-center group-hover:bg-[#2495D3] transition-colors duration-200">
+                      <Plus className="w-4 h-4 stroke-[2.5]" />
+                    </span>
+                    Read More
+                  </Link>
                 </div>
-
-                {/* Read More Action */}
-                <Link
-                  href={service.href}
-                  className="inline-flex items-center gap-3 text-[#1C3A62] font-semibold text-sm group-hover:text-[#2495D3] transition-colors duration-200"
-                >
-                  <span className="w-7 h-7 rounded-full bg-[#1C3A62] text-white flex items-center justify-center group-hover:bg-[#2495D3] transition-colors duration-200">
-                    <Plus className="w-4 h-4 stroke-[2.5]" />
-                  </span>
-                  Read More
-                </Link>
               </div>
             );
           })}
-        </div>
-
+        </motion.div>
       </div>
     </section>
   );
