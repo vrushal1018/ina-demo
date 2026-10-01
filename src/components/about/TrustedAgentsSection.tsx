@@ -3,9 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import { User } from "lucide-react";
-import imgRanjit from "../../public/Ranjit Patil.jpeg";
-import imgJose from "../../public/Jose sir.jpeg";
-import imgLipson from "../../public/Lipson paul.jpeg";
+import imgRanjit from "../../../public/Ranjit Patil.jpeg";
+import imgJose from "../../../public/Jose sir.jpeg";
+import imgLipson from "../../../public/Lipson paul.jpeg";
 
 interface Agent {
   id: number;

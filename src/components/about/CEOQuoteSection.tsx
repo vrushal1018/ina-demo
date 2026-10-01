@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import aboutUsImg from "../../public/about us.png";
+import aboutUsImg from "../../../public/about us.png";
 
 export default function CEOQuoteSection() {
   return (

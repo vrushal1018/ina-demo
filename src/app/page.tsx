@@ -14,12 +14,12 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import FeatureGrid from "@/components/FeatureGrid";
-import GarageDoorTypes from "@/components/GarageDoorTypes";
-import RepairsAndServicing from "@/components/RepairsAndServicing";
-import GarageDoorSteps from "@/components/GarageDoorSteps";
-import BrandBanner from "@/components/BrandBanner";
-import ServicesSection from "@/components/ServicesSection";
+import FeatureGrid from "@/components/home/FeatureGrid";
+import GarageDoorTypes from "@/components/home/GarageDoorTypes";
+import RepairsAndServicing from "@/components/home/RepairsAndServicing";
+import GarageDoorSteps from "@/components/home/GarageDoorSteps";
+import BrandBanner from "@/components/home/BrandBanner";
+import ServicesSection from "@/components/home/ServicesSection";
 import AnimateIn from "@/components/AnimateIn";
 import SiteHeader from "@/components/SiteHeader";
 
