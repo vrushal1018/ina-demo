@@ -556,18 +556,9 @@ export default function WhereAreWeLocated() {
   );
 
   const [
-    isMounted,
-    setIsMounted,
-  ] = useState(false);
-
-  const [
     ,
     startTransition,
   ] = useTransition();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const handleSelectLocation =
     useCallback(
@@ -693,21 +684,20 @@ export default function WhereAreWeLocated() {
             "
           >
 
-            {isMounted && (
-              <Canvas
-                camera={{
-                  position: [
-                    0,
-                    0,
-                    5.8,
-                  ],
-                  fov: 42,
-                }}
-                dpr={[
-                  1,
-                  2,
-                ]}
-              >
+            <Canvas
+              camera={{
+                position: [
+                  0,
+                  0,
+                  5.8,
+                ],
+                fov: 42,
+              }}
+              dpr={[
+                1,
+                2,
+              ]}
+            >
 
                 {/* Lighting */}
 
@@ -783,8 +773,7 @@ export default function WhereAreWeLocated() {
                   }
                 />
 
-              </Canvas>
-            )}
+            </Canvas>
 
             {/* =================================================
                 HELPER

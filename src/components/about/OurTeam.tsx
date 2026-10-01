@@ -236,7 +236,7 @@ const teamMembers = [
 export default function OurTeam() {
   const [selectedDepartment, setSelectedDepartment] = useState('Admin');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeMemberId, setActiveMemberId] = useState(null); // Supports tap to toggle on mobile/touch screens
+  const [activeMemberId, setActiveMemberId] = useState<number | null>(null); // Supports tap to toggle on mobile/touch screens
   const [isPaused, setIsPaused] = useState(false); // Hover pause state
 
   // Filter team members based on the active department selection
@@ -248,7 +248,7 @@ export default function OurTeam() {
   const maxIndex = Math.max(0, filteredMembers.length - itemsPerPage);
 
   // Switch department and reset slide indices
-  const handleDepartmentChange = (dept) => {
+  const handleDepartmentChange = (dept: string) => {
     setSelectedDepartment(dept);
     setCurrentIndex(0);
     setActiveMemberId(null);
@@ -273,9 +273,10 @@ export default function OurTeam() {
     }, 3500); // Transitions every 3.5 seconds
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, isPaused, maxIndex, selectedDepartment]);
 
-  const handleCardClick = (id) => {
+  const handleCardClick = (id: number) => {
     // Toggle active state for mobile/touch users
     setActiveMemberId((prev) => (prev === id ? null : id));
   };
@@ -370,6 +371,7 @@ export default function OurTeam() {
                           : 'group-hover:translate-y-[110px] group-hover:scale-95'
                         }`}
                     >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={member.image}
                         alt={member.name}

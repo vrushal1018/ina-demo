@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Search, Compass, Code, Rocket } from 'lucide-react';
 
 interface StepItem {
@@ -9,7 +9,8 @@ interface StepItem {
   title: string;
   subtitle: string;
   description: string;
-  icon: React.ElementType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon: any;
   deliverables: string[];
 }
 
