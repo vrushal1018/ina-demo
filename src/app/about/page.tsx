@@ -6,6 +6,7 @@ import CEOQuoteSection from "@/components/about/CEOQuoteSection";
 import TrustedAgentsSection from "@/components/about/TrustedAgentsSection";
 import OurTeam from "@/components/about/OurTeam";
 import WhereAreWeLocated from "@/components/about/WhereAreWeLocated";
+import HowWeWork from "@/components/about/HowWeWork";
 import SiteHeader from "@/components/SiteHeader";
 
 export default function AboutPage() {
@@ -20,6 +21,7 @@ export default function AboutPage() {
         <TrustedAgentsSection />
         <OurTeam />
         <WhereAreWeLocated />
+        <HowWeWork />
       </main>
     </div>
   );
