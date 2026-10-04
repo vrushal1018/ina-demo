@@ -44,9 +44,12 @@ export default function Home() {
       <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
         {/* Background Image Container with Overlays */}
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80"
-            alt="Modern Melbourne residence with automated garage door"
+          <video
+            src="/InaTechFM-Website-Banner-5s.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover object-center scale-105 transform transition-transform duration-1000"
           />
           {/* Gradient Dark Overlay */}

@@ -11,23 +11,23 @@ interface StatItem {
 const stats: StatItem[] = [
   {
     id: 1,
-    value: "1,200+",
-    description: "Helping families and investors find their perfect property.",
+    value: "78 Mn+",
+    description: "Sq Ft Area Managed",
   },
   {
     id: 2,
-    value: "300+",
-    description: "Experienced professionals delivering expert property.",
+    value: "290+",
+    description: "Clients",
   },
   {
     id: 3,
-    value: "95%",
-    description: "Providing reliable support and smooth real estate experiences.",
+    value: "3,000+",
+    description: "Employees",
   },
   {
     id: 4,
-    value: "40%",
-    description: "Using smart marketing and digital tools to close deals efficiently.",
+    value: "8",
+    description: "Years of Experience",
   },
 ];
 

@@ -31,12 +31,12 @@ export default function SiteHeader() {
           >
             Services
           </a>
-          <a
-            href="#service-area"
+          <Link
+            href="/clients-corner"
             className="hover:text-[#2495D3] transition-colors"
           >
             Clients Corner
-          </a>
+          </Link>
           <a
             href="#about"
             className="hover:text-[#2495D3] transition-colors"
@@ -115,12 +115,12 @@ export default function SiteHeader() {
           >
             Services
           </a>
-          <a
-            href="#service-area"
+          <Link
+            href="/clients-corner"
             className="block py-2 text-base font-semibold text-[#383838] hover:text-[#2495D3]"
           >
             Clients Corner
-          </a>
+          </Link>
           <a
             href="#about"
             className="block py-2 text-base font-semibold text-[#383838] hover:text-[#2495D3]"
