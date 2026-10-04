@@ -1,6 +1,12 @@
+"use client";
+
 import React from "react";
 import SiteHeader from "@/components/SiteHeader";
-import ClientsCorner from "@/components/ClientsCorner";
+import dynamic from "next/dynamic";
+
+const ClientsCorner = dynamic(() => import("@/components/ClientsCorner"), {
+  ssr: false,
+});
 
 export default function ClientsCornerPage() {
   return (
