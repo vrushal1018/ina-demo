@@ -92,7 +92,7 @@ const BRANDS = [
 
 export default function BrandBanner() {
   return (
-    <section className="w-full bg-slate-50 py-12 overflow-hidden border-y border-slate-100">
+    <section className="w-full bg-slate-50 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header Title with Lucide Icon */}
