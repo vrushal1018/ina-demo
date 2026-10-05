@@ -42,7 +42,7 @@ export default function FeatureGrid() {
     },
     {
       icon: Wrench,
-      title: "Proactive Maintenance",
+      title: "Predictive Maintenance",
       description: "We proactively maintain critical systems and assets to ensure reliability, efficiency, and uninterrupted operations."
     },
   ];

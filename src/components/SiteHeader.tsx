@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import Link from "next/link";
+import ServicesSection from "./ServicesSection";
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,12 +26,21 @@ export default function SiteHeader() {
           >
             About us
           </Link>
-          <a
-            href="#repairs"
-            className="hover:text-[#2495D3] transition-colors"
-          >
-            Services
-          </a>
+          <div className="group">
+            <a
+              href="#repairs"
+              className="hover:text-[#2495D3] transition-colors py-4 -my-4 block"
+            >
+              Services
+            </a>
+            
+            {/* Mega Menu Dropdown */}
+            <div className="fixed top-[80px] left-0 w-full pt-4 px-4 sm:px-6 lg:px-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+              <div className="max-w-7xl mx-auto w-full bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border border-gray-200/50 overflow-hidden transform group-hover:translate-y-0 -translate-y-2 transition-all duration-300 rounded-[2rem] max-h-[80vh] overflow-y-auto">
+                <ServicesSection />
+              </div>
+            </div>
+          </div>
           <Link
             href="/clients-corner"
             className="hover:text-[#2495D3] transition-colors"

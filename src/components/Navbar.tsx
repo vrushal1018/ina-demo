@@ -11,7 +11,9 @@ import {
   X,
   ExternalLink,
   ArrowRight,
+  LayoutGrid,
 } from "lucide-react";
+import ServicesSection from "./ServicesSection";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,7 +32,23 @@ export default function Navbar() {
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
-            <a href="#features" className="hover:text-purple-400 transition-colors flex items-center gap-1.5">
+            {/* Services Mega Menu */}
+            <div className="group h-16 flex items-center">
+              <a href="#services" className="hover:text-purple-400 transition-colors flex items-center gap-1.5 h-full">
+                <LayoutGrid className="w-4 h-4 text-orange-400" /> Services
+              </a>
+              
+              {/* Mega Menu Dropdown */}
+              <div className="absolute top-full left-0 w-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 origin-top-left z-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                  <div className="bg-white rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] border border-gray-100/20 overflow-hidden transform group-hover:translate-y-0 translate-y-4 transition-all duration-300">
+                    <ServicesSection />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="#features" className="hover:text-purple-400 transition-colors flex items-center gap-1.5 group/link h-16">
               <Zap className="w-4 h-4 text-purple-400" /> Features
             </a>
             <a href="#components" className="hover:text-purple-400 transition-colors flex items-center gap-1.5">
@@ -77,6 +95,13 @@ export default function Navbar() {
         {/* Mobile Navigation Dropdown */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-white/10 space-y-3">
+            <a
+              href="#services"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-zinc-200 hover:bg-white/5 hover:text-purple-400"
+            >
+              Services
+            </a>
             <a
               href="#features"
               onClick={() => setMobileMenuOpen(false)}
