@@ -20,7 +20,7 @@ const slides: Slide[] = [
     id: 1,
     title: "Our Mission",
     description:
-      "Our mission is to help people find the perfect property with confidence, transparency, and expert guidance.",
+      "To deliver efficient, sustainable, and technology-enabled facility management solutions that enhance asset performance, optimize energy consumption, ensure compliance, and create better environments for our customers.",
     image: missionImg,
     alt: "Our Mission",
   },
@@ -28,7 +28,7 @@ const slides: Slide[] = [
     id: 2,
     title: "Our Vision",
     description:
-      "Our vision is to revolutionize real estate by creating sustainable, accessible, and smart living spaces for future generations.",
+      "To be the first choice in Engineering Facility Management by delivering innovative, technology-driven solutions that create lasting value for our customers.",
     image: visionImg,
     alt: "Our Vision",
   },
@@ -36,7 +36,7 @@ const slides: Slide[] = [
     id: 3,
     title: "Our Goals",
     description:
-      "Our goals are to expand our global network, continuously empower client decisions through technology, and exceed satisfaction in every transaction.",
+      "To achieve operational excellence, drive sustainable growth, embrace innovative technologies, and deliver measurable value through reliable, efficient, and customer-focused facility management solutions.",
     image: goalsImg,
     alt: "Our Goals",
   },
@@ -71,9 +71,8 @@ export default function MissionVisionSlider() {
           {slides.map((slide, idx) => (
             <div
               key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
             >
               <Image
                 src={slide.image}
@@ -91,7 +90,7 @@ export default function MissionVisionSlider() {
           {/* Foreground Content */}
           <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 sm:p-10 lg:p-14">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              
+
               {/* Text Block */}
               <div className="max-w-2xl text-white transition-all duration-500 transform">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3">
@@ -132,11 +131,10 @@ export default function MissionVisionSlider() {
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   aria-label={`Go to slide ${idx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    idx === currentIndex
-                      ? "w-8 bg-[#2495D3]"
-                      : "w-2 bg-white/40 hover:bg-white/70"
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex
+                    ? "w-8 bg-[#2495D3]"
+                    : "w-2 bg-white/40 hover:bg-white/70"
+                    }`}
                 />
               ))}
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Heart, Settings, MessageSquare, Star, Target, LineChart, Smile } from "lucide-react";
+import { Heart, Settings, MessageSquare, Star, Target, LineChart, Smile, Wrench } from "lucide-react";
 
 export default function FeatureGrid() {
   const features = [
@@ -39,6 +39,11 @@ export default function FeatureGrid() {
       icon: Smile,
       title: "Positive Work Environment",
       description: "We aim to create a great, collaborative, and productive working environment."
+    },
+    {
+      icon: Wrench,
+      title: "Proactive Maintenance",
+      description: "We proactively maintain critical systems and assets to ensure reliability, efficiency, and uninterrupted operations."
     },
   ];
 
