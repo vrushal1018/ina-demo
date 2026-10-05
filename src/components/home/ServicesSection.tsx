@@ -83,12 +83,12 @@ export default function ServicesSection() {
               Our Service
             </span>
             <h2 className="font-['Integral_CF',sans-serif] text-3xl sm:text-4xl md:text-[52px] font-semibold text-[#1C3A62] leading-[1.15] tracking-tight">
-              Comprehensive Solutions, All in One Place
+              Comprehensive Facility Management Solutions
             </h2>
           </div>
 
           <p className="text-[#585858] text-sm md:text-base max-w-md leading-relaxed font-normal">
-            From cloud infrastructure and cybersecurity to custom software and IT consulting—we deliver end-to-end technology services tailored to your business needs.
+            From engineering and technical facility management to sustainability, transition, and allied services, we deliver integrated solutions designed to improve efficiency, reliability, safety, and long-term asset performance..
           </p>
         </div>
 

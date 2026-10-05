@@ -120,7 +120,7 @@ export default function SectorsWeOperate() {
                     className="inline-flex items-center text-sm font-semibold text-[#2495D3] hover:text-[#488FCD] group/link transition-colors duration-200"
                   >
                     <span className="border-b border-[#2495D3] group-hover/link:border-[#488FCD] pb-0.5">
-                      Get a Quote
+                      View All
                     </span>
                     <ArrowRight className="w-4 h-4 ml-1.5 transform group-hover/link:translate-x-1 transition-transform duration-200" />
                   </a>
