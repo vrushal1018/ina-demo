@@ -24,7 +24,7 @@ export default function GeneralConsultation() {
               <span>Services</span>
               <ChevronRight className="h-4 w-4" />
               <span className="text-[#C7F000]">
-                General Consultation
+                Hard FM
               </span>
             </div>
 
@@ -35,9 +35,9 @@ export default function GeneralConsultation() {
               ====================================================== */}
               <div className="relative z-20">
                 <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[64px]">
-                  GENERAL
+                  HARD
                   <br />
-                  CONSULTATION
+                  FM
                 </h1>
 
                 <p className="mt-7 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
@@ -117,8 +117,8 @@ export default function GeneralConsultation() {
                     }}
                   >
                     <img
-                      src="image_d1d8a3.jpg"
-                      alt="Medical team"
+                      src="/HardFm.jpg"
+                      alt="Hard FM Team"
                       className="h-full w-full object-cover object-top"
                     />
                   </div>
@@ -206,7 +206,7 @@ export default function GeneralConsultation() {
                   >
                     <img
                       src="/HardFm.jpg"
-                      alt="Medical team"
+                      alt="Hard FM"
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
@@ -221,24 +221,19 @@ export default function GeneralConsultation() {
                   </div>
 
                   <h2 className="text-3xl font-extrabold tracking-tight text-black md:text-4xl">
-                    What is a general consultation?
+                    What is Hard FM?
                   </h2>
 
                   <p className="mt-5 leading-relaxed text-[#585858]">
-                    A general consultation is your first point of contact for
-                    any health concern. Our GPs assess your symptoms, review
-                    your medical history, and provide advice, referrals, or
-                    treatment — all in one visit. Whether it's a routine
-                    check-up or something that's been bothering you, we're
-                    here to listen and help.
+                    Hard Facilities Management (Hard FM) deals with the physical infrastructure of your building. Our experts assess your systems, review maintenance logs, and provide reliable engineering operations, preventive maintenance, and asset management — ensuring your facility operates safely and efficiently.
                   </p>
 
                   <ul className="mt-7 space-y-4">
                     {[
-                      'Personalized health assessment',
-                      'Referrals to specialists if needed',
-                      'Same-day appointments available',
-                      'Digital prescriptions and records',
+                      'Comprehensive engineering operations',
+                      'Asset lifecycle management',
+                      'Preventive & reactive maintenance',
+                      '24/7 technical support and reporting',
                     ].map((item, index) => (
                       <li
                         key={index}

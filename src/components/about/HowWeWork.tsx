@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import {
+  LucideIcon,
   Eye,
   ShieldCheck,
   Users,
@@ -15,7 +16,7 @@ interface ValueItem {
   id: number;
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
 }
 
 const VALUES: ValueItem[] = [
