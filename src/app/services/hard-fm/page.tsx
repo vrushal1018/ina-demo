@@ -3,6 +3,7 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
+import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 
 export default function GeneralConsultation() {
   return (
@@ -24,7 +25,7 @@ export default function GeneralConsultation() {
               <span>Services</span>
               <ChevronRight className="h-4 w-4" />
               <span className="text-[#C7F000]">
-                Hard FM
+                General Consultation
               </span>
             </div>
 
@@ -33,11 +34,11 @@ export default function GeneralConsultation() {
               {/* =====================================================
                   LEFT CONTENT
               ====================================================== */}
-              <div className="relative z-20">
+              <div className="relative z-30">
                 <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[64px]">
-                  HARD
+                  GENERAL
                   <br />
-                  FM
+                  CONSULTATION
                 </h1>
 
                 <p className="mt-7 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
@@ -87,43 +88,44 @@ export default function GeneralConsultation() {
               </div>
 
               {/* =====================================================
-                  RIGHT IMAGE - STEPPED MASK DESIGN
+                  RIGHT IMAGE - OVERLAPPING PANELS MATCHING DESIGN
               ====================================================== */}
-              <div className="relative flex min-h-[430px] w-full items-center justify-center lg:min-h-[500px]">
-
+              <div className="relative flex w-full items-center justify-center h-[400px] lg:h-[550px]">
                 {/* Decorative vertical lines */}
                 <div className="absolute left-[8%] top-[-100px] h-[650px] w-px bg-white/10" />
                 <div className="absolute right-[8%] top-[-100px] h-[650px] w-px bg-white/10" />
 
-                {/* SVG Mask Definition */}
-                <svg width="0" height="0" className="absolute pointer-events-none">
-                  <defs>
-                    <mask id="hero-mask">
-                      {/* Base rectangle for left and right shoulders (lowered) */}
-                      <rect x="0" y="15%" width="100%" height="85%" rx="32" fill="white" />
-                      {/* Center taller rectangle for the pop-out effect */}
-                      <rect x="28%" y="0%" width="44%" height="100%" rx="32" fill="white" />
-                    </mask>
-                  </defs>
-                </svg>
+                {/* Overlapping Panels Container */}
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
 
-                {/* Image Container with Drop Shadow */}
-                <div className="relative z-10 w-full h-[430px] sm:h-[470px] lg:h-[500px] drop-shadow-2xl">
-                  <div
-                    className="h-full w-full bg-white"
-                    style={{
-                      WebkitMaskImage: 'url(#hero-mask)',
-                      maskImage: 'url(#hero-mask)',
-                    }}
-                  >
+                  {/* Panel 1: Left Doctor (Shorter, Behind) */}
+                  <div className="absolute left-[5%] z-0 h-[70%] w-[42%] overflow-hidden rounded-3xl shadow-xl">
                     <img
-                      src="/HardFm.jpg"
-                      alt="Hard FM Team"
-                      className="h-full w-full object-cover object-top"
+                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80"
+                      alt="Male Doctor"
+                      className="h-full w-full object-cover object-top bg-white"
                     />
                   </div>
-                </div>
 
+                  {/* Panel 3: Right Doctor (Shorter, Behind) */}
+                  <div className="absolute right-[5%] z-0 h-[70%] w-[42%] overflow-hidden rounded-3xl shadow-xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1582750433449-648ed127d0fc?auto=format&fit=crop&w=600&q=80"
+                      alt="Doctor with tablet"
+                      className="h-full w-full object-cover object-top bg-white"
+                    />
+                  </div>
+
+                  {/* Panel 2: Center Doctor (Taller, Front) */}
+                  <div className="relative z-10 h-[90%] w-[45%] overflow-hidden rounded-3xl shadow-2xl ring-4 ring-[#1C3A62]">
+                    <img
+                      src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
+                      alt="Main Doctor"
+                      className="h-full w-full object-cover object-top bg-white"
+                    />
+                  </div>
+
+                </div>
               </div>
             </div>
           </div>
@@ -221,19 +223,19 @@ export default function GeneralConsultation() {
                   </div>
 
                   <h2 className="text-3xl font-extrabold tracking-tight text-black md:text-4xl">
-                    What is Hard FM?
+                    What is General Consultation?
                   </h2>
 
                   <p className="mt-5 leading-relaxed text-[#585858]">
-                    Hard Facilities Management (Hard FM) deals with the physical infrastructure of your building. Our experts assess your systems, review maintenance logs, and provide reliable engineering operations, preventive maintenance, and asset management — ensuring your facility operates safely and efficiently.
+                    A general medical consultation involves a comprehensive health assessment, diagnosis of conditions, and personalized medical advice. Our experienced GPs provide holistic care, from managing acute illnesses to preventative health planning.
                   </p>
 
                   <ul className="mt-7 space-y-4">
                     {[
-                      'Comprehensive engineering operations',
-                      'Asset lifecycle management',
-                      'Preventive & reactive maintenance',
-                      '24/7 technical support and reporting',
+                      'Complete physical examinations',
+                      'Chronic disease management',
+                      'Preventative health screening',
+                      'Referrals and diagnostic imaging',
                     ].map((item, index) => (
                       <li
                         key={index}
@@ -252,6 +254,7 @@ export default function GeneralConsultation() {
           </div>
         </section>
 
+        <ComprehensiveBuildingSolutions />
       </div>
     </>
   );
