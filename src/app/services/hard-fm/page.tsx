@@ -50,16 +50,17 @@ export default function HardFMPage() {
                   <button
                     className="
                       rounded-full
-                      bg-[#C7F000]
+                      border
+                      border-[#1C3A62]
                       px-8
                       py-3.5
                       font-semibold
-                      text-black
+                      text-[#1C3A62]
                       transition-all
                       duration-300
                       hover:-translate-y-1
-                      hover:bg-[#d5ff1a]
-                      hover:shadow-lg
+                      hover:bg-[#1C3A62]
+                      hover:text-white
                     "
                   >
                     Book an Appointment
