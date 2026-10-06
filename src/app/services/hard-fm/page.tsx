@@ -4,6 +4,7 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
+import InteractiveServiceCards from '@/components/InteractiveServiceCards';
 
 export default function HardFMPage() {
   return (
@@ -202,6 +203,7 @@ export default function HardFMPage() {
         </section>
 
         <ComprehensiveBuildingSolutions />
+        <InteractiveServiceCards />
       </div>
     </>
   );
