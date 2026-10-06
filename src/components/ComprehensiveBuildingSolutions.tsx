@@ -96,62 +96,132 @@ export default function ComprehensiveBuildingSolutions() {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+        {/* 3D Roller Carousel Section */}
+        <div className="mt-20 w-full overflow-hidden flex justify-center items-center h-[850px] carousel-scene">
 
-            // Alternating cut-corner shapes to create the diamond gaps
-            const isEven = index % 2 === 0;
-            const clipPath = isEven
-              ? 'polygon(3.5rem 0, 100% 0, 100% calc(100% - 3.5rem), calc(100% - 3.5rem) 100%, 0 100%, 0 3.5rem)'
-              : 'polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 3.5rem 100%, 0 calc(100% - 3.5rem))';
+          <style>{`
+            .carousel-scene {
+              perspective: 1500px;
+            }
+            .carousel-wrapper {
+              transform: scale(0.5);
+              transform-origin: center center;
+              transform-style: preserve-3d;
+            }
+            @media (min-width: 768px) {
+              .carousel-wrapper {
+                transform: scale(0.9);
+              }
+            }
+            @media (min-width: 1024px) {
+              .carousel-wrapper {
+                transform: scale(1);
+              }
+            }
+            .carousel-roller {
+              transform-style: preserve-3d;
+              animation: roller-spin 40s infinite linear;
+            }
+            .carousel-roller:hover {
+              animation-play-state: paused;
+            }
+            @keyframes roller-spin {
+              /* Move the entire cylinder back by its radius so the front card sits exactly at Z=0 (normal size) */
+              0% { transform: translateZ(-420px) rotateX(0deg); }
+              100% { transform: translateZ(-420px) rotateX(-360deg); }
+            }
+            .roller-card {
+              backface-visibility: visible;
+            }
+            .carousel-scene:hover .carousel-roller,
+            .carousel-scene:hover .fade-card {
+              animation-play-state: paused;
+            }
+            .fade-card {
+              animation: card-focus 40s infinite linear;
+              animation-fill-mode: both;
+            }
+            @keyframes card-focus {
+              0%   { opacity: 1; filter: blur(0px); }
+              10%  { opacity: 0.8; filter: blur(1px); }
+              18%  { opacity: 0.1; filter: blur(4px); }
+              25%  { opacity: 0; filter: blur(10px); }
+              75%  { opacity: 0; filter: blur(10px); }
+              82%  { opacity: 0.1; filter: blur(4px); }
+              90%  { opacity: 0.8; filter: blur(1px); }
+              100% { opacity: 1; filter: blur(0px); }
+            }
+          `}</style>
 
-            return (
-              <div
-                key={index}
-                className="group relative transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-              >
-                {/* 
-                  Border Wrapper:
-                  Using a black background with 1px padding to act as a solid border 
-                  that perfectly follows the clip-path coordinates.
-                */}
-                <div
-                  className="h-full w-full bg-black p-[1px]"
-                  style={{ clipPath }}
-                >
-                  {/* Inner White Card */}
+          <div className="carousel-wrapper relative w-[704px] h-[360px]">
+            <div className="carousel-roller absolute w-full h-full">
+              {Array.from({ length: Math.ceil(services.length / 2) }).map((_, index) => {
+                const pair = services.slice(index * 2, index * 2 + 2);
+                const totalFaces = Math.ceil(services.length / 2); // 6 faces
+                const angle = (360 / totalFaces) * index;
+                const radius = 420;
+
+                return (
                   <div
-                    className="flex flex-col h-full w-full bg-white p-10 md:p-12 min-h-[320px]"
-                    style={{ clipPath }}
+                    key={index}
+                    className="roller-card fade-card absolute top-0 left-0 w-full h-full flex justify-center gap-6"
+                    style={{
+                      transform: `rotateX(${angle}deg) translateZ(${radius}px)`,
+                      animationDelay: `${(angle / 360) * 40 - 40}s`
+                    }}
                   >
-                    {/* Icon Container - Light blue background with Primary Deep Blue logo */}
-                    <div className="w-12 h-12 bg-[#2495D3]/10 rounded-full flex items-center justify-center text-[#1C3A62] mb-8 transition-transform duration-300 group-hover:scale-110">
-                      <Icon size={24} strokeWidth={2.5} />
-                    </div>
+                    {pair.map((service, cardIndex) => {
+                      const Icon = service.icon;
+                      const globalIndex = index * 2 + cardIndex;
 
-                    {/* Content - Title and Description in Deep Blue */}
-                    <h3 className="text-xl font-extrabold text-[#1C3A62] mb-4 pr-4 leading-snug">
-                      {service.title}
-                    </h3>
-                    <p className="text-[#1C3A62]/75 text-sm mb-8 flex-grow leading-relaxed font-medium">
-                      {service.description}
-                    </p>
+                      // Alternating cut-corner shapes to create the diamond gaps
+                      const isEven = globalIndex % 2 === 0;
+                      const clipPath = isEven
+                        ? 'polygon(3.5rem 0, 100% 0, 100% calc(100% - 3.5rem), calc(100% - 3.5rem) 100%, 0 100%, 0 3.5rem)'
+                        : 'polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 3.5rem 100%, 0 calc(100% - 3.5rem))';
 
-                    {/* Action Link - Deep Blue, turning Tertiary Blue on hover */}
-                    <a
-                      href="#"
-                      className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max"
-                    >
-                      Read More
-                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </a>
+                      return (
+                        <div key={cardIndex} className="relative w-[340px] h-[360px] group">
+                          {/* Border Wrapper */}
+                          <div
+                            className="h-full w-full bg-black p-[1px] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:-translate-y-2"
+                            style={{ clipPath }}
+                          >
+                            {/* Inner White Card */}
+                            <div
+                              className="flex flex-col h-full w-full bg-white p-10 min-h-[360px]"
+                              style={{ clipPath }}
+                            >
+                              {/* Icon Container */}
+                              <div className="w-12 h-12 bg-[#2495D3]/10 rounded-full flex items-center justify-center text-[#1C3A62] mb-6 transition-transform duration-300 group-hover:scale-110">
+                                <Icon size={24} strokeWidth={2.5} />
+                              </div>
+
+                              {/* Content */}
+                              <h3 className="text-xl font-extrabold text-[#1C3A62] mb-3 pr-4 leading-snug">
+                                {service.title}
+                              </h3>
+                              <p className="text-[#1C3A62]/75 text-[15px] mb-6 flex-grow leading-relaxed font-medium">
+                                {service.description}
+                              </p>
+
+                              {/* Action Link */}
+                              <a
+                                href="#"
+                                className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max mt-auto"
+                              >
+                                Read More
+                                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
+            </div></div>
         </div>
 
       </div>

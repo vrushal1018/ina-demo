@@ -166,7 +166,7 @@ export default function SustainabilityServicesPage() {
                   <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
                     <img
                       src="/HardFm.jpg"
-                      alt="Hard FM Overview"
+                      alt="Sustainability Services Overview"
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
