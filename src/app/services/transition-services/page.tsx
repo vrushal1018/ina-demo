@@ -5,12 +5,12 @@ import { ChevronRight } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 
-export default function HardFMPage() {
+export default function TransitionServicesPage() {
   return (
     <>
       <SiteHeader />
 
-      <div className="min-h-screen overflow-hidden bg-white font-sans">
+      <div className="min-h-screen overflow-hidden bg-[#1C3A62] font-sans">
 
         {/* =========================================================
             HERO SECTION
@@ -19,13 +19,13 @@ export default function HardFMPage() {
           <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-10 lg:pb-24">
 
             {/* Breadcrumbs */}
-            <div className="mb-10 flex items-center gap-1.5 text-sm text-[#585858]">
+            <div className="mb-10 flex items-center gap-1.5 text-sm text-white/70">
               <span>Home</span>
               <ChevronRight className="h-4 w-4" />
               <span>Services</span>
               <ChevronRight className="h-4 w-4" />
-              <span className="font-semibold text-[#2495D3]">
-                Hard FM
+              <span className="text-[#C7F000]">
+                Transition Services
               </span>
             </div>
 
@@ -35,14 +35,14 @@ export default function HardFMPage() {
                   LEFT CONTENT
               ====================================================== */}
               <div className="relative z-30">
-                <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.95] tracking-tight text-[#1C3A62] sm:text-6xl lg:text-[64px]">
-                  HARD
+                <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[64px]">
+                  TRANSITION
                   <br />
-                  FM
+                  SERVICES
                 </h1>
 
-                <p className="mt-7 max-w-md text-base leading-relaxed text-[#585858] sm:text-lg">
-                  Comprehensive engineering and facility management solutions focused on reliable and efficient operations.
+                <p className="mt-7 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
+                  Structured transition management to ensure smooth mobilization and continuity of facility operations.
                 </p>
 
                 {/* Buttons */}
@@ -69,16 +69,16 @@ export default function HardFMPage() {
                     className="
                       rounded-full
                       border
-                      border-[#1C3A62]
+                      border-white
                       px-8
                       py-3.5
                       font-semibold
-                      text-[#1C3A62]
+                      text-white
                       transition-all
                       duration-300
                       hover:-translate-y-1
-                      hover:bg-[#1C3A62]
-                      hover:text-white
+                      hover:bg-white
+                      hover:text-[#1C3A62]
                     "
                   >
                     Contact Us
@@ -91,8 +91,8 @@ export default function HardFMPage() {
               ====================================================== */}
               <div className="relative flex w-full items-center justify-center h-[400px] lg:h-[550px]">
                 {/* Decorative vertical lines */}
-                <div className="absolute left-[8%] top-[-100px] h-[650px] w-px bg-gray-200" />
-                <div className="absolute right-[8%] top-[-100px] h-[650px] w-px bg-gray-200" />
+                <div className="absolute left-[8%] top-[-100px] h-[650px] w-px bg-white/10" />
+                <div className="absolute right-[8%] top-[-100px] h-[650px] w-px bg-white/10" />
 
                 {/* Overlapping Panels Container */}
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
@@ -116,7 +116,7 @@ export default function HardFMPage() {
                   </div>
 
                   {/* Panel 2: Center Doctor (Taller, Front) */}
-                  <div className="relative z-10 h-[90%] w-[45%] overflow-hidden rounded-3xl shadow-2xl ring-4 ring-white">
+                  <div className="relative z-10 h-[90%] w-[45%] overflow-hidden rounded-3xl shadow-2xl ring-4 ring-[#1C3A62]">
                     <img
                       src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
                       alt="Main Doctor"
@@ -128,6 +128,27 @@ export default function HardFMPage() {
               </div>
             </div>
           </div>
+
+          {/* =======================================================
+              WHITE GRID TRANSITION
+          ======================================================== */}
+          <div
+            className="
+              relative
+              mx-auto
+              h-8
+              max-w-[calc(100%-32px)]
+              overflow-hidden
+              rounded-t-[3rem]
+              bg-white
+              sm:h-10
+            "
+            style={{
+              backgroundImage:
+                'linear-gradient(to right, #eeeeee 1px, transparent 1px), linear-gradient(to bottom, #eeeeee 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+            }}
+          />
         </section>
 
         {/* =========================================================
@@ -155,17 +176,38 @@ export default function HardFMPage() {
               <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
                 {/* =================================================
-                    OVERVIEW IMAGE (Design Fixed)
+                    OVERVIEW IMAGE
                 ================================================== */}
-                <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
-                  {/* Background shape for depth */}
-                  <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
-
-                  {/* Clean rounded image container */}
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
+                <div className="relative flex h-[330px] items-end justify-center md:h-[400px]">
+                  {/* Background shape */}
+                  <div
+                    className="
+                      absolute
+                      bottom-0
+                      h-[82%]
+                      w-full
+                      rounded-[2rem]
+                      bg-gray-50
+                    "
+                  />
+                  {/* Image */}
+                  <div
+                    className="
+                      relative
+                      z-10
+                      h-[105%]
+                      w-[95%]
+                      overflow-hidden
+                      rounded-[2rem]
+                    "
+                    style={{
+                      clipPath:
+                        'polygon(7% 0%, 94% 0%, 100% 8%, 100% 87%, 93% 94%, 60% 94%, 54% 100%, 8% 100%, 0% 91%, 0% 12%)',
+                    }}
+                  >
                     <img
                       src="/HardFm.jpg"
-                      alt="Hard FM Overview"
+                      alt="Hard FM"
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
@@ -179,20 +221,20 @@ export default function HardFMPage() {
                     Overview
                   </div>
 
-                  <h2 className="text-3xl font-extrabold tracking-tight text-[#1C3A62] md:text-4xl">
-                    What is Hard FM?
+                  <h2 className="text-3xl font-extrabold tracking-tight text-black md:text-4xl">
+                    What are Transition Services?
                   </h2>
 
                   <p className="mt-5 leading-relaxed text-[#585858]">
-                    Hard FM encompasses a broad range of engineering and facility management solutions designed to ensure your physical assets and building systems operate optimally. From routine maintenance to complex engineering tasks, we focus on maximizing reliability, safety, and operational efficiency.
+                    Transition Services offer a structured and systematic approach to mobilization and operational handover. We ensure that facility management transitions are smooth, efficient, and minimize disruption to your core business operations.
                   </p>
 
                   <ul className="mt-7 space-y-4">
                     {[
-                      'Engineering Operations',
-                      'Asset Management',
-                      'Preventive Maintenance',
-                      'Lifecycle Planning',
+                      'Transition Planning',
+                      'Mobilization',
+                      'Operational Handover',
+                      'Change Management',
                     ].map((item, index) => (
                       <li
                         key={index}

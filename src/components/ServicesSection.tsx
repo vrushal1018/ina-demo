@@ -1,179 +1,80 @@
-
-'use client';
-
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Building2,
-  ArrowRightLeft,
+  UsersRound,
+  ClipboardCheck,
   Leaf,
   Wrench,
-  ClipboardCheck,
-  UsersRound,
-  CheckCircle2,
+  ArrowRightLeft
 } from 'lucide-react';
 
-const services = [
-  {
-    title: 'Hard FM',
-    description:
-      'Comprehensive engineering and facility management solutions focused on reliable and efficient operations.',
-    features: [
-      'Engineering Operations',
-      'Asset Management',
-      'Preventive Maintenance',
-    ],
-    link: '/services/hard-fm',
-    icon: Building2,
-    iconBg: 'bg-red-100',
-    iconColor: 'text-red-500',
-    checkColor: 'text-red-500',
-  },
-  {
-    title: 'Allied Services',
-    description:
-      'Integrated support services designed to create safe, efficient, and well-managed workplace environments.',
-    features: [
-      'Soft Services',
-      'Workplace Support',
-      'Integrated Solutions',
-    ],
-    icon: UsersRound,
-    iconBg: 'bg-blue-100',
-    iconColor: 'text-[#2495D3]',
-    checkColor: 'text-[#2495D3]',
-  },
-  {
-    title: 'Audit & Offerings',
-    description:
-      'Professional audits and tailored solutions to identify opportunities and improve facility performance.',
-    features: [
-      'Facility Audits',
-      'Performance Assessment',
-      'Bespoke Solutions',
-    ],
-    icon: ClipboardCheck,
-    iconBg: 'bg-yellow-100',
-    iconColor: 'text-yellow-500',
-    checkColor: 'text-yellow-500',
-  },
-  {
-    title: 'Sustainability Services',
-    description:
-      'Energy-focused solutions that help optimize consumption, improve efficiency, and support sustainable operations.',
-    features: [
-      'Energy Audits',
-      'HVAC Assessment',
-      'Energy Optimization',
-    ],
-    icon: Leaf,
-    iconBg: 'bg-purple-100',
-    iconColor: 'text-purple-500',
-    checkColor: 'text-purple-500',
-  },
-  {
-    title: 'Technical Services',
-    description:
-      'Specialized technical expertise to maintain critical systems and ensure reliable facility performance.',
-    features: [
-      'Technical Support',
-      'System Maintenance',
-      'Engineering Expertise',
-    ],
-    icon: Wrench,
-    iconBg: 'bg-orange-100',
-    iconColor: 'text-orange-500',
-    checkColor: 'text-orange-500',
-  },
-  {
-    title: 'Transition Services',
-    description:
-      'Structured transition management to ensure smooth mobilization and continuity of facility operations.',
-    features: [
-      'Transition Planning',
-      'Mobilization',
-      'Operational Handover',
-    ],
-    icon: ArrowRightLeft,
-    iconBg: 'bg-cyan-100',
-    iconColor: 'text-[#488FCD]',
-    checkColor: 'text-[#488FCD]',
-  },
-];
-
 export default function ServicesSection() {
+  const services = [
+    { name: 'Hard FM', icon: Building2, link: '/services/hard-fm' },
+    { name: 'Allied Services', icon: UsersRound, link: '/services/allied-services' },
+    { name: 'Audit & Offerings', icon: ClipboardCheck, link: '/services/audit-and-offerings' },
+    { name: 'Sustainability Services', icon: Leaf, link: '/services/sustainability-services' },
+    { name: 'Technical Services', icon: Wrench, link: '/services/technical-services' },
+    { name: 'Transition Services', icon: ArrowRightLeft, link: '/services/transition-services' },
+  ];
+
   return (
-    <div className="w-full bg-gradient-to-br from-orange-50/50 via-white to-blue-50/50 p-6 pb-8 font-sans">
-      <div className="mx-auto w-full max-w-7xl">
+    <section className="max-w-6xl mx-auto px-4 py-8">
+      <div className="flex flex-col md:flex-row items-center gap-10">
 
-        {/* Header */}
-        <div className="mb-6 text-center">
-          <h3 className="mb-1.5 text-xs font-bold uppercase tracking-wide text-[#2495D3]">
-            Our Services
-          </h3>
-
-          <h2 className="text-2xl font-extrabold tracking-tight text-[#1C3A62]">
-            Comprehensive Facility Management Solutions
-          </h2>
+        {/* Left Side: Image Container */}
+        <div className="w-full md:w-1/3 relative flex justify-center">
+          <div className="relative w-64 h-80 rounded-t-[2rem] overflow-hidden bg-gray-200">
+            <Image
+              src="/HardFm.jpg"
+              alt="Service Professional"
+              layout="fill"
+              objectFit="cover"
+              className="rounded-t-[2rem]"
+            />
+            {/* Bottom white curved overlay mimicking the design cutout */}
+            <div className="absolute -bottom-1 left-0 right-0 h-8 bg-white rounded-t-[2rem]"></div>
+          </div>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+        {/* Right Side: Content & Grid */}
+        <div className="w-full md:w-2/3">
+          {/* Made the heading section smaller by adjusting text sizes and bottom margin */}
+          <div className="mb-6">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-2">
+              Best practice services for best customer outcomes
+            </h2>
+            <p className="text-gray-600 text-base">
+              We're on a mission to make your people and places the best they can be.
+            </p>
+          </div>
 
-            return (
-              <Link
-                href={service.link || "#"}
-                key={index}
-                className="group flex h-full cursor-pointer flex-col rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                {/* Icon */}
-                <div
-                  className={`mb-3 flex h-10 w-10 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 ${service.iconBg}`}
-                >
-                  <Icon
-                    className={`h-5 w-5 ${service.iconColor}`}
-                    strokeWidth={2.5}
-                  />
-                </div>
+          {/* Divider Line */}
+          <div className="w-full h-px bg-gray-200 mb-10"></div> {/* Increased margin below divider */}
 
-                {/* Title */}
-                <h4 className="mb-1.5 text-base font-bold text-black">
-                  {service.title}
-                </h4>
-
-                {/* Description */}
-                <p className="mb-3 text-[11px] leading-relaxed text-[#878787]">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <ul className="space-y-1.5">
-                  {service.features.map((feature, featureIndex) => (
-                    <li
-                      key={featureIndex}
-                      className="flex items-center gap-2"
-                    >
-                      <CheckCircle2
-                        className={`h-[14px] w-[14px] flex-shrink-0 ${service.checkColor}`}
-                        fill="currentColor"
-                        stroke="white"
-                      />
-
-                      <span className="text-[11px] font-medium text-[#585858]">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </Link>
-            );
-          })}
+          {/* Services Grid: Increased gap sizes for more breathing room */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-8">
+            {services.map((service, index) => {
+              const IconComponent = service.icon;
+              return (
+                <Link href={service.link} key={index} className="flex items-center space-x-4 group cursor-pointer hover:text-[#2495D3]">
+                  <div className="text-gray-600 flex-shrink-0 group-hover:text-[#2495D3] transition-colors">
+                    {/* Slightly larger icon size (32) to fill the new space nicely */}
+                    <IconComponent strokeWidth={1.5} size={32} />
+                  </div>
+                  {/* Slightly larger text to make services stand out more */}
+                  <span className="text-gray-800 font-medium text-[16px] group-hover:text-[#2495D3] transition-colors">
+                    {service.name}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
       </div>
-    </div>
+    </section>
   );
 }
-

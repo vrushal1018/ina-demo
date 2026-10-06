@@ -64,7 +64,7 @@ const services = [
 
 export default function ComprehensiveBuildingSolutions() {
   return (
-    <section className="bg-white min-h-screen py-20 px-4 sm:px-6 lg:px-8 font-sans">
+    <section className="bg-gray-50 min-h-screen py-20 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
 
         {/* Header Section */}
@@ -98,34 +98,45 @@ export default function ComprehensiveBuildingSolutions() {
             return (
               <div
                 key={index}
-                className="
-                  group flex flex-col p-10 md:p-12 min-h-[320px] transition-all duration-300
-                  bg-[#1C3A62]
-                  hover:shadow-2xl hover:-translate-y-1 hover:bg-[#152e4d]
-                "
-                style={{ clipPath }}
+                className="group relative transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               >
-                {/* Icon Container - White background with Primary Deep Blue logo */}
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#1C3A62] mb-8 transition-transform duration-300 group-hover:scale-110">
-                  <Icon size={24} strokeWidth={2.5} />
-                </div>
-
-                {/* Content - Title and Description in White */}
-                <h3 className="text-xl font-extrabold text-white mb-4 pr-4 leading-snug">
-                  {service.title}
-                </h3>
-                <p className="text-white/85 text-sm mb-8 flex-grow leading-relaxed font-medium">
-                  {service.description}
-                </p>
-
-                {/* Action Link - White, turning Lime Green on hover */}
-                <a
-                  href="#"
-                  className="inline-flex items-center text-white font-bold text-sm hover:text-[#C7F000] transition-colors w-max"
+                {/* 
+                  Border Wrapper:
+                  Using a black background with 1px padding to act as a solid border 
+                  that perfectly follows the clip-path coordinates.
+                */}
+                <div
+                  className="h-full w-full bg-black p-[1px]"
+                  style={{ clipPath }}
                 >
-                  Read More
-                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                </a>
+                  {/* Inner White Card */}
+                  <div
+                    className="flex flex-col h-full w-full bg-white p-10 md:p-12 min-h-[320px]"
+                    style={{ clipPath }}
+                  >
+                    {/* Icon Container - Light blue background with Primary Deep Blue logo */}
+                    <div className="w-12 h-12 bg-[#2495D3]/10 rounded-full flex items-center justify-center text-[#1C3A62] mb-8 transition-transform duration-300 group-hover:scale-110">
+                      <Icon size={24} strokeWidth={2.5} />
+                    </div>
+
+                    {/* Content - Title and Description in Deep Blue */}
+                    <h3 className="text-xl font-extrabold text-[#1C3A62] mb-4 pr-4 leading-snug">
+                      {service.title}
+                    </h3>
+                    <p className="text-[#1C3A62]/75 text-sm mb-8 flex-grow leading-relaxed font-medium">
+                      {service.description}
+                    </p>
+
+                    {/* Action Link - Deep Blue, turning Tertiary Blue on hover */}
+                    <a
+                      href="#"
+                      className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max"
+                    >
+                      Read More
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </div>
+                </div>
               </div>
             );
           })}

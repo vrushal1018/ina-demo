@@ -1,0 +1,10 @@
+import React from 'react';
+import Image from 'next/image';
+import { Building2, Droplet, Wrench, Bug, Cloud, Bell } from 'lucide-react';
+
+export default function ServicesSection() {
+  const services = [
+    { name: 'Facilities Management', icon: Building2, link: '/services/allied-services' }, // Assuming allied for facilities
+    { name: 'Cleaning', icon: Droplet, link: '/services/technical-services' }, // Just examples, or leave without links. The user did not specify links. Let's just use what they provided but maybe add Link tags so it works well.
+  ];
+}
