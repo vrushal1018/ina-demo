@@ -127,8 +127,8 @@ export default function ComprehensiveBuildingSolutions() {
             }
             @keyframes roller-spin {
               /* Move the entire cylinder back by its radius so the front card sits exactly at Z=0 (normal size) */
-              0% { transform: translateZ(-420px) rotateX(0deg); }
-              100% { transform: translateZ(-420px) rotateX(-360deg); }
+              0% { transform: translateZ(-460px) rotateX(0deg); }
+              100% { transform: translateZ(-460px) rotateX(-360deg); }
             }
             .roller-card {
               backface-visibility: visible;
@@ -155,72 +155,87 @@ export default function ComprehensiveBuildingSolutions() {
 
           <div className="carousel-wrapper relative w-[704px] h-[360px]">
             <div className="carousel-roller absolute w-full h-full">
-              {Array.from({ length: Math.ceil(services.length / 2) }).map((_, index) => {
-                const pair = services.slice(index * 2, index * 2 + 2);
-                const totalFaces = Math.ceil(services.length / 2); // 6 faces
-                const angle = (360 / totalFaces) * index;
-                const radius = 420;
+              {(() => {
+                const servicesWithIndex = services.map((s, i) => ({ ...s, originalIndex: i }));
+                const groupedFaces = [];
+                let i = 0;
+                let isTwo = true;
+                while (i < servicesWithIndex.length) {
+                  if (isTwo) {
+                    groupedFaces.push(servicesWithIndex.slice(i, i + 2));
+                    i += 2;
+                  } else {
+                    groupedFaces.push(servicesWithIndex.slice(i, i + 1));
+                    i += 1;
+                  }
+                  isTwo = !isTwo;
+                }
 
-                return (
-                  <div
-                    key={index}
-                    className="roller-card fade-card absolute top-0 left-0 w-full h-full flex justify-center gap-6"
-                    style={{
-                      transform: `rotateX(${angle}deg) translateZ(${radius}px)`,
-                      animationDelay: `${(angle / 360) * 40 - 40}s`
-                    }}
-                  >
-                    {pair.map((service, cardIndex) => {
-                      const Icon = service.icon;
-                      const globalIndex = index * 2 + cardIndex;
+                return groupedFaces.map((faceGroup, index) => {
+                  const totalFaces = groupedFaces.length; // 7 faces
+                  const angle = (360 / totalFaces) * index;
+                  const radius = 460;
 
-                      // Alternating cut-corner shapes to create the diamond gaps
-                      const isEven = globalIndex % 2 === 0;
-                      const clipPath = isEven
-                        ? 'polygon(3.5rem 0, 100% 0, 100% calc(100% - 3.5rem), calc(100% - 3.5rem) 100%, 0 100%, 0 3.5rem)'
-                        : 'polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 3.5rem 100%, 0 calc(100% - 3.5rem))';
+                  return (
+                    <div
+                      key={index}
+                      className="roller-card fade-card absolute top-0 left-0 w-full h-full flex justify-center gap-6"
+                      style={{
+                        transform: `rotateX(${angle}deg) translateZ(${radius}px)`,
+                        animationDelay: `${(angle / 360) * 40 - 40}s`
+                      }}
+                    >
+                      {faceGroup.map((service, cardIndex) => {
+                        const Icon = service.icon;
 
-                      return (
-                        <div key={cardIndex} className="relative w-[340px] h-[360px] group">
-                          {/* Border Wrapper */}
-                          <div
-                            className="h-full w-full bg-black p-[1px] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:-translate-y-2"
-                            style={{ clipPath }}
-                          >
-                            {/* Inner White Card */}
+                        // Alternating cut-corner shapes based on true original index
+                        const isEven = service.originalIndex % 2 === 0;
+                        const clipPath = isEven
+                          ? 'polygon(3.5rem 0, 100% 0, 100% calc(100% - 3.5rem), calc(100% - 3.5rem) 100%, 0 100%, 0 3.5rem)'
+                          : 'polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 3.5rem 100%, 0 calc(100% - 3.5rem))';
+
+                        return (
+                          <div key={cardIndex} className="relative w-[340px] h-[360px] group">
+                            {/* Border Wrapper */}
                             <div
-                              className="flex flex-col h-full w-full bg-white p-10 min-h-[360px]"
+                              className="h-full w-full bg-black p-[1px] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:-translate-y-2"
                               style={{ clipPath }}
                             >
-                              {/* Icon Container */}
-                              <div className="w-12 h-12 bg-[#2495D3]/10 rounded-full flex items-center justify-center text-[#1C3A62] mb-6 transition-transform duration-300 group-hover:scale-110">
-                                <Icon size={24} strokeWidth={2.5} />
-                              </div>
-
-                              {/* Content */}
-                              <h3 className="text-xl font-extrabold text-[#1C3A62] mb-3 pr-4 leading-snug">
-                                {service.title}
-                              </h3>
-                              <p className="text-[#1C3A62]/75 text-[15px] mb-6 flex-grow leading-relaxed font-medium">
-                                {service.description}
-                              </p>
-
-                              {/* Action Link */}
-                              <a
-                                href="#"
-                                className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max mt-auto"
+                              {/* Inner White Card */}
+                              <div
+                                className="flex flex-col h-full w-full bg-white p-10 min-h-[360px]"
+                                style={{ clipPath }}
                               >
-                                Read More
-                                <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                              </a>
+                                {/* Icon Container */}
+                                <div className="w-12 h-12 bg-[#2495D3]/10 rounded-full flex items-center justify-center text-[#1C3A62] mb-6 transition-transform duration-300 group-hover:scale-110">
+                                  <Icon size={24} strokeWidth={2.5} />
+                                </div>
+
+                                {/* Content */}
+                                <h3 className="text-xl font-extrabold text-[#1C3A62] mb-3 pr-4 leading-snug">
+                                  {service.title}
+                                </h3>
+                                <p className="text-[#1C3A62]/75 text-[15px] mb-6 flex-grow leading-relaxed font-medium">
+                                  {service.description}
+                                </p>
+
+                                {/* Action Link */}
+                                <a
+                                  href="#"
+                                  className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max mt-auto"
+                                >
+                                  Read More
+                                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                                </a>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
+                        );
+                      })}
+                    </div>
+                  );
+                });
+              })()}
             </div></div>
         </div>
 
