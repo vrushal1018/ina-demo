@@ -2,63 +2,75 @@
 
 import React from 'react';
 import {
-  Home,
+  Activity,
+  ShieldCheck,
+  LineChart,
   Wrench,
+  Target,
+  Settings,
+  Users,
+  CalendarDays,
   FileText,
-  Building2,
-  Layout,
-  Truck,
-  PencilRuler,
-  CheckCircle,
-  Factory,
+  TrendingDown,
+  Heart,
   ArrowRight
 } from 'lucide-react';
 
 const services = [
   {
-    title: 'Residential Building and Renovation',
-    description: 'We specialize in constructing new homes and upgrading existing spaces with modern finishes.',
-    icon: Home,
+    title: 'Asset Lifecycle Enhancement',
+    description: 'Enhancing the life cycle of critical engineering assets.',
+    icon: Activity,
   },
   {
-    title: 'Renovation & Remodeling Services',
-    description: 'Upgrade and transform existing spaces with structural or aesthetic improvements tailored to you.',
+    title: 'Asset Outage Minimization',
+    description: 'Minimizing asset outages and breakdowns to avoid business disruptions.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Predictive Maintenance',
+    description: 'Systematic monitoring and maintenance based on asset performance and condition.',
+    icon: LineChart,
+  },
+  {
+    title: 'Preventive Maintenance',
+    description: 'Planned maintenance aimed at preventing failures and maintaining asset reliability.',
     icon: Wrench,
   },
   {
-    title: 'Pre-Construction Planning Solutions',
-    description: 'We provide detailed planning, budgeting, scheduling, and risk assessment.',
+    title: '360° Asset Performance',
+    description: 'Using technology to provide a 360-degree view of overall asset operating performance.',
+    icon: Target,
+  },
+  {
+    title: 'Engineering O&M',
+    description: 'Engineering Operations & Maintenance through a self-delivery approach.',
+    icon: Settings,
+  },
+  {
+    title: 'Man, Machine & Technology',
+    description: 'Combining skilled manpower, equipment and technology for effective asset management.',
+    icon: Users,
+  },
+  {
+    title: 'Digitalized Schedules',
+    description: 'Using digitalization to improve maintenance scheduling and operational planning.',
+    icon: CalendarDays,
+  },
+  {
+    title: 'Controlled Documentation',
+    description: 'Maintaining controlled documentation for better operational management.',
     icon: FileText,
   },
   {
-    title: 'Commercial Property Development Services',
-    description: 'From office spaces to retail centers, we build commercial spaces that support your business.',
-    icon: Building2,
+    title: 'Cost Optimization',
+    description: 'Exploring opportunities to reduce operating expenditure while optimizing asset performance.',
+    icon: TrendingDown,
   },
   {
-    title: 'Interior Fit-Out Solutions',
-    description: 'Our interior fit-out services combine style and function to complete any space, move-in ready.',
-    icon: Layout,
-  },
-  {
-    title: 'Infrastructure and Road Construction',
-    description: 'Delivering reliable, large-scale infrastructure projects including roads, utilities, and drainage systems.',
-    icon: Truck,
-  },
-  {
-    title: 'Design and Build Services',
-    description: 'An integrated approach combining architecture, engineering, and construction.',
-    icon: PencilRuler,
-  },
-  {
-    title: 'Project Management and Delivery',
-    description: 'We manage timelines, budgets, and quality so your project runs smoothly from start to finish.',
-    icon: CheckCircle,
-  },
-  {
-    title: 'Steel Structure Fabrication Works',
-    description: 'We design and erect durable steel frameworks for warehouses, factories, and large-scale infrastructure.',
-    icon: Factory,
+    title: 'Safety & Employee Well-being',
+    description: 'Maintaining a safe workplace while prioritizing employee well-being.',
+    icon: Heart,
   },
 ];
 
@@ -75,12 +87,12 @@ export default function ComprehensiveBuildingSolutions() {
               <span className="text-sm text-[#1C3A62] font-bold tracking-wide uppercase">See all Services</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#1C3A62] leading-[1.1] tracking-tight">
-              Comprehensive Building <br className="hidden md:block" />
+              Comprehensive Hard FM <br className="hidden md:block" />
               Solutions
             </h2>
           </div>
           <p className="text-[#585858] max-w-md text-sm leading-relaxed lg:pb-2">
-            At Mason, we offer end-to-end building services that cover every phase of your project — from initial planning and design to final construction and handover.
+            We provide specialized engineering and facility management services, ensuring your physical assets and critical systems operate at peak efficiency, reliability, and safety.
           </p>
         </div>
 

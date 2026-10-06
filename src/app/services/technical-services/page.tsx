@@ -10,7 +10,7 @@ export default function TechnicalServicesPage() {
     <>
       <SiteHeader />
 
-      <div className="min-h-screen overflow-hidden bg-[#1C3A62] font-sans">
+      <div className="min-h-screen overflow-hidden bg-white font-sans">
 
         {/* =========================================================
             HERO SECTION
@@ -19,12 +19,12 @@ export default function TechnicalServicesPage() {
           <div className="mx-auto max-w-7xl px-6 pt-8 pb-16 lg:pt-10 lg:pb-24">
 
             {/* Breadcrumbs */}
-            <div className="mb-10 flex items-center gap-1.5 text-sm text-white/70">
+            <div className="mb-10 flex items-center gap-1.5 text-sm text-[#585858]">
               <span>Home</span>
               <ChevronRight className="h-4 w-4" />
               <span>Services</span>
               <ChevronRight className="h-4 w-4" />
-              <span className="text-[#C7F000]">
+              <span className="font-semibold text-[#2495D3]">
                 Technical Services
               </span>
             </div>
@@ -35,13 +35,13 @@ export default function TechnicalServicesPage() {
                   LEFT CONTENT
               ====================================================== */}
               <div className="relative z-30">
-                <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-[64px]">
+                <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.95] tracking-tight text-[#1C3A62] sm:text-6xl lg:text-[64px]">
                   TECHNICAL
                   <br />
                   SERVICES
                 </h1>
 
-                <p className="mt-7 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
+                <p className="mt-7 max-w-md text-base leading-relaxed text-[#585858] sm:text-lg">
                   Specialized technical expertise to maintain critical systems and ensure reliable facility performance.
                 </p>
 
@@ -50,16 +50,17 @@ export default function TechnicalServicesPage() {
                   <button
                     className="
                       rounded-full
-                      bg-[#C7F000]
+                      border
+                      border-[#1C3A62]
                       px-8
                       py-3.5
                       font-semibold
-                      text-black
+                      text-[#1C3A62]
                       transition-all
                       duration-300
                       hover:-translate-y-1
-                      hover:bg-[#d5ff1a]
-                      hover:shadow-lg
+                      hover:bg-[#1C3A62]
+                      hover:text-white
                     "
                   >
                     Book an Appointment
@@ -69,16 +70,16 @@ export default function TechnicalServicesPage() {
                     className="
                       rounded-full
                       border
-                      border-white
+                      border-[#1C3A62]
                       px-8
                       py-3.5
                       font-semibold
-                      text-white
+                      text-[#1C3A62]
                       transition-all
                       duration-300
                       hover:-translate-y-1
-                      hover:bg-white
-                      hover:text-[#1C3A62]
+                      hover:bg-[#1C3A62]
+                      hover:text-white
                     "
                   >
                     Contact Us
@@ -91,8 +92,8 @@ export default function TechnicalServicesPage() {
               ====================================================== */}
               <div className="relative flex w-full items-center justify-center h-[400px] lg:h-[550px]">
                 {/* Decorative vertical lines */}
-                <div className="absolute left-[8%] top-[-100px] h-[650px] w-px bg-white/10" />
-                <div className="absolute right-[8%] top-[-100px] h-[650px] w-px bg-white/10" />
+                <div className="absolute left-[8%] top-[-100px] h-[650px] w-px bg-gray-200" />
+                <div className="absolute right-[8%] top-[-100px] h-[650px] w-px bg-gray-200" />
 
                 {/* Overlapping Panels Container */}
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
@@ -116,7 +117,7 @@ export default function TechnicalServicesPage() {
                   </div>
 
                   {/* Panel 2: Center Doctor (Taller, Front) */}
-                  <div className="relative z-10 h-[90%] w-[45%] overflow-hidden rounded-3xl shadow-2xl ring-4 ring-[#1C3A62]">
+                  <div className="relative z-10 h-[90%] w-[45%] overflow-hidden rounded-3xl shadow-2xl ring-4 ring-white">
                     <img
                       src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
                       alt="Main Doctor"
@@ -128,27 +129,6 @@ export default function TechnicalServicesPage() {
               </div>
             </div>
           </div>
-
-          {/* =======================================================
-              WHITE GRID TRANSITION
-          ======================================================== */}
-          <div
-            className="
-              relative
-              mx-auto
-              h-8
-              max-w-[calc(100%-32px)]
-              overflow-hidden
-              rounded-t-[3rem]
-              bg-white
-              sm:h-10
-            "
-            style={{
-              backgroundImage:
-                'linear-gradient(to right, #eeeeee 1px, transparent 1px), linear-gradient(to bottom, #eeeeee 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
-            }}
-          />
         </section>
 
         {/* =========================================================
@@ -176,38 +156,17 @@ export default function TechnicalServicesPage() {
               <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
                 {/* =================================================
-                    OVERVIEW IMAGE
+                    OVERVIEW IMAGE (Design Fixed)
                 ================================================== */}
-                <div className="relative flex h-[330px] items-end justify-center md:h-[400px]">
-                  {/* Background shape */}
-                  <div
-                    className="
-                      absolute
-                      bottom-0
-                      h-[82%]
-                      w-full
-                      rounded-[2rem]
-                      bg-gray-50
-                    "
-                  />
-                  {/* Image */}
-                  <div
-                    className="
-                      relative
-                      z-10
-                      h-[105%]
-                      w-[95%]
-                      overflow-hidden
-                      rounded-[2rem]
-                    "
-                    style={{
-                      clipPath:
-                        'polygon(7% 0%, 94% 0%, 100% 8%, 100% 87%, 93% 94%, 60% 94%, 54% 100%, 8% 100%, 0% 91%, 0% 12%)',
-                    }}
-                  >
+                <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
+                  {/* Background shape for depth */}
+                  <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
+
+                  {/* Clean rounded image container */}
+                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
                     <img
                       src="/HardFm.jpg"
-                      alt="Hard FM"
+                      alt="Hard FM Overview"
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
@@ -221,7 +180,7 @@ export default function TechnicalServicesPage() {
                     Overview
                   </div>
 
-                  <h2 className="text-3xl font-extrabold tracking-tight text-black md:text-4xl">
+                  <h2 className="text-3xl font-extrabold tracking-tight text-[#1C3A62] md:text-4xl">
                     What are Technical Services?
                   </h2>
 
