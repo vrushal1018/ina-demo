@@ -180,7 +180,7 @@ export function CustomButton() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-3xl font-extrabold text-white">48,290</div>
+                  <div className="text-3xl font-semibold text-white">48,290</div>
                   <div className="text-xs text-emerald-400 flex items-center gap-1 mt-1 font-medium">
                     <ArrowUpRight className="w-3.5 h-3.5" /> +14.2% from last week
                   </div>

@@ -39,7 +39,7 @@ export default function CEOQuoteSection() {
 
             {/* Author Info */}
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#1C3A62]">
+              <h3 className="text-xl sm:text-2xl font-medium text-[#1C3A62]">
                 Our People
               </h3>
 

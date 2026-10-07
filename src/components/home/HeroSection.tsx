@@ -40,7 +40,7 @@ export default function HeroSection() {
           </div>
 
           {/* Hero Title */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1]">
             Build Faster with{" "}
             <span className="gradient-text">Next.js & Lucide UI</span>
           </h1>

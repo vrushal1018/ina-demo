@@ -93,7 +93,7 @@ export default function MissionVisionSlider() {
 
               {/* Text Block */}
               <div className="max-w-2xl text-white transition-all duration-500 transform">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-3">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight mb-3">
                   {slides[currentIndex].title}
                 </h2>
                 <p className="text-sm sm:text-base lg:text-lg text-gray-200 font-normal leading-relaxed max-w-xl">

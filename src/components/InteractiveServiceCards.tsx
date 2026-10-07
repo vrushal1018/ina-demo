@@ -56,10 +56,10 @@ export default function InteractiveServiceCards() {
     <div className="py-24 bg-[#f8f9fa] flex flex-col items-center font-sans overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <div className="mb-4 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#2495D3]">
+          <div className="mb-4 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
             Our Services
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#1C3A62] tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#1C3A62] tracking-tight">
             What We Offer
           </h2>
         </div>
@@ -108,7 +108,7 @@ function ServiceCard({ title, icon: Icon, description }: { title: string, icon: 
         <Icon size={32} strokeWidth={1.5} />
       </div>
       
-      <h3 className="font-bold text-2xl text-[#1C3A62] mb-4 leading-snug">
+      <h3 className="font-medium text-2xl text-[#1C3A62] mb-4 leading-snug">
         {title}
       </h3>
       
@@ -116,7 +116,7 @@ function ServiceCard({ title, icon: Icon, description }: { title: string, icon: 
         {description}
       </p>
 
-      <button className="flex items-center gap-2 text-[#2495D3] font-bold text-sm tracking-wide uppercase hover:text-[#1C3A62] transition-colors mt-auto w-fit group/btn">
+      <button className="flex items-center gap-2 text-[#2495D3] font-medium text-sm tracking-wide uppercase hover:text-[#1C3A62] transition-colors mt-auto w-fit group/btn">
         Learn More 
         <ArrowRight size={18} className="transform group-hover/btn:translate-x-1 transition-transform" />
       </button>

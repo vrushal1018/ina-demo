@@ -21,7 +21,7 @@ export default function WhyChooseShifa() {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-8 sm:mb-10 text-left">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight">
             Why Choose Shifa?
           </h2>
           <p className="mt-2 sm:mt-3 text-sm sm:text-base lg:text-lg text-[#585858] font-medium">
@@ -45,7 +45,7 @@ export default function WhyChooseShifa() {
 
           {/* Right: Key Features */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#383838] mb-5 sm:mb-6">
+            <h3 className="text-2xl sm:text-3xl font-medium text-[#383838] mb-5 sm:mb-6">
               Key Features
             </h3>
 

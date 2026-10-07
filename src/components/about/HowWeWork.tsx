@@ -88,7 +88,7 @@ export default function OurValues() {
             Our Values
           </span>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1C3A62] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#1C3A62] tracking-tight leading-tight">
             What We Stand For
           </h2>
 
@@ -123,7 +123,7 @@ export default function OurValues() {
 
                   {/* Timeline Node */}
                   <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-4 border-[#2495D3] shadow-lg flex items-center justify-center z-20 transition-transform duration-300 hover:scale-110">
-                    <span className="text-[#1C3A62] font-bold text-sm">
+                    <span className="text-[#1C3A62] font-medium text-sm">
                       {value.id}
                     </span>
                   </div>
@@ -158,7 +158,7 @@ export default function OurValues() {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
+                        <h3 className="text-xl md:text-2xl font-medium text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
                           {value.title}
                         </h3>
                       </div>

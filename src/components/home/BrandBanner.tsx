@@ -21,7 +21,7 @@ const BRANDS = [
         <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
           <path d="M20.5 7.5l-3.5-1.5-1.5-3.5L12 3 8.5 2.5 7 6 3.5 7.5 2 11l2 8 8 3 8-3 2-8z" />
         </svg>
-        <span className="font-bold text-lg tracking-tight">shopify</span>
+        <span className="font-medium text-lg tracking-tight">shopify</span>
       </div>
     ),
   },
@@ -32,7 +32,7 @@ const BRANDS = [
         <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
           <path d="M6 2l6 4-6 4-6-4zm12 0l6 4-6 4-6-4zm-12 8l6 4-6 4-6-4zm12 0l6 4-6 4-6-4zm-6 4.5l6-4 6 4-6 4z" />
         </svg>
-        <span className="font-bold text-lg">Dropbox</span>
+        <span className="font-medium text-lg">Dropbox</span>
       </div>
     ),
   },
@@ -43,7 +43,7 @@ const BRANDS = [
         <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
           <path d="M6 15a2 2 0 012 2v2a2 2 0 11-2-2zm0-8a2 2 0 012-2 2 2 0 012 2v6a2 2 0 11-4 0zm8 0a2 2 0 012 2v2a2 2 0 11-2-2zm0 8a2 2 0 01-2 2 2 2 0 01-2-2V9a2 2 0 114 0z" />
         </svg>
-        <span className="font-bold text-xl tracking-tight">slack</span>
+        <span className="font-medium text-xl tracking-tight">slack</span>
       </div>
     ),
   },
@@ -60,7 +60,7 @@ const BRANDS = [
         <div className="w-5 h-5 border-[3px] border-current rounded-sm flex items-center justify-center">
           <div className="w-1.5 h-1.5 bg-current rounded-xs" />
         </div>
-        <span className="font-bold text-lg">Square</span>
+        <span className="font-medium text-lg">Square</span>
       </div>
     ),
   },
@@ -84,7 +84,7 @@ const BRANDS = [
         <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
           <path d="M11 3L2 7v10l9 4V3zm2 0v18l9-4V7l-9-4z" />
         </svg>
-        <span className="font-bold text-lg">Airtable</span>
+        <span className="font-medium text-lg">Airtable</span>
       </div>
     ),
   },

@@ -67,7 +67,7 @@ export default function Home() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.15]">
                 Empowering People.{" "}
                 <span className="text-[#2495D3] block sm:inline">
                   Enriching Assets
@@ -91,7 +91,7 @@ export default function Home() {
                 {/* Primary CTA - Book a Repair */}
                 <a
                   href="#book"
-                  className="px-8 py-4 rounded-md bg-[#2495D3] hover:bg-[#488FCD] text-white font-bold text-center transition-all duration-300 shadow-xl hover:shadow-[#2495D3]/40 transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="px-8 py-4 rounded-md bg-[#2495D3] hover:bg-[#488FCD] text-white font-medium text-center transition-all duration-300 shadow-xl hover:shadow-[#2495D3]/40 transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Lets connect
                 </a>

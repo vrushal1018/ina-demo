@@ -42,11 +42,11 @@ export default function CareersPage() {
         <div className="max-w-4xl mx-auto pt-8">
           {/* Header Section */}
           <div className="mb-6 flex justify-center">
-            <div className="inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#2495D3]">
+            <div className="inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
               Careers
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-center text-[#1C3A62] mb-12 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-semibold text-center text-[#1C3A62] mb-12 tracking-tight">
             Currently open positions
           </h2>
 
@@ -56,7 +56,7 @@ export default function CareersPage() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`pb-4 text-base font-bold transition-colors relative ${
+                className={`pb-4 text-base font-medium transition-colors relative ${
                   activeTab === tab
                     ? "text-[#1C3A62]"
                     : "text-gray-500 hover:text-[#1C3A62]"
@@ -80,14 +80,14 @@ export default function CareersPage() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
                   {/* Job Title and Tags */}
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-extrabold text-[#1C3A62] mb-5 tracking-tight group-hover:text-[#2495D3] transition-colors">
+                    <h3 className="text-2xl md:text-3xl font-semibold text-[#1C3A62] mb-5 tracking-tight group-hover:text-[#2495D3] transition-colors">
                       {job.title}
                     </h3>
                     <div className="flex flex-wrap gap-3">
                       {job.tags.map((tag, index) => (
                         <span 
                           key={index} 
-                          className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-sm font-bold text-[#585858]"
+                          className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-sm font-medium text-[#585858]"
                         >
                           {tag}
                         </span>
@@ -96,7 +96,7 @@ export default function CareersPage() {
                   </div>
 
                   {/* Apply Button */}
-                  <button className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-full font-bold text-sm uppercase tracking-wide transition-all duration-300 whitespace-nowrap shadow-md hover:-translate-y-1">
+                  <button className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300 whitespace-nowrap shadow-md hover:-translate-y-1">
                     Apply Now
                   </button>
                 </div>

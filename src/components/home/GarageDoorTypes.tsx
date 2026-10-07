@@ -56,7 +56,7 @@ export default function SectorsWeOperate() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight mb-6 leading-tight">
             Sectors We Operate
           </h2>
           <p className="text-base sm:text-lg text-[#585858] leading-relaxed font-normal">

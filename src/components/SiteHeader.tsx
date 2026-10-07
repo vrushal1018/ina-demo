@@ -59,19 +59,19 @@ export default function SiteHeader() {
           >
             Blogs
           </Link>
-          <a
-            href="#gallery"
+          <Link
+            href="/contact"
             className="hover:text-[#2495D3] transition-colors"
           >
             Contact Us
-          </a>
+          </Link>
         </nav>
 
         {/* Desktop Right Phone Widget & Contact Button */}
         <div className="hidden md:flex items-center space-x-6">
           {/* Call Widget */}
           <div className="flex items-center space-x-3 text-right">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#2495D3] bg-[#1C3A62] flex items-center justify-center text-white font-bold text-sm shadow-sm">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#2495D3] bg-[#1C3A62] flex items-center justify-center text-white font-medium text-sm shadow-sm">
               <Phone className="w-4 h-4 text-[#2495D3]" />
             </div>
             <div className="flex flex-col text-left">
@@ -80,20 +80,19 @@ export default function SiteHeader() {
               </span>
               <a
                 href="+91-9326906715"
-                className="text-sm font-bold text-[#1C3A62] hover:text-[#2495D3] transition-colors"
+                className="text-sm font-medium text-[#1C3A62] hover:text-[#2495D3] transition-colors"
               >
                 +91-9326906715
               </a>
             </div>
           </div>
 
-          {/* Contact Us Button */}
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="px-6 py-3 rounded-md bg-[#1C3A62] text-white text-sm font-semibold hover:bg-[#2495D3] transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95"
           >
             Contact Us
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Navigation Toggle Button */}
@@ -143,26 +142,26 @@ export default function SiteHeader() {
           >
             Blogs
           </Link>
-          <a
-            href="#gallery"
+          <Link
+            href="/contact"
             className="block py-2 text-base font-semibold text-[#383838] hover:text-[#2495D3]"
           >
             Contact Us
-          </a>
+          </Link>
           <div className="pt-4 border-t border-gray-100 flex flex-col space-y-3">
             <a
               href="tel:+919326906715"
-              className="flex items-center space-x-2 text-[#1C3A62] font-bold"
+              className="flex items-center space-x-2 text-[#1C3A62] font-medium"
             >
               <Phone className="w-4 h-4 text-[#2495D3]" />
               <span>Call Ina Tech Fm: +91-9326906715</span>
             </a>
-            <a
-              href="#contact"
-              className="px-6 py-3 rounded-md bg-[#2495D3] text-white text-base font-bold text-center shadow-lg active:scale-95 transition-transform"
+            <Link
+              href="/contact"
+              className="px-6 py-3 rounded-md bg-[#2495D3] text-white text-base font-medium text-center shadow-lg active:scale-95 transition-transform"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       )}

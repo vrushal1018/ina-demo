@@ -42,7 +42,7 @@ export default function StatsSection() {
               className="bg-[#F8FAFC] rounded-2xl p-6 sm:p-8 flex flex-col justify-between min-h-[200px] sm:min-h-[220px] transition-transform duration-200 hover:-translate-y-1 hover:shadow-sm"
             >
               {/* Stat Number */}
-              <h3 className="text-4xl sm:text-5xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
+              <h3 className="text-4xl sm:text-5xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight">
                 {stat.value}
               </h3>
 

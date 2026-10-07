@@ -109,7 +109,7 @@ export default function InteractiveTeamSlider() {
 
                       {/* Info */}
                       <motion.div layoutId={`member-info-${member.id}`}>
-                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-[#E55B48] transition-colors">
+                        <h3 className="text-xl font-medium text-slate-900 group-hover:text-[#E55B48] transition-colors">
                           {member.name}
                         </h3>
                         <p className="text-sm text-slate-500 font-medium">
@@ -164,7 +164,7 @@ export default function InteractiveTeamSlider() {
                   <span className="text-sm font-semibold text-[#E55B48] uppercase tracking-wider block mb-2">
                     {selectedMember.role}
                   </span>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6">
+                  <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-6">
                     {selectedMember.name}
                   </h2>
 

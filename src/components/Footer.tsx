@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="p-2 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 text-white shadow-md shadow-purple-500/20">
               <Sparkles className="w-5 h-5" />
             </div>
-            <span className="text-lg font-bold text-white tracking-tight">
+            <span className="text-lg font-medium text-white tracking-tight">
               INA Demo
             </span>
             <span className="text-xs text-zinc-500">|</span>

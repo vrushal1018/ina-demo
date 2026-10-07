@@ -43,7 +43,7 @@ export default function AboutUsHeroSection() {
 
         {/* Header Section */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1C3A62] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-[#1C3A62] tracking-tight">
             About Us
           </h1>
           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-[#585858] font-medium">
@@ -75,7 +75,7 @@ export default function AboutUsHeroSection() {
           <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#878787] uppercase block mb-3">
             What we do
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
             We enrich your assets through expert repairs and proactive maintenance, extending their lifespan and keeping your facility safe, efficient and reliable.
           </h2>
         </div>

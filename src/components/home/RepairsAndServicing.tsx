@@ -27,7 +27,7 @@ export default function RepairsAndServicing() {
           <div className="lg:col-span-7 space-y-6">
 
             {/* Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight leading-tight">
               Expert Engineering & Facility Management Services
             </h2>
 
@@ -89,7 +89,7 @@ export default function RepairsAndServicing() {
               {/* Primary Button */}
               <a
                 href="#contact"
-                className="px-8 py-3.5 rounded-lg bg-[#1C3A62] hover:bg-[#2495D3] text-white font-bold text-center transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95"
+                className="px-8 py-3.5 rounded-lg bg-[#1C3A62] hover:bg-[#2495D3] text-white font-medium text-center transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95"
               >
                 Talk to Our Experts
               </a>
@@ -97,7 +97,7 @@ export default function RepairsAndServicing() {
               {/* Secondary Button */}
               <a
                 href="#services"
-                className="px-8 py-3.5 rounded-lg border-2 border-[#1C3A62] hover:bg-[#1C3A62] hover:text-white text-[#1C3A62] font-bold text-center transition-all duration-300 flex items-center justify-center space-x-2 transform active:scale-95"
+                className="px-8 py-3.5 rounded-lg border-2 border-[#1C3A62] hover:bg-[#1C3A62] hover:text-white text-[#1C3A62] font-medium text-center transition-all duration-300 flex items-center justify-center space-x-2 transform active:scale-95"
               >
                 <PhoneCall className="w-4 h-4" />
                 <span>Explore Our Services</span>
@@ -146,7 +146,7 @@ export default function RepairsAndServicing() {
                       Ina Tech FM Headquarters
                     </div>
 
-                    <div className="text-sm font-bold text-[#1C3A62] leading-relaxed">
+                    <div className="text-sm font-medium text-[#1C3A62] leading-relaxed">
                       1st Floor, C-Wing, MBC Tech Park, Sainath Nagar,
                       Kasarvadavli, Ghodbunder Road, Thane West,
                       Maharashtra – 400615

@@ -150,9 +150,9 @@ export default function ComprehensiveBuildingSolutions() {
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-2.5 h-2.5 bg-[#C7F000] rounded-sm shadow-sm"></div>
-              <span className="text-sm text-[#1C3A62] font-bold tracking-wide uppercase">See all Services</span>
+              <span className="text-sm text-[#1C3A62] font-medium tracking-wide uppercase">See all Services</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1C3A62] leading-[1.1] tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-semibold text-[#1C3A62] leading-[1.1] tracking-tight">
               Comprehensive Hard FM <br className="hidden md:block" />
               Solutions
             </h2>
@@ -231,7 +231,7 @@ export default function ComprehensiveBuildingSolutions() {
                       </div>
 
                       {/* Content */}
-                      <h3 className="text-xl font-extrabold text-[#1C3A62] mb-3 pr-4 leading-snug">
+                      <h3 className="text-xl font-semibold text-[#1C3A62] mb-3 pr-4 leading-snug">
                         {service.title}
                       </h3>
                       <p className="text-[#585858] text-[14px] mb-6 flex-grow leading-relaxed">
@@ -241,7 +241,7 @@ export default function ComprehensiveBuildingSolutions() {
                       {/* Action Link */}
                       <a
                         href="#"
-                        className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max mt-auto pointer-events-auto"
+                        className="inline-flex items-center text-[#1C3A62] font-medium text-sm hover:text-[#2495D3] transition-colors w-max mt-auto pointer-events-auto"
                         onClick={(e) => {
                           if (isDragging) e.preventDefault();
                         }}

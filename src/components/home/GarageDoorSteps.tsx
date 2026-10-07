@@ -84,7 +84,7 @@ export default function FacilityManagementSteps() {
                     {/* Badge & Line */}
                     <div className="relative flex flex-col items-center flex-shrink-0">
 
-                      <div className="font-['Integral_CF',sans-serif] w-12 h-12 rounded-full bg-[#1C3A62] text-white flex items-center justify-center text-sm font-bold z-10">
+                      <div className="font-['Integral_CF',sans-serif] w-12 h-12 rounded-full bg-[#1C3A62] text-white flex items-center justify-center text-sm font-medium z-10">
                         {step.number}
                       </div>
 

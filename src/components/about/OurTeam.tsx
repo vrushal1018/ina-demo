@@ -287,7 +287,7 @@ export default function OurTeam() {
 
         {/* Section Header */}
         <div className="text-center mb-8 space-y-3">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1C3A62]">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#1C3A62]">
             Meet Our Leadership Team
           </h2>
           <p className="text-[#585858] max-w-2xl mx-auto text-base md:text-lg font-medium">
@@ -396,7 +396,7 @@ export default function OurTeam() {
                         }`}
                     >
                       <h3
-                        className={`text-xl font-bold tracking-wide transition-colors ${isActive
+                        className={`text-xl font-medium tracking-wide transition-colors ${isActive
                             ? 'text-[#2495D3]'
                             : 'text-white group-hover:text-[#2495D3]'
                           }`}
@@ -464,7 +464,7 @@ export default function OurTeam() {
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <span className="bg-[#1C3A62] text-white px-5 py-2 rounded-full text-xs font-bold tracking-widest border border-[#2495D3]/30 shadow-sm">
+          <span className="bg-[#1C3A62] text-white px-5 py-2 rounded-full text-xs font-medium tracking-widest border border-[#2495D3]/30 shadow-sm">
             {currentIndex + 1} / {maxIndex + 1}
           </span>
 

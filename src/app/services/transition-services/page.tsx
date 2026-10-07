@@ -36,7 +36,7 @@ export default function TransitionServicesPage() {
                   LEFT CONTENT
               ====================================================== */}
               <div className="relative z-30">
-                <h1 className="max-w-2xl text-5xl font-extrabold leading-[0.95] tracking-tight text-[#1C3A62] sm:text-6xl lg:text-[64px]">
+                <h1 className="max-w-2xl text-5xl font-semibold leading-[0.95] tracking-tight text-[#1C3A62] sm:text-6xl lg:text-[64px]">
                   TRANSITION
                   <br />
                   SERVICES
@@ -177,11 +177,11 @@ export default function TransitionServicesPage() {
                     OVERVIEW CONTENT
                 ================================================== */}
                 <div className="relative z-10">
-                  <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#2495D3]">
+                  <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
                     Overview
                   </div>
 
-                  <h2 className="text-3xl font-extrabold tracking-tight text-[#1C3A62] md:text-4xl">
+                  <h2 className="text-3xl font-semibold tracking-tight text-[#1C3A62] md:text-4xl">
                     What are Transition Services?
                   </h2>
 

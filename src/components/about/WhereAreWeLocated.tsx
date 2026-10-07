@@ -622,7 +622,7 @@ export default function WhereAreWeLocated() {
               text-3xl
               sm:text-4xl
               lg:text-5xl
-              font-bold
+              font-medium
               text-[#1C3A62]
               tracking-tight
             "
@@ -829,7 +829,7 @@ export default function WhereAreWeLocated() {
             <h3
               className="
                 text-lg
-                font-bold
+                font-medium
                 text-[#1C3A62]
                 mb-1
                 flex
@@ -919,7 +919,7 @@ export default function WhereAreWeLocated() {
 
                         <span
                           className={`
-                            font-bold
+                            font-medium
                             text-sm
                             sm:text-base
                             ${isActive

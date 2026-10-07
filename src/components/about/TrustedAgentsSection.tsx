@@ -66,7 +66,7 @@ export default function TrustedAgentsSection() {
 
         {/* Section Heading */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight">
             Meet Our Board
           </h2>
         </div>
@@ -89,7 +89,7 @@ export default function TrustedAgentsSection() {
 
               {/* Agent Info */}
               <div className="flex flex-col text-left">
-                <h3 className="text-xl sm:text-2xl font-bold text-[#1C3A62]">
+                <h3 className="text-xl sm:text-2xl font-medium text-[#1C3A62]">
                   {agent.name}
                 </h3>
                 <p className="text-xs sm:text-sm text-[#585858] font-medium mt-1 mb-3">

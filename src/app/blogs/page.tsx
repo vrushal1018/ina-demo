@@ -3,6 +3,7 @@
 import React from "react";
 import { Calendar } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
+import BlogHero from "@/components/BlogHero";
 
 const blogPosts = [
   {
@@ -65,17 +66,18 @@ export default function BlogsPage() {
   return (
     <>
       <SiteHeader />
+      <BlogHero />
       <div className="min-h-screen bg-[#F8F9FA] py-16 px-4 sm:px-6 lg:px-8 font-sans">
         <div className="max-w-7xl mx-auto pt-8">
           {/* Header Section */}
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
             <div className="max-w-xl">
-              <div className="mb-4 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-[#2495D3]">
+              <div className="mb-4 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
                 Our Blog
               </div>
               <h2 className="text-4xl md:text-5xl text-[#1C3A62] mt-3 leading-tight tracking-tight">
-                <span className="font-extrabold block">View All</span>
-                <span className="font-bold block mt-1">Knowledge Posts</span>
+                <span className="font-semibold block">View All</span>
+                <span className="font-medium block mt-1">Knowledge Posts</span>
               </h2>
             </div>
             <div className="max-w-md lg:pb-2">
@@ -96,10 +98,10 @@ export default function BlogsPage() {
                 <div className="mb-6 flex-grow">
                   <div className="flex items-center gap-2 text-gray-500 mb-4">
                     <Calendar className="w-4 h-4 stroke-[2]" />
-                    <span className="text-sm font-bold">{post.date}</span>
+                    <span className="text-sm font-medium">{post.date}</span>
                   </div>
                   
-                  <h3 className="text-xl font-extrabold text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors">
+                  <h3 className="text-xl font-semibold text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors">
                     {post.title}
                   </h3>
                   
@@ -118,7 +120,7 @@ export default function BlogsPage() {
                   
                   {/* Hover Overlay with "Read More" Button */}
                   <div className="absolute inset-0 bg-[#1C3A62]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="bg-[#2495D3] text-white px-8 py-3 rounded-full font-bold text-sm tracking-wide uppercase shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                    <span className="bg-[#2495D3] text-white px-8 py-3 rounded-full font-medium text-sm tracking-wide uppercase shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                       Read More
                     </span>
                   </div>

@@ -25,7 +25,7 @@ export default function Navbar() {
           {/* Brand Logo */}
           <div className="flex items-center gap-3">
             <img src="/Ina Logo-1.jpg.png" alt="INA Logo" className="h-14 w-auto object-contain rounded-lg shadow-lg" />
-            <span className="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
+            <span className="text-xl font-medium tracking-tight text-white flex items-center gap-1.5">
               INA <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-medium border border-purple-500/30">Next.js v15</span>
             </span>
           </div>
