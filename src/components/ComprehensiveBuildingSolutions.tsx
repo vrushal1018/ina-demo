@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   Activity,
   ShieldCheck,
@@ -13,7 +13,9 @@ import {
   FileText,
   TrendingDown,
   Heart,
-  ArrowRight
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 const services = [
@@ -75,8 +77,72 @@ const services = [
 ];
 
 export default function ComprehensiveBuildingSolutions() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  // Auto-play functionality
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (!isDragging && !isHovered) {
+      interval = setInterval(() => {
+        if (scrollContainerRef.current) {
+          const { current } = scrollContainerRef;
+          // Check if we're near the end of the scroll container
+          const isAtEnd = current.scrollLeft + current.clientWidth >= current.scrollWidth - 10;
+          
+          if (isAtEnd) {
+            current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            current.scrollBy({ left: 380, behavior: 'smooth' });
+          }
+        }
+      }, 3000); // Scrolls every 3 seconds
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isDragging, isHovered]);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { current } = scrollContainerRef;
+      const scrollAmount = direction === 'left' ? -380 : 380;
+      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // scroll speed multiplier
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   return (
-    <section className="bg-gray-50 min-h-screen py-20 px-4 sm:px-6 lg:px-8 font-sans">
+    <section className="bg-white min-h-screen py-24 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Header Section */}
@@ -91,152 +157,104 @@ export default function ComprehensiveBuildingSolutions() {
               Solutions
             </h2>
           </div>
-          <p className="text-[#585858] max-w-md text-sm leading-relaxed lg:pb-2">
-            We provide specialized engineering and facility management services, ensuring your physical assets and critical systems operate at peak efficiency, reliability, and safety.
-          </p>
+          <div className="flex flex-col items-start lg:items-end gap-6">
+            <p className="text-[#585858] max-w-md text-sm leading-relaxed lg:text-right">
+              We provide specialized engineering and facility management services, ensuring your physical assets and critical systems operate at peak efficiency, reliability, and safety.
+            </p>
+            {/* Navigation Buttons */}
+            <div className="flex gap-3">
+              <button 
+                onClick={() => scroll('left')}
+                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-[#1C3A62] hover:border-[#1C3A62] hover:bg-[#1C3A62] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:ring-offset-2 bg-white"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button 
+                onClick={() => scroll('right')}
+                className="w-12 h-12 rounded-full border-2 border-gray-200 flex items-center justify-center text-[#1C3A62] hover:border-[#1C3A62] hover:bg-[#1C3A62] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:ring-offset-2 bg-white"
+                aria-label="Scroll right"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* 3D Roller Carousel Section */}
-        <div className="mt-20 w-full overflow-hidden flex justify-center items-center h-[850px] carousel-scene">
+        {/* Horizontal Slider Section */}
+        <div 
+          className="w-full relative mt-10"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            setIsDragging(false);
+          }}
+        >
+          {/* Left fade gradient */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          
+          {/* Right fade gradient */}
+          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-          <style>{`
-            .carousel-scene {
-              perspective: 1500px;
-            }
-            .carousel-wrapper {
-              transform: scale(0.5);
-              transform-origin: center center;
-              transform-style: preserve-3d;
-            }
-            @media (min-width: 768px) {
-              .carousel-wrapper {
-                transform: scale(0.9);
-              }
-            }
-            @media (min-width: 1024px) {
-              .carousel-wrapper {
-                transform: scale(1);
-              }
-            }
-            .carousel-roller {
-              transform-style: preserve-3d;
-              animation: roller-spin 40s infinite linear;
-            }
-            .carousel-roller:hover {
-              animation-play-state: paused;
-            }
-            @keyframes roller-spin {
-              /* Move the entire cylinder back by its radius so the front card sits exactly at Z=0 (normal size) */
-              0% { transform: translateZ(-460px) rotateX(0deg); }
-              100% { transform: translateZ(-460px) rotateX(-360deg); }
-            }
-            .roller-card {
-              backface-visibility: visible;
-            }
-            .carousel-scene:hover .carousel-roller,
-            .carousel-scene:hover .fade-card {
-              animation-play-state: paused;
-            }
-            .fade-card {
-              animation: card-focus 40s infinite linear;
-              animation-fill-mode: both;
-            }
-            @keyframes card-focus {
-              0%   { opacity: 1; filter: blur(0px); }
-              10%  { opacity: 0.8; filter: blur(1px); }
-              18%  { opacity: 0.1; filter: blur(4px); }
-              25%  { opacity: 0; filter: blur(10px); }
-              75%  { opacity: 0; filter: blur(10px); }
-              82%  { opacity: 0.1; filter: blur(4px); }
-              90%  { opacity: 0.8; filter: blur(1px); }
-              100% { opacity: 1; filter: blur(0px); }
-            }
-          `}</style>
+          <div 
+            ref={scrollContainerRef}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            className={`flex gap-6 overflow-x-auto pb-12 pt-4 px-4 md:px-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] select-none ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab'}`}
+          >
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              
+              // Alternating cut-corner shapes based on index
+              const isEven = index % 2 === 0;
+              const clipPath = isEven
+                ? 'polygon(3.5rem 0, 100% 0, 100% calc(100% - 3.5rem), calc(100% - 3.5rem) 100%, 0 100%, 0 3.5rem)'
+                : 'polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 3.5rem 100%, 0 calc(100% - 3.5rem))';
 
-          <div className="carousel-wrapper relative w-[704px] h-[360px]">
-            <div className="carousel-roller absolute w-full h-full">
-              {(() => {
-                const servicesWithIndex = services.map((s, i) => ({ ...s, originalIndex: i }));
-                const groupedFaces = [];
-                let i = 0;
-                let isTwo = true;
-                while (i < servicesWithIndex.length) {
-                  if (isTwo) {
-                    groupedFaces.push(servicesWithIndex.slice(i, i + 2));
-                    i += 2;
-                  } else {
-                    groupedFaces.push(servicesWithIndex.slice(i, i + 1));
-                    i += 1;
-                  }
-                  isTwo = !isTwo;
-                }
-
-                return groupedFaces.map((faceGroup, index) => {
-                  const totalFaces = groupedFaces.length; // 7 faces
-                  const angle = (360 / totalFaces) * index;
-                  const radius = 460;
-
-                  return (
+              return (
+                <div key={index} className="relative w-[320px] md:w-[350px] h-[380px] group snap-center shrink-0 pointer-events-none">
+                  {/* Border Wrapper */}
+                  <div
+                    className="h-full w-full bg-gray-200 group-hover:bg-[#1C3A62] p-[1px] transition-all duration-500 group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] group-hover:-translate-y-2 pointer-events-auto"
+                    style={{ clipPath }}
+                  >
+                    {/* Inner Card */}
                     <div
-                      key={index}
-                      className="roller-card fade-card absolute top-0 left-0 w-full h-full flex justify-center gap-6"
-                      style={{
-                        transform: `rotateX(${angle}deg) translateZ(${radius}px)`,
-                        animationDelay: `${(angle / 360) * 40 - 40}s`
-                      }}
+                      className="flex flex-col h-full w-full bg-white p-8 md:p-10 min-h-[360px]"
+                      style={{ clipPath }}
                     >
-                      {faceGroup.map((service, cardIndex) => {
-                        const Icon = service.icon;
+                      {/* Icon Container */}
+                      <div className="w-14 h-14 bg-[#f0f4f8] rounded-full flex items-center justify-center text-[#1C3A62] mb-6 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#2495D3] group-hover:text-white">
+                        <Icon size={26} strokeWidth={2} />
+                      </div>
 
-                        // Alternating cut-corner shapes based on true original index
-                        const isEven = service.originalIndex % 2 === 0;
-                        const clipPath = isEven
-                          ? 'polygon(3.5rem 0, 100% 0, 100% calc(100% - 3.5rem), calc(100% - 3.5rem) 100%, 0 100%, 0 3.5rem)'
-                          : 'polygon(0 0, calc(100% - 3.5rem) 0, 100% 3.5rem, 100% 100%, 3.5rem 100%, 0 calc(100% - 3.5rem))';
+                      {/* Content */}
+                      <h3 className="text-xl font-extrabold text-[#1C3A62] mb-3 pr-4 leading-snug">
+                        {service.title}
+                      </h3>
+                      <p className="text-[#585858] text-[14px] mb-6 flex-grow leading-relaxed">
+                        {service.description}
+                      </p>
 
-                        return (
-                          <div key={cardIndex} className="relative w-[340px] h-[360px] group">
-                            {/* Border Wrapper */}
-                            <div
-                              className="h-full w-full bg-black p-[1px] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:-translate-y-2"
-                              style={{ clipPath }}
-                            >
-                              {/* Inner White Card */}
-                              <div
-                                className="flex flex-col h-full w-full bg-white p-10 min-h-[360px]"
-                                style={{ clipPath }}
-                              >
-                                {/* Icon Container */}
-                                <div className="w-12 h-12 bg-[#2495D3]/10 rounded-full flex items-center justify-center text-[#1C3A62] mb-6 transition-transform duration-300 group-hover:scale-110">
-                                  <Icon size={24} strokeWidth={2.5} />
-                                </div>
-
-                                {/* Content */}
-                                <h3 className="text-xl font-extrabold text-[#1C3A62] mb-3 pr-4 leading-snug">
-                                  {service.title}
-                                </h3>
-                                <p className="text-[#1C3A62]/75 text-[15px] mb-6 flex-grow leading-relaxed font-medium">
-                                  {service.description}
-                                </p>
-
-                                {/* Action Link */}
-                                <a
-                                  href="#"
-                                  className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max mt-auto"
-                                >
-                                  Read More
-                                  <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
+                      {/* Action Link */}
+                      <a
+                        href="#"
+                        className="inline-flex items-center text-[#1C3A62] font-bold text-sm hover:text-[#2495D3] transition-colors w-max mt-auto pointer-events-auto"
+                        onClick={(e) => {
+                          if (isDragging) e.preventDefault();
+                        }}
+                      >
+                        Read More
+                        <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                      </a>
                     </div>
-                  );
-                });
-              })()}
-            </div></div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
       </div>

@@ -47,18 +47,18 @@ export default function SiteHeader() {
           >
             Clients Corner
           </Link>
-          <a
-            href="#about"
+          <Link
+            href="/careers"
             className="hover:text-[#2495D3] transition-colors"
           >
             Careers
-          </a>
-          <a
-            href="#gallery"
+          </Link>
+          <Link
+            href="/blogs"
             className="hover:text-[#2495D3] transition-colors"
           >
             Blogs
-          </a>
+          </Link>
           <a
             href="#gallery"
             className="hover:text-[#2495D3] transition-colors"
@@ -131,18 +131,18 @@ export default function SiteHeader() {
           >
             Clients Corner
           </Link>
-          <a
-            href="#about"
+          <Link
+            href="/careers"
             className="block py-2 text-base font-semibold text-[#383838] hover:text-[#2495D3]"
           >
             Careers
-          </a>
-          <a
-            href="#gallery"
+          </Link>
+          <Link
+            href="/blogs"
             className="block py-2 text-base font-semibold text-[#383838] hover:text-[#2495D3]"
           >
             Blogs
-          </a>
+          </Link>
           <a
             href="#gallery"
             className="block py-2 text-base font-semibold text-[#383838] hover:text-[#2495D3]"
