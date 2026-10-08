@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useTransition,
   useCallback,
+  Suspense,
 } from "react";
 
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
@@ -14,15 +15,13 @@ import {
   OrbitControls,
   Html,
   Line,
+  Grid,
+  useTexture, // Added useTexture so it's ready for your map image
 } from "@react-three/drei";
 
 import * as THREE from "three";
 
-import {
-  MapPin,
-  Navigation,
-  Building2,
-} from "lucide-react";
+import { MapPin, Navigation, Building2 } from "lucide-react";
 
 /* =========================================================
    TYPES
@@ -144,376 +143,137 @@ const locations: Location[] = [
 ];
 
 /* =========================================================
-   GEO → 3D
+   FLAT PROJECTION (GEO → 2D Plane)
 ========================================================= */
 
-function latLngToVector3(
-  lat: number,
-  lng: number,
-  radius: number
-): THREE.Vector3 {
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lng + 180) * (Math.PI / 180);
+function latLngToVector3(lat: number, lng: number): THREE.Vector3 {
+  const scale = 0.35;
+  // Center of India bounding box is roughly Lng: 83, Lat: 22.8
+  const x = (lng - 83) * scale;
+  const z = -(lat - 22.8) * scale;
 
-  const x =
-    -(radius * Math.sin(phi) * Math.cos(theta));
-
-  const z =
-    radius * Math.sin(phi) * Math.sin(theta);
-
-  const y =
-    radius * Math.cos(phi);
-
-  return new THREE.Vector3(x, y, z);
+  return new THREE.Vector3(x, 0, z);
 }
 
 /* =========================================================
-   LABEL POSITIONS
-   These intentionally spread the labels around India.
+   INDIA MAP OVERLAY (The Map on the Black Surface)
 ========================================================= */
 
-const labelOffsets = [
-  { x: -105, y: -55 }, // Mumbai
-  { x: -105, y: 45 },  // Kochi
-  { x: 100, y: -55 },  // Hyderabad
-  { x: -110, y: -5 },  // Indore
-  { x: 105, y: -5 },   // Kolkata
-  { x: 95, y: 50 },    // Bengaluru
-  { x: 105, y: 100 },  // Chennai
-  { x: 80, y: -80 },   // Noida
-  { x: -105, y: 35 },  // Ahmedabad
-  { x: -90, y: -95 },  // Pune
-  { x: -105, y: 85 },  // Goa
-];
-
-/* =========================================================
-   GLOBE
-========================================================= */
-
-function Globe({
-  activeLocation,
-}: {
-  activeLocation: Location | null;
-}) {
-  const globeRef =
-    useRef<THREE.Group>(null);
-
-  const targetQuaternion =
-    useRef(new THREE.Quaternion());
-
-  useEffect(() => {
-    if (!activeLocation || !globeRef.current) return;
-
-    const locationVector =
-      latLngToVector3(
-        activeLocation.lat,
-        activeLocation.lng,
-        2
-      ).normalize();
-
-    /*
-      We want the selected location to face
-      the camera.
-
-      Camera is looking toward the origin
-      from +Z.
-    */
-
-    const frontVector =
-      new THREE.Vector3(0, 0, 1);
-
-    const quaternion =
-      new THREE.Quaternion();
-
-    quaternion.setFromUnitVectors(
-      locationVector,
-      frontVector
-    );
-
-    targetQuaternion.current.copy(
-      quaternion
-    );
-  }, [activeLocation]);
-
-  useFrame(() => {
-    if (!globeRef.current) return;
-
-    /*
-      Smoothly rotate globe toward selected
-      location.
-    */
-
-    globeRef.current.quaternion.slerp(
-      targetQuaternion.current,
-      0.045
-    );
-  });
+function IndiaMapPlane() {
+  const mapTexture = useTexture("/original-6a1bb1cdbd94bf7543f3ccf4957a28df.webp");
 
   return (
-    <>
-      {/* Atmospheric glow */}
-      <mesh scale={1.08}>
-        <sphereGeometry
-          args={[2, 64, 64]}
-        />
-
-        <meshBasicMaterial
-          color="#2495D3"
-          transparent
-          opacity={0.06}
-          side={THREE.BackSide}
-        />
-      </mesh>
-
-      <group ref={globeRef}>
-
-        {/* Main Globe */}
-        <mesh>
-          <sphereGeometry
-            args={[2, 64, 64]}
-          />
-
-          <meshStandardMaterial
-            color="#1C3A62"
-            roughness={0.55}
-            metalness={0.25}
-          />
-        </mesh>
-
-        {/* Globe Grid */}
-        <mesh>
-          <sphereGeometry
-            args={[2.012, 32, 32]}
-          />
-
-          <meshBasicMaterial
-            color="#2495D3"
-            wireframe
-            transparent
-            opacity={0.13}
-          />
-        </mesh>
-
-      </group>
-    </>
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.015, 0]}>
+      {/* 
+        This is perfectly scaled to match India's Latitude/Longitude 
+        bounding box spread at our 0.35 scale factor. 
+      */}
+      <planeGeometry args={[10.0, 10.36]} />
+      <meshBasicMaterial
+        color="#4cb3eb"
+        transparent
+        opacity={0.5} 
+        map={mapTexture} 
+        depthWrite={false}
+      />
+    </mesh>
   );
 }
 
 /* =========================================================
-   LOCATION MARKER
+   LOCATION MARKER (3D PIN)
 ========================================================= */
 
 function LocationMarker({
   loc,
-  index,
   activeLocation,
   onSelectLocation,
 }: {
   loc: Location;
-  index: number;
   activeLocation: Location | null;
-  onSelectLocation: (
-    loc: Location
-  ) => void;
+  onSelectLocation: (loc: Location) => void;
 }) {
-  const markerRef =
-    useRef<THREE.Group>(null);
+  const isSelected = activeLocation?.id === loc.id;
+  const position = latLngToVector3(loc.lat, loc.lng);
 
-  const position =
-    latLngToVector3(
-      loc.lat,
-      loc.lng,
-      2.035
-    );
-
-  const isSelected =
-    activeLocation?.id === loc.id;
-
-  const offset =
-    labelOffsets[
-    index % labelOffsets.length
-    ];
-
-  const handleClick = (
-    e: ThreeEvent<MouseEvent>
-  ) => {
+  const handleClick = (e: ThreeEvent<MouseEvent>) => {
     e.stopPropagation();
-
     onSelectLocation(loc);
   };
 
-  /*
-    Keep marker facing outward.
-  */
-
-  useFrame(() => {
-    if (!markerRef.current) return;
-
-    markerRef.current.lookAt(0, 0, 0);
-  });
-
-  /*
-    Label anchor point in 3D.
-    This gives us a visible connecting line.
-  */
-
-  const labelPoint =
-    position
-      .clone()
-      .normalize()
-      .multiplyScalar(2.25);
-
   return (
-    <group>
-
-      {/* Actual location marker */}
-      <group
-        ref={markerRef}
-        position={position}
-      >
-
-        {/* Outer glow */}
-        <mesh
-          onClick={handleClick}
-        >
-          <sphereGeometry
-            args={[
-              isSelected
-                ? 0.095
-                : 0.055,
-              16,
-              16,
-            ]}
-          />
-
-          <meshBasicMaterial
-            color={
-              isSelected
-                ? "#FFFFFF"
-                : "#2495D3"
-            }
-          />
-        </mesh>
-
-        {/* Outer ring */}
-        <mesh
-          rotation={[
-            Math.PI / 2,
-            0,
-            0,
+    <group position={position}>
+      {/* Ground Glow Ring */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.02, 0]}>
+        <ringGeometry
+          args={[
+            isSelected ? 0.15 : 0.08,
+            isSelected ? 0.22 : 0.12,
+            32,
           ]}
-        >
-          <ringGeometry
-            args={[
-              isSelected
-                ? 0.12
-                : 0.075,
-              isSelected
-                ? 0.155
-                : 0.09,
-              32,
-            ]}
-          />
+        />
+        <meshBasicMaterial
+          color={isSelected ? "#FFFFFF" : "#2495D3"}
+          transparent
+          opacity={isSelected ? 0.8 : 0.4}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
 
-          <meshBasicMaterial
-            color="#2495D3"
-            transparent
-            opacity={
-              isSelected
-                ? 0.95
-                : 0.65
-            }
+      {/* Center dot on ground */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.025, 0]}>
+        <circleGeometry args={[0.04, 16]} />
+        <meshBasicMaterial color={isSelected ? "#FFFFFF" : "#2495D3"} />
+      </mesh>
 
-            side={THREE.DoubleSide}
-          />
-        </mesh>
-
-      </group>
-
-      {/* Connecting line */}
+      {/* Vertical Pin Line */}
       <Line
         points={[
-          position,
-          labelPoint,
+          [0, 0, 0],
+          [0, isSelected ? 0.8 : 0.4, 0],
         ]}
-        color={
-          isSelected
-            ? "#2495D3"
-            : "#FFFFFF"
-        }
+        color={isSelected ? "#FFFFFF" : "#2495D3"}
+        lineWidth={isSelected ? 2 : 1}
         transparent
-        opacity={
-          isSelected
-            ? 0.9
-            : 0.35
-        }
-        lineWidth={
-          isSelected ? 1.5 : 0.7
-        }
+        opacity={isSelected ? 0.9 : 0.4}
       />
 
-      {/* HTML label */}
-      <Html
-        position={labelPoint}
-        center
-        distanceFactor={8}
-        zIndexRange={[
-          100,
-          0,
-        ]}
-        occlude={false}
+      {/* Top Node */}
+      <mesh
+        position={[0, isSelected ? 0.8 : 0.4, 0]}
+        onClick={handleClick}
+        className="cursor-pointer"
       >
+        <sphereGeometry args={[isSelected ? 0.06 : 0.04, 16, 16]} />
+        <meshStandardMaterial
+          color={isSelected ? "#FFFFFF" : "#2495D3"}
+          emissive={isSelected ? "#FFFFFF" : "#000000"}
+          emissiveIntensity={0.5}
+        />
+      </mesh>
 
+      {/* HTML Label */}
+      <Html
+        position={[0, isSelected ? 0.95 : 0.55, 0]}
+        center
+        zIndexRange={[100, 0]}
+      >
         <div
           onClick={(e) => {
             e.stopPropagation();
-
             onSelectLocation(loc);
           }}
           className="pointer-events-auto cursor-pointer"
-          style={{
-            transform: `translate(
-              ${offset.x}px,
-              ${offset.y}px
-            )`,
-          }}
         >
-
           <div
             className={`
-              flex
-              items-center
-              gap-1.5
-              whitespace-nowrap
-              rounded-lg
-              border
-              backdrop-blur-md
-              shadow-lg
-              transition-all
-              duration-300
+              flex items-center gap-1.5 whitespace-nowrap rounded-lg border backdrop-blur-md shadow-lg transition-all duration-300
               ${isSelected
-                ? `
-                    px-3
-                    py-1.5
-                    bg-[#1C3A62]
-                    text-white
-                    border-[#2495D3]
-                    scale-105
-                  `
-                : `
-                    px-2
-                    py-1
-                    bg-white/90
-                    text-[#1C3A62]
-                    border-white/50
-                    opacity-80
-                    hover:opacity-100
-                    hover:scale-105
-                  `
+                ? "px-3 py-1.5 bg-[#1C3A62] text-white border-[#2495D3] scale-105"
+                : "px-2 py-1 bg-white/90 text-[#1C3A62] border-white/50 opacity-80 hover:opacity-100 hover:scale-105"
               }
             `}
           >
-
             <MapPin
               className={
                 isSelected
@@ -521,7 +281,6 @@ function LocationMarker({
                   : "w-3 h-3 text-[#1C3A62]"
               }
             />
-
             <span
               className={
                 isSelected
@@ -531,13 +290,79 @@ function LocationMarker({
             >
               {loc.city}
             </span>
-
           </div>
-
         </div>
-
       </Html>
+    </group>
+  );
+}
 
+/* =========================================================
+   FLAT MAP GROUP (Slides to center active pin)
+========================================================= */
+
+function MapGroup({
+  activeLocation,
+  onSelectLocation,
+}: {
+  activeLocation: Location | null;
+  onSelectLocation: (loc: Location) => void;
+}) {
+  const groupRef = useRef<THREE.Group>(null);
+  const targetPosition = useRef(new THREE.Vector3());
+
+  useEffect(() => {
+    if (!activeLocation) return;
+    const locPos = latLngToVector3(activeLocation.lat, activeLocation.lng);
+    targetPosition.current.set(-locPos.x, 0, -locPos.z);
+  }, [activeLocation]);
+
+  useFrame(() => {
+    if (!groupRef.current) return;
+    groupRef.current.position.lerp(targetPosition.current, 0.05);
+  });
+
+  return (
+    <group ref={groupRef}>
+
+      {/* Sleek Black Base Plate */}
+      <mesh position={[0, -0.1, 0]}>
+        <cylinderGeometry args={[8.5, 8.5, 0.2, 64]} />
+        <meshStandardMaterial
+          color="#0F223D"
+          transparent
+          opacity={0.9}
+          roughness={0.1}
+          metalness={0.8}
+        />
+      </mesh>
+
+      {/* Tech Grid Overlay */}
+      <Grid
+        position={[0, 0.005, 0]}
+        args={[14, 14]}
+        cellSize={0.5}
+        cellThickness={0.5}
+        cellColor="#2495D3"
+        sectionSize={2.5}
+        sectionThickness={1}
+        sectionColor="#2495D3"
+        fadeDistance={10}
+        fadeStrength={1}
+      />
+
+      {/* THE INDIA MAP LAYER */}
+      <IndiaMapPlane />
+
+      {/* Render all Locations */}
+      {locations.map((loc) => (
+        <LocationMarker
+          key={loc.id}
+          loc={loc}
+          activeLocation={activeLocation}
+          onSelectLocation={onSelectLocation}
+        />
+      ))}
     </group>
   );
 }
@@ -547,441 +372,114 @@ function LocationMarker({
 ========================================================= */
 
 export default function WhereAreWeLocated() {
-
-  const [
-    activeLocation,
-    setActiveLocation,
-  ] = useState<Location | null>(
+  const [activeLocation, setActiveLocation] = useState<Location | null>(
     locations[0]
   );
+  const [, startTransition] = useTransition();
 
-  const [
-    ,
-    startTransition,
-  ] = useTransition();
-
-  const handleSelectLocation =
-    useCallback(
-      (loc: Location) => {
-        startTransition(() => {
-          setActiveLocation(loc);
-        });
-      },
-      []
-    );
+  const handleSelectLocation = useCallback((loc: Location) => {
+    startTransition(() => {
+      setActiveLocation(loc);
+    });
+  }, []);
 
   return (
-    <section
-      className="
-        w-full
-        bg-white
-        py-16
-        sm:py-20
-        lg:py-24
-        px-4
-        sm:px-6
-        lg:px-12
-        font-sans
-        overflow-hidden
-      "
-    >
-
+    <section className="w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
-        {/* =================================================
-            HEADING
-        ================================================= */}
-
-        <div
-          className="
-            text-center
-            max-w-3xl
-            mx-auto
-            mb-12
-            sm:mb-16
-          "
-        >
-
-          <span
-            className="
-              text-xs
-              sm:text-sm
-              font-semibold
-              tracking-wider
-              text-[#878787]
-              uppercase
-              block
-              mb-3
-            "
-          >
+        {/* HEADING */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#878787] uppercase block mb-3">
             Our Presence
           </span>
-
-          <h2
-            className="
-              text-3xl
-              sm:text-4xl
-              lg:text-5xl
-              font-medium
-              text-[#1C3A62]
-              tracking-tight
-            "
-          >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight">
             Where Are We Located?
           </h2>
-
-          <p
-            className="
-              mt-3
-              text-base
-              sm:text-lg
-              text-[#585858]
-            "
-          >
+          <p className="mt-3 text-base sm:text-lg text-[#585858]">
             Explore our office hubs across India.
           </p>
-
         </div>
 
-        {/* =================================================
-            MAIN CONTAINER
-        ================================================= */}
+        {/* MAIN CONTAINER */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F8FAFC] rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#2495D3]/10">
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            lg:grid-cols-12
-            gap-8
-            items-center
-            bg-[#F8FAFC]
-            rounded-3xl
-            p-6
-            sm:p-8
-            lg:p-10
-            border
-            border-[#2495D3]/10
-          "
-        >
-
-          {/* =================================================
-              GLOBE
-          ================================================= */}
-
-          <div
-            className="
-              lg:col-span-8
-              relative
-              w-full
-              h-[400px]
-              sm:h-[500px]
-              lg:h-[550px]
-              rounded-2xl
-              overflow-hidden
-              bg-gradient-to-b
-              from-[#1C3A62]
-              to-[#0F223D]
-            "
-          >
-
+          {/* 3D CANVAS */}
+          <div className="lg:col-span-8 relative w-full h-[400px] sm:h-[500px] lg:h-[550px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#1C3A62] to-[#0a1629]">
             <Canvas
-              camera={{
-                position: [
-                  0,
-                  0,
-                  5.8,
-                ],
-                fov: 42,
-              }}
-              dpr={[
-                1,
-                2,
-              ]}
+              // Isometric-style angled camera setup
+              camera={{ position: [0, 6, 7], fov: 45 }}
+              dpr={[1, 2]}
             >
+              <ambientLight intensity={0.6} />
+              <directionalLight position={[5, 10, 5]} intensity={1.5} />
+              <pointLight position={[-5, 5, 2]} intensity={1} color="#2495D3" />
 
-                {/* Lighting */}
-
-                <ambientLight
-                  intensity={0.8}
+              <Suspense fallback={null}>
+                <MapGroup
+                  activeLocation={activeLocation}
+                  onSelectLocation={handleSelectLocation}
                 />
+              </Suspense>
 
-                <directionalLight
-                  position={[
-                    5,
-                    5,
-                    5,
-                  ]}
-                  intensity={1.3}
-                />
-
-                <pointLight
-                  position={[
-                    -5,
-                    2,
-                    4,
-                  ]}
-                  intensity={0.8}
-                  color="#2495D3"
-                />
-
-                {/* Globe */}
-
-                <Globe
-                  activeLocation={
-                    activeLocation
-                  }
-                />
-
-                {/* Location markers */}
-
-                <group>
-
-                  {locations.map(
-                    (
-                      loc,
-                      index
-                    ) => (
-                      <LocationMarker
-                        key={loc.id}
-                        loc={loc}
-                        index={index}
-                        activeLocation={
-                          activeLocation
-                        }
-                        onSelectLocation={
-                          handleSelectLocation
-                        }
-                      />
-                    )
-                  )}
-
-                </group>
-
-                {/* Controls */}
-
-                <OrbitControls
-                  enableZoom={false}
-                  enablePan={false}
-                  rotateSpeed={0.45}
-                  dampingFactor={0.08}
-                  enableDamping
-                  minPolarAngle={
-                    Math.PI * 0.25
-                  }
-                  maxPolarAngle={
-                    Math.PI * 0.75
-                  }
-                />
-
+              <OrbitControls
+                enableZoom={true}
+                minDistance={3}
+                maxDistance={14}
+                enablePan={false}
+                rotateSpeed={0.5}
+                dampingFactor={0.05}
+                enableDamping
+                maxPolarAngle={Math.PI / 2.5}
+                minPolarAngle={Math.PI / 6}
+              />
             </Canvas>
 
-            {/* =================================================
-                HELPER
-            ================================================= */}
-
-            <div
-              className="
-                absolute
-                bottom-4
-                left-4
-                bg-[#1C3A62]/80
-                backdrop-blur-md
-                px-3
-                py-1.5
-                rounded-lg
-                border
-                border-white/10
-                text-xs
-                text-white/80
-                flex
-                items-center
-                gap-2
-                pointer-events-none
-              "
-            >
-
-              <Navigation
-                className="
-                  w-3.5
-                  h-3.5
-                  text-[#2495D3]
-                "
-              />
-
-              Drag to explore • Select a location
+            <div className="absolute bottom-4 left-4 bg-[#1C3A62]/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-xs text-white/80 flex items-center gap-2 pointer-events-none">
+              <Navigation className="w-3.5 h-3.5 text-[#2495D3]" />
+              Drag to rotate • Scroll to zoom
             </div>
-
           </div>
 
-          {/* =================================================
-              OFFICE LIST
-          ================================================= */}
-
-          <div
-            className="
-              lg:col-span-4
-              flex
-              flex-col
-              gap-3
-            "
-          >
-
-            <h3
-              className="
-                text-lg
-                font-medium
-                text-[#1C3A62]
-                mb-1
-                flex
-                items-center
-                gap-2
-              "
-            >
-
-              <Building2
-                className="
-                  w-5
-                  h-5
-                  text-[#2495D3]
-                "
-              />
-
+          {/* OFFICE LIST */}
+          <div className="lg:col-span-4 flex flex-col gap-3">
+            <h3 className="text-lg font-medium text-[#1C3A62] mb-1 flex items-center gap-2">
+              <Building2 className="w-5 h-5 text-[#2495D3]" />
               Our Headquarters & Offices
-
             </h3>
 
-            <div
-              className="
-                flex
-                flex-col
-                gap-2.5
-                max-h-[460px]
-                overflow-y-auto
-                pr-1
-              "
-            >
-
-              {locations.map(
-                (loc) => {
-
-                  const isActive =
-                    activeLocation?.id ===
-                    loc.id;
-
-                  return (
-                    <button
-                      key={loc.id}
-                      onClick={() =>
-                        handleSelectLocation(
-                          loc
-                        )
+            <div className="flex flex-col gap-2.5 max-h-[460px] overflow-y-auto pr-1">
+              {locations.map((loc) => {
+                const isActive = activeLocation?.id === loc.id;
+                return (
+                  <button
+                    key={loc.id}
+                    onClick={() => handleSelectLocation(loc)}
+                    className={`w-full text-left p-4 rounded-xl transition-all duration-200 border flex flex-col justify-between 
+                      ${isActive
+                        ? "bg-[#1C3A62] text-white border-[#2495D3] shadow-md transform -translate-y-0.5"
+                        : "bg-white text-[#383838] border-gray-200 hover:border-[#2495D3]/40 hover:bg-gray-50"
                       }
-                      className={`
-                        w-full
-                        text-left
-                        p-4
-                        rounded-xl
-                        transition-all
-                        duration-200
-                        border
-                        flex
-                        flex-col
-                        justify-between
-                        ${isActive
-                          ? `
-                              bg-[#1C3A62]
-                              text-white
-                              border-[#2495D3]
-                              shadow-md
-                              transform
-                              -translate-y-0.5
-                            `
-                          : `
-                              bg-white
-                              text-[#383838]
-                              border-gray-200
-                              hover:border-[#2495D3]/40
-                              hover:bg-gray-50
-                            `
-                        }
-                      `}
-                    >
-
-                      <div
-                        className="
-                          flex
-                          items-center
-                          justify-between
-                          w-full
-                          gap-2
-                        "
-                      >
-
-                        <span
-                          className={`
-                            font-medium
-                            text-sm
-                            sm:text-base
-                            ${isActive
-                              ? "text-white"
-                              : "text-[#1C3A62]"
-                            }
-                          `}
-                        >
-                          {loc.city}
-                        </span>
-
-                        <span
-                          className={`
-                            text-xs
-                            px-2
-                            py-0.5
-                            rounded-full
-                            whitespace-nowrap
-                            ${isActive
-                              ? `
-                                  bg-[#2495D3]
-                                  text-white
-                                `
-                              : `
-                                  bg-gray-100
-                                  text-[#585858]
-                                `
-                            }
-                          `}
-                        >
-                          {loc.country}
-                        </span>
-
-                      </div>
-
-                      <p
-                        className={`
-                          text-xs
-                          mt-2
-                          leading-relaxed
-                          ${isActive
-                            ? "text-gray-300"
-                            : "text-[#585858]"
-                          }
-                        `}
-                      >
-                        {loc.address}
-                      </p>
-
-                    </button>
-                  );
-                }
-              )}
-
+                    `}
+                  >
+                    <div className="flex items-center justify-between w-full gap-2">
+                      <span className={`font-medium text-sm sm:text-base ${isActive ? "text-white" : "text-[#1C3A62]"}`}>
+                        {loc.city}
+                      </span>
+                      <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${isActive ? "bg-[#2495D3] text-white" : "bg-gray-100 text-[#585858]"}`}>
+                        {loc.country}
+                      </span>
+                    </div>
+                    <p className={`text-xs mt-2 leading-relaxed ${isActive ? "text-gray-300" : "text-[#585858]"}`}>
+                      {loc.address}
+                    </p>
+                  </button>
+                );
+              })}
             </div>
-
           </div>
 
         </div>
-
       </div>
-
     </section>
   );
 }

@@ -65,10 +65,10 @@ export default function InteractiveTeamSlider() {
     <section className="relative w-full min-h-screen bg-white text-[#1C3A62] py-16 px-6 overflow-hidden font-['Poppins',sans-serif]">
       {/* Header */}
       <div className="max-w-7xl mx-auto text-center mb-16">
-        <span className="text-xs md:text-sm font-semibold text-[#E55B48] uppercase tracking-widest block mb-2">
+        <span className="text-xs md:text-sm font-semibold text-[#1C3A62] uppercase tracking-widest block mb-2">
           Leadership
         </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-slate-800 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] tracking-tight">
           OUR BOARD
         </h2>
       </div>
@@ -109,10 +109,10 @@ export default function InteractiveTeamSlider() {
 
                       {/* Info */}
                       <motion.div layoutId={`member-info-${member.id}`}>
-                        <h3 className="text-xl font-medium text-slate-900 group-hover:text-[#E55B48] transition-colors">
+                        <h3 className="text-xl font-medium text-[#1C3A62] group-hover:text-[#2495D3] transition-colors">
                           {member.name}
                         </h3>
-                        <p className="text-sm text-slate-500 font-medium">
+                        <p className="text-sm text-[#585858] font-medium">
                           {member.role}
                         </p>
                       </motion.div>
@@ -134,7 +134,7 @@ export default function InteractiveTeamSlider() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedMember(null)}
-                className="absolute top-6 left-6 sm:top-8 sm:left-8 w-10 h-10 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center hover:bg-slate-200 transition-colors z-30"
+                className="absolute top-6 left-6 sm:top-8 sm:left-8 w-10 h-10 rounded-full bg-slate-100 text-[#585858] flex items-center justify-center hover:bg-[#2495D3] hover:text-white transition-colors z-30"
                 aria-label="Close details"
               >
                 <X className="w-5 h-5" />
@@ -161,15 +161,15 @@ export default function InteractiveTeamSlider() {
                   transition={{ delay: 0.2, duration: 0.4 }}
                   className="lg:col-span-7 flex flex-col justify-center"
                 >
-                  <span className="text-sm font-semibold text-[#E55B48] uppercase tracking-wider block mb-2">
+                  <span className="text-sm font-semibold text-[#2495D3] uppercase tracking-wider block mb-2">
                     {selectedMember.role}
                   </span>
-                  <h2 className="text-3xl sm:text-4xl font-semibold text-slate-900 mb-6">
+                  <h2 className="text-3xl sm:text-4xl font-semibold text-[#1C3A62] mb-6">
                     {selectedMember.name}
                   </h2>
 
                   {/* Bio Paragraphs */}
-                  <div className="space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base font-normal mb-8 max-w-2xl">
+                  <div className="space-y-4 text-[#585858] leading-relaxed text-sm sm:text-base font-normal mb-8 max-w-2xl">
                     {selectedMember.bio.map((paragraph, idx) => (
                       <p key={idx}>{paragraph}</p>
                     ))}
@@ -177,7 +177,7 @@ export default function InteractiveTeamSlider() {
 
                   {/* Quote Block */}
                   {selectedMember.quote && (
-                    <blockquote className="border-l-2 border-[#E55B48] pl-4 italic text-slate-700 text-sm md:text-base mb-8">
+                    <blockquote className="border-l-2 border-[#2495D3] pl-4 italic text-[#585858] text-sm md:text-base mb-8">
                       &quot;{selectedMember.quote}&quot;
                     </blockquote>
                   )}
@@ -189,7 +189,7 @@ export default function InteractiveTeamSlider() {
                         href={selectedMember.linkedin}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-[#E55B48] transition-colors"
+                        className="flex items-center gap-2 text-xs font-semibold text-[#585858] hover:text-[#2495D3] transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
@@ -204,7 +204,7 @@ export default function InteractiveTeamSlider() {
                         href={selectedMember.twitter}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-[#E55B48] transition-colors"
+                        className="flex items-center gap-2 text-xs font-semibold text-[#585858] hover:text-[#2495D3] transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>

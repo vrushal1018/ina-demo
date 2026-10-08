@@ -1,157 +1,252 @@
-'use client';
+"use client";
 
-import React, { useRef, Suspense } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { ScrollControls, useScroll, Text, Environment, MeshReflectorMaterial, Float, Html } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useState } from "react";
+import Image from "next/image";
+import {
+  // Hospitality
+  Coffee, Utensils, Wifi, Map, Bell, Home, Tv, Music, Car, Smile,
+  // IT-Commercial
+  Monitor, Server, Network, Laptop, Database, Briefcase, Cpu, Cloud, Shield, Lock,
+  // Malls
+  ShoppingBag, Tag, CreditCard, Store, Ticket, Gift, Package, Watch, Smartphone, Camera,
+  // Elite Residential
+  Key, ShieldCheck, Trees, Sun, Moon, Star, Building, Zap,
+  // Hospital
+  Activity, Heart, Plus, Clipboard, PlusCircle, Thermometer, Eye, Droplet, Users, Crosshair
+} from "lucide-react";
 
-const CLIENTS = [
-  "Acme Corp", "Apex Global", "Aura Wellness", "BioHorizon", "Celo Labs",
-  "CloudScale", "Crestline", "Elysium AI", "Equinox", "Fjord Media",
-  "Genesis Bio", "Helios Tech", "Luminary", "Nexus Prime", "Nova Botanics",
-  "Omni Health", "Polaris", "Solstice", "Vanguard", "Zenith Bio"
+// --- Mock Data for the 5 Categories ---
+const partnerCategories = [
+  {
+    id: "hospitality",
+    name: "Hospitality",
+    logos: [
+      { name: "Marriott", icon: Coffee, color: "text-amber-600" },
+      { name: "Hilton", icon: Home, color: "text-blue-600" },
+      { name: "Hyatt", icon: Bell, color: "text-slate-800" },
+      { name: "Taj Hotels", icon: Utensils, color: "text-yellow-600" },
+      { name: "Radisson", icon: Map, color: "text-blue-500" },
+      { name: "Accor", icon: Smile, color: "text-indigo-500" },
+      { name: "Oberoi", icon: Star, color: "text-red-700" },
+      { name: "ITC Hotels", icon: Tv, color: "text-emerald-600" },
+      { name: "Lemon Tree", icon: Trees, color: "text-green-500" },
+      { name: "The Leela", icon: Music, color: "text-purple-600" },
+    ]
+  },
+  {
+    id: "it-commercial",
+    name: "IT-Commercial",
+    logos: [
+      { name: "TCS", icon: Monitor, color: "text-blue-600" },
+      { name: "Infosys", icon: Server, color: "text-blue-500" },
+      { name: "Wipro", icon: Network, color: "text-indigo-500" },
+      { name: "HCL Tech", icon: Laptop, color: "text-cyan-600" },
+      { name: "Tech Mahindra", icon: Database, color: "text-red-600" },
+      { name: "IBM", icon: Cloud, color: "text-blue-800" },
+      { name: "Accenture", icon: Cpu, color: "text-purple-600" },
+      { name: "Cognizant", icon: Shield, color: "text-emerald-600" },
+      { name: "Capgemini", icon: Lock, color: "text-blue-400" },
+      { name: "Oracle", icon: Briefcase, color: "text-red-500" },
+    ]
+  },
+  {
+    id: "malls",
+    name: "Malls",
+    logos: [
+      { name: "Phoenix", icon: ShoppingBag, color: "text-orange-500" },
+      { name: "DLF Mall", icon: Tag, color: "text-blue-600" },
+      { name: "Inorbit", icon: Store, color: "text-pink-500" },
+      { name: "Oberoi Mall", icon: CreditCard, color: "text-slate-800" },
+      { name: "Viviana", icon: Gift, color: "text-purple-500" },
+      { name: "Nexus", icon: Ticket, color: "text-red-500" },
+      { name: "Palladium", icon: Watch, color: "text-yellow-600" },
+      { name: "Forum", icon: Smartphone, color: "text-blue-500" },
+      { name: "Express Ave", icon: Camera, color: "text-emerald-500" },
+      { name: "Orion", icon: Car, color: "text-slate-600" },
+    ]
+  },
+  {
+    id: "elite-residential",
+    name: "Elite Residential",
+    logos: [
+      { name: "Lodha", icon: Building, color: "text-blue-800" },
+      { name: "Godrej", icon: Trees, color: "text-green-600" },
+      { name: "DLF", icon: Home, color: "text-blue-600" },
+      { name: "Hiranandani", icon: Map, color: "text-amber-600" },
+      { name: "Prestige", icon: Star, color: "text-yellow-500" },
+      { name: "Sobha", icon: ShieldCheck, color: "text-slate-800" },
+      { name: "Brigade", icon: Key, color: "text-red-600" },
+      { name: "Puravankara", icon: Sun, color: "text-orange-500" },
+      { name: "Oberoi Realty", icon: Moon, color: "text-indigo-500" },
+      { name: "Mahindra", icon: Zap, color: "text-red-500" },
+    ]
+  },
+  {
+    id: "hospital",
+    name: "Hospital",
+    logos: [
+      { name: "Apollo", icon: Activity, color: "text-blue-500" },
+      { name: "Fortis", icon: Heart, color: "text-green-500" },
+      { name: "Max Health", icon: Plus, color: "text-red-600" },
+      { name: "Manipal", icon: Clipboard, color: "text-blue-700" },
+      { name: "Narayana", icon: PlusCircle, color: "text-cyan-500" },
+      { name: "Medanta", icon: Thermometer, color: "text-orange-500" },
+      { name: "Aster", icon: Eye, color: "text-indigo-500" },
+      { name: "Hinduja", icon: Droplet, color: "text-red-500" },
+      { name: "Kokilaben", icon: Users, color: "text-purple-500" },
+      { name: "Columbia", icon: Crosshair, color: "text-blue-600" },
+    ]
+  }
 ];
 
-// Component to handle the camera movement based on scroll
-function CameraPath() {
-  const scroll = useScroll();
+// Flat-topped hexagon path for the precise honeycomb layout
+const hexClipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
 
-  useFrame((state) => {
-    const offset = scroll.offset; // 0 to 1
-    const totalSteps = CLIENTS.length - 1;
-
-    // Calculate exactly which step we are currently looking at based on scroll
-    const currentStep = offset * totalSteps;
-
-    // The exact Y and Z coordinates of the current step
-    const stepY = currentStep * 1.5;
-    const stepZ = -currentStep * 1.5;
-
-    // LOCK the camera distance: Always stay 2 units above and 10 units back
-    // This perfectly prevents the zooming/crashing issue
-    state.camera.position.y = stepY + 2;
-    state.camera.position.z = stepZ + 10;
-
-    // Gently sway the camera on the X axis to follow the winding stairs
-    const stepX = Math.sin(currentStep * 0.5) * 3;
-    state.camera.position.x = THREE.MathUtils.lerp(state.camera.position.x, stepX * 0.4, 0.1);
-
-    // Always aim the camera slightly ahead of the current step
-    state.camera.lookAt(0, stepY, stepZ - 5);
-  });
-
-  return null;
-}
-
-// Component for the stairs and 3D floating text
-function FloatingStairs() {
+const HexItem = ({ logo, x, y, delay }: { logo: any, x: number, y: number, delay: number }) => {
+  const Icon = logo.icon;
   return (
-    <group>
-      {CLIENTS.map((client, i) => {
-        // Restored your original winding linear staircase layout
-        const xPos = Math.sin(i * 0.5) * 3;
-        const yPos = i * 1.5;
-        const zPos = -i * 1.5;
-
-        return (
-          <group key={i} position={[xPos, yPos, zPos]}>
-            {/* The Stone Step */}
-            <mesh receiveShadow castShadow position={[0, -0.5, 0]}>
-              <boxGeometry args={[4, 0.4, 2]} />
-              <meshStandardMaterial color="#f5f5f5" roughness={0.7} />
-            </mesh>
-
-            {/* 3D Floating Text Above the Step */}
-            <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
-              <Text
-                position={[0, 1, 0]}
-                fontSize={0.6}
-                color="#000000"
-                anchorX="center"
-                anchorY="middle"
-                outlineWidth={0.015}
-                outlineColor="#ff69b4"
-              >
-                {client}
-              </Text>
-            </Float>
-          </group>
-        );
-      })}
-    </group>
-  );
-}
-
-// The Main Ocean Environment
-function SurrealOcean() {
-  return (
-    <mesh position={[0, -2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeGeometry args={[100, 100]} />
-      <MeshReflectorMaterial
-        blur={[300, 100]}
-        resolution={512}
-        mixBlur={1}
-        mixStrength={40}
-        roughness={1}
-        depthScale={1.2}
-        minDepthThreshold={0.4}
-        maxDepthThreshold={1.4}
-        color="#ffffff"
-        metalness={0.5}
-      />
-    </mesh>
-  );
-}
-
-// Loading Fallback Component
-function Loader() {
-  return (
-    <Html center>
-      <div className="text-black tracking-widest text-sm font-semibold">LOADING EXPERIENCE...</div>
-    </Html>
-  );
-}
-
-export default function Stairs3DExperience() {
-  return (
-    <div className="relative bg-white" style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-
-      {/* Fixed HTML Header */}
-      <header className="fixed top-0 left-0 w-full z-20 flex justify-between items-center px-8 py-6 text-black/90 backdrop-blur-sm border-b border-black/10">
-        <h1 className="text-lg font-semibold tracking-widest uppercase">ORGANIMO</h1>
-        <div className="flex gap-6 text-sm tracking-wider">
-          <span className="cursor-pointer hover:text-pink-500 transition">SHOP</span>
-          <span className="cursor-pointer hover:text-pink-500 transition">AFFIRM</span>
-          <span className="cursor-pointer hover:text-pink-500 transition">NEWS</span>
+    <div
+      className="absolute top-1/2 left-1/2 transition-all duration-500 hover:z-50"
+      style={{
+        transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+        animationDelay: `${delay}ms`
+      }}
+    >
+      <div className="filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_12px_30px_rgba(0,0,0,0.15)] transition-all duration-300 transform hover:-translate-y-1.5">
+        <div
+          className="w-[160px] h-[140px] bg-white flex flex-col items-center justify-center gap-2 cursor-pointer"
+          style={{ clipPath: hexClipPath }}
+        >
+          <Icon className={`w-8 h-8 ${logo.color}`} strokeWidth={1.75} />
+          <span className="text-xs font-semibold text-slate-800 text-center px-4 leading-tight">
+            {logo.name}
+          </span>
         </div>
-      </header>
-
-      {/* 3D Canvas */}
-      <Canvas shadows camera={{ position: [0, 2, 10], fov: 45 }}>
-        {/* Environment & Lighting */}
-        <color attach="background" args={['#ffffff']} />
-        <fog attach="fog" args={['#ffffff', 5, 25]} />
-        <ambientLight intensity={0.5} />
-        <directionalLight castShadow position={[10, 20, 10]} intensity={2} color="#ffb6c1" />
-        <pointLight position={[0, 10, 0]} intensity={2} color="#ff69b4" />
-
-        <Suspense fallback={<Loader />}>
-          {/* Increased pages to 10 (CLIENTS.length * 0.5) to ensure you have plenty of scroll room without hitting the bottom abruptly */}
-          <ScrollControls pages={CLIENTS.length * 0.5} damping={0.2}>
-            <CameraPath />
-            <FloatingStairs />
-          </ScrollControls>
-
-          <SurrealOcean />
-
-          <Environment preset="city" />
-        </Suspense>
-      </Canvas>
-
-      {/* Scroll indicator overlay */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-black/50 text-sm tracking-widest uppercase pointer-events-none z-20">
-        Scroll down to explore
       </div>
     </div>
+  );
+};
+
+export default function ClientsCorner() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const activeLogos = partnerCategories[activeTab].logos;
+  const leftLogos = activeLogos.slice(0, 5);
+  const rightLogos = activeLogos.slice(5, 10);
+
+  // Scaled up exact honeycomb coordinates for the interlocking wedges
+  // dx = 126px, dy = 148px (74px stagger)
+  const leftPositions = [
+    { x: 0, y: -74 },
+    { x: 0, y: 74 },
+    { x: -126, y: -148 },
+    { x: -126, y: 0 },
+    { x: -252, y: -74 },
+  ];
+
+  const rightPositions = [
+    { x: 0, y: -74 },
+    { x: 0, y: 74 },
+    { x: 126, y: -148 },
+    { x: 126, y: 0 },
+    { x: 252, y: -74 },
+  ];
+
+  return (
+    <section className="relative w-full py-24 overflow-hidden bg-[#fafafa]">
+      {/* Background Gradients */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl overflow-hidden pointer-events-none">
+        <div className="absolute top-[20%] left-[10%] w-[45rem] h-[45rem] bg-[#2495D3]/10 rounded-full blur-3xl mix-blend-multiply" />
+        <div className="absolute top-[30%] right-[10%] w-[45rem] h-[45rem] bg-[#1C3A62]/10 rounded-full blur-3xl mix-blend-multiply" />
+      </div>
+
+      <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+
+        {/* Header Area */}
+        <div className="text-center max-w-3xl mb-12">
+          <h4 className="text-[#2495D3] font-bold text-sm md:text-base tracking-wide uppercase mb-3">
+            INA partner
+          </h4>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1C3A62] mb-6 tracking-tight">
+            Technologies & Partners with INA
+          </h2>
+          <p className="text-[#585858] text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+            Our goals are ambitious and can only be achieved in partnership with others.
+            We work with a number of technology partners who help us
+            deliver outstanding facility management solutions globally.
+          </p>
+        </div>
+
+        {/* Category Tabs - Rendered dynamically from the array of 5 */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 bg-white p-2 rounded-full shadow-sm border border-slate-100 relative z-40">
+          {partnerCategories.map((cat, idx) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveTab(idx)}
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === idx
+                ? "bg-[#1C3A62] text-white shadow-md scale-105"
+                : "bg-transparent text-slate-600 hover:bg-slate-100"
+                }`}
+            >
+              {cat.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Main Honeycomb Layout Container */}
+        <div className="relative w-full max-w-7xl h-[700px] flex items-center justify-center transform scale-50 sm:scale-75 md:scale-90 lg:scale-100 transition-transform duration-300">
+
+          {/* Left Hexagon Cluster */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-[320px] -translate-y-1/2 w-0 h-0 z-20">
+            {leftLogos.map((logo, index) => (
+              <HexItem
+                key={logo.name}
+                logo={logo}
+                x={leftPositions[index].x}
+                y={leftPositions[index].y}
+                delay={index * 100}
+              />
+            ))}
+          </div>
+
+          {/* Center Hero Hexagon */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 drop-shadow-2xl">
+            <div
+              className="w-[400px] h-[346px] flex items-center justify-center relative overflow-hidden"
+              style={{ clipPath: hexClipPath }}
+            >
+              {/* Dark INA Gradient Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629]" />
+
+              {/* Center INA Logo Elements */}
+              <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+                <Image
+                  src="/Ina Logo-1.jpg.png"
+                  alt="INA Logo"
+                  width={220}
+                  height={120}
+                  className="object-contain filter drop-shadow-2xl"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right Hexagon Cluster */}
+          <div className="absolute top-1/2 left-1/2 translate-x-[320px] -translate-y-1/2 w-0 h-0 z-20">
+            {rightLogos.map((logo, index) => (
+              <HexItem
+                key={logo.name}
+                logo={logo}
+                x={rightPositions[index].x}
+                y={rightPositions[index].y}
+                delay={(index + 5) * 100}
+              />
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
   );
 }

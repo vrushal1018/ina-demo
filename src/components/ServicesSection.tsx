@@ -28,7 +28,7 @@ export default function ServicesSection() {
         <div className="w-full md:w-1/3 relative flex justify-center">
           <div className="relative w-64 h-80 rounded-t-[2rem] overflow-hidden bg-gray-200">
             <Image
-              src="/HardFm.jpg"
+              src="/services.avif"
               alt="Service Professional"
               layout="fill"
               objectFit="cover"

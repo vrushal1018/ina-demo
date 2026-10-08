@@ -122,12 +122,12 @@ export default function ServicesSection() {
               >
                 <div className="group relative bg-white hover:bg-white rounded-3xl p-8 sm:p-10 transition-all duration-300 border border-slate-100 hover:border-[#2495D3]/30 hover:shadow-xl hover:shadow-[#2495D3]/10 flex flex-col justify-between h-full min-h-[380px]">
                   <div>
-                    {/* Circle Icon Badge */}
-                    <div className="w-14 h-14 rounded-full bg-[#1C3A62] text-[#2495D3] flex items-center justify-center mb-8 group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 overflow-hidden">
+                    {/* Icon */}
+                    <div className="text-[#2495D3] flex items-center mb-6 transition-colors duration-300">
                       {typeof Icon === 'string' ? (
-                        <img src={Icon} alt={service.title} className="w-8 h-8 object-contain" />
+                        <img src={Icon} alt={service.title} className="w-12 h-12 object-contain" />
                       ) : (
-                        <Icon className="w-6 h-6 stroke-[1.75]" />
+                        <Icon className="w-12 h-12 stroke-[1.5]" />
                       )}
                     </div>
 
