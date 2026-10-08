@@ -1,10 +1,28 @@
 'use client';
 
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, User, Sparkles, Building2 } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
+
+const alliedServices = [
+  {
+    title: "Concierge Service",
+    icon: User,
+    description: "We offer a wide range of concierge services to its customers. We are committed to providing efficient concierge services for a seamless experience. Our service focuses on making your life easier by carrying out tasks promptly and efficiently."
+  },
+  {
+    title: "Soft & Allied Service",
+    icon: Sparkles,
+    description: "We offer soft and allied services of variable nature, as a support to the mainstream facility Management Services, only in the commercial & residential sectors. We ensure that your property or premises are a better place to work and live in. Our housekeeping and allied services are of the highest standard and quality to ensure a hassle-free experience for you."
+  },
+  {
+    title: "Club House Management",
+    icon: Building2,
+    description: "Proper upkeep and continual operations management of a club house, can be a frustrating and daunting task. Our rich experience and expertise in managing the premium hospitality brands across Pan India, enable us to offer comprehensive services management in the premium club houses. With adequately trained staff and necessary equipment, we are capable of providing reliable and satisfactory service to our clients."
+  }
+];
 
 export default function AlliedServicesPage() {
   return (
@@ -197,7 +215,7 @@ export default function AlliedServicesPage() {
         </section>
 
         <ComprehensiveBuildingSolutions />
-        <InteractiveServiceCards />
+        <InteractiveServiceCards services={alliedServices} />
       </div>
     </>
   );

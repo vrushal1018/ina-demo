@@ -1,10 +1,33 @@
 'use client';
 
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Zap, Thermometer, Lightbulb, Activity } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
+
+const auditServices = [
+  {
+    title: "Power Quality & Harmonics",
+    icon: Zap,
+    description: "Harmonics are a cause & reason for a number of undesired issues and malfunctions in electrical system, causing measurement errors in analogue instruments, nuisance tripping of micro-processor based protective relays & earth leakage circuit breakers. It also causes overheating, due to overloading of capacitors, motors, transformers, cables, risk of short circuits at power factor correction capacitors due to parallel resonance."
+  },
+  {
+    title: "Infrared Thermography",
+    icon: Thermometer,
+    description: "Any unexpected breakdown in the electrical cause's downtime, costs time and money. Be it manufacturing unit, IT industry, Hospital, Hotel or any establishment, intelligent IR Thermography is the solution for predicting condition grading of the electrical equipment. Thermography determines the hot spots (excessive heat) in the system, identify the overload or uneven load in the system and fault classification. Our Thermography offering conforms to the highest standard of ANSI with the detailed report & subsequent action plan"
+  },
+  {
+    title: "Energy Audit",
+    icon: Lightbulb,
+    description: "'Energy Audit' as the name synonyms the monitoring, verification and analysis for improving energy efficiency with cost benefit analysis and an action plan to implement the energy conservation. Energy Audit aims at exploring the opportunities for minimizing energy cost, operational cost, minimize repair costs and increase environment quality, that contributes to increased work productivity and enhancement in the life of HVAC engineering assets. Our highly experienced team will carry out a detailed audit of the related system and submit a detailed Audit report with the observation & action plan"
+  },
+  {
+    title: "Vibration Analysis",
+    icon: Activity,
+    description: "Vibration monitoring and analysis can be used to discover and diagnose a wide variety of problems related to all rotating equipment's. Will able to understand abnormal equipment conditions/faults where this predictive maintenance technology can be use in defining existing conditions which may lead to break down."
+  }
+];
 
 export default function AuditAndOfferingsPage() {
   return (
@@ -214,7 +237,7 @@ export default function AuditAndOfferingsPage() {
         </section>
 
         <ComprehensiveBuildingSolutions />
-        <InteractiveServiceCards />
+        <InteractiveServiceCards services={auditServices} />
       </div>
     </>
   );

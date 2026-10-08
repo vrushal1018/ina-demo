@@ -1,10 +1,33 @@
 'use client';
 
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Wrench, Wind, TrendingUp, ClipboardCheck } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
+
+const technicalServices = [
+  {
+    title: "Retrofit and Mini projects, Spares & Consumables",
+    icon: Wrench,
+    description: "Retrofit & Mini Project team support our customers by execution of the small retrofit's jobs and mini projects jobs with best quality & cost effectively. Our supply chain will provide the spares & consumables depends on your specified requirements. We also do installation, commissioning, testing and endurance trials of all type of engineering equipment's and its ancillaries."
+  },
+  {
+    title: "Air Balancing",
+    icon: Wind,
+    description: "Air balancing is a method of testing your heating and cooling system for proactively spotting any problems, that are causing uneven airflow or negative air pressure. Once identified, these problems can be corrected so every area of the location gets the amount of air it needs. The clients stand benefitted by way of better indoor quality, economical energy bills and greater occupant's comfort."
+  },
+  {
+    title: "Process Improvement",
+    icon: TrendingUp,
+    description: "The Process Improvement Methodology serves as a common framework for understanding the cyclical ongoing nature of a process. It provides a set of phased activities for analysis of an existing process for the specific purpose of identifying & exploring improvement opportunities. Finally, it provides direction as to appropriate refined process management and periodic process review and evaluations geared toward ongoing improvement."
+  },
+  {
+    title: "Annual Maintenance Contracts",
+    icon: ClipboardCheck,
+    description: "In today's competitive world, maximum quality with minimum cost returns is a key factor. An equipment's performance is dependent on the enhanced efficiency by periodic maintenance. We undertake annual maintenance contracts for all engineering related low side equipment, outlining routine upkeep and scheduled maintenance to optimize the performance, optimize energy and output. Our AMC's & CAMC's cover the listed assets: Complete Electrical Low Side like Breakers Servicing, Thermography, HVAC Low side comprising of CT's, HVAC Pumps, AHU's - FCU's, Diesel Generator Sets , FAPA & Fire Fighting System, Solar Systems, Water Treatment Plant (WTP), CCTV"
+  }
+];
 
 export default function TechnicalServicesPage() {
   return (
@@ -214,7 +237,7 @@ export default function TechnicalServicesPage() {
         </section>
 
         <ComprehensiveBuildingSolutions />
-        <InteractiveServiceCards />
+        <InteractiveServiceCards services={technicalServices} />
       </div>
     </>
   );

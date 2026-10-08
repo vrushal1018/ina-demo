@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 // Service data extracted from the video
-const services = [
+const defaultServices = [
   {
     title: "Custom Software & App Development",
     icon: Smartphone,
@@ -41,7 +41,17 @@ const services = [
   }
 ];
 
-export default function InteractiveServiceCards() {
+export interface ServiceItem {
+  title: string;
+  icon: any;
+  description: string;
+}
+
+interface Props {
+  services?: ServiceItem[];
+}
+
+export default function InteractiveServiceCards({ services = defaultServices }: Props) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
