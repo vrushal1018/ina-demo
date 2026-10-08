@@ -1,14 +1,14 @@
 'use client';
 
 import React from "react";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Clock, 
-  User, 
-  Building2, 
-  BookOpen 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  User,
+  Building2,
+  BookOpen
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 
@@ -19,7 +19,7 @@ export default function ContactPage() {
       <div className="min-h-screen bg-white font-sans">
         <section className="bg-white py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            
+
             {/* Left Column: Contact Information */}
             <div>
               <div className="mb-4 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
@@ -39,21 +39,21 @@ export default function ContactPage() {
                   <div className="w-14 h-14 rounded-full bg-[#f0f4f8] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300">
                     <Phone className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="text-[#1C3A62] font-medium text-lg">+1 561 301 4406</span>
+                  <span className="text-[#1C3A62] font-medium text-lg">+91-9326906715</span>
                 </div>
                 {/* Email */}
                 <div className="flex items-center gap-4 group">
                   <div className="w-14 h-14 rounded-full bg-[#f0f4f8] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300">
                     <Mail className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="text-[#1C3A62] font-medium text-lg">info@Advizo.com</span>
+                  <span className="text-[#1C3A62] font-medium text-lg">connect@inatechfmglobal.com</span>
                 </div>
                 {/* Address */}
                 <div className="flex items-center gap-4 group">
                   <div className="w-14 h-14 rounded-full bg-[#f0f4f8] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300">
                     <MapPin className="w-6 h-6 stroke-[2]" />
                   </div>
-                  <span className="text-[#1C3A62] font-medium text-lg">Newtown, CT 06482</span>
+                  <span className="text-[#1C3A62] font-medium text-lg">1st Floor, MBC Park, Kasarvadavli, Sainath Nagar, Near Big Mall, Thane (W) – 400615, Maharashtra</span>
                 </div>
                 {/* Hours */}
                 <div className="flex items-center gap-4 group">
@@ -68,7 +68,7 @@ export default function ContactPage() {
               <div className="w-full h-72 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
                 <iframe
                   title="Location Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11974.776610022207!2d-73.3101037!3d41.4131481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7e0e7a2b0e7a1%3A0x6b107e335b31f79!2sNewtown%2C%20CT%2006482!5e0!3m2!1sen!2sus!4v1690000000000!5m2!1sen!2sus"
+                  src="https://www.google.com/maps?q=1st+Floor%2C+MBC+Park%2C+Kasarvadavli%2C+Sainath+Nagar%2C+Thane+West%2C+Maharashtra+400615&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -90,7 +90,7 @@ export default function ContactPage() {
 
               <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  
+
                   {/* First Name */}
                   <div className="flex flex-col gap-2">
                     <label className="text-sm font-medium text-[#1C3A62]">First name</label>
@@ -203,7 +203,7 @@ export default function ContactPage() {
                 </div>
               </form>
             </div>
-            
+
           </div>
         </section>
       </div>

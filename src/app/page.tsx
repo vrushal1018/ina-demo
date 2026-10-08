@@ -43,31 +43,19 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
         {/* Background Image Container with Overlays */}
-        <div className="absolute inset-0 z-0">
-          <video
-            src="/InaTechFM-Website-Banner-5s.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover object-center scale-105 transform transition-transform duration-1000"
-          />
-          {/* Gradient Dark Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1C3A62]/90 via-[#1C3A62]/75 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-        </div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#e0f0fc] via-[#edf5fc] to-[#f7faff]" />
 
         <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <AnimateIn delay={0.2} direction="up">
-            <div className="max-w-2xl text-white space-y-8">
+            <div className="max-w-3xl mx-auto flex flex-col items-center text-center text-[#1C3A62] space-y-8">
               {/* Top Badge */}
-              <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-white shadow-sm">
+              <div className="inline-flex items-center justify-center space-x-2 bg-[#2495D3]/10 border border-[#2495D3]/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-[#2495D3] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
                 <span>Expertise Repair and Maintenance Services</span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-white tracking-tight leading-[1.15]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-[#1C3A62] tracking-tight leading-[1.15]">
                 Empowering People.{" "}
                 <span className="text-[#2495D3] block sm:inline">
                   Enriching Assets
@@ -75,11 +63,11 @@ export default function Home() {
               </h1>
 
               {/* Feature Bullet Points */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+              <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 pt-2">
                 {features.map((feature, idx) => (
-                  <div key={idx} className="flex items-center space-x-2.5">
+                  <div key={idx} className="flex items-center space-x-2">
                     <CheckCircle2 className="w-5 h-5 text-[#2495D3] flex-shrink-0" />
-                    <span className="text-sm sm:text-base text-gray-100 font-semibold">
+                    <span className="text-sm sm:text-base text-[#585858] font-semibold">
                       {feature}
                     </span>
                   </div>
@@ -87,7 +75,7 @@ export default function Home() {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4 w-full">
                 {/* Primary CTA - Book a Repair */}
                 <a
                   href="#book"
@@ -99,7 +87,7 @@ export default function Home() {
                 {/* Secondary CTA - Get a Quote */}
                 <a
                   href="#quote"
-                  className="px-8 py-4 rounded-md bg-[#383838]/60 hover:bg-[#383838]/90 text-white font-semibold text-center border border-white/30 backdrop-blur-md transition-all duration-300 transform hover:-translate-y-0.5"
+                  className="px-8 py-4 rounded-md bg-white hover:bg-gray-50 text-[#1C3A62] font-semibold text-center border border-gray-200 shadow-sm transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Get a Quote
                 </a>
