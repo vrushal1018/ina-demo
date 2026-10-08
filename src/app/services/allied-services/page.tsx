@@ -186,27 +186,10 @@ export default function AlliedServicesPage() {
                   </h2>
 
                   <p className="mt-5 leading-relaxed text-[#585858]">
-                    Allied Services encompass a suite of soft services and integrated solutions focused on the people and the environment within your facility. We provide essential workplace support to maintain clean, safe, and productive spaces for all occupants.
+                    Ina TechFM’s array of allied services offers provides a fusion of Segment Specific Soft Services, expertise Club House Management Services and Concierge Services for all your versatile service requirements. Whether you need office support on a regular basis or for a special project, we’re here to meet your needs. Our expertise, commitment and dedication help you with complete support services, on time and on budget.
                   </p>
 
-                  <ul className="mt-7 space-y-4">
-                    {[
-                      'Soft Services',
-                      'Workplace Support',
-                      'Integrated Solutions',
-                      'Vendor Management',
-                    ].map((item, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center gap-3"
-                      >
-                        <span className="h-1.5 w-1.5 flex-shrink-0 bg-[#2495D3]" />
-                        <span className="font-medium text-[#383838]">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+
                 </div>
               </div>
             </div>
