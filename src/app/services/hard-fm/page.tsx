@@ -166,7 +166,7 @@ export default function HardFMPage() {
                   {/* Clean rounded image container */}
                   <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
                     <img
-                      src="/HardFm.jpg"
+                      src="/Hard%20FM.svg"
                       alt="Hard FM Overview"
                       className="h-full w-full object-cover object-center"
                     />
