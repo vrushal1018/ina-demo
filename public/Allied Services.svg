@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C3A62" />
+      <stop offset="100%" stop-color="#0F223D" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bg-grad)" rx="16" />
+  
+  <!-- Accent Graphic (Hexagon Hint) -->
+  <polygon points="850,-50 950,100 850,250 650,250 550,100 650,-50" fill="#2495D3" opacity="0.05" />
+  
+  <!-- Text -->
+  <text x="50%" y="48%" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" fill="#ffffff" text-anchor="middle" dominant-baseline="middle" letter-spacing="1.5">
+    Allied Services
+  </text>
+  
+  <!-- Accent Line -->
+  <rect x="350" y="240" width="100" height="6" fill="#2495D3" rx="3" />
+</svg>
