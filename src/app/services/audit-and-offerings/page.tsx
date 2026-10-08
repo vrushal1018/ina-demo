@@ -102,27 +102,27 @@ export default function AuditAndOfferingsPage() {
                   {/* Panel 1: Left Doctor (Shorter, Behind) */}
                   <div className="absolute left-[5%] z-0 h-[70%] w-[42%] overflow-hidden rounded-3xl shadow-xl">
                     <img
-                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80"
-                      alt="Male Doctor"
-                      className="h-full w-full object-cover object-top bg-white"
+                      src="/audit2.webp"
+                      alt="Audit & Offerings 2"
+                      className="h-full w-full object-cover object-center bg-white"
                     />
                   </div>
 
                   {/* Panel 3: Right Doctor (Shorter, Behind) */}
                   <div className="absolute right-[5%] z-0 h-[70%] w-[42%] overflow-hidden rounded-3xl shadow-xl">
                     <img
-                      src="https://images.unsplash.com/photo-1582750433449-648ed127d0fc?auto=format&fit=crop&w=600&q=80"
-                      alt="Doctor with tablet"
-                      className="h-full w-full object-cover object-top bg-white"
+                      src="/audit3.jpg"
+                      alt="Audit & Offerings 3"
+                      className="h-full w-full object-cover object-center bg-white"
                     />
                   </div>
 
                   {/* Panel 2: Center Doctor (Taller, Front) */}
                   <div className="relative z-10 h-[90%] w-[45%] overflow-hidden rounded-3xl shadow-2xl ring-4 ring-white">
                     <img
-                      src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
-                      alt="Main Doctor"
-                      className="h-full w-full object-cover object-top bg-white"
+                      src="/auditmain.jpg"
+                      alt="Main Audit & Offerings"
+                      className="h-full w-full object-cover object-center bg-white"
                     />
                   </div>
 
@@ -164,11 +164,11 @@ export default function AuditAndOfferingsPage() {
                   <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
 
                   {/* Clean rounded image container */}
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
+                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg bg-gradient-to-br from-[#1C3A62] to-[#0F223D]">
                     <img
-                      src="/HardFm.jpg"
+                      src="/Audit%26Offerings.svg"
                       alt="Audit & Offerings Overview"
-                      className="h-full w-full object-cover object-center"
+                      className="h-full w-full object-contain object-center scale-[1.05]"
                     />
                   </div>
                 </div>
