@@ -153,8 +153,8 @@ export default function ComprehensiveBuildingSolutions() {
               <span className="text-sm text-[#1C3A62] font-medium tracking-wide uppercase">See all Services</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-semibold text-[#1C3A62] leading-[1.1] tracking-tight">
-              Comprehensive Hard FM <br className="hidden md:block" />
-              Solutions
+              Comprehensive Facility <br className="hidden md:block" />
+              Management Solutions
             </h2>
           </div>
           <div className="flex flex-col items-start lg:items-end gap-6">
