@@ -1,10 +1,33 @@
 'use client';
 
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Droplet, Hammer, Zap, Flame } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
+
+const hardFmServices = [
+  {
+    title: "Plumbing & Sanitation",
+    icon: Droplet,
+    description: "Water is the most precious commodity on the earth. Our Water & Waste Water SME Services contribute in conserving the most important element of life. Our core team manages and maintains the versatile water requirements like STP, ETP, WTP’s, Pharma based RO Water and overall plumbing and sanitation requirement’s. We also provide the Advisory for the Water Conservation Programmes like Rain harvesting, Systems Modifications etc."
+  },
+  {
+    title: "Civil & Building Fabric Maintenance",
+    icon: Hammer,
+    description: "Our Civil & Building Fabric Services basket offer a comprehensive solution for the civil as well as Building Fabric requirement, which is considered as one of the most complex maintainable things in the facility. Be it a hospitality, corporate or elite shopping arena, the guest experience starts with the first look-n-feel and décor of the property. Our expertise service solutions are customized to suit the client needs in terms of common area maintenance, Guest Room PPM Services. Our expert Ken Fixit team deliver end-to end services to the utmost satisfaction of the client."
+  },
+  {
+    title: "Electro-Mechanical",
+    icon: Zap,
+    description: "For undisrupted services in any establishment, Electrical & Mechanical Installations are the most vital utilities and are at the nuclear, for creating a safe working environment. Our 24×7 operations coupled with robust Predictive Maintenance Regime for the Electrical HT & LT Infrastructure comprising of HT/LT Transformers, LT Distributions & Associated Panels, Diesel Generators, UPS & Invertors become the pulse of facility installations. Our innovation-based approach with a blend of implement technology enabled solutions."
+  },
+  {
+    title: "Fire Alarm & Fighting Systems",
+    icon: Flame,
+    description: "Our Subject Matter Expertise FLS team offers the Comprehensive as well as non-comprehensive AMC’s, Repairs & Restoration with the industry-proven best practices to maintain the critical FAPA Systems in ready manner 24x7. Our fire experts not only ensure that the fire equipment is always in excellent condition, but also offer advisory for overall fire safe environment. Our Wireless Automation implementation ensures even the minutest detection of any and entire fire-fighting equipment are governed under strict regime of the preventive maintenance."
+  }
+];
 
 export default function HardFMPage() {
   return (
@@ -203,7 +226,7 @@ export default function HardFMPage() {
         </section>
 
         <ComprehensiveBuildingSolutions />
-        <InteractiveServiceCards />
+        <InteractiveServiceCards services={hardFmServices} />
       </div>
     </>
   );
