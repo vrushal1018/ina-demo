@@ -242,7 +242,8 @@ function LocationMarker({
       <mesh
         position={[0, isSelected ? 0.8 : 0.4, 0]}
         onClick={handleClick}
-        className="cursor-pointer"
+        onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = "pointer"; }}
+        onPointerOut={(e) => { document.body.style.cursor = "auto"; }}
       >
         <sphereGeometry args={[isSelected ? 0.06 : 0.04, 16, 16]} />
         <meshStandardMaterial
