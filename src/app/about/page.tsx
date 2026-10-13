@@ -5,7 +5,6 @@ import MissionVisionSlider from "@/components/about/MissionVisionSlider";
 import CEOQuoteSection from "@/components/about/CEOQuoteSection";
 import InteractiveTeamSlider from "@/components/about/InteractiveTeamSlider";
 import OurTeam from "@/components/about/OurTeam";
-import WhereAreWeLocated from "@/components/about/WhereAreWeLocated";
 import HowWeWork from "@/components/about/HowWeWork";
 import SiteHeader from "@/components/SiteHeader";
 
@@ -20,7 +19,6 @@ export default function AboutPage() {
         <CEOQuoteSection />
         <InteractiveTeamSlider />
         <OurTeam />
-        <WhereAreWeLocated />
         <HowWeWork />
       </main>
     </div>
