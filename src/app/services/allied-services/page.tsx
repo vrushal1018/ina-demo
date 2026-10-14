@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { ChevronRight, User, Sparkles, Building2 } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
+import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
 
@@ -153,69 +155,77 @@ export default function AlliedServicesPage() {
         {/* =========================================================
             OVERVIEW SECTION
         ========================================================== */}
-        <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-6 pb-20 pt-10 lg:pt-14">
-            <div
-              className="
-                relative
-                overflow-hidden
-                rounded-[2rem]
-                bg-white
-                p-6
-                shadow-xl
-                md:p-10
-                lg:p-12
-              "
-              style={{
-                backgroundImage:
-                  'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-              }}
-            >
-              <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <AnimateIn delay={0.1} minHeight="450px">
+          <section className="bg-white">
+            <div className="mx-auto max-w-7xl px-6 pb-20 pt-10 lg:pt-14">
+              <div
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-[2rem]
+                  bg-white
+                  p-6
+                  shadow-xl
+                  md:p-10
+                  lg:p-12
+                "
+                style={{
+                  backgroundImage:
+                    'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }}
+              >
+                <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
-                {/* =================================================
-                    OVERVIEW IMAGE (Design Fixed)
-                ================================================== */}
-                <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
-                  {/* Background shape for depth */}
-                  <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
+                  {/* =================================================
+                      OVERVIEW IMAGE (Design Fixed)
+                  ================================================== */}
+                  <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
+                    {/* Background shape for depth */}
+                    <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
 
-                  {/* Clean rounded image container */}
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
-                    <img
-                      src="/Allied%20Services.svg"
-                      alt="Allied Services Overview"
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-                </div>
-
-                {/* =================================================
-                    OVERVIEW CONTENT
-                ================================================== */}
-                <div className="relative z-10">
-                  <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
-                    Overview
+                    {/* Clean rounded image container */}
+                    <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
+                      <img
+                        src="/Allied%20Services.svg"
+                        alt="Allied Services Overview"
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
                   </div>
 
-                  <h2 className="text-3xl font-semibold tracking-tight text-[#1C3A62] md:text-4xl">
-                    What are Allied Services?
-                  </h2>
+                  {/* =================================================
+                      OVERVIEW CONTENT
+                  ================================================== */}
+                  <div className="relative z-10">
+                    <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
+                      Overview
+                    </div>
 
-                  <p className="mt-5 leading-relaxed text-[#585858]">
-                    Ina TechFM’s array of allied services offers provides a fusion of Segment Specific Soft Services, expertise Club House Management Services and Concierge Services for all your versatile service requirements. Whether you need office support on a regular basis or for a special project, we’re here to meet your needs. Our expertise, commitment and dedication help you with complete support services, on time and on budget.
-                  </p>
+                    <h2 className="text-3xl font-semibold tracking-tight text-[#1C3A62] md:text-4xl">
+                      What are Allied Services?
+                    </h2>
 
+                    <p className="mt-5 leading-relaxed text-[#585858]">
+                      Ina TechFM’s array of allied services offers provides a fusion of Segment Specific Soft Services, expertise Club House Management Services and Concierge Services for all your versatile service requirements. Whether you need office support on a regular basis or for a special project, we’re here to meet your needs. Our expertise, commitment and dedication help you with complete support services, on time and on budget.
+                    </p>
 
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </AnimateIn>
 
-        <ComprehensiveBuildingSolutions />
-        <InteractiveServiceCards services={alliedServices} />
+        <AnimateIn delay={0.1} minHeight="500px">
+          <ComprehensiveBuildingSolutions />
+        </AnimateIn>
+
+        <AnimateIn delay={0.1} minHeight="500px">
+          <InteractiveServiceCards services={alliedServices} />
+        </AnimateIn>
       </div>
     </>
   );

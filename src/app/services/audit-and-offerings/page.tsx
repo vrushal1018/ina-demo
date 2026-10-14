@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { ChevronRight, Zap, Thermometer, Lightbulb, Activity } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
+import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
 
@@ -158,86 +160,95 @@ export default function AuditAndOfferingsPage() {
         {/* =========================================================
             OVERVIEW SECTION
         ========================================================== */}
-        <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-6 pb-20 pt-10 lg:pt-14">
-            <div
-              className="
-                relative
-                overflow-hidden
-                rounded-[2rem]
-                bg-white
-                p-6
-                shadow-xl
-                md:p-10
-                lg:p-12
-              "
-              style={{
-                backgroundImage:
-                  'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-              }}
-            >
-              <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <AnimateIn delay={0.1} minHeight="450px">
+          <section className="bg-white">
+            <div className="mx-auto max-w-7xl px-6 pb-20 pt-10 lg:pt-14">
+              <div
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-[2rem]
+                  bg-white
+                  p-6
+                  shadow-xl
+                  md:p-10
+                  lg:p-12
+                "
+                style={{
+                  backgroundImage:
+                    'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }}
+              >
+                <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
-                {/* =================================================
-                    OVERVIEW IMAGE (Design Fixed)
-                ================================================== */}
-                <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
-                  {/* Background shape for depth */}
-                  <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
+                  {/* =================================================
+                      OVERVIEW IMAGE (Design Fixed)
+                  ================================================== */}
+                  <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
+                    {/* Background shape for depth */}
+                    <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
 
-                  {/* Clean rounded image container */}
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg bg-gradient-to-br from-[#1C3A62] to-[#0F223D]">
-                    <img
-                      src="/Audit%26Offerings.svg"
-                      alt="Audit & Offerings Overview"
-                      className="h-full w-full object-contain object-center scale-[1.05]"
-                    />
-                  </div>
-                </div>
-
-                {/* =================================================
-                    OVERVIEW CONTENT
-                ================================================== */}
-                <div className="relative z-10">
-                  <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
-                    Overview
+                    {/* Clean rounded image container */}
+                    <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg bg-gradient-to-br from-[#1C3A62] to-[#0F223D]">
+                      <img
+                        src="/Audit%26Offerings.svg"
+                        alt="Audit & Offerings Overview"
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-contain object-center scale-[1.05]"
+                      />
+                    </div>
                   </div>
 
-                  <h2 className="text-3xl font-semibold tracking-tight text-[#1C3A62] md:text-4xl">
-                    What are Audit & Offerings?
-                  </h2>
+                  {/* =================================================
+                      OVERVIEW CONTENT
+                  ================================================== */}
+                  <div className="relative z-10">
+                    <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
+                      Overview
+                    </div>
 
-                  <p className="mt-5 leading-relaxed text-[#585858]">
-                    Our audit services deliver professional, in-depth assessments of your facility's operations and performance. By providing tailored solutions and identifying key improvement opportunities, we help optimize your facility's overall effectiveness.
-                  </p>
+                    <h2 className="text-3xl font-semibold tracking-tight text-[#1C3A62] md:text-4xl">
+                      What are Audit & Offerings?
+                    </h2>
 
-                  <ul className="mt-7 space-y-4">
-                    {[
-                      'Facility Audits',
-                      'Performance Assessment',
-                      'Bespoke Solutions',
-                      'Risk Management',
-                    ].map((item, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center gap-3"
-                      >
-                        <span className="h-1.5 w-1.5 flex-shrink-0 bg-[#2495D3]" />
-                        <span className="font-medium text-[#383838]">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                    <p className="mt-5 leading-relaxed text-[#585858]">
+                      Our audit services deliver professional, in-depth assessments of your facility's operations and performance. By providing tailored solutions and identifying key improvement opportunities, we help optimize your facility's overall effectiveness.
+                    </p>
+
+                    <ul className="mt-7 space-y-4">
+                      {[
+                        'Facility Audits',
+                        'Performance Assessment',
+                        'Bespoke Solutions',
+                        'Risk Management',
+                      ].map((item, index) => (
+                        <li
+                          key={index}
+                          className="flex items-center gap-3"
+                        >
+                          <span className="h-1.5 w-1.5 flex-shrink-0 bg-[#2495D3]" />
+                          <span className="font-medium text-[#383838]">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </AnimateIn>
 
-        <ComprehensiveBuildingSolutions />
-        <InteractiveServiceCards services={auditServices} />
+        <AnimateIn delay={0.1} minHeight="500px">
+          <ComprehensiveBuildingSolutions />
+        </AnimateIn>
+
+        <AnimateIn delay={0.1} minHeight="500px">
+          <InteractiveServiceCards services={auditServices} />
+        </AnimateIn>
       </div>
     </>
   );

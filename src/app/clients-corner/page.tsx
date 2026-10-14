@@ -2,15 +2,11 @@
 
 import React from "react";
 import SiteHeader from "@/components/SiteHeader";
-import dynamic from "next/dynamic";
-
-const ClientsCorner = dynamic(() => import("@/components/ClientsCorner"), {
-  ssr: false,
-});
+import ClientsCorner from "@/components/ClientsCorner";
 
 export default function ClientsCornerPage() {
   return (
-    <div className="relative min-h-screen bg-transparent">
+    <div className="relative min-h-screen bg-white">
       <SiteHeader />
       <main>
         <ClientsCorner />

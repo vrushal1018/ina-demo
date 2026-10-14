@@ -9,8 +9,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Maverick - Melbourne's Trusted Local Garage Door Experts",
-  description: "Fast repairs, expert installations, scheduled servicing, and local police checked technicians in Melbourne. Call +1300 111 222.",
+  title: "INA - Facility Management & Technical Services",
+  description: "Comprehensive engineering and facility management solutions focused on reliable, sustainable and efficient operations.",
 };
 
 import LoadingScreen from "@/components/LoadingScreen";
@@ -19,9 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${poppins.variable} h-full antialiased`}
+      className={`${poppins.variable} h-full antialiased bg-white`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-white text-[#383838]">
         <LoadingScreen />
         {children}
       </body>

@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { ChevronRight, Droplet, Hammer, Zap, Flame } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
+import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
 
@@ -158,75 +160,84 @@ export default function HardFMPage() {
         {/* =========================================================
             OVERVIEW SECTION
         ========================================================== */}
-        <section className="bg-white">
-          <div className="mx-auto max-w-7xl px-6 pb-20 pt-10 lg:pt-14">
-            <div
-              className="
-                relative
-                overflow-hidden
-                rounded-[2rem]
-                bg-white
-                p-6
-                shadow-xl
-                md:p-10
-                lg:p-12
-              "
-              style={{
-                backgroundImage:
-                  'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-              }}
-            >
-              <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <AnimateIn delay={0.1} minHeight="450px">
+          <section className="bg-white">
+            <div className="mx-auto max-w-7xl px-6 pb-20 pt-10 lg:pt-14">
+              <div
+                className="
+                  relative
+                  overflow-hidden
+                  rounded-[2rem]
+                  bg-white
+                  p-6
+                  shadow-xl
+                  md:p-10
+                  lg:p-12
+                "
+                style={{
+                  backgroundImage:
+                    'linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)',
+                  backgroundSize: '40px 40px',
+                }}
+              >
+                <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
 
-                {/* =================================================
-                    OVERVIEW IMAGE (Design Fixed)
-                ================================================== */}
-                <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
-                  {/* Background shape for depth */}
-                  <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
+                  {/* =================================================
+                      OVERVIEW IMAGE (Design Fixed)
+                  ================================================== */}
+                  <div className="relative flex h-[330px] items-center justify-center md:h-[400px]">
+                    {/* Background shape for depth */}
+                    <div className="absolute -left-4 -top-4 h-[95%] w-[95%] rounded-[2rem] bg-[#2495D3]/10" />
 
-                  {/* Clean rounded image container */}
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
-                    <img
-                      src="/Hard%20FM.svg"
-                      alt="Hard FM Overview"
-                      className="h-full w-full object-cover object-center"
-                    />
-                  </div>
-                </div>
-
-                {/* =================================================
-                    OVERVIEW CONTENT
-                ================================================== */}
-                <div className="relative z-10">
-                  <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
-                    Overview
+                    {/* Clean rounded image container */}
+                    <div className="relative z-10 h-full w-full overflow-hidden rounded-[2rem] shadow-lg">
+                      <img
+                        src="/Hard%20FM.svg"
+                        alt="Hard FM Overview"
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
                   </div>
 
-                  <h2 className="text-3xl font-semibold tracking-tight text-[#1C3A62] md:text-4xl">
-                    What is Hard FM?
-                  </h2>
+                  {/* =================================================
+                      OVERVIEW CONTENT
+                  ================================================== */}
+                  <div className="relative z-10">
+                    <div className="mb-5 inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
+                      Overview
+                    </div>
 
-                  <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-[#585858]">
-                    <p>
-                      At Ina Tech FM, we collaborate with our clients to extend our expertise in enhancing the life cycle of critical engineering assets, with an objective of minimizing asset outage causing no business operations disruptions. Our state-of-the-art technology innovation offers a 360-degree view of overall asset operating performance as well as monitor systematic regime of predictive & preventive maintenance. Our methods are built on a solid foundation of man, machine & technology, with the engineering asset indicating its overall health and performance status. Our moto of ‘self-delivery’ in Engineering O&M & Technical Services give us a cutting edge from our league competitors, giving an extra mile advantage.
-                    </p>
-                    <p>
-                      We practise and implement safe workplace environment & employee well-being while delivering asset management services. Our digitalization of schedules & controlled documentation aim at optimizing asset performance & also explore opportunities for saving on operating spends.
-                    </p>
-                    <p>
-                      Our Hard FM services deliver leading edge services for premium hospitality corporate, multi-specialty healthcare, pharmaceutical manufacturing, IT & ITES, sprawling residentials across the regions. With nationwide coverage and a flexible work force, our operations bandwidth stretches across almost all parts of the country.
-                    </p>
+                    <h2 className="text-3xl font-semibold tracking-tight text-[#1C3A62] md:text-4xl">
+                      What is Hard FM?
+                    </h2>
+
+                    <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-[#585858]">
+                      <p>
+                        At Ina Tech FM, we collaborate with our clients to extend our expertise in enhancing the life cycle of critical engineering assets, with an objective of minimizing asset outage causing no business operations disruptions. Our state-of-the-art technology innovation offers a 360-degree view of overall asset operating performance as well as monitor systematic regime of predictive & preventive maintenance. Our methods are built on a solid foundation of man, machine & technology, with the engineering asset indicating its overall health and performance status. Our moto of ‘self-delivery’ in Engineering O&M & Technical Services give us a cutting edge from our league competitors, giving an extra mile advantage.
+                      </p>
+                      <p>
+                        We practise and implement safe workplace environment & employee well-being while delivering asset management services. Our digitalization of schedules & controlled documentation aim at optimizing asset performance & also explore opportunities for saving on operating spends.
+                      </p>
+                      <p>
+                        Our Hard FM services deliver leading edge services for premium hospitality corporate, multi-specialty healthcare, pharmaceutical manufacturing, IT & ITES, sprawling residentials across the regions. With nationwide coverage and a flexible work force, our operations bandwidth stretches across almost all parts of the country.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </AnimateIn>
 
-        <ComprehensiveBuildingSolutions />
-        <InteractiveServiceCards services={hardFmServices} />
+        <AnimateIn delay={0.1} minHeight="500px">
+          <ComprehensiveBuildingSolutions />
+        </AnimateIn>
+
+        <AnimateIn delay={0.1} minHeight="500px">
+          <InteractiveServiceCards services={hardFmServices} />
+        </AnimateIn>
       </div>
     </>
   );
