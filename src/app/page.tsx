@@ -30,7 +30,7 @@ export default function Home() {
 
       {/* Hero Section - Loads immediately (above the fold) */}
       <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
-        {/* Background Video with continuous loop and crisp overlay */}
+        {/* Background Video with continuous loop in full high resolution */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
             autoPlay
@@ -45,9 +45,6 @@ export default function Home() {
             <source src="/demovideo" type="video/mp4" />
             <source src="/InaTechFM-Website-Banner-5s.mp4" type="video/mp4" />
           </video>
-          {/* Soft frosted gradient overlay for vibrant video visibility & crisp text contrast */}
-          <div className="absolute inset-0 bg-white/45" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white" />
         </div>
 
         <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
