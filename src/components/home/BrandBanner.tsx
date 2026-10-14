@@ -4,96 +4,57 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownRight } from 'lucide-react';
 
-// Brand logos data with inline SVG renderers for crisp scaling
-const BRANDS = [
+// Elite Residential client logos (cleaned transparent PNGs, displayed larger)
+const RESIDENTIAL_LOGOS = [
   {
-    name: 'DoorDash',
-    icon: (
-      <svg className="h-5 w-auto fill-current" viewBox="0 0 120 20">
-        <path d="M12 4C7.58 4 4 7.58 4 12s3.58 8 8 8h16c.55 0 1-.45 1-1s-.45-1-1-1H12c-3.31 0-6-2.69-6-6s2.69-6 6-6h20c.55 0 1-.45 1-1s-.45-1-1-1H12z" />
-        <text x="35" y="16" fontFamily="sans-serif" fontWeight="bold" fontSize="15">DOORDASH</text>
-      </svg>
-    ),
+    name: 'Calcutta Riverside',
+    src: '/elite residential logos/Gemini_Generated_Image_39ed39ed39ed39ed-clean.png',
   },
   {
-    name: 'Shopify',
-    icon: (
-      <div className="flex items-center gap-2">
-        <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
-          <path d="M20.5 7.5l-3.5-1.5-1.5-3.5L12 3 8.5 2.5 7 6 3.5 7.5 2 11l2 8 8 3 8-3 2-8z" />
-        </svg>
-        <span className="font-medium text-lg tracking-tight">shopify</span>
-      </div>
-    ),
+    name: 'K Raheja Corp',
+    src: '/elite residential logos/Gemini_Generated_Image_6sa9o36sa9o36sa9-clean.png',
   },
   {
-    name: 'Dropbox',
-    icon: (
-      <div className="flex items-center gap-2">
-        <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
-          <path d="M6 2l6 4-6 4-6-4zm12 0l6 4-6 4-6-4zm-12 8l6 4-6 4-6-4zm12 0l6 4-6 4-6-4zm-6 4.5l6-4 6 4-6 4z" />
-        </svg>
-        <span className="font-medium text-lg">Dropbox</span>
-      </div>
-    ),
+    name: 'Godrej Properties',
+    src: '/elite residential logos/Gemini_Generated_Image_8rwu318rwu318rwu-clean.png',
   },
   {
-    name: 'Slack',
-    icon: (
-      <div className="flex items-center gap-2">
-        <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
-          <path d="M6 15a2 2 0 012 2v2a2 2 0 11-2-2zm0-8a2 2 0 012-2 2 2 0 012 2v6a2 2 0 11-4 0zm8 0a2 2 0 012 2v2a2 2 0 11-2-2zm0 8a2 2 0 01-2 2 2 2 0 01-2-2V9a2 2 0 114 0z" />
-        </svg>
-        <span className="font-medium text-xl tracking-tight">slack</span>
-      </div>
-    ),
+    name: 'SD Corp',
+    src: '/elite residential logos/Gemini_Generated_Image_argzyiargzyiargz-clean.png',
   },
   {
-    name: 'Google',
-    icon: (
-      <span className="font-semibold text-xl tracking-tight font-sans">Google</span>
-    ),
+    name: 'Primarc Projects',
+    src: '/elite residential logos/Gemini_Generated_Image_d34ehkd34ehkd34e-clean.png',
   },
   {
-    name: 'Square',
-    icon: (
-      <div className="flex items-center gap-2">
-        <div className="w-5 h-5 border-[3px] border-current rounded-sm flex items-center justify-center">
-          <div className="w-1.5 h-1.5 bg-current rounded-xs" />
-        </div>
-        <span className="font-medium text-lg">Square</span>
-      </div>
-    ),
+    name: 'ABI Apex',
+    src: '/elite residential logos/Gemini_Generated_Image_dgixx6dgixx6dgix-clean.png',
   },
   {
-    name: 'Asana',
-    icon: (
-      <div className="flex items-center gap-2">
-        <svg className="h-5 w-auto fill-current" viewBox="0 0 24 24">
-          <circle cx="12" cy="6" r="3.5" />
-          <circle cx="6" cy="16" r="3.5" />
-          <circle cx="18" cy="16" r="3.5" />
-        </svg>
-        <span className="font-semibold text-xl tracking-tight">asana</span>
-      </div>
-    ),
+    name: 'Ashok Gardens',
+    src: '/elite residential logos/Gemini_Generated_Image_g2uvftg2uvftg2uv-clean.png',
   },
   {
-    name: 'Airtable',
-    icon: (
-      <div className="flex items-center gap-2">
-        <svg className="h-6 w-auto fill-current" viewBox="0 0 24 24">
-          <path d="M11 3L2 7v10l9 4V3zm2 0v18l9-4V7l-9-4z" />
-        </svg>
-        <span className="font-medium text-lg">Airtable</span>
-      </div>
-    ),
+    name: 'L&T Realty',
+    src: '/elite residential logos/Gemini_Generated_Image_i7k5ami7k5ami7k5-clean.png',
+  },
+  {
+    name: 'Prateek Grand City',
+    src: '/elite residential logos/Gemini_Generated_Image_oqss1toqss1toqss-clean.png',
+  },
+  {
+    name: 'Mahagun Maple',
+    src: '/elite residential logos/Gemini_Generated_Image_ozbmdfozbmdfozbm-clean.png',
+  },
+  {
+    name: 'Runwal',
+    src: '/elite residential logos/Gemini_Generated_Image_quaafmquaafmquaa-clean.png',
   },
 ];
 
 export default function BrandBanner() {
   return (
-    <section className="w-full bg-slate-50 py-12 overflow-hidden">
+    <section className="w-full bg-slate-50 py-16 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -101,29 +62,31 @@ export default function BrandBanner() {
         transition={{ duration: 0.6 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-
         {/* Header Title with Lucide Icon */}
-        <div className="flex items-center justify-center gap-1.5 text-slate-800 font-medium text-base mb-10">
-          <span>Brands we service and repair</span>
+        <div className="flex items-center justify-center gap-1.5 text-slate-800 font-medium text-base mb-12">
+          <span>Brands & elite residential properties we service</span>
           <ArrowDownRight className="w-4 h-4 text-slate-600" />
         </div>
 
         {/* Marquee Container with Gradient Side Masks */}
         <div className="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-          <div className="flex w-max items-center gap-12 sm:gap-16 animate-marquee hover:[animation-play-state:paused]">
-
+          <div className="flex w-max items-center gap-16 sm:gap-24 animate-marquee hover:[animation-play-state:paused]">
             {/* Duplicate list to achieve continuous seamless loop */}
-            {[...BRANDS, ...BRANDS].map((brand, idx) => (
+            {[...RESIDENTIAL_LOGOS, ...RESIDENTIAL_LOGOS].map((brand, idx) => (
               <div
                 key={`${brand.name}-${idx}`}
-                className="flex items-center text-slate-900 opacity-90 transition-opacity hover:opacity-100 cursor-pointer"
+                className="flex items-center justify-center shrink-0 opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 cursor-pointer"
               >
-                {brand.icon}
+                <img
+                  src={brand.src}
+                  alt={brand.name}
+                  className="h-12 sm:h-16 md:h-20 w-auto max-w-[220px] object-contain drop-shadow-xs"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
         </div>
-
       </motion.div>
 
       {/* Tailwind Animation Styling via CSS in JS/JSX */}
@@ -137,7 +100,7 @@ export default function BrandBanner() {
           }
         }
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 35s linear infinite;
         }
       `}</style>
     </section>

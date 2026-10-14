@@ -16,12 +16,12 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Feature bullets for Tech fm
-  const features = [
-    "Hard FM and Technical services",
-    "Engineering services",
-    "Sustainability services",
-    "Audits and assessments",
-  ];
+  // const features = [
+  //   "Hard FM and Technical services",
+  //   "Engineering services",
+  //   "Sustainability services",
+  //   "Audits and assessments",
+  // ];
 
   return (
     <div className="relative min-h-screen bg-white font-sans text-[#383838] selection:bg-[#2495D3] selection:text-white">
@@ -30,28 +30,45 @@ export default function Home() {
 
       {/* Hero Section - Loads immediately (above the fold) */}
       <section className="relative w-full min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
-        {/* Background Image Container with Overlays */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#e0f0fc] via-[#edf5fc] to-[#f7faff]" />
+        {/* Background Video with continuous loop and crisp overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/demovideo.mp4" type="video/mp4" />
+            <source src="/demovideo.webm" type="video/webm" />
+            <source src="/demovideo" type="video/mp4" />
+            <source src="/InaTechFM-Website-Banner-5s.mp4" type="video/mp4" />
+          </video>
+          {/* Soft frosted gradient overlay for vibrant video visibility & crisp text contrast */}
+          <div className="absolute inset-0 bg-white/45" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white" />
+        </div>
 
         <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           <AnimateIn delay={0.2} direction="up" lazy={false}>
             <div className="max-w-3xl mx-auto flex flex-col items-center text-center text-[#1C3A62] space-y-8">
               {/* Top Badge */}
-              <div className="inline-flex items-center justify-center space-x-2 bg-[#2495D3]/10 border border-[#2495D3]/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-[#2495D3] shadow-sm">
+              {/* <div className="inline-flex items-center justify-center space-x-2 bg-[#2495D3]/10 border border-[#2495D3]/20 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide text-[#2495D3] shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
                 <span>Expertise Repair and Maintenance Services</span>
-              </div>
+              </div> */}
 
               {/* Main Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-[#1C3A62] tracking-tight leading-[1.15]">
+              {/* <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-[#1C3A62] tracking-tight leading-[1.15]">
                 Empowering People.{" "}
                 <span className="text-[#2495D3] block sm:inline">
                   Enriching Assets
                 </span>
-              </h1>
+              </h1> */}
 
               {/* Feature Bullet Points */}
-              <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 pt-2">
+              {/* <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 pt-2">
                 {features.map((feature, idx) => (
                   <div key={idx} className="flex items-center space-x-2">
                     <CheckCircle2 className="w-5 h-5 text-[#2495D3] flex-shrink-0" />
@@ -60,25 +77,25 @@ export default function Home() {
                     </span>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 pt-4 w-full">
                 {/* Primary CTA */}
-                <a
+                {/* <a
                   href="#repairs"
                   className="px-8 py-4 rounded-md bg-[#2495D3] hover:bg-[#488FCD] text-white font-medium text-center transition-all duration-300 shadow-xl hover:shadow-[#2495D3]/40 transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   Lets connect
-                </a>
+                </a> */}
 
                 {/* Secondary CTA */}
-                <a
+                {/* <a
                   href="/contact"
                   className="px-8 py-4 rounded-md bg-white hover:bg-gray-50 text-[#1C3A62] font-semibold text-center border border-gray-200 shadow-sm transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   Get a Quote
-                </a>
+                </a> */}
               </div>
             </div>
           </AnimateIn>
