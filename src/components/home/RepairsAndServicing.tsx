@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { CheckCircle2, PhoneCall, MapPin } from "lucide-react";
 
 export default function RepairsAndServicing() {
@@ -24,8 +25,13 @@ export default function RepairsAndServicing() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
           {/* Left Column: Content */}
-          <div className="lg:col-span-7 space-y-6">
-
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-30px" }}
+            transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-7 space-y-6"
+          >
             {/* Title */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight leading-tight">
               Expert Engineering & Facility Management Services
@@ -52,32 +58,38 @@ export default function RepairsAndServicing() {
               {/* Left List */}
               <div className="space-y-3.5">
                 {commonIssuesLeft.map((issue, idx) => (
-                  <div
+                  <motion.div
                     key={idx}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-20px" }}
+                    transition={{ duration: 0.4, delay: idx * 0.08 }}
                     className="flex items-start space-x-3"
                   >
                     <CheckCircle2 className="w-5 h-5 text-[#2495D3] flex-shrink-0 mt-0.5" />
-
                     <span className="text-sm font-medium text-[#383838] leading-snug">
                       {issue}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
               {/* Right List */}
               <div className="space-y-3.5">
                 {commonIssuesRight.map((issue, idx) => (
-                  <div
+                  <motion.div
                     key={idx}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-20px" }}
+                    transition={{ duration: 0.4, delay: (idx + 4) * 0.08 }}
                     className="flex items-start space-x-3"
                   >
                     <CheckCircle2 className="w-5 h-5 text-[#2495D3] flex-shrink-0 mt-0.5" />
-
                     <span className="text-sm font-medium text-[#383838] leading-snug">
                       {issue}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
@@ -85,10 +97,9 @@ export default function RepairsAndServicing() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-6">
-
               {/* Primary Button */}
               <a
-                href="#contact"
+                href="/contact"
                 className="px-8 py-3.5 rounded-lg bg-[#1C3A62] hover:bg-[#2495D3] text-white font-medium text-center transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95"
               >
                 Talk to Our Experts
@@ -102,17 +113,21 @@ export default function RepairsAndServicing() {
                 <PhoneCall className="w-4 h-4" />
                 <span>Explore Our Services</span>
               </a>
-
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Headquarters Map */}
-          <div className="lg:col-span-5">
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-30px" }}
+            transition={{ duration: 0.65, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-5"
+          >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100 group">
 
               {/* Google Map */}
               <div className="relative h-[380px] sm:h-[460px] w-full">
-
                 <iframe
                   src="https://www.google.com/maps?q=MBC+Tech+Park,+Sainath+Nagar,+Kasarvadavli,+Ghodbunder+Road,+Thane+West,+Maharashtra+400615&output=embed"
                   width="100%"
@@ -124,7 +139,6 @@ export default function RepairsAndServicing() {
                   title="Ina Tech FM Headquarters Location"
                   className="w-full h-full"
                 />
-
               </div>
 
               {/* Subtle Map Overlay */}
@@ -132,9 +146,7 @@ export default function RepairsAndServicing() {
 
               {/* Headquarters Information Card */}
               <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-gray-100 shadow-lg">
-
                 <div className="flex items-start space-x-3">
-
                   {/* Location Icon */}
                   <div className="p-2.5 rounded-lg bg-[#2495D3]/10 text-[#2495D3] flex-shrink-0">
                     <MapPin className="w-5 h-5" />
@@ -145,20 +157,17 @@ export default function RepairsAndServicing() {
                     <div className="text-xs font-semibold text-[#878787] uppercase tracking-wider mb-1">
                       Ina Tech FM Headquarters
                     </div>
-
                     <div className="text-sm font-medium text-[#1C3A62] leading-relaxed">
                       1st Floor, C-Wing, MBC Tech Park, Sainath Nagar,
                       Kasarvadavli, Ghodbunder Road, Thane West,
                       Maharashtra – 400615
                     </div>
                   </div>
-
                 </div>
-
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

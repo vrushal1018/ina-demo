@@ -132,7 +132,7 @@ export default function OurValues() {
                   <motion.div
                     initial={{ opacity: 0, y: 50, scale: 0.95 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, margin: '-80px' }}
+                    viewport={{ once: false, margin: '-40px' }}
                     transition={{
                       duration: 0.6,
                       delay: index * 0.1,

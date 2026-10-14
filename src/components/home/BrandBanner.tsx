@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowDownRight } from 'lucide-react';
 
 // Brand logos data with inline SVG renderers for crisp scaling
@@ -93,7 +94,13 @@ const BRANDS = [
 export default function BrandBanner() {
   return (
     <section className="w-full bg-slate-50 py-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, margin: "-30px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
 
         {/* Header Title with Lucide Icon */}
         <div className="flex items-center justify-center gap-1.5 text-slate-800 font-medium text-base mb-10">
@@ -117,7 +124,7 @@ export default function BrandBanner() {
           </div>
         </div>
 
-      </div>
+      </motion.div>
 
       {/* Tailwind Animation Styling via CSS in JS/JSX */}
       <style jsx global>{`

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { Heart, Settings, MessageSquare, Star, Target, LineChart, Smile, Wrench } from "lucide-react";
 
 export default function FeatureGrid() {
@@ -50,20 +51,31 @@ export default function FeatureGrid() {
   return (
     <section className="bg-[#F8F9FA] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-30px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl font-medium text-[#1C3A62] mb-4 tracking-tight">
             Why Ina Tech FM
           </h2>
           <p className="text-base sm:text-lg text-[#585858] font-medium">
             Goals to create sustainable future
           </p>
-        </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: idx * 0.07, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className="group flex flex-col items-center text-center p-6 rounded-2xl transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-[#1C3A62]/5 hover:-translate-y-1"
               >
                 {/* Icon Container with Custom Palette Styling */}
@@ -80,7 +92,7 @@ export default function FeatureGrid() {
                 <p className="text-sm text-[#585858] leading-relaxed max-w-xs font-normal">
                   {feature.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>

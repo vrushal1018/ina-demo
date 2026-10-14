@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { Home } from "lucide-react";
 
 export default function BlogHero() {
@@ -11,7 +12,13 @@ export default function BlogHero() {
       */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#e0f0fc] via-[#edf5fc] to-[#f7faff] -z-10" />
 
-      <div className="max-w-3xl mx-auto flex flex-col items-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, margin: "-30px" }}
+        transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="max-w-3xl mx-auto flex flex-col items-center"
+      >
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-1.5 text-sm mb-10 text-gray-700">
           <Home className="w-4 h-4 mb-0.5 stroke-[1.5]" />
@@ -32,7 +39,7 @@ export default function BlogHero() {
           Explore expert articles, tech trends, and practical tips to keep your
           business ahead of the curve.
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 }

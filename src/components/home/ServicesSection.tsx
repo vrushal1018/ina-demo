@@ -77,7 +77,13 @@ export default function ServicesSection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-16">
 
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-30px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6"
+        >
           <div className="max-w-2xl">
             <span className="font-['Integral_CF',sans-serif] text-sm md:text-base font-semibold text-[#2495D3] tracking-wider uppercase block mb-3">
               Our Service
@@ -90,7 +96,7 @@ export default function ServicesSection() {
           <p className="text-[#585858] text-sm md:text-base max-w-md leading-relaxed font-normal">
             From engineering and technical facility management to sustainability, transition, and allied services, we deliver integrated solutions designed to improve efficiency, reliability, safety, and long-term asset performance..
           </p>
-        </div>
+        </motion.div>
 
       </div>
 

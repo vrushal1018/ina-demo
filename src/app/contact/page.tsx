@@ -11,6 +11,7 @@ import {
   BookOpen
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
+import AnimateIn from "@/components/AnimateIn";
 
 export default function ContactPage() {
   return (
@@ -65,22 +66,25 @@ export default function ContactPage() {
               </div>
 
               {/* Map Embed */}
-              <div className="w-full h-72 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
-                <iframe
-                  title="Location Map"
-                  src="https://www.google.com/maps?q=1st+Floor%2C+MBC+Park%2C+Kasarvadavli%2C+Sainath+Nagar%2C+Thane+West%2C+Maharashtra+400615&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
+              <AnimateIn delay={0.2} minHeight="288px" className="w-full">
+                <div className="w-full h-72 rounded-[2rem] overflow-hidden shadow-lg border border-gray-100">
+                  <iframe
+                    title="Location Map"
+                    src="https://www.google.com/maps?q=1st+Floor%2C+MBC+Park%2C+Kasarvadavli%2C+Sainath+Nagar%2C+Thane+West%2C+Maharashtra+400615&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </AnimateIn>
             </div>
 
             {/* Right Column: Contact Form */}
-            <div className="bg-[#F8F9FA] p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 h-fit">
+            <AnimateIn delay={0.15} minHeight="550px">
+              <div className="bg-[#F8F9FA] p-8 md:p-12 rounded-[2.5rem] shadow-sm border border-gray-100 h-fit">
               <h2 className="text-3xl md:text-4xl font-semibold text-[#1C3A62] mb-4 tracking-tight">
                 Send Us a Message
               </h2>
@@ -203,6 +207,7 @@ export default function ContactPage() {
                 </div>
               </form>
             </div>
+            </AnimateIn>
 
           </div>
         </section>

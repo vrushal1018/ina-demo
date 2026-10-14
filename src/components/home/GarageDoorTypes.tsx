@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 export default function SectorsWeOperate() {
@@ -55,7 +56,13 @@ export default function SectorsWeOperate() {
     <section className="py-16 md:py-24 bg-white text-[#383838] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 md:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-30px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-12 md:mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight mb-6 leading-tight">
             Sectors We Operate
           </h2>
@@ -67,7 +74,7 @@ export default function SectorsWeOperate() {
             facility management solutions to keep assets efficient, environments safe,
             and operations running seamlessly for the long term.
           </p>
-        </div>
+        </motion.div>
 
         {/* CSS Keyframe for Smooth Loop */}
         <style jsx>{`

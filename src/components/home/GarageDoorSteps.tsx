@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface Step {
   number: string;
@@ -39,17 +40,23 @@ const STEPS: Step[] = [
 export default function FacilityManagementSteps() {
   return (
     <section
-      className="relative w-full py-16 md:py-24 overflow-hidden font-['Poppins',sans-serif]"
+      className="relative w-full py-16 md:py-24 bg-white overflow-hidden font-['Poppins',sans-serif]"
       style={{
         background:
-          "linear-gradient(to right, rgba(0,0,0,0.08) 0%, rgba(255,255,255,0) 30%, #ffffff 100%)",
+          "linear-gradient(to right, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0) 30%, #ffffff 100%)",
       }}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
 
           {/* Left Column */}
-          <div className="lg:col-span-6 flex flex-col items-start pt-2">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-30px" }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6 flex flex-col items-start pt-2"
+          >
             <h2 className="font-['Integral_CF',sans-serif] text-3xl sm:text-4xl md:text-[52px] font-semibold text-black leading-[1.1] tracking-tight max-w-lg mb-8">
               Engineering solutions built around your needs
             </h2>
@@ -61,12 +68,12 @@ export default function FacilityManagementSteps() {
             </p>
 
             <Link
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center justify-center px-7 py-3.5 bg-[#1C3A62] text-white font-medium text-sm rounded-md shadow-sm hover:bg-[#2495D3] transition-colors duration-200"
             >
               Talk to Our Experts
             </Link>
-          </div>
+          </motion.div>
 
           {/* Right Column: Steps Timeline */}
           <div className="lg:col-span-6 relative pl-2 md:pl-6">
@@ -76,15 +83,19 @@ export default function FacilityManagementSteps() {
                 const isLast = index === STEPS.length - 1;
 
                 return (
-                  <div
+                  <motion.div
                     key={step.number}
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-30px" }}
+                    transition={{ duration: 0.5, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
                     className="relative flex items-start gap-6"
                   >
 
                     {/* Badge & Line */}
                     <div className="relative flex flex-col items-center flex-shrink-0">
 
-                      <div className="font-['Integral_CF',sans-serif] w-12 h-12 rounded-full bg-[#1C3A62] text-white flex items-center justify-center text-sm font-medium z-10">
+                      <div className="font-['Integral_CF',sans-serif] w-12 h-12 rounded-full bg-[#1C3A62] text-white flex items-center justify-center text-sm font-medium z-10 shadow-md">
                         {step.number}
                       </div>
 
@@ -108,7 +119,7 @@ export default function FacilityManagementSteps() {
                       </p>
 
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
 
