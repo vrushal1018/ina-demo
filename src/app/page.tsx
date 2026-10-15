@@ -40,10 +40,7 @@ export default function Home() {
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="/demovideo.mp4" type="video/mp4" />
-            <source src="/demovideo.webm" type="video/webm" />
-            <source src="/demovideo" type="video/mp4" />
-            <source src="/InaTechFM-Website-Banner-5s.mp4" type="video/mp4" />
+            <source src="/ITFheromain (3).mp4" type="video/mp4" />
           </video>
         </div>
 
