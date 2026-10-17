@@ -1,68 +1,13 @@
 'use client';
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import BlogHero from "@/components/BlogHero";
 import AnimateIn from "@/components/AnimateIn";
-
-const blogPosts = [
-  {
-    id: 1,
-    date: "02-07-2025",
-    title: "Boost Productivity with Automation",
-    description:
-      "Discover how workflow automation and DevOps tools can streamline operations, reduce errors, and save your team valuable time.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 2,
-    date: "25-06-2025",
-    title: "Securing Data in Cloud",
-    description:
-      "Learn the best practices for protecting sensitive data in cloud environments, including encryption, access controls, and compliance.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 3,
-    date: "10-06-2025",
-    title: "Choosing the Right Tech",
-    description:
-      "Explore a strategic approach to selecting software, tools, and platforms that align with your business goals and budget.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 4,
-    date: "25-06-2025",
-    title: "Choosing Hosting Wisely",
-    description:
-      "Choosing the right hosting plan is critical to your website's long-term success. In this guide, we break down how to evaluate hosting options based on your project's.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 5,
-    date: "25-06-2025",
-    title: "Understanding DevOps Culture",
-    description:
-      "Discover how embracing a DevOps culture can break down silos between development and operations teams, foster seamless collaboration, automate workflows.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    id: 6,
-    date: "10-06-2025",
-    title: "Optimizing IT Infrastructure",
-    description:
-      "Explore smart, future-focused strategies to modernize outdated systems, implement real-time monitoring tools, and manage your technology stack with efficiency.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800",
-  },
-];
+import { blogs } from "@/data/blogs";
 
 export default function BlogsPage() {
   return (
@@ -96,49 +41,58 @@ export default function BlogsPage() {
           {/* Blog Grid - Loads on scroll */}
           <AnimateIn delay={0.15} minHeight="600px">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-              {blogPosts.map((post, idx) => (
-                <motion.article
+              {blogs.map((post, idx) => (
+                <Link
                   key={post.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: "-30px" }}
-                  transition={{ duration: 0.55, delay: (idx % 3) * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="group cursor-pointer flex flex-col h-full bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  href={`/blogs/${post.slug}`}
+                  className="block h-full group focus:outline-hidden"
                 >
-                  {/* Card Text Content (Top) */}
-                  <div className="mb-6 flex-grow">
-                    <div className="flex items-center gap-2 text-gray-500 mb-4">
-                      <Calendar className="w-4 h-4 stroke-[2]" />
-                      <span className="text-sm font-medium">{post.date}</span>
+                  <motion.article
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-30px" }}
+                    transition={{
+                      duration: 0.55,
+                      delay: (idx % 3) * 0.1,
+                      ease: [0.21, 0.47, 0.32, 0.98],
+                    }}
+                    className="flex flex-col h-full bg-white p-6 rounded-3xl shadow-xs hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-[#2495D3]/30"
+                  >
+                    {/* Card Text Content (Top) */}
+                    <div className="mb-6 flex-grow">
+                      <div className="flex items-center gap-2 text-gray-500 mb-4">
+                        <Calendar className="w-4 h-4 stroke-[2]" />
+                        <span className="text-sm font-medium">{post.date}</span>
+                      </div>
+
+                      <h3 className="text-xl font-semibold text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors">
+                        {post.title}
+                      </h3>
+
+                      <p className="text-[#585858] text-[15px] leading-relaxed line-clamp-3 font-medium">
+                        {post.description}
+                      </p>
                     </div>
 
-                    <h3 className="text-xl font-semibold text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors">
-                      {post.title}
-                    </h3>
+                    {/* Card Image (Bottom) */}
+                    <div className="relative overflow-hidden rounded-2xl aspect-[4/3] w-full bg-gray-100">
+                      <img
+                        src={post.imageUrl}
+                        alt={post.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                      />
 
-                    <p className="text-[#585858] text-[15px] leading-relaxed line-clamp-3 font-medium">
-                      {post.description}
-                    </p>
-                  </div>
-
-                  {/* Card Image (Bottom) */}
-                  <div className="relative overflow-hidden rounded-2xl aspect-[4/3] w-full bg-gray-100">
-                    <img
-                      src={post.imageUrl}
-                      alt={post.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-
-                    {/* Hover Overlay with "Read More" Button */}
-                    <div className="absolute inset-0 bg-[#1C3A62]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="bg-[#2495D3] text-white px-8 py-3 rounded-full font-medium text-sm tracking-wide uppercase shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                        Read More
-                      </span>
+                      {/* Hover Overlay with "Read More" Button */}
+                      <div className="absolute inset-0 bg-[#1C3A62]/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span className="bg-[#2495D3] text-white px-8 py-3 rounded-full font-medium text-sm tracking-wide uppercase shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                          Read More
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </motion.article>
+                  </motion.article>
+                </Link>
               ))}
             </div>
           </AnimateIn>

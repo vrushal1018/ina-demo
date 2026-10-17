@@ -1,159 +1,595 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import SiteHeader from '@/components/SiteHeader';
-import { ChevronDown } from 'lucide-react';
+import {
+  ChevronDown,
+  User,
+  Phone,
+  Mail,
+  MapPin,
+  UploadCloud,
+  FileText,
+  CheckCircle2,
+  AlertCircle,
+  X,
+  Briefcase,
+  Clock,
+  Building,
+  Loader2,
+  Trash2,
+  Check,
+} from 'lucide-react';
 import AnimateIn from '@/components/AnimateIn';
 
-const tabs = [
-  "All Jobs",
-  "Marketing",
-  "Engineering",
-  "Product",
-  "Sales",
-  "Operations"
-];
+interface JobDetails {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  experience: string;
+  tags: string[];
+  description: string;
+  responsibilities: string[];
+  qualifications: string[];
+}
 
-const jobsData = [
-  {
-    id: 1,
-    title: "Technical Supervisor",
-    tags: ["Operations", "On-site", "Full-Time"],
-    description: "As a Technical Supervisor, you will oversee operations, ensure compliance with strict quality standards, and lead a team of technical professionals to deliver high-quality infrastructure and structural works with complete safety and compliance.",
-  }
-];
+const technicalSupervisorJob: JobDetails = {
+  id: 1,
+  title: "Technical Supervisor",
+  department: "Operations & Technical FM",
+  location: "Thane / Mumbai, Maharashtra",
+  type: "Full-Time",
+  experience: "3+ Years",
+  tags: ["Operations", "On-site", "Full-Time", "Engineering"],
+  description:
+    "As a Technical Supervisor at Ina Tech FM, you will oversee facility operations, lead on-site engineering teams, and ensure mechanical, electrical, and plumbing (MEP) infrastructure functions with maximum uptime, safety, and strict regulatory compliance.",
+  responsibilities: [
+    "Lead daily operations and preventive maintenance of facility MEP systems, HVAC, and electrical switchgear.",
+    "Manage and guide site technicians, ensuring SLA adherence and rapid turnaround for breakdown calls.",
+    "Perform routine technical audits, risk assessments, and maintain compliance with statutory health and safety standards.",
+    "Prepare comprehensive incident reports, energy log sheets, and client escalation summaries.",
+    "Liaise with clients and vendors to ensure seamless maintenance execution and budget control.",
+  ],
+  qualifications: [
+    "Diploma or Bachelor's Degree in Electrical, Mechanical, or Civil Engineering.",
+    "3+ years of hands-on experience in technical facility management or building engineering operations.",
+    "Strong technical troubleshooting skills and solid understanding of building management systems (BMS).",
+    "Excellent leadership, problem-solving, and communication skills.",
+  ],
+};
 
 export default function CareersPage() {
-  const [activeTab, setActiveTab] = useState("All Jobs");
-  // State to track which job descriptions are expanded
-  const [expandedJobs, setExpandedJobs] = useState<Record<number, boolean>>({});
+  const [isDescriptionOpen, setIsDescriptionOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Filter jobs based on active tab
-  const filteredJobs = activeTab === "All Jobs"
-    ? jobsData
-    : jobsData.filter(job => job.tags.includes(activeTab));
+  // Form state
+  const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const toggleDescription = (jobId: number) => {
-    setExpandedJobs((prev) => ({
-      ...prev,
-      [jobId]: !prev[jobId],
-    }));
+  // Submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      if (file.size > 10 * 1024 * 1024) {
+        setErrorMessage("File size should not exceed 10MB.");
+        return;
+      }
+      setResumeFile(file);
+      setErrorMessage(null);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      if (file.size > 10 * 1024 * 1024) {
+        setErrorMessage("File size should not exceed 10MB.");
+        return;
+      }
+      setResumeFile(file);
+      setErrorMessage(null);
+    }
+  };
+
+  const removeFile = () => {
+    setResumeFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const resetForm = () => {
+    setName('');
+    setContact('');
+    setEmail('');
+    setAddress('');
+    setResumeFile(null);
+    setErrorMessage(null);
+    setIsSubmitted(false);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const openApplyModal = () => {
+    resetForm();
+    setIsModalOpen(true);
+  };
+
+  const closeApplyModal = () => {
+    if (!isSubmitting) {
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage(null);
+
+    if (!name.trim()) {
+      setErrorMessage("Please enter your full name.");
+      return;
+    }
+    if (!contact.trim()) {
+      setErrorMessage("Please enter your contact number.");
+      return;
+    }
+    if (!address.trim()) {
+      setErrorMessage("Please enter your address.");
+      return;
+    }
+    if (!resumeFile) {
+      setErrorMessage("Please upload your resume (PDF or DOC/DOCX).");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("name", name.trim());
+      formData.append("contact", contact.trim());
+      formData.append("email", email.trim());
+      formData.append("address", address.trim());
+      formData.append("jobTitle", technicalSupervisorJob.title);
+      formData.append("resume", resumeFile);
+
+      const response = await fetch("/api/apply", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit application. Please try again.");
+      }
+
+      setIsSubmitted(true);
+    } catch (err: any) {
+      console.error("Submission error:", err);
+      setErrorMessage(
+        err.message || "Failed to submit your application. Please check your network or try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <>
       <SiteHeader />
       <div className="min-h-screen bg-[#F8F9FA] py-16 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-4xl mx-auto pt-8">
+        <div className="max-w-4xl mx-auto pt-6">
           {/* Header Section */}
-          <div className="mb-6 flex justify-center">
-            <div className="inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
-              Careers
+          <div className="mb-4 flex justify-center">
+            <div className="inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3]">
+              Careers at Ina Tech FM
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-semibold text-center text-[#1C3A62] mb-12 tracking-tight">
-            Currently open positions
-          </h2>
+          <h1 className="text-4xl md:text-5xl font-semibold text-center text-[#1C3A62] mb-3 tracking-tight">
+            Currently Open Positions
+          </h1>
+          <p className="text-center text-[#585858] max-w-xl mx-auto mb-10 text-base md:text-lg font-normal">
+            Join our dedicated team of engineers and facility management experts building dependable, sustainable workspaces.
+          </p>
 
-          {/* Tabs & Job Listings - Loads on scroll */}
-          <AnimateIn delay={0.15} minHeight="450px">
-            <div>
-              {/* Tabs */}
-              <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-10 border-b border-gray-200">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`pb-4 text-base font-medium transition-colors relative ${activeTab === tab
-                        ? "text-[#1C3A62]"
-                        : "text-gray-500 hover:text-[#1C3A62]"
-                      }`}
+          {/* Job Listing Card */}
+          <AnimateIn delay={0.1} minHeight="400px">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+              {/* Header row */}
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-gray-100">
+                <div>
+                  <div
+                    className="flex items-center gap-3 cursor-pointer group/title mb-3 w-fit"
+                    onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
                   >
-                    {tab}
-                    {activeTab === tab && (
-                      <span className="absolute bottom-[-1px] left-0 w-full h-[3px] bg-[#2495D3] rounded-t-md" />
-                    )}
+                    <h2 className="text-2xl sm:text-3xl font-semibold text-[#1C3A62] tracking-tight group-hover/title:text-[#2495D3] transition-colors">
+                      {technicalSupervisorJob.title}
+                    </h2>
+                    <div className="p-1.5 rounded-full bg-gray-50 group-hover/title:bg-[#2495D3]/10 transition-colors">
+                      <ChevronDown
+                        className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${
+                          isDescriptionOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Meta items */}
+                  <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-[#585858] font-medium mb-4">
+                    <span className="flex items-center gap-1.5">
+                      <Building className="w-4 h-4 text-[#2495D3]" />
+                      {technicalSupervisorJob.department}
+                    </span>
+                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <span className="flex items-center gap-1.5">
+                      <MapPin className="w-4 h-4 text-[#2495D3]" />
+                      {technicalSupervisorJob.location}
+                    </span>
+                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-4 h-4 text-[#2495D3]" />
+                      {technicalSupervisorJob.type}
+                    </span>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {technicalSupervisorJob.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3.5 py-1 rounded-full border border-gray-200 bg-gray-50 text-xs sm:text-sm font-medium text-[#585858]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Apply Button */}
+                <div className="flex md:flex-col items-start md:items-end justify-between gap-4 pt-2 md:pt-0">
+                  <button
+                    onClick={openApplyModal}
+                    className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  >
+                    Apply Now
                   </button>
-                ))}
+                  <span className="text-xs text-gray-400 font-medium hidden md:inline">
+                    Sends to: HR Desk
+                  </span>
+                </div>
               </div>
 
-              {/* Job Listings */}
-              <div className="space-y-6">
-                {filteredJobs.map((job) => (
-                  <div
-                    key={job.id}
-                    className="bg-white rounded-3xl p-8 md:p-10 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group"
-                  >
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+              {/* Animated Expandable Details */}
+              <div
+                className={`grid transition-all duration-300 ease-in-out ${
+                  isDescriptionOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'
+                }`}
+              >
+                <div className="overflow-hidden space-y-6">
+                  {/* Overview */}
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#1C3A62] mb-2">
+                      Role Overview
+                    </h3>
+                    <p className="text-[#585858] leading-relaxed text-[15px] font-normal">
+                      {technicalSupervisorJob.description}
+                    </p>
+                  </div>
 
-                      {/* Job Title, Arrow, and Tags */}
-                      <div>
-                        {/* Clickable Title & Arrow to Expand */}
-                        <div
-                          className="flex items-center gap-3 cursor-pointer group/title mb-5 w-fit"
-                          onClick={() => toggleDescription(job.id)}
-                        >
-                          <h3 className="text-2xl md:text-3xl font-semibold text-[#1C3A62] tracking-tight group-hover/title:text-[#2495D3] transition-colors">
-                            {job.title}
-                          </h3>
-                          <div className="p-1.5 rounded-full bg-gray-50 group-hover/title:bg-[#2495D3]/10 transition-colors">
-                            <ChevronDown
-                              className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${expandedJobs[job.id] ? 'rotate-180' : ''
-                                }`}
-                            />
-                          </div>
-                        </div>
+                  {/* Key Responsibilities */}
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                      Key Responsibilities
+                    </h3>
+                    <ul className="space-y-2">
+                      {technicalSupervisorJob.responsibilities.map((resp, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                        <div className="flex flex-wrap gap-3">
-                          {job.tags.map((tag, index) => (
-                            <span
-                              key={index}
-                              className="px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-sm font-medium text-[#585858]"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                  {/* Qualifications */}
+                  <div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                      Qualifications & Skills
+                    </h3>
+                    <ul className="space-y-2">
+                      {technicalSupervisorJob.qualifications.map((qual, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
+                          <span>{qual}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                      {/* Apply Button */}
-                      <button className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-full font-medium text-sm uppercase tracking-wide transition-all duration-300 whitespace-nowrap shadow-md hover:-translate-y-1">
-                        Apply Now
-                      </button>
-                    </div>
-
-                    {/* Animated Expandable Description */}
-                    <div
-                      className={`grid transition-all duration-300 ease-in-out ${expandedJobs[job.id]
-                          ? "grid-rows-[1fr] opacity-100 mt-8"
-                          : "grid-rows-[0fr] opacity-0 mt-0"
-                        }`}
+                  {/* Bottom Apply Action */}
+                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                    <p className="text-sm text-gray-500 font-medium">
+                      Ready to build your career with us?
+                    </p>
+                    <button
+                      onClick={openApplyModal}
+                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer shadow"
                     >
-                      <div className="overflow-hidden">
-                        {/* Divider */}
-                        <div className="w-full h-px bg-gray-100 mb-8"></div>
-
-                        {/* Description Text */}
-                        <p className="text-[#585858] leading-relaxed text-[15px] font-medium pb-2">
-                          {job.description}
-                        </p>
-                      </div>
-                    </div>
-
+                      Apply for this position
+                    </button>
                   </div>
-                ))}
-
-                {/* Empty State Fallback */}
-                {filteredJobs.length === 0 && (
-                  <div className="text-center py-16 text-gray-500 font-medium">
-                    No open positions available in this category right now.
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </AnimateIn>
         </div>
       </div>
+
+      {/* Application Form Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeApplyModal();
+          }}
+        >
+          <div className="bg-white rounded-[2rem] shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto border border-gray-100 transition-all duration-300 transform scale-100 p-6 sm:p-8">
+            {/* Modal Header */}
+            <div className="flex items-start justify-between pb-4 border-b border-gray-100 mb-6">
+              <div>
+                <div className="inline-block rounded-full bg-[#2495D3]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#2495D3] mb-2">
+                  Job Application
+                </div>
+                <h3 className="text-2xl font-bold text-[#1C3A62] tracking-tight">
+                  Apply for Technical Supervisor
+                </h3>
+                <p className="text-sm text-[#585858] mt-1 font-medium">
+                  Please fill in your details. Your application will be sent to our recruitment team.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={closeApplyModal}
+                disabled={isSubmitting}
+                className="p-2 rounded-full text-gray-400 hover:text-[#1C3A62] hover:bg-gray-100 transition-colors cursor-pointer"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Success State */}
+            {isSubmitted ? (
+              <div className="py-8 text-center space-y-4">
+                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                  <CheckCircle2 className="w-9 h-9" />
+                </div>
+                <h4 className="text-2xl font-bold text-[#1C3A62]">Application Submitted!</h4>
+                <p className="text-sm sm:text-base text-[#585858] max-w-md mx-auto leading-relaxed">
+                  Thank you, <strong className="text-[#1C3A62]">{name}</strong>. Your application and resume have been sent directly to{" "}
+                  <strong className="text-[#2495D3]">jaisalil.s@inaspaceworks.com</strong>.
+                </p>
+                <p className="text-xs text-gray-400">
+                  Our HR & Technical teams will review your profile and contact you soon.
+                </p>
+                <div className="pt-4">
+                  <button
+                    type="button"
+                    onClick={closeApplyModal}
+                    className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-md cursor-pointer"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            ) : (
+              /* Form */
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Error Banner */}
+                {errorMessage && (
+                  <div className="flex items-start gap-3 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+                    <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                    <div className="leading-relaxed">{errorMessage}</div>
+                  </div>
+                )}
+
+                {/* Candidate Name */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-[#2495D3]" />
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your full name"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                  />
+                </div>
+
+                {/* Grid for Contact & Email */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Contact Number */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                      <Phone className="w-3.5 h-3.5 text-[#2495D3]" />
+                      Contact Number <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={contact}
+                      onChange={(e) => setContact(e.target.value)}
+                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                      <Mail className="w-3.5 h-3.5 text-[#2495D3]" />
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your.email@example.com"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Address */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-[#2495D3]" />
+                    Current Address <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    required
+                    rows={2}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Enter your current residential address or city"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all resize-none"
+                  />
+                </div>
+
+                {/* Resume Upload Section */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5 text-[#2495D3]" />
+                    Upload Resume <span className="text-red-500">*</span>
+                  </label>
+
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
+
+                  {!resumeFile ? (
+                    <div
+                      onClick={() => fileInputRef.current?.click()}
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                      className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 ${
+                        isDragging
+                          ? 'border-[#2495D3] bg-[#2495D3]/5 scale-[0.99]'
+                          : 'border-gray-200 hover:border-[#2495D3] hover:bg-[#F8F9FA]'
+                      }`}
+                    >
+                      <div className="w-12 h-12 rounded-full bg-[#2495D3]/10 text-[#2495D3] flex items-center justify-center mx-auto mb-3">
+                        <UploadCloud className="w-6 h-6" />
+                      </div>
+                      <p className="text-sm font-semibold text-[#1C3A62]">
+                        Click to upload or drag & drop
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        Supported formats: PDF, DOC, DOCX (Max 10MB)
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-between p-3.5 rounded-xl border border-[#2495D3]/30 bg-[#2495D3]/5">
+                      <div className="flex items-center gap-3 overflow-hidden">
+                        <div className="w-10 h-10 rounded-lg bg-[#2495D3] text-white flex items-center justify-center shrink-0">
+                          <FileText className="w-5 h-5" />
+                        </div>
+                        <div className="truncate">
+                          <p className="text-sm font-semibold text-[#1C3A62] truncate">
+                            {resumeFile.name}
+                          </p>
+                          <p className="text-xs text-[#585858]">
+                            {(resumeFile.size / 1024).toFixed(1)} KB
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={removeFile}
+                        className="p-2 text-gray-400 hover:text-red-500 rounded-lg hover:bg-white transition-colors cursor-pointer"
+                        title="Remove file"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Send Info Note */}
+                <div className="rounded-xl bg-gray-50 p-3 text-xs text-gray-500 flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-[#2495D3] shrink-0" />
+                  <span>
+                    Applications are directly dispatched to{" "}
+                    <strong className="text-[#1C3A62]">jaisalil.s@inaspaceworks.com</strong>
+                  </span>
+                </div>
+
+                {/* Form Actions */}
+                <div className="flex items-center justify-end gap-3 pt-3">
+                  <button
+                    type="button"
+                    onClick={closeApplyModal}
+                    disabled={isSubmitting}
+                    className="px-5 py-2.5 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-[#2495D3] hover:bg-[#1C3A62] disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 shadow-md flex items-center gap-2 cursor-pointer"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Sending Application...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Submit Application</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
