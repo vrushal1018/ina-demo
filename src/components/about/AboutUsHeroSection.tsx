@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function AboutUsHeroSection() {
   const galleryImages = [
@@ -38,47 +39,69 @@ export default function AboutUsHeroSection() {
   ];
 
   return (
-    <section className="w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative w-full bg-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+      {/* Background blueprint subtle accents */}
+      <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto">
 
         {/* Header Section */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-medium text-[#1C3A62] tracking-tight">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-14 sm:mb-20"
+        >
+          <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
+            About Us
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#1C3A62] tracking-tight">
             About Us
           </h1>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-[#585858] font-medium">
+          <p className="mt-4 text-base sm:text-lg text-[#585858] font-medium max-w-xl mx-auto">
             Helping You Find the Perfect Place to Call Business.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Staggered Gallery Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 items-center mb-16 sm:mb-20">
-          {galleryImages.map((img) => (
-            <div
+        {/* Staggered Gallery Grid with Architectural Framing */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 items-center mb-16 sm:mb-24">
+          {galleryImages.map((img, idx) => (
+            <motion.div
               key={img.id}
-              className={`relative w-full ${img.heightClass} rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className={`relative w-full ${img.heightClass} rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-slate-100 group`}
             >
               <Image
                 src={img.src}
                 alt={img.alt}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                className="object-cover object-center"
+                className="object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
                 priority={img.id === 3}
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C3A62]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
           ))}
         </div>
 
         {/* Content Footer / "What we do" Statement */}
-        <div className="max-w-4xl text-left">
-          <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#878787] uppercase block mb-3">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-30px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-5xl text-left p-8 sm:p-12 rounded-3xl bg-[#F8F9FA] border border-slate-200/80 shadow-xs relative overflow-hidden"
+        >
+          <div className="absolute top-0 left-0 w-2 h-full bg-[#2495D3]" />
+          <span className="text-xs sm:text-sm font-bold tracking-widest text-[#2495D3] uppercase block mb-4">
             What we do
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
             We enrich your assets through expert repairs and proactive maintenance, extending their lifespan and keeping your facility safe, efficient and reliable.
           </h2>
-        </div>
+        </motion.div>
 
       </div>
     </section>

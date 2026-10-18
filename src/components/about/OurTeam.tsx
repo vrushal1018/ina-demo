@@ -1,11 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Mail, ArrowUpRight } from 'lucide-react';
-
-// Color Palette:
-// Primary: #2495D3 (Blue), #585858 (Grey), #000000 (Black), #FFFFFF (White)
-// Secondary: #1C3A62 (Navy Blue), #383838 (Onyx Green), #488FCD (Dark Blue), #878787 (Taupe Green)
+import { ChevronLeft, ChevronRight, Mail, ArrowUpRight, Award } from 'lucide-react';
 
 const departments = ['Admin', 'HR', 'Technical'];
 
@@ -236,10 +232,8 @@ const teamMembers = [
 export default function OurTeam() {
   const [selectedDepartment, setSelectedDepartment] = useState('Admin');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [activeMemberId, setActiveMemberId] = useState<number | null>(null); // Supports tap to toggle on mobile/touch screens
-  const [isPaused, setIsPaused] = useState(false); // Hover pause state
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Filter team members based on the active department selection
   const filteredMembers = teamMembers.filter(
     (member) => member.department === selectedDepartment
   );
@@ -247,11 +241,9 @@ export default function OurTeam() {
   const itemsPerPage = 4;
   const maxIndex = Math.max(0, filteredMembers.length - itemsPerPage);
 
-  // Switch department and reset slide indices
   const handleDepartmentChange = (dept: string) => {
     setSelectedDepartment(dept);
     setCurrentIndex(0);
-    setActiveMemberId(null);
   };
 
   const prevSlide = () => {
@@ -264,39 +256,36 @@ export default function OurTeam() {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
-  // Auto-play interval that pauses when mouse hovers over the slider
   useEffect(() => {
     if (isPaused || maxIndex === 0) return;
 
     const interval = setInterval(() => {
       nextSlide();
-    }, 3500); // Transitions every 3.5 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, isPaused, maxIndex, selectedDepartment]);
 
-  const handleCardClick = (id: number) => {
-    // Toggle active state for mobile/touch users
-    setActiveMemberId((prev) => (prev === id ? null : id));
-  };
-
   return (
-    <section className="bg-white text-[#383838] py-16 px-4 md:px-8 min-h-screen flex flex-col justify-center overflow-hidden">
+    <section className="bg-white text-[#383838] py-20 lg:py-28 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-slate-100">
       <div className="max-w-7xl mx-auto w-full">
-
         {/* Section Header */}
-        <div className="text-center mb-8 space-y-3">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-[#1C3A62]">
+        <div className="text-center mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold uppercase tracking-widest">
+            <Award className="w-3.5 h-3.5 text-[#2495D3]" />
+            <span>Operational Executives</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#1C3A62]">
             Meet Our Leadership Team
           </h2>
-          <p className="text-[#585858] max-w-2xl mx-auto text-base md:text-lg font-medium">
+          <p className="text-[#585858] max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
             Our Experienced Professionals Are Dedicated To Delivering Excellence, Innovation, And Outstanding Results For Our Clients.
           </p>
         </div>
 
         {/* Department Filter Toggle Switcher */}
-        <div className="flex justify-center items-center gap-2 mb-10 flex-wrap">
+        <div className="flex justify-center items-center gap-2.5 mb-12 flex-wrap">
           {departments.map((dept) => {
             const isSelected = selectedDepartment === dept;
             const count = teamMembers.filter((m) => m.department === dept).length;
@@ -305,18 +294,22 @@ export default function OurTeam() {
               <button
                 key={dept}
                 onClick={() => handleDepartmentChange(dept)}
-                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${isSelected
-                    ? 'bg-[#2495D3] text-white border-[#2495D3] shadow-md scale-105'
-                    : 'bg-[#1C3A62]/5 text-[#1C3A62] border-[#1C3A62]/20 hover:bg-[#1C3A62] hover:text-white'
-                  }`}
+                className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border flex items-center gap-2 ${
+                  isSelected
+                    ? 'bg-[#1C3A62] text-white border-[#1C3A62] shadow-lg shadow-[#1C3A62]/20 scale-105'
+                    : 'bg-slate-50 text-[#585858] border-slate-200 hover:border-[#2495D3] hover:text-[#1C3A62]'
+                }`}
               >
-                {dept} <span className="text-xs opacity-75 ml-1">({count})</span>
+                <span>{dept}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${isSelected ? 'bg-[#2495D3] text-white' : 'bg-slate-200 text-[#585858]'}`}>
+                  {count}
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* Carousel Viewport Container with Hover Pause Listeners */}
+        {/* Carousel Viewport Container */}
         <div
           className="relative overflow-hidden py-4 px-1"
           onMouseEnter={() => setIsPaused(true)}
@@ -328,128 +321,88 @@ export default function OurTeam() {
               transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
             }}
           >
-            {filteredMembers.map((member) => {
-              const isActive = activeMemberId === member.id;
+            {filteredMembers.map((member) => (
+              <div
+                key={member.id}
+                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0"
+              >
+                {/* Modern Architectural Card */}
+                <div className="group relative bg-white rounded-2xl p-5 border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 flex flex-col justify-between h-[460px] overflow-hidden">
+                  {/* Top Bar Accent */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              return (
-                <div
-                  key={member.id}
-                  className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0"
-                >
-                  {/* Outer Capsule Card - Secondary Navy Blue (#1C3A62) */}
-                  <div
-                    onClick={() => handleCardClick(member.id)}
-                    className="group relative bg-[#1C3A62] rounded-[100px] p-6 text-center transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col items-center justify-between h-[490px] overflow-hidden cursor-pointer select-none border border-white/10"
-                  >
+                  {/* Image Container */}
+                  <div className="relative w-full h-[220px] rounded-xl overflow-hidden bg-slate-100 border border-slate-100 mb-4 flex-shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#1C3A62]/90 backdrop-blur-sm text-[11px] font-semibold text-white tracking-wider uppercase">
+                      {member.department}
+                    </div>
+                  </div>
 
-                    {/* Top Hidden Text / Bio Area (Reveals on hover OR tap) */}
-                    <div
-                      className={`w-full text-center transition-all duration-500 transform flex flex-col items-center justify-start h-[130px] pt-2 z-10 ${isActive
-                          ? 'opacity-100 translate-y-0'
-                          : 'opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'
-                        }`}
-                    >
-                      <p className="text-xs text-white/80 font-medium leading-relaxed px-2 line-clamp-3 mb-2">
+                  {/* Body Content */}
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-lg font-bold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-1">
+                        {member.name}
+                      </h3>
+                      <p className="text-xs font-semibold text-[#2495D3] mt-0.5 mb-2 line-clamp-1">
+                        {member.role}
+                      </p>
+                      <p className="text-xs text-[#585858] leading-relaxed line-clamp-2">
                         {member.bio}
                       </p>
-                      <div className="flex flex-wrap gap-1.5 justify-center">
+                    </div>
+
+                    <div className="pt-3 border-t border-slate-100 mt-2">
+                      {/* Skills Tags */}
+                      <div className="flex flex-wrap gap-1 mb-3">
                         {member.skills.map((skill, i) => (
                           <span
                             key={i}
-                            className="bg-[#2495D3]/20 text-[#2495D3] text-[10px] font-semibold px-2 py-0.5 rounded-full border border-[#2495D3]/40"
+                            className="bg-[#2495D3]/10 text-[#2495D3] text-[10px] font-semibold px-2 py-0.5 rounded-md"
                           >
                             {skill}
                           </span>
                         ))}
                       </div>
-                    </div>
 
-                    {/* Circular Image Container (Drops Down on Hover OR Tap) */}
-                    <div
-                      className={`relative w-40 h-40 my-auto transition-transform duration-500 ease-in-out transform z-20 flex-shrink-0 ${isActive
-                          ? 'translate-y-[110px] scale-95'
-                          : 'group-hover:translate-y-[110px] group-hover:scale-95'
-                        }`}
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className={`w-full h-full object-cover rounded-full border-4 shadow-lg transition-colors duration-300 ${isActive
-                            ? 'border-white'
-                            : 'border-[#2495D3] group-hover:border-white'
-                          }`}
-                      />
-                      <div
-                        className={`absolute inset-0 rounded-full bg-black/20 transition-opacity duration-300 flex items-center justify-center ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                          }`}
-                      >
-                        <ArrowUpRight className="w-8 h-8 text-white stroke-[2.5]" />
+                      {/* Footer Actions */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex gap-1.5">
+                          <a
+                            href="#"
+                            className="w-7 h-7 rounded-lg bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#585858] flex items-center justify-center transition-colors"
+                            aria-label="LinkedIn"
+                          >
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                              <rect x="2" y="9" width="4" height="12"></rect>
+                              <circle cx="4" r="2"></circle>
+                            </svg>
+                          </a>
+                          <a
+                            href="#"
+                            className="w-7 h-7 rounded-lg bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#585858] flex items-center justify-center transition-colors"
+                            aria-label="Email"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+
+                        <span className="text-[11px] font-semibold text-[#1C3A62] group-hover:text-[#2495D3] inline-flex items-center gap-0.5 transition-colors">
+                          Profile <ArrowUpRight className="w-3 h-3" />
+                        </span>
                       </div>
                     </div>
-
-                    {/* Member Name, Role & Social Links */}
-                    <div
-                      className={`w-full transition-all duration-500 transform z-10 flex flex-col items-center justify-center ${isActive
-                          ? '-translate-y-[170px]'
-                          : 'group-hover:-translate-y-[170px]'
-                        }`}
-                    >
-                      <h3
-                        className={`text-xl font-medium tracking-wide transition-colors ${isActive
-                            ? 'text-[#2495D3]'
-                            : 'text-white group-hover:text-[#2495D3]'
-                          }`}
-                      >
-                        {member.name}
-                      </h3>
-                      <p
-                        className={`text-xs font-medium transition-colors mt-1 ${isActive
-                            ? 'text-white'
-                            : 'text-white/90 group-hover:text-white'
-                          }`}
-                      >
-                        {member.role}
-                      </p>
-
-                      {/* Social Media Links */}
-                      <div
-                        className={`flex justify-center gap-2.5 mt-3 transition-opacity duration-300 ${isActive
-                            ? 'opacity-100'
-                            : 'opacity-0 group-hover:opacity-100'
-                          }`}
-                      >
-                        <a
-                          href="#"
-                          onClick={(e) => e.stopPropagation()}
-                          className="p-1.5 rounded-full bg-[#585858] hover:bg-[#2495D3] text-white transition-colors"
-                          aria-label="LinkedIn"
-                        >
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                        </a>
-                        <a
-                          href="#"
-                          onClick={(e) => e.stopPropagation()}
-                          className="p-1.5 rounded-full bg-[#585858] hover:bg-[#2495D3] text-white transition-colors"
-                          aria-label="Twitter"
-                        >
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
-                        </a>
-                        <a
-                          href="#"
-                          onClick={(e) => e.stopPropagation()}
-                          className="p-1.5 rounded-full bg-[#585858] hover:bg-[#2495D3] text-white transition-colors"
-                          aria-label="Email"
-                        >
-                          <Mail className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                    </div>
-
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -458,26 +411,25 @@ export default function OurTeam() {
           <button
             onClick={prevSlide}
             disabled={maxIndex === 0}
-            className="p-3 rounded-full bg-[#1C3A62] hover:bg-[#2495D3] text-white transition-colors shadow-md active:scale-95 border border-white/10 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-3 rounded-xl bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#1C3A62] transition-colors shadow-sm active:scale-95 border border-slate-200 disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <span className="bg-[#1C3A62] text-white px-5 py-2 rounded-full text-xs font-medium tracking-widest border border-[#2495D3]/30 shadow-sm">
+          <span className="bg-[#1C3A62] text-white px-5 py-2 rounded-xl text-xs font-semibold tracking-wider shadow-sm">
             {currentIndex + 1} / {maxIndex + 1}
           </span>
 
           <button
             onClick={nextSlide}
             disabled={maxIndex === 0}
-            className="p-3 rounded-full bg-[#1C3A62] hover:bg-[#2495D3] text-white transition-colors shadow-md active:scale-95 border border-white/10 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-3 rounded-xl bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#1C3A62] transition-colors shadow-sm active:scale-95 border border-slate-200 disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Next slide"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
-
       </div>
     </section>
   );

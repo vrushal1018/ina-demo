@@ -11,6 +11,7 @@ import {
   Check,
   Calendar,
   Share2,
+  BookOpen,
 } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import { getBlogBySlug, blogs, BlogPost } from '@/data/blogs';
@@ -48,28 +49,25 @@ export default function BlogDetailPage() {
   const [activeSection, setActiveSection] = useState<string>('');
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Find the blog post or fallback to the first post (Logic Stages)
   const post: BlogPost =
     (slug ? getBlogBySlug(slug) : undefined) || blogs[0];
 
-  // Helper for tag badge styles
   const getTagClasses = (color?: string) => {
     switch (color) {
       case 'purple':
-        return 'bg-purple-100 text-purple-700 border-purple-200';
+        return 'bg-purple-50 text-purple-700 border-purple-200';
       case 'blue':
-        return 'bg-sky-100 text-sky-700 border-sky-200';
+        return 'bg-[#2495D3]/10 text-[#2495D3] border-[#2495D3]/20';
       case 'rose':
-        return 'bg-rose-100 text-rose-700 border-rose-200';
+        return 'bg-rose-50 text-rose-700 border-rose-200';
       case 'emerald':
-        return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+        return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       case 'gray':
       default:
-        return 'bg-gray-100 text-gray-700 border-gray-200';
+        return 'bg-slate-100 text-[#585858] border-slate-200';
     }
   };
 
-  // Copy URL to clipboard
   const handleCopyLink = () => {
     if (typeof window !== 'undefined') {
       navigator.clipboard.writeText(window.location.href);
@@ -78,7 +76,6 @@ export default function BlogDetailPage() {
     }
   };
 
-  // Social sharing handlers
   const handleShare = (platform: 'twitter' | 'linkedin' | 'facebook') => {
     if (typeof window === 'undefined') return;
     const url = encodeURIComponent(window.location.href);
@@ -96,7 +93,6 @@ export default function BlogDetailPage() {
     window.open(shareUrl, '_blank', 'noopener,noreferrer');
   };
 
-  // Track scroll position to update active sidebar navigation item
   useEffect(() => {
     if (!post?.sections?.length) return;
 
@@ -121,20 +117,19 @@ export default function BlogDetailPage() {
     return () => observer.disconnect();
   }, [post]);
 
-  const navItems = post.sidebarNav || post.sections.map((s) => ({ id: s.id, label: s.title }));
+  const navItems = post.sidebarNav || post.sections?.map((s) => ({ id: s.id, label: s.title })) || [];
 
   return (
     <>
       <SiteHeader />
 
-      <div className="bg-white min-h-screen font-sans text-black relative pt-8 pb-20">
-        <div className="max-w-[1050px] mx-auto px-4 sm:px-6 lg:px-8">
-          
+      <div className="bg-white min-h-screen font-sans text-[#383838] relative pt-8 pb-24">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Navigation Bar */}
           <div className="mb-8">
             <Link
               href="/blogs"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#2495D3] hover:text-[#1875a8] transition-colors group"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-[#2495D3] hover:text-[#1C3A62] transition-colors group"
             >
               <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
               <span>Back to all posts</span>
@@ -142,13 +137,13 @@ export default function BlogDetailPage() {
           </div>
 
           {/* Header Section */}
-          <header className="mb-8">
+          <header className="mb-10">
             {/* Tags */}
-            <div className="flex flex-wrap gap-2.5 mb-6">
+            <div className="flex flex-wrap gap-2.5 mb-5">
               {post.tags?.map((tag, idx) => (
                 <span
                   key={idx}
-                  className={`px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider rounded-md border shadow-2xs ${getTagClasses(
+                  className={`px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider rounded-lg border ${getTagClasses(
                     tag.color
                   )}`}
                 >
@@ -158,18 +153,17 @@ export default function BlogDetailPage() {
             </div>
 
             {/* Main Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4 tracking-tight text-slate-900">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 tracking-tight text-[#1C3A62]">
               {post.title}
             </h1>
 
             {/* Short Excerpt / Description */}
-            <p className="text-base md:text-lg text-gray-800 max-w-3xl mb-8 leading-relaxed font-medium">
+            <p className="text-base sm:text-lg text-[#585858] max-w-3xl mb-8 leading-relaxed font-normal">
               {post.description}
             </p>
 
-            {/* Video / Featured Image Placeholder */}
-            <div className="relative w-full aspect-video bg-[#f0f7fb] rounded-2xl overflow-hidden border border-[#2495D3]/20 shadow-xl flex items-center justify-center group mb-6">
-              {/* Image Reference */}
+            {/* Featured Image / Video Container */}
+            <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-slate-200/80 shadow-2xl flex items-center justify-center group mb-6 bg-slate-900">
               <img
                 src={post.imageUrl || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200'}
                 alt={post.title}
@@ -181,80 +175,60 @@ export default function BlogDetailPage() {
                 }}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent z-10" />
 
               {/* Play video button */}
               <button
                 onClick={() => setIsPlaying(true)}
-                className="relative z-20 flex items-center gap-2.5 bg-[#2495D3] hover:bg-[#1a7bb0] text-white px-6 py-3 md:px-8 md:py-3.5 rounded-full font-semibold transition-all transform group-hover:scale-105 shadow-xl cursor-pointer"
+                className="relative z-20 flex items-center gap-2.5 bg-[#2495D3] hover:bg-[#1C3A62] text-white px-7 py-3 md:px-8 md:py-3.5 rounded-full font-semibold transition-all transform group-hover:scale-105 shadow-xl cursor-pointer"
               >
                 <Play size={20} fill="currentColor" />
                 <span>{isPlaying ? 'Video Playing' : 'Play video'}</span>
               </button>
-
-              {/* Pointer Graphic Simulation */}
-              <div className="absolute top-[60%] left-[52%] z-30 transform -translate-x-1/2 -translate-y-1/2 hidden md:block pointer-events-none">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="drop-shadow-md"
-                >
-                  <path
-                    d="M4 4L9.5 22L13 15L20 20.5L22 18.5L15 11.5L22 9L4 4Z"
-                    fill="white"
-                    stroke="black"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
             </div>
 
             {/* Meta Info */}
-            <div className="flex flex-wrap items-center text-sm text-gray-500 font-medium gap-y-1">
+            <div className="flex flex-wrap items-center text-xs sm:text-sm text-[#585858] font-medium gap-y-2 py-3 border-y border-slate-100">
               <span className="flex items-center gap-1.5">
-                <Calendar size={15} className="text-gray-400" />
+                <Calendar size={15} className="text-[#2495D3]" />
                 Date: {post.date}
               </span>
               {post.author && (
                 <>
-                  <span className="mx-3 text-gray-300">|</span>
+                  <span className="mx-3 text-slate-300">|</span>
                   <span>
-                    Author: <strong className="text-slate-700 font-semibold">{post.author}</strong>
+                    Author: <strong className="text-[#1C3A62] font-semibold">{post.author}</strong>
                   </span>
                 </>
               )}
-              <span className="mx-3 text-gray-300">|</span>
+              <span className="mx-3 text-slate-300">|</span>
               <span className="flex items-center gap-1.5">
-                <Clock size={16} className="text-[#2495D3]" />
+                <Clock size={15} className="text-[#2495D3]" />
                 {post.readTime}
               </span>
             </div>
           </header>
 
-          {/* Content Layout with Sidebar Navigation and Social Floating Menu */}
-          <div className="flex flex-col md:flex-row gap-12 relative mt-14">
-            
+          {/* Content Layout with Sidebar Navigation */}
+          <div className="flex flex-col md:flex-row gap-12 relative mt-10">
             {/* Sidebar Navigation */}
-            <aside className="w-full md:w-56 lg:w-64 flex-shrink-0">
-              <div className="sticky top-28 bg-white/80 backdrop-blur-xs rounded-xl p-2 border border-gray-100 md:border-none">
-                <p className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3 px-3 hidden md:block">
-                  Contents
-                </p>
-                <nav className="space-y-3 text-[14px] md:text-[15px]">
+            <aside className="w-full md:w-60 lg:w-64 flex-shrink-0">
+              <div className="sticky top-28 bg-slate-50/80 backdrop-blur-md rounded-2xl p-5 border border-slate-200/80 shadow-sm">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                  <BookOpen className="w-3.5 h-3.5 text-[#2495D3]" />
+                  <span>Contents</span>
+                </div>
+                <nav className="space-y-2 text-sm">
                   {navItems.map((item) => {
                     const isActive = activeSection === item.id;
                     return (
                       <a
                         key={item.id}
                         href={`#${item.id}`}
-                        className={`block transition-all pl-3 py-1.5 rounded-r-md ${
+                        className={`block transition-all pl-3 py-1.5 rounded-r-lg ${
                           isActive
-                            ? 'text-[#1C3A62] font-bold border-l-2 border-[#2495D3] bg-[#f0f7fb]/60'
-                            : 'text-gray-500 hover:text-[#2495D3] border-l-2 border-transparent hover:border-gray-200'
+                            ? 'text-[#1C3A62] font-bold border-l-2 border-[#2495D3] bg-[#2495D3]/10'
+                            : 'text-[#585858] hover:text-[#2495D3] border-l-2 border-transparent hover:border-slate-300'
                         }`}
                       >
                         {item.label}
@@ -266,16 +240,16 @@ export default function BlogDetailPage() {
             </aside>
 
             {/* Main Content Sections */}
-            <main className="flex-1 max-w-2xl text-gray-800 text-base md:text-lg leading-relaxed">
+            <main className="flex-1 max-w-2xl text-[#383838] text-base md:text-lg leading-relaxed">
               {post.sections?.map((section) => (
                 <section key={section.id} id={section.id} className="mb-12 scroll-mt-28">
-                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-5 tracking-tight">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#1C3A62] mb-5 tracking-tight">
                     {section.title}
                   </h2>
 
                   {/* Paragraphs */}
                   {section.paragraphs && (
-                    <div className="space-y-5 text-gray-700">
+                    <div className="space-y-4 text-[#585858]">
                       {section.paragraphs.map((p, pIdx) => (
                         <p key={pIdx} className="leading-relaxed">
                           {p}
@@ -286,7 +260,7 @@ export default function BlogDetailPage() {
 
                   {/* Ordered Lists */}
                   {section.list && (
-                    <ol className="list-decimal pl-5 space-y-4 marker:text-slate-900 marker:font-semibold mt-5 text-gray-700">
+                    <ol className="list-decimal pl-5 space-y-3 marker:text-[#1C3A62] marker:font-bold mt-5 text-[#585858]">
                       {section.list.map((item, lIdx) => (
                         <li key={lIdx} className="pl-2 leading-relaxed">
                           {item}
@@ -297,7 +271,7 @@ export default function BlogDetailPage() {
 
                   {/* Bullet Lists */}
                   {section.bullets && (
-                    <ul className="list-disc pl-5 space-y-3 marker:text-[#2495D3] mt-5 text-gray-700">
+                    <ul className="list-disc pl-5 space-y-3 marker:text-[#2495D3] mt-5 text-[#585858]">
                       {section.bullets.map((item, bIdx) => {
                         const colonIdx = item.indexOf(':');
                         if (colonIdx > 0) {
@@ -305,7 +279,7 @@ export default function BlogDetailPage() {
                           const rest = item.substring(colonIdx + 1);
                           return (
                             <li key={bIdx} className="pl-2 leading-relaxed">
-                              <strong className="text-slate-900 font-semibold">{prefix}</strong>
+                              <strong className="text-[#1C3A62] font-bold">{prefix}</strong>
                               {rest}
                             </li>
                           );
@@ -321,7 +295,7 @@ export default function BlogDetailPage() {
 
                   {/* Subparagraphs after list/bullets */}
                   {section.subparagraphs && (
-                    <div className="space-y-5 text-gray-700 mt-5">
+                    <div className="space-y-4 text-[#585858] mt-5">
                       {section.subparagraphs.map((p, spIdx) => (
                         <p key={spIdx} className="leading-relaxed">
                           {p}
@@ -333,35 +307,35 @@ export default function BlogDetailPage() {
               ))}
 
               {/* Mobile Social Share Bar */}
-              <div className="flex md:hidden items-center gap-3 pt-8 border-t border-gray-100 mt-10">
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-1.5">
+              <div className="flex md:hidden items-center gap-3 pt-8 border-t border-slate-100 mt-10">
+                <span className="text-xs font-semibold text-[#585858] uppercase tracking-wider flex items-center gap-1.5">
                   <Share2 size={14} /> Share:
                 </span>
                 <button
                   onClick={() => handleShare('linkedin')}
                   aria-label="Share on LinkedIn"
-                  className="p-2 rounded-full border border-gray-200 text-gray-600 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
+                  className="p-2.5 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
                 >
                   <LinkedinIcon size={16} />
                 </button>
                 <button
                   onClick={() => handleShare('twitter')}
                   aria-label="Share on Twitter"
-                  className="p-2 rounded-full border border-gray-200 text-gray-600 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
+                  className="p-2.5 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
                 >
                   <TwitterIcon size={16} />
                 </button>
                 <button
                   onClick={() => handleShare('facebook')}
                   aria-label="Share on Facebook"
-                  className="p-2 rounded-full border border-gray-200 text-gray-600 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
+                  className="p-2.5 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
                 >
                   <FacebookIcon size={16} />
                 </button>
                 <button
                   onClick={handleCopyLink}
                   aria-label="Copy link"
-                  className="p-2 rounded-full border border-gray-200 text-gray-600 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
+                  className="p-2.5 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white"
                 >
                   {copied ? <Check size={16} className="text-emerald-600" /> : <LinkIcon size={16} />}
                 </button>
@@ -369,11 +343,11 @@ export default function BlogDetailPage() {
             </main>
 
             {/* Desktop Social Share (Floating right) */}
-            <div className="hidden lg:flex flex-col gap-4 absolute -right-16 top-0">
+            <div className="hidden lg:flex flex-col gap-3 absolute -right-16 top-0">
               <button
                 onClick={() => handleShare('linkedin')}
                 aria-label="Share on LinkedIn"
-                className="p-2.5 rounded-full border border-gray-200 text-gray-500 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-2xs hover:shadow cursor-pointer"
+                className="p-3 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-sm hover:shadow cursor-pointer"
                 title="Share on LinkedIn"
               >
                 <LinkedinIcon size={18} />
@@ -381,7 +355,7 @@ export default function BlogDetailPage() {
               <button
                 onClick={() => handleShare('twitter')}
                 aria-label="Share on Twitter"
-                className="p-2.5 rounded-full border border-gray-200 text-gray-500 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-2xs hover:shadow cursor-pointer"
+                className="p-3 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-sm hover:shadow cursor-pointer"
                 title="Share on Twitter"
               >
                 <TwitterIcon size={18} />
@@ -389,7 +363,7 @@ export default function BlogDetailPage() {
               <button
                 onClick={() => handleShare('facebook')}
                 aria-label="Share on Facebook"
-                className="p-2.5 rounded-full border border-gray-200 text-gray-500 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-2xs hover:shadow cursor-pointer"
+                className="p-3 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-sm hover:shadow cursor-pointer"
                 title="Share on Facebook"
               >
                 <FacebookIcon size={18} />
@@ -397,12 +371,12 @@ export default function BlogDetailPage() {
               <button
                 onClick={handleCopyLink}
                 aria-label="Copy link"
-                className="relative p-2.5 rounded-full border border-gray-200 text-gray-500 hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-2xs hover:shadow mt-2 cursor-pointer group"
+                className="relative p-3 rounded-full border border-slate-200 text-[#585858] hover:text-[#2495D3] hover:border-[#2495D3] transition-all bg-white shadow-sm hover:shadow cursor-pointer group"
                 title="Copy link"
               >
                 {copied ? <Check size={18} className="text-emerald-600" /> : <LinkIcon size={18} />}
                 {copied && (
-                  <span className="absolute left-1/2 -translate-x-1/2 -top-8 px-2 py-1 text-[11px] font-semibold text-white bg-slate-900 rounded-md shadow whitespace-nowrap">
+                  <span className="absolute left-1/2 -translate-x-1/2 -top-8 px-2.5 py-1 text-[11px] font-semibold text-white bg-[#1C3A62] rounded-md shadow whitespace-nowrap">
                     Copied!
                   </span>
                 )}

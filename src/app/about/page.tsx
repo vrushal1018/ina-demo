@@ -12,6 +12,22 @@ import InteractiveTeamSlider from "@/components/about/InteractiveTeamSlider";
 import OurTeam from "@/components/about/OurTeam";
 import HowWeWork from "@/components/about/HowWeWork";
 
+// Dynamically import 3D interactive map to prevent SSR canvas issues
+const WhereAreWeLocated = dynamic(
+  () => import("@/components/about/WhereAreWeLocated"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full min-h-[500px] flex items-center justify-center bg-slate-50">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-4 border-[#2495D3] border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-[#1C3A62] font-semibold">Loading Pan-India Locations...</span>
+        </div>
+      </div>
+    ),
+  }
+);
+
 export default function AboutPage() {
   return (
     <div className="relative min-h-screen bg-white">
@@ -43,6 +59,11 @@ export default function AboutPage() {
 
         <AnimateIn delay={0.1} minHeight="500px" id="how-we-work">
           <HowWeWork />
+        </AnimateIn>
+
+        {/* Pan-India 3D Regional Map & Office Locations */}
+        <AnimateIn delay={0.1} minHeight="650px" id="locations">
+          <WhereAreWeLocated />
         </AnimateIn>
       </main>
     </div>

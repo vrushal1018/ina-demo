@@ -2,43 +2,117 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, PhoneCall, MapPin } from "lucide-react";
+import {
+  CheckCircle2,
+  PhoneCall,
+  Activity,
+  Zap,
+  Settings,
+  Gauge,
+  TrendingUp,
+  Leaf,
+  ShieldCheck,
+  Wrench,
+} from "lucide-react";
 
 export default function RepairsAndServicing() {
-  const commonIssuesLeft = [
-    "Preventive and predictive maintenance",
-    "Electrical and HVAC maintenance",
-    "Engineering asset management",
-    "MEP equipment testing and commissioning",
-  ];
-
-  const commonIssuesRight = [
-    "Asset performance and lifecycle enhancement",
-    "Energy audits and sustainability solutions",
-    "Safety and compliance audits",
-    "Repair, refurbishment and technical support",
+  const expertiseList = [
+    {
+      num: "01",
+      title: "Preventive and predictive maintenance",
+      description: "Proactive condition-based monitoring and scheduled servicing to eliminate unexpected equipment downtime.",
+      icon: Activity,
+    },
+    {
+      num: "02",
+      title: "Electrical and HVAC maintenance",
+      description: "Precision upkeep of transformers, chillers, AHUs, and high-load power distribution systems.",
+      icon: Zap,
+    },
+    {
+      num: "03",
+      title: "Engineering asset management",
+      description: "Systematic lifecycle tracking and performance optimization of critical building infrastructure.",
+      icon: Settings,
+    },
+    {
+      num: "04",
+      title: "MEP equipment testing and commissioning",
+      description: "Comprehensive mechanical, electrical, and plumbing validation to guarantee peak reliability.",
+      icon: Gauge,
+    },
+    {
+      num: "05",
+      title: "Asset performance and lifecycle enhancement",
+      description: "Targeted maintenance and refurbishment programs that extend operating life and maximize asset ROI.",
+      icon: TrendingUp,
+    },
+    {
+      num: "06",
+      title: "Energy audits and sustainability solutions",
+      description: "Data-driven energy conservation studies, efficiency retrofits, and carbon reduction measures.",
+      icon: Leaf,
+    },
+    {
+      num: "07",
+      title: "Safety and compliance audits",
+      description: "Strict adherence to statutory safety norms, fire life safety guidelines, and risk assessments.",
+      icon: ShieldCheck,
+    },
+    {
+      num: "08",
+      title: "Repair, refurbishment and technical support",
+      description: "Rapid on-ground engineering support and turnkey restoration across mission-critical systems.",
+      icon: Wrench,
+    },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white text-[#383838]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section className="relative py-20 md:py-28 bg-[#0A1629] text-white overflow-hidden">
+      {/* Background Video with continuous loop in full high resolution */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-50 scale-105 transition-transform duration-1000"
+        >
+          <source
+            src="/Technician_using_tablet_in_serve…_20261015165052_gwr_video_mvp.mp4"
+            type="video/mp4"
+          />
+        </video>
+        {/* Architectural Gradient & Blueprint Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/92 via-[#0A1629]/80 to-[#0A1629]/95" />
+        <div className="absolute inset-0 blueprint-grid opacity-15" />
+      </div>
 
-          {/* Left Column: Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-30px" }}
-            transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="lg:col-span-7 space-y-6"
-          >
-            {/* Title */}
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight leading-tight">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Top Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-30px" }}
+          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 sm:mb-16"
+        >
+          {/* Left Title & Badge */}
+          <div className="max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] backdrop-blur-md shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
+              <span>Engineering & Maintenance</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-[1.15]">
               Expert Engineering & Facility Management Services
             </h2>
+          </div>
 
-            {/* Introductory Paragraph */}
-            <p className="text-base sm:text-lg text-[#585858] leading-relaxed font-normal">
+          {/* Right Lead Paragraph & Action Buttons */}
+          <div className="max-w-xl space-y-6">
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
               From critical engineering assets to day-to-day facility
               operations, every environment requires reliable, efficient,
               and proactive management. At Ina Tech FM, we combine engineering
@@ -47,129 +121,115 @@ export default function RepairsAndServicing() {
               sustainable operational outcomes.
             </p>
 
-            {/* List Header */}
-            <p className="text-base font-semibold text-[#1C3A62] pt-2">
-              Our engineering and facility management expertise includes:
-            </p>
-
-            {/* 2-Column Checklist */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-6">
-
-              {/* Left List */}
-              <div className="space-y-3.5">
-                {commonIssuesLeft.map((issue, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, margin: "-20px" }}
-                    transition={{ duration: 0.4, delay: idx * 0.08 }}
-                    className="flex items-start space-x-3"
-                  >
-                    <CheckCircle2 className="w-5 h-5 text-[#2495D3] flex-shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium text-[#383838] leading-snug">
-                      {issue}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Right List */}
-              <div className="space-y-3.5">
-                {commonIssuesRight.map((issue, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, margin: "-20px" }}
-                    transition={{ duration: 0.4, delay: (idx + 4) * 0.08 }}
-                    className="flex items-start space-x-3"
-                  >
-                    <CheckCircle2 className="w-5 h-5 text-[#2495D3] flex-shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium text-[#383838] leading-snug">
-                      {issue}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-6">
-              {/* Primary Button */}
+            <div className="flex flex-wrap items-center gap-4 pt-1">
               <a
                 href="/contact"
-                className="px-8 py-3.5 rounded-lg bg-[#1C3A62] hover:bg-[#2495D3] text-white font-medium text-center transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95"
+                className="px-8 py-3.5 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white font-semibold text-sm tracking-wide text-center transition-all duration-300 shadow-xl shadow-[#2495D3]/30 hover:-translate-y-0.5 active:translate-y-0"
               >
                 Talk to Our Experts
               </a>
 
-              {/* Secondary Button */}
               <a
                 href="#services"
-                className="px-8 py-3.5 rounded-lg border-2 border-[#1C3A62] hover:bg-[#1C3A62] hover:text-white text-[#1C3A62] font-medium text-center transition-all duration-300 flex items-center justify-center space-x-2 transform active:scale-95"
+                className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md font-semibold text-sm tracking-wide text-center transition-all duration-300 flex items-center justify-center space-x-2 hover:-translate-y-0.5 active:translate-y-0"
               >
-                <PhoneCall className="w-4 h-4" />
+                <PhoneCall className="w-4 h-4 text-[#2495D3]" />
                 <span>Explore Our Services</span>
               </a>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          {/* Right Column: Headquarters Map */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-30px" }}
-            transition={{ duration: 0.65, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="lg:col-span-5"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100 group">
+        {/* Section Divider / Capabilities Subheading */}
+        <div className="flex items-center justify-between mb-8 pb-4 border-t border-white/10 pt-8">
+          <p className="text-base sm:text-lg font-semibold text-white flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3]" />
+            <span>Our engineering and facility management expertise includes:</span>
+          </p>
 
-              {/* Google Map */}
-              <div className="relative h-[380px] sm:h-[460px] w-full">
-                <iframe
-                  src="https://www.google.com/maps?q=MBC+Tech+Park,+Sainath+Nagar,+Kasarvadavli,+Ghodbunder+Road,+Thane+West,+Maharashtra+400615&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Ina Tech FM Headquarters Location"
-                  className="w-full h-full"
-                />
-              </div>
-
-              {/* Subtle Map Overlay */}
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#1C3A62]/20 via-transparent to-transparent" />
-
-              {/* Headquarters Information Card */}
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl border border-gray-100 shadow-lg">
-                <div className="flex items-start space-x-3">
-                  {/* Location Icon */}
-                  <div className="p-2.5 rounded-lg bg-[#2495D3]/10 text-[#2495D3] flex-shrink-0">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-
-                  {/* Location Details */}
-                  <div>
-                    <div className="text-xs font-semibold text-[#878787] uppercase tracking-wider mb-1">
-                      Ina Tech FM Headquarters
-                    </div>
-                    <div className="text-sm font-medium text-[#1C3A62] leading-relaxed">
-                      1st Floor, C-Wing, MBC Tech Park, Sainath Nagar,
-                      Kasarvadavli, Ghodbunder Road, Thane West,
-                      Maharashtra – 400615
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </motion.div>
-
+          <span className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-slate-300">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Active Operations Across India</span>
+          </span>
         </div>
+
+        {/* 8-Card Capabilities Showcase Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {expertiseList.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-20px" }}
+                transition={{
+                  duration: 0.45,
+                  delay: idx * 0.05,
+                  ease: [0.21, 0.47, 0.32, 0.98],
+                }}
+                className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-white/[0.07] hover:bg-white/[0.13] border border-white/10 hover:border-[#2495D3]/50 backdrop-blur-md transition-all duration-300 hover:shadow-2xl hover:shadow-[#2495D3]/15 hover:-translate-y-1.5 overflow-hidden"
+              >
+                <div>
+                  {/* Top Row: Icon Container and Index Number */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-2xl bg-[#2495D3]/15 border border-[#2495D3]/30 text-[#2495D3] flex items-center justify-center group-hover:bg-[#2495D3] group-hover:text-white transition-all duration-300 shadow-sm">
+                      <Icon className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+                    </div>
+                    <span className="font-mono text-xs font-bold text-slate-400 group-hover:text-[#2495D3] transition-colors">
+                      {item.num}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-[#2495D3] transition-colors duration-300 leading-snug mb-2.5">
+                    {item.title}
+                  </h3>
+
+                  {/* Short description */}
+                  <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+
+                {/* Bottom Accent */}
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <span className="text-[11px] font-medium text-slate-400 group-hover:text-slate-200 transition-colors uppercase tracking-wider">
+                    Verified Protocol
+                  </span>
+                  <CheckCircle2 className="w-4 h-4 text-[#2495D3] opacity-60 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Operational Assurance Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-20px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12 sm:mt-16 p-6 sm:p-7 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+        >
+          <div>
+            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">24/7/365</div>
+            <div className="text-xs text-slate-400 mt-1">Live Engineering Support</div>
+          </div>
+          <div>
+            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">100% SLA</div>
+            <div className="text-xs text-slate-400 mt-1">Uptime Commitment</div>
+          </div>
+          <div>
+            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">Zero-Harm</div>
+            <div className="text-xs text-slate-400 mt-1">Safety First Protocols</div>
+          </div>
+          <div>
+            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">Pan-India</div>
+            <div className="text-xs text-slate-400 mt-1">Technical Deployment</div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

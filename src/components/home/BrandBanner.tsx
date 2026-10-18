@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownRight } from 'lucide-react';
+import { ArrowDownRight, ShieldCheck } from 'lucide-react';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
-// Elite Residential client logos (cleaned transparent PNGs, displayed larger)
+// Elite Residential client logos
 const RESIDENTIAL_LOGOS = [
   {
     name: 'Calcutta Riverside',
@@ -54,7 +55,9 @@ const RESIDENTIAL_LOGOS = [
 
 export default function BrandBanner() {
   return (
-    <section className="w-full bg-slate-50 py-16 overflow-hidden">
+    <section className="relative w-full bg-[#F8F9FA] py-20 overflow-hidden border-b border-slate-200/60">
+      {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -62,25 +65,28 @@ export default function BrandBanner() {
         transition={{ duration: 0.6 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        {/* Header Title with Lucide Icon */}
-        <div className="flex items-center justify-center gap-1.5 text-slate-800 font-medium text-base mb-12">
-          <span>Brands & elite residential properties we service</span>
-          <ArrowDownRight className="w-4 h-4 text-slate-600" />
+        {/* Header Title with Lucide Icon in Sleek Pill */}
+        <div className="flex items-center justify-center mb-14">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 shadow-xs text-[#1C3A62] font-semibold text-sm sm:text-base">
+            <ShieldCheck className="w-4 h-4 text-[#2495D3]" />
+            <span>Brands & elite residential properties we service</span>
+            <ArrowDownRight className="w-4 h-4 text-[#2495D3]" />
+          </div>
         </div>
 
         {/* Marquee Container with Gradient Side Masks */}
-        <div className="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-          <div className="flex w-max items-center gap-16 sm:gap-24 animate-marquee hover:[animation-play-state:paused]">
+        <div className="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]">
+          <div className="flex w-max items-center gap-14 sm:gap-20 animate-marquee hover:[animation-play-state:paused] py-3">
             {/* Duplicate list to achieve continuous seamless loop */}
             {[...RESIDENTIAL_LOGOS, ...RESIDENTIAL_LOGOS].map((brand, idx) => (
               <div
                 key={`${brand.name}-${idx}`}
-                className="flex items-center justify-center shrink-0 opacity-90 transition-all duration-300 hover:opacity-100 hover:scale-105 cursor-pointer"
+                className="flex items-center justify-center shrink-0 px-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-xs hover:shadow-md hover:border-[#2495D3]/30 transition-all duration-300 hover:scale-105 cursor-pointer"
               >
                 <img
                   src={brand.src}
                   alt={brand.name}
-                  className="h-12 sm:h-16 md:h-20 w-auto max-w-[220px] object-contain drop-shadow-xs"
+                  className="h-10 sm:h-14 md:h-16 w-auto max-w-[200px] object-contain"
                   loading="lazy"
                 />
               </div>

@@ -7,7 +7,8 @@ import {
   ClipboardCheck,
   Leaf,
   Wrench,
-  ArrowRightLeft
+  ArrowRightLeft,
+  ArrowRight
 } from 'lucide-react';
 
 export default function ServicesSection() {
@@ -21,53 +22,67 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-row items-center gap-10">
+    <section className="max-w-6xl mx-auto p-6 md:p-8">
+      <div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-10">
 
-        {/* Left Side: Image Container */}
-        <div className="w-full md:w-1/3 relative flex justify-center">
-          <div className="relative w-64 h-80 rounded-t-[2rem] overflow-hidden bg-gray-200">
-            <Image
-              src="/services.avif"
-              alt="Service Professional"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-t-[2rem]"
-            />
-            {/* Bottom white curved overlay mimicking the design cutout */}
-            <div className="absolute -bottom-1 left-0 right-0 h-8 bg-white rounded-t-[2rem]"></div>
-          </div>
-        </div>
-
-        {/* Right Side: Content & Grid */}
-        <div className="w-full md:w-2/3">
-          {/* Made the heading section smaller by adjusting text sizes and bottom margin */}
-          <div className="mb-6">
-            <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-2">
+        {/* Left Side: Editorial Image Card */}
+        <div className="w-full lg:w-5/12 relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629] p-6 flex flex-col justify-between min-h-[300px] border border-white/10 shadow-lg">
+          <div className="relative z-10">
+            <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/30 text-[#2495D3] text-xs font-semibold tracking-wide uppercase mb-3">
+              Core Capabilities
+            </span>
+            <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight leading-snug">
               Best practice services for best customer outcomes
             </h2>
-            <p className="text-gray-600 text-base">
-              We're on a mission to make your people and places the best they can be.
+            <p className="mt-3 text-slate-300 text-sm leading-relaxed">
+              We&apos;re on a mission to make your people and places the best they can be.
             </p>
           </div>
 
-          {/* Divider Line */}
-          <div className="w-full h-px bg-gray-200 mb-10"></div> {/* Increased margin below divider */}
+          <div className="relative z-10 pt-6">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-white bg-[#2495D3] hover:bg-[#488FCD] px-5 py-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-lg"
+            >
+              <span>Explore All Capabilities</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
 
-          {/* Services Grid: Increased gap sizes for more breathing room */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-10 gap-x-8">
+          {/* Decorative image accent */}
+          <div className="absolute right-0 bottom-0 w-44 h-48 opacity-25 pointer-events-none overflow-hidden">
+            <Image
+              src="/services.avif"
+              alt="Service Professional"
+              fill
+              className="object-cover object-center"
+            />
+          </div>
+        </div>
+
+        {/* Right Side: Services Grid */}
+        <div className="w-full lg:w-7/12 flex flex-col justify-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
-                <Link href={service.link} key={index} className="flex items-center space-x-4 group cursor-pointer hover:text-[#2495D3]">
-                  <div className="text-gray-600 flex-shrink-0 group-hover:text-[#2495D3] transition-colors">
-                    {/* Slightly larger icon size (32) to fill the new space nicely */}
-                    <IconComponent strokeWidth={1.5} size={32} />
+                <Link
+                  href={service.link}
+                  key={index}
+                  className="group flex items-center p-3.5 rounded-xl border border-slate-100 hover:border-[#2495D3]/40 bg-slate-50/60 hover:bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-0.5"
+                >
+                  <div className="w-11 h-11 rounded-lg bg-white group-hover:bg-[#2495D3] border border-slate-200/80 group-hover:border-[#2495D3] text-[#1C3A62] group-hover:text-white flex items-center justify-center transition-all duration-300 shrink-0 shadow-xs mr-3.5">
+                    <IconComponent strokeWidth={1.75} size={22} />
                   </div>
-                  {/* Slightly larger text to make services stand out more */}
-                  <span className="text-gray-800 font-medium text-[16px] group-hover:text-[#2495D3] transition-colors">
-                    {service.name}
-                  </span>
+                  <div className="flex-grow">
+                    <span className="text-[#1C3A62] font-semibold text-sm group-hover:text-[#2495D3] transition-colors block leading-snug">
+                      {service.name}
+                    </span>
+                    <span className="text-[11px] text-[#878787] flex items-center gap-1 group-hover:text-[#2495D3] transition-colors mt-0.5 font-medium">
+                      <span>View details</span>
+                      <ArrowRight className="w-3 h-3 transform group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
                 </Link>
               );
             })}

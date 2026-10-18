@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import LoadingScreen from "@/components/LoadingScreen";
+import Footer from "@/components/Footer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -13,8 +15,6 @@ export const metadata: Metadata = {
   description: "Comprehensive engineering and facility management solutions focused on reliable, sustainable and efficient operations.",
 };
 
-import LoadingScreen from "@/components/LoadingScreen";
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -23,7 +23,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-full flex flex-col bg-white text-[#383838]">
         <LoadingScreen />
-        {children}
+        <div className="flex-grow">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

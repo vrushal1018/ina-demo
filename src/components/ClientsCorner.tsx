@@ -12,7 +12,8 @@ import {
   // Elite Residential
   Key, ShieldCheck, Trees, Sun, Moon, Star, Building, Zap,
   // Hospital
-  Activity, Heart, Plus, Clipboard, PlusCircle, Thermometer, Eye, Droplet, Users, Crosshair
+  Activity, Heart, Plus, Clipboard, PlusCircle, Thermometer, Eye, Droplet, Users, Crosshair,
+  Handshake,
 } from "lucide-react";
 
 // --- Mock Data for the 5 Categories ---
@@ -102,7 +103,13 @@ const partnerCategories = [
 // Flat-topped hexagon path for the precise honeycomb layout
 const hexClipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)';
 
-const HexItem = ({ logo, x, y, delay }: { logo: any, x: number, y: number, delay: number }) => {
+interface LogoItem {
+  name: string;
+  icon: any;
+  color: string;
+}
+
+const HexItem = ({ logo, x, y, delay }: { logo: LogoItem, x: number, y: number, delay: number }) => {
   const Icon = logo.icon;
   return (
     <div
@@ -112,13 +119,13 @@ const HexItem = ({ logo, x, y, delay }: { logo: any, x: number, y: number, delay
         animationDelay: `${delay}ms`
       }}
     >
-      <div className="filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_12px_30px_rgba(0,0,0,0.15)] transition-all duration-300 transform hover:-translate-y-1.5">
+      <div className="filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_12px_30px_rgba(36,149,211,0.25)] transition-all duration-300 transform hover:-translate-y-1.5">
         <div
-          className="w-[160px] h-[140px] bg-white flex flex-col items-center justify-center gap-2 cursor-pointer"
+          className="w-[160px] h-[140px] bg-white flex flex-col items-center justify-center gap-2 cursor-pointer border border-slate-100"
           style={{ clipPath: hexClipPath }}
         >
           <Icon className={`w-8 h-8 ${logo.color}`} strokeWidth={1.75} />
-          <span className="text-xs font-semibold text-slate-800 text-center px-4 leading-tight">
+          <span className="text-xs font-semibold text-[#1C3A62] text-center px-4 leading-tight">
             {logo.name}
           </span>
         </div>
@@ -130,12 +137,12 @@ const HexItem = ({ logo, x, y, delay }: { logo: any, x: number, y: number, delay
 export default function ClientsCorner() {
   const [activeTab, setActiveTab] = useState(0);
 
-  const activeLogos = partnerCategories[activeTab].logos;
+  const activeCategory = partnerCategories[activeTab];
+  const activeLogos = activeCategory.logos;
   const leftLogos = activeLogos.slice(0, 5);
   const rightLogos = activeLogos.slice(5, 10);
 
-  // Scaled up exact honeycomb coordinates for the interlocking wedges
-  // dx = 126px, dy = 148px (74px stagger)
+  // Honeycomb coordinates
   const leftPositions = [
     { x: 0, y: -74 },
     { x: 0, y: 74 },
@@ -153,21 +160,27 @@ export default function ClientsCorner() {
   ];
 
   return (
-    <section className="relative w-full py-24 overflow-hidden bg-[#fafafa]">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl overflow-hidden pointer-events-none">
-        <div className="absolute top-[20%] left-[10%] w-[45rem] h-[45rem] bg-[#2495D3]/10 rounded-full blur-3xl mix-blend-multiply" />
-        <div className="absolute top-[30%] right-[10%] w-[45rem] h-[45rem] bg-[#1C3A62]/10 rounded-full blur-3xl mix-blend-multiply" />
+    <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-[#F0F7FD]/30 via-white to-slate-50 font-sans">
+      {/* Blueprint grid accent */}
+      <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+
+      {/* Ambient Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-10 w-96 h-96 bg-[#2495D3]/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-10 w-96 h-96 bg-[#1C3A62]/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Header Area */}
         <div className="text-center max-w-3xl mb-12">
-          <h4 className="text-[#2495D3] font-bold text-sm md:text-base tracking-wide uppercase mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wider uppercase mb-4">
+            <Handshake className="w-3.5 h-3.5" />
+            <span>INA partner</span>
+          </div>
+          <h4 className="text-[#2495D3] font-bold text-sm md:text-base tracking-wide uppercase mb-3 hidden">
             INA partner
           </h4>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#1C3A62] mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1C3A62] mb-6 tracking-tight">
             Technologies & Partners with INA
           </h2>
           <p className="text-[#585858] text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -175,29 +188,30 @@ export default function ClientsCorner() {
             We work with a number of technology partners who help us
             deliver outstanding facility management solutions globally.
           </p>
+          <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-4 rounded-full" />
         </div>
 
-        {/* Category Tabs - Rendered dynamically from the array of 5 */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 bg-white p-2 rounded-full shadow-sm border border-slate-100 relative z-40">
+        {/* Category Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-10 bg-white/90 backdrop-blur-md p-2 rounded-2xl sm:rounded-full shadow-lg border border-slate-200/80 relative z-40">
           {partnerCategories.map((cat, idx) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(idx)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === idx
-                ? "bg-[#1C3A62] text-white shadow-md scale-105"
-                : "bg-transparent text-slate-600 hover:bg-slate-100"
-                }`}
+              className={`px-5 py-2.5 rounded-xl sm:rounded-full text-sm font-semibold transition-all duration-300 ${
+                activeTab === idx
+                  ? "bg-[#1C3A62] text-white shadow-md scale-105"
+                  : "bg-transparent text-[#585858] hover:bg-slate-100 hover:text-[#1C3A62]"
+              }`}
             >
               {cat.name}
             </button>
           ))}
         </div>
 
-        {/* Main Honeycomb Layout Container */}
-        <div className="relative w-full max-w-7xl h-[700px] flex items-center justify-center transform scale-50 sm:scale-75 md:scale-90 lg:scale-100 transition-transform duration-300">
-
+        {/* Desktop / Tablet Honeycomb Composition (hidden on small mobile screens to prevent overflow and tiny text) */}
+        <div className="hidden md:flex relative w-full max-w-6xl h-[680px] items-center justify-center">
           {/* Left Hexagon Cluster */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-[320px] -translate-y-1/2 w-0 h-0 z-20">
+          <div className="absolute top-1/2 left-1/2 -translate-x-[300px] lg:-translate-x-[320px] -translate-y-1/2 w-0 h-0 z-20">
             {leftLogos.map((logo, index) => (
               <HexItem
                 key={logo.name}
@@ -212,14 +226,11 @@ export default function ClientsCorner() {
           {/* Center Hero Hexagon */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 drop-shadow-2xl">
             <div
-              className="w-[400px] h-[346px] flex items-center justify-center relative overflow-hidden"
+              className="w-[360px] lg:w-[400px] h-[312px] lg:h-[346px] flex items-center justify-center relative overflow-hidden"
               style={{ clipPath: hexClipPath }}
             >
-              {/* Dark INA Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629]" />
-
-              {/* Center INA Logo Elements */}
-              <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
+              <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-8 text-center">
                 <Image
                   src="/Ina Logo-1.jpg.png"
                   alt="INA Logo"
@@ -228,12 +239,15 @@ export default function ClientsCorner() {
                   className="object-contain filter drop-shadow-2xl"
                   priority
                 />
+                <span className="text-[11px] font-semibold tracking-widest text-[#2495D3] uppercase mt-2">
+                  Integrated Facility Management
+                </span>
               </div>
             </div>
           </div>
 
           {/* Right Hexagon Cluster */}
-          <div className="absolute top-1/2 left-1/2 translate-x-[320px] -translate-y-1/2 w-0 h-0 z-20">
+          <div className="absolute top-1/2 left-1/2 translate-x-[300px] lg:translate-x-[320px] -translate-y-1/2 w-0 h-0 z-20">
             {rightLogos.map((logo, index) => (
               <HexItem
                 key={logo.name}
@@ -244,8 +258,43 @@ export default function ClientsCorner() {
               />
             ))}
           </div>
-
         </div>
+
+        {/* Mobile View: Dedicated clean interactive grid with Center Emblem */}
+        <div className="md:hidden w-full flex flex-col items-center gap-6">
+          {/* Mobile Center Emblem */}
+          <div className="w-full max-w-sm rounded-2xl bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629] p-6 text-center shadow-xl border border-white/10 flex flex-col items-center justify-center">
+            <Image
+              src="/Ina Logo-1.jpg.png"
+              alt="INA Logo"
+              width={180}
+              height={100}
+              className="object-contain filter drop-shadow-2xl mb-2"
+            />
+            <span className="text-[11px] font-semibold tracking-wider text-[#2495D3] uppercase">
+              {activeCategory.name} Partners
+            </span>
+          </div>
+
+          {/* Grid of 10 partners */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-md">
+            {activeLogos.map((logo) => {
+              const Icon = logo.icon;
+              return (
+                <div
+                  key={logo.name}
+                  className="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm flex flex-col items-center justify-center gap-2 text-center"
+                >
+                  <Icon className={`w-7 h-7 ${logo.color}`} strokeWidth={1.75} />
+                  <span className="text-xs font-semibold text-[#1C3A62] line-clamp-1">
+                    {logo.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </section>
   );
