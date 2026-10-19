@@ -10,10 +10,13 @@ import {
   Lightbulb,
   HeartHandshake,
   Leaf,
+  CheckCircle2,
 } from 'lucide-react';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 interface ValueItem {
   id: number;
+  number: string;
   title: string;
   description: string;
   icon: LucideIcon;
@@ -22,6 +25,7 @@ interface ValueItem {
 const VALUES: ValueItem[] = [
   {
     id: 1,
+    number: '01',
     title: 'Transparency',
     description:
       'We maintain complete transparency to ensure trust and reliability.',
@@ -29,6 +33,7 @@ const VALUES: ValueItem[] = [
   },
   {
     id: 2,
+    number: '02',
     title: 'Ownership',
     description:
       'We take accountability of our actions and make things happen.',
@@ -36,6 +41,7 @@ const VALUES: ValueItem[] = [
   },
   {
     id: 3,
+    number: '03',
     title: 'People First',
     description:
       'We prioritize team and customer satisfaction.',
@@ -43,6 +49,7 @@ const VALUES: ValueItem[] = [
   },
   {
     id: 4,
+    number: '04',
     title: 'Innovation',
     description:
       'Creating sustainable values with consistent innovation.',
@@ -50,6 +57,7 @@ const VALUES: ValueItem[] = [
   },
   {
     id: 5,
+    number: '05',
     title: 'Customer First',
     description:
       'Customer in the centre of all our actions.',
@@ -57,6 +65,7 @@ const VALUES: ValueItem[] = [
   },
   {
     id: 6,
+    number: '06',
     title: 'Safety',
     description:
       'Welfare of team and environment is an uncompromising priority.',
@@ -69,26 +78,31 @@ export default function OurValues() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 60%', 'end 80%'],
+    offset: ['start 70%', 'end 85%'],
   });
 
   const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 120,
     damping: 30,
     restDelta: 0.001,
   });
 
   return (
-    <section className="w-full bg-white text-[#383838] py-20 md:py-32 overflow-hidden font-['Poppins',sans-serif]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+    <section className="relative w-full bg-gradient-to-b from-white via-slate-50/40 to-white text-[#383838] py-20 lg:py-28 overflow-hidden font-sans border-t border-slate-100">
+      {/* Background Blueprint Grid */}
+      <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
+      {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.25} mask="fade-edges" />
 
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24 space-y-4">
-          <span className="text-sm md:text-base font-semibold text-[#2495D3] tracking-widest uppercase block">
-            Our Values
-          </span>
+        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-widest uppercase">
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>Our Values</span>
+          </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#1C3A62] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] tracking-tight leading-tight">
             What We Stand For
           </h2>
 
@@ -96,21 +110,21 @@ export default function OurValues() {
             Our values guide every decision we make, shaping how we work,
             collaborate, and create lasting value for our customers and people.
           </p>
+          <div className="w-16 h-1 bg-[#2495D3] mx-auto rounded-full" />
         </div>
 
         {/* Values Timeline Container */}
         <div ref={containerRef} className="relative max-w-5xl mx-auto">
-
           {/* Vertical Connecting Line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[3px] -translate-x-1/2 bg-slate-100 z-0">
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-slate-200/80 z-0 rounded-full">
             <motion.div
               style={{ scaleY }}
-              className="w-full h-full bg-gradient-to-b from-[#2495D3] to-[#1C3A62] origin-top"
+              className="w-full h-full bg-gradient-to-b from-[#2495D3] via-[#1C3A62] to-[#2495D3] origin-top rounded-full shadow-[0_0_12px_rgba(36,149,211,0.5)]"
             />
           </div>
 
           {/* Values */}
-          <div className="space-y-16 md:space-y-24 relative z-10">
+          <div className="space-y-12 md:space-y-20 relative z-10">
             {VALUES.map((value, index) => {
               const Icon = value.icon;
               const isEven = index % 2 === 0;
@@ -120,47 +134,44 @@ export default function OurValues() {
                   key={value.id}
                   className="relative flex flex-col md:flex-row items-start md:items-center"
                 >
-
-                  {/* Timeline Node */}
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-4 border-[#2495D3] shadow-lg flex items-center justify-center z-20 transition-transform duration-300 hover:scale-110">
-                    <span className="text-[#1C3A62] font-medium text-sm">
-                      {value.id}
+                  {/* Timeline Center Node */}
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-4 border-[#2495D3] shadow-lg shadow-[#2495D3]/20 flex items-center justify-center z-20 transition-transform duration-300 hover:scale-115">
+                    <span className="text-[#1C3A62] font-bold text-xs tracking-wider">
+                      {value.number}
                     </span>
                   </div>
 
                   {/* Value Card */}
                   <motion.div
-                    initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: false, margin: '-40px' }}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
                     transition={{
-                      duration: 0.6,
-                      delay: index * 0.1,
+                      duration: 0.5,
+                      delay: index * 0.08,
                       ease: [0.215, 0.61, 0.355, 1],
                     }}
-                    className={`pl-16 md:pl-0 w-full md:w-[calc(50%-40px)] ${isEven
-                        ? 'md:mr-auto md:text-right'
-                        : 'md:ml-auto md:text-left'
-                      }`}
+                    className={`pl-16 md:pl-0 w-full md:w-[calc(50%-48px)] ${
+                      isEven ? 'md:mr-auto' : 'md:ml-auto'
+                    }`}
                   >
-                    <div className="bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-xl shadow-slate-100/80 hover:shadow-2xl hover:border-[#2495D3]/30 transition-all duration-300 group">
+                    <div className="bg-white p-7 md:p-8 rounded-2xl border border-slate-200/80 shadow-lg shadow-slate-100/80 hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 group relative overflow-hidden">
+                      {/* Top Bar Accent */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                      {/* Value Header */}
-                      <div
-                        className={`flex items-center gap-4 mb-5 ${isEven
-                            ? 'md:flex-row-reverse'
-                            : 'flex-row'
-                          }`}
-                      >
-                        {/* Icon */}
-                        <div className="w-12 h-12 rounded-2xl bg-[#1C3A62] text-[#2495D3] flex items-center justify-center group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 flex-shrink-0">
+                      {/* Header */}
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-[#1C3A62] text-[#2495D3] flex items-center justify-center group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 flex-shrink-0 shadow-md">
                           <Icon className="w-6 h-6 stroke-[2]" />
                         </div>
-
-                        {/* Title */}
-                        <h3 className="text-xl md:text-2xl font-medium text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
-                          {value.title}
-                        </h3>
+                        <div>
+                          <span className="text-[11px] font-bold text-[#2495D3] tracking-widest uppercase">
+                            Pillar {value.number}
+                          </span>
+                          <h3 className="text-xl md:text-2xl font-bold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
+                            {value.title}
+                          </h3>
+                        </div>
                       </div>
 
                       {/* Description */}

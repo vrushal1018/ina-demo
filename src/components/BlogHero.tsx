@@ -1,41 +1,51 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Home } from "lucide-react";
+import { Home, Sparkles, ChevronRight } from "lucide-react";
 
 export default function BlogHero() {
   return (
-    <section className="relative w-full py-24 md:py-32 px-4 flex flex-col items-center justify-center text-center overflow-hidden">
-      {/* 
-        Background styling featuring the updated soft, pale-blue gradient.
-      */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#e0f0fc] via-[#edf5fc] to-[#f7faff] -z-10" />
+    <section className="relative w-full py-20 lg:py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-b from-[#0A1629] via-[#1C3A62] to-[#0A1629] text-white font-sans">
+      {/* Blueprint grid accent */}
+      <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
+
+      {/* Ambient Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#2495D3]/20 rounded-full blur-[100px] pointer-events-none" />
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: "-30px" }}
-        transition={{ duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className="max-w-3xl mx-auto flex flex-col items-center"
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="relative z-10 max-w-3xl mx-auto flex flex-col items-center"
       >
-        {/* Breadcrumb Navigation */}
-        <div className="flex items-center gap-1.5 text-sm mb-10 text-gray-700">
-          <Home className="w-4 h-4 mb-0.5 stroke-[1.5]" />
-          <span>
-            Home / <span className="font-semibold text-gray-900">Blog</span>
-          </span>
+        {/* Breadcrumb Navigation Capsule */}
+        <div className="inline-flex items-center gap-2 text-xs sm:text-sm mb-6 text-white/80 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 shadow-sm">
+          <Link href="/" className="flex items-center gap-1.5 hover:text-[#2495D3] transition-colors">
+            <Home className="w-3.5 h-3.5" />
+            <span>Home</span>
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+          <span className="font-semibold text-[#2495D3]">Blog</span>
+        </div>
+
+        {/* Pill Badge */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-4">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Knowledge & Thought Leadership</span>
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-5xl md:text-6xl lg:text-[4rem] font-semibold text-gray-900 leading-[1.1] tracking-tight mb-6">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-4 text-white">
           Insights,
           <br />
           Ideas & Innovation
         </h1>
+        <div className="w-20 h-1 bg-[#2495D3] mx-auto mb-6 rounded-full" />
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed font-normal">
           Explore expert articles, tech trends, and practical tips to keep your
           business ahead of the curve.
         </p>

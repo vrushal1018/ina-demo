@@ -385,24 +385,29 @@ export default function WhereAreWeLocated() {
   }, []);
 
   return (
-    <section className="w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden border-t border-slate-100">
+      {/* Background grid accent */}
+      <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto">
 
         {/* HEADING */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#878787] uppercase block mb-3">
-            Our Presence
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold uppercase tracking-wider">
+            <Building2 className="w-3.5 h-3.5" />
+            <span>Our Presence</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
             Where Are We Located?
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-[#585858]">
+          <p className="text-base sm:text-lg text-[#585858]">
             Explore our office hubs across India.
           </p>
+          <div className="w-16 h-1 bg-[#2495D3] mx-auto rounded-full" />
         </div>
 
         {/* MAIN CONTAINER */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F8FAFC] rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#2495D3]/10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F8FAFC] rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 shadow-lg">
 
           {/* 3D CANVAS */}
           <div className="lg:col-span-8 relative w-full h-[400px] sm:h-[500px] lg:h-[550px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#1C3A62] to-[#0a1629]">

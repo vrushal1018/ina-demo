@@ -18,7 +18,7 @@ import {
   Building,
   Loader2,
   Trash2,
-  Check,
+  Sparkles,
 } from 'lucide-react';
 import AnimateIn from '@/components/AnimateIn';
 
@@ -203,35 +203,46 @@ export default function CareersPage() {
   return (
     <>
       <SiteHeader />
-      <div className="min-h-screen bg-[#F8F9FA] py-16 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-4xl mx-auto pt-6">
+      <div className="relative min-h-screen bg-gradient-to-b from-[#F0F7FD]/40 via-white to-slate-50 py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+        {/* Background Blueprint dots */}
+        <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+
+        <div className="relative z-10 max-w-4xl mx-auto pt-6">
           {/* Header Section */}
-          <div className="mb-4 flex justify-center">
-            <div className="inline-block rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3]">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-4">
+              <Briefcase className="w-3.5 h-3.5" />
+              <span>Careers at Ina Tech FM</span>
+            </div>
+            <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3]">
               Careers at Ina Tech FM
             </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] mb-4 tracking-tight">
+              Currently Open Positions
+            </h1>
+            <p className="text-[#585858] max-w-xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
+              Join our dedicated team of engineers and facility management experts building dependable, sustainable workspaces.
+            </p>
+            <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-4 rounded-full" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-semibold text-center text-[#1C3A62] mb-3 tracking-tight">
-            Currently Open Positions
-          </h1>
-          <p className="text-center text-[#585858] max-w-xl mx-auto mb-10 text-base md:text-lg font-normal">
-            Join our dedicated team of engineers and facility management experts building dependable, sustainable workspaces.
-          </p>
 
           {/* Job Listing Card */}
           <AnimateIn delay={0.1} minHeight="400px">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
+            <div className="relative bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-slate-200/90 overflow-hidden group">
+              {/* Top Accent Strip */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
+
               {/* Header row */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-gray-100">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
                 <div>
                   <div
                     className="flex items-center gap-3 cursor-pointer group/title mb-3 w-fit"
                     onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
                   >
-                    <h2 className="text-2xl sm:text-3xl font-semibold text-[#1C3A62] tracking-tight group-hover/title:text-[#2495D3] transition-colors">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-[#1C3A62] tracking-tight group-hover/title:text-[#2495D3] transition-colors">
                       {technicalSupervisorJob.title}
                     </h2>
-                    <div className="p-1.5 rounded-full bg-gray-50 group-hover/title:bg-[#2495D3]/10 transition-colors">
+                    <div className="p-1.5 rounded-full bg-slate-100 group-hover/title:bg-[#2495D3]/10 transition-colors">
                       <ChevronDown
                         className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${
                           isDescriptionOpen ? 'rotate-180' : ''
@@ -246,12 +257,12 @@ export default function CareersPage() {
                       <Building className="w-4 h-4 text-[#2495D3]" />
                       {technicalSupervisorJob.department}
                     </span>
-                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <span className="w-1 h-1 rounded-full bg-slate-300" />
                     <span className="flex items-center gap-1.5">
                       <MapPin className="w-4 h-4 text-[#2495D3]" />
                       {technicalSupervisorJob.location}
                     </span>
-                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <span className="w-1 h-1 rounded-full bg-slate-300" />
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-4 h-4 text-[#2495D3]" />
                       {technicalSupervisorJob.type}
@@ -263,7 +274,7 @@ export default function CareersPage() {
                     {technicalSupervisorJob.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="px-3.5 py-1 rounded-full border border-gray-200 bg-gray-50 text-xs sm:text-sm font-medium text-[#585858]"
+                        className="px-3 py-1 rounded-lg border border-slate-200 bg-slate-50 text-xs font-semibold text-[#1C3A62]"
                       >
                         {tag}
                       </span>
@@ -272,14 +283,14 @@ export default function CareersPage() {
                 </div>
 
                 {/* Apply Button */}
-                <div className="flex md:flex-col items-start md:items-end justify-between gap-4 pt-2 md:pt-0">
+                <div className="flex md:flex-col items-start md:items-end justify-between gap-3 pt-2 md:pt-0">
                   <button
                     onClick={openApplyModal}
-                    className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300 whitespace-nowrap shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                    className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-xl font-semibold text-sm uppercase tracking-wider transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
                   >
                     Apply Now
                   </button>
-                  <span className="text-xs text-gray-400 font-medium hidden md:inline">
+                  <span className="text-xs text-slate-400 font-medium hidden md:inline">
                     Sends to: HR Desk
                   </span>
                 </div>
@@ -294,8 +305,9 @@ export default function CareersPage() {
                 <div className="overflow-hidden space-y-6">
                   {/* Overview */}
                   <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#1C3A62] mb-2">
-                      Role Overview
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-2 flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-[#2495D3]" />
+                      <span>Role Overview</span>
                     </h3>
                     <p className="text-[#585858] leading-relaxed text-[15px] font-normal">
                       {technicalSupervisorJob.description}
@@ -304,12 +316,12 @@ export default function CareersPage() {
 
                   {/* Key Responsibilities */}
                   <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
                       Key Responsibilities
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                       {technicalSupervisorJob.responsibilities.map((resp, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858]">
+                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
                           <span>{resp}</span>
                         </li>
@@ -319,12 +331,12 @@ export default function CareersPage() {
 
                   {/* Qualifications */}
                   <div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
                       Qualifications & Skills
                     </h3>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2.5">
                       {technicalSupervisorJob.qualifications.map((qual, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858]">
+                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
                           <span>{qual}</span>
                         </li>
@@ -333,13 +345,13 @@ export default function CareersPage() {
                   </div>
 
                   {/* Bottom Apply Action */}
-                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
-                    <p className="text-sm text-gray-500 font-medium">
+                  <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <p className="text-sm text-[#585858] font-medium">
                       Ready to build your career with us?
                     </p>
                     <button
                       onClick={openApplyModal}
-                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-6 py-2.5 rounded-full font-medium text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer shadow"
+                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95"
                     >
                       Apply for this position
                     </button>
@@ -354,17 +366,21 @@ export default function CareersPage() {
       {/* Application Form Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300 animate-in fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeApplyModal();
           }}
         >
-          <div className="bg-white rounded-[2rem] shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto border border-gray-100 transition-all duration-300 transform scale-100 p-6 sm:p-8">
+          <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto border border-slate-200 transition-all duration-300 transform scale-100 p-6 sm:p-8">
+            {/* Top Accent line */}
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
+
             {/* Modal Header */}
-            <div className="flex items-start justify-between pb-4 border-b border-gray-100 mb-6">
+            <div className="flex items-start justify-between pb-4 border-b border-slate-100 mb-6">
               <div>
-                <div className="inline-block rounded-full bg-[#2495D3]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#2495D3] mb-2">
-                  Job Application
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2495D3]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#2495D3] mb-2">
+                  <Briefcase className="w-3 h-3" />
+                  <span>Job Application</span>
                 </div>
                 <h3 className="text-2xl font-bold text-[#1C3A62] tracking-tight">
                   Apply for Technical Supervisor
@@ -377,7 +393,7 @@ export default function CareersPage() {
                 type="button"
                 onClick={closeApplyModal}
                 disabled={isSubmitting}
-                className="p-2 rounded-full text-gray-400 hover:text-[#1C3A62] hover:bg-gray-100 transition-colors cursor-pointer"
+                className="p-2 rounded-full text-slate-400 hover:text-[#1C3A62] hover:bg-slate-100 transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -387,7 +403,7 @@ export default function CareersPage() {
             {/* Success State */}
             {isSubmitted ? (
               <div className="py-8 text-center space-y-4">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner border border-emerald-200">
                   <CheckCircle2 className="w-9 h-9" />
                 </div>
                 <h4 className="text-2xl font-bold text-[#1C3A62]">Application Submitted!</h4>
@@ -395,14 +411,14 @@ export default function CareersPage() {
                   Thank you, <strong className="text-[#1C3A62]">{name}</strong>. Your application and resume have been sent directly to{" "}
                   <strong className="text-[#2495D3]">jaisalil.s@inaspaceworks.com</strong>.
                 </p>
-                <p className="text-xs text-gray-400">
+                <p className="text-xs text-slate-400">
                   Our HR & Technical teams will review your profile and contact you soon.
                 </p>
                 <div className="pt-4">
                   <button
                     type="button"
                     onClick={closeApplyModal}
-                    className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-8 py-3 rounded-full font-semibold text-sm transition-all duration-300 shadow-md cursor-pointer"
+                    className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md cursor-pointer"
                   >
                     Done
                   </button>
@@ -431,7 +447,7 @@ export default function CareersPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your full name"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
                   />
                 </div>
 
@@ -449,7 +465,7 @@ export default function CareersPage() {
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
                     />
                   </div>
 
@@ -464,7 +480,7 @@ export default function CareersPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="your.email@example.com"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
                     />
                   </div>
                 </div>
@@ -481,7 +497,7 @@ export default function CareersPage() {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Enter your current residential address or city"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-[#F8F9FA] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all resize-none"
                   />
                 </div>
 
@@ -509,16 +525,16 @@ export default function CareersPage() {
                       className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 ${
                         isDragging
                           ? 'border-[#2495D3] bg-[#2495D3]/5 scale-[0.99]'
-                          : 'border-gray-200 hover:border-[#2495D3] hover:bg-[#F8F9FA]'
+                          : 'border-slate-200 hover:border-[#2495D3] hover:bg-slate-50'
                       }`}
                     >
-                      <div className="w-12 h-12 rounded-full bg-[#2495D3]/10 text-[#2495D3] flex items-center justify-center mx-auto mb-3">
+                      <div className="w-12 h-12 rounded-xl bg-[#2495D3]/10 text-[#2495D3] flex items-center justify-center mx-auto mb-3">
                         <UploadCloud className="w-6 h-6" />
                       </div>
                       <p className="text-sm font-semibold text-[#1C3A62]">
                         Click to upload or drag & drop
                       </p>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-xs text-slate-400 mt-1">
                         Supported formats: PDF, DOC, DOCX (Max 10MB)
                       </p>
                     </div>
@@ -540,7 +556,7 @@ export default function CareersPage() {
                       <button
                         type="button"
                         onClick={removeFile}
-                        className="p-2 text-gray-400 hover:text-red-500 rounded-lg hover:bg-white transition-colors cursor-pointer"
+                        className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-white transition-colors cursor-pointer"
                         title="Remove file"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -550,7 +566,7 @@ export default function CareersPage() {
                 </div>
 
                 {/* Send Info Note */}
-                <div className="rounded-xl bg-gray-50 p-3 text-xs text-gray-500 flex items-center gap-2">
+                <div className="rounded-xl bg-slate-50 p-3 text-xs text-[#585858] flex items-center gap-2 border border-slate-100">
                   <Mail className="w-4 h-4 text-[#2495D3] shrink-0" />
                   <span>
                     Applications are directly dispatched to{" "}
@@ -564,14 +580,14 @@ export default function CareersPage() {
                     type="button"
                     onClick={closeApplyModal}
                     disabled={isSubmitting}
-                    className="px-5 py-2.5 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors cursor-pointer"
+                    className="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-[#585858] hover:bg-slate-50 transition-colors cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#2495D3] hover:bg-[#1C3A62] disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 shadow-md flex items-center gap-2 cursor-pointer"
+                    className="bg-[#2495D3] hover:bg-[#1C3A62] disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md flex items-center gap-2 cursor-pointer active:scale-95"
                   >
                     {isSubmitting ? (
                       <>
