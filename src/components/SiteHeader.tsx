@@ -28,7 +28,7 @@ export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
+
         {/* INA Brand Logo */}
         <div className="flex items-center space-x-2.5 cursor-pointer group">
           <Link href="/" className="flex items-center">
@@ -44,11 +44,10 @@ export default function SiteHeader() {
         <nav className="hidden lg:flex items-center bg-white text-[#383838] px-6 py-2.5 rounded-full border border-slate-200 shadow-xs space-x-7 text-sm font-medium">
           <Link
             href="/about"
-            className={`transition-colors relative py-1 ${
-              isActive("/about")
+            className={`transition-colors relative py-1 ${isActive("/about")
                 ? "text-[#2495D3] font-semibold"
                 : "text-[#383838] hover:text-[#2495D3]"
-            }`}
+              }`}
           >
             About us
             {isActive("/about") && (
@@ -60,9 +59,8 @@ export default function SiteHeader() {
           <div className="group relative">
             <a
               href="#repairs"
-              className={`hover:text-[#2495D3] transition-colors py-4 -my-4 flex items-center gap-1 ${
-                isServicesActive ? "text-[#2495D3] font-semibold" : "text-[#383838]"
-              }`}
+              className={`hover:text-[#2495D3] transition-colors py-4 -my-4 flex items-center gap-1 ${isServicesActive ? "text-[#2495D3] font-semibold" : "text-[#383838]"
+                }`}
             >
               <span>Services</span>
               <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#2495D3] group-hover:rotate-180 transition-transform duration-300" />
@@ -78,11 +76,10 @@ export default function SiteHeader() {
 
           <Link
             href="/clients-corner"
-            className={`transition-colors relative py-1 ${
-              isActive("/clients-corner")
+            className={`transition-colors relative py-1 ${isActive("/clients-corner")
                 ? "text-[#2495D3] font-semibold"
                 : "text-[#383838] hover:text-[#2495D3]"
-            }`}
+              }`}
           >
             Clients Corner
             {isActive("/clients-corner") && (
@@ -92,11 +89,10 @@ export default function SiteHeader() {
 
           <Link
             href="/careers"
-            className={`transition-colors relative py-1 ${
-              isActive("/careers")
+            className={`transition-colors relative py-1 ${isActive("/careers")
                 ? "text-[#2495D3] font-semibold"
                 : "text-[#383838] hover:text-[#2495D3]"
-            }`}
+              }`}
           >
             Careers
             {isActive("/careers") && (
@@ -106,11 +102,10 @@ export default function SiteHeader() {
 
           <Link
             href="/blogs"
-            className={`transition-colors relative py-1 ${
-              isActive("/blogs")
+            className={`transition-colors relative py-1 ${isActive("/blogs")
                 ? "text-[#2495D3] font-semibold"
                 : "text-[#383838] hover:text-[#2495D3]"
-            }`}
+              }`}
           >
             Blogs
             {isActive("/blogs") && (
@@ -120,11 +115,10 @@ export default function SiteHeader() {
 
           <Link
             href="/contact"
-            className={`transition-colors relative py-1 ${
-              isActive("/contact")
+            className={`transition-colors relative py-1 ${isActive("/contact")
                 ? "text-[#2495D3] font-semibold"
                 : "text-[#383838] hover:text-[#2495D3]"
-            }`}
+              }`}
           >
             Contact Us
             {isActive("/contact") && (
@@ -141,8 +135,8 @@ export default function SiteHeader() {
               <Phone className="w-4 h-4 text-[#2495D3]" />
             </div>
             <div className="flex flex-col text-left">
-              <span className="text-[11px] text-[#878787] font-semibold tracking-wide uppercase">
-                Call Ina Tech Fm
+              <span className="text-[11px] text-[#878787] font-semibold tracking-wide">
+                Call Ina Tech FM
               </span>
               <a
                 href="tel:+919326906715"
@@ -220,7 +214,7 @@ export default function SiteHeader() {
           >
             Contact Us
           </Link>
-          
+
           <div className="pt-4 flex flex-col space-y-3">
             <a
               href="tel:+919326906715"
@@ -229,7 +223,7 @@ export default function SiteHeader() {
               <div className="w-8 h-8 rounded-full bg-[#1C3A62] text-white flex items-center justify-center">
                 <Phone className="w-4 h-4 text-[#2495D3]" />
               </div>
-              <span>Call Ina Tech Fm: +91-9326906715</span>
+              <span>Call Ina Tech FM: +91-9326906715</span>
             </a>
             <Link
               href="/contact"

@@ -62,7 +62,7 @@ export default function FacilityManagementSteps() {
               Our Methodology
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-[46px] font-semibold text-[#1C3A62] leading-[1.15] tracking-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-[#1C3A62] leading-[1.15] tracking-normal mb-6">
               Engineering solutions built around your needs
             </h2>
 
@@ -93,16 +93,16 @@ export default function FacilityManagementSteps() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, margin: "-30px" }}
                     transition={{ duration: 0.5, delay: index * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-                    className="group relative flex items-start gap-6 p-7 sm:p-8 rounded-3xl bg-white border border-slate-200/80 hover:border-[#2495D3]/40 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1"
+                    className="group relative flex items-start gap-6 p-7 sm:p-8 rounded-3xl bg-transparent border border-slate-300/80 hover:border-[#2495D3]/50 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1"
                   >
                     {/* Step Number Badge with Gradient */}
-                    <div className="w-14 h-14 rounded-2xl bg-[#1C3A62] group-hover:bg-[#2495D3] text-white flex items-center justify-center text-lg font-bold shrink-0 shadow-md transition-colors duration-300 font-heading">
+                    <div className="w-14 h-14 rounded-2xl bg-[#1C3A62] group-hover:bg-[#2495D3] text-white flex items-center justify-center text-lg font-normal shrink-0 shadow-md transition-colors duration-300 font-heading">
                       {step.number}
                     </div>
 
                     {/* Step Details */}
                     <div className="pt-1 flex-grow">
-                      <h3 className="text-xl sm:text-2xl font-semibold text-[#1C3A62] group-hover:text-[#2495D3] mb-3 leading-snug transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl font-normal text-[#1C3A62] group-hover:text-[#2495D3] mb-3 leading-snug transition-colors duration-300">
                         {step.title}
                       </h3>
 

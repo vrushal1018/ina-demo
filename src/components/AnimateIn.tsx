@@ -65,13 +65,13 @@ export default function AnimateIn({
 
     // Check if target hash matches this section
     if (typeof window !== 'undefined' && id && window.location.hash === `#${id}`) {
-      setIsLoaded(true);
-      return;
+      const timer = setTimeout(() => setIsLoaded(true), 0);
+      return () => clearTimeout(timer);
     }
 
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      setIsLoaded(true);
-      return;
+      const timer = setTimeout(() => setIsLoaded(true), 0);
+      return () => clearTimeout(timer);
     }
 
     const observer = new IntersectionObserver(

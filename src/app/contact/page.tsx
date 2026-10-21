@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import AnimateIn from "@/components/AnimateIn";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function ContactPage() {
   const [firstName, setFirstName] = useState("");
@@ -74,11 +75,10 @@ export default function ContactPage() {
       }
 
       setIsSubmitted(true);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Contact submission error:", err);
-      setErrorMessage(
-        err.message || "Failed to send your message. Please check your network or try again."
-      );
+      const message = err instanceof Error ? err.message : "Failed to send your message. Please check your network or try again.";
+      setErrorMessage(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -102,6 +102,8 @@ export default function ContactPage() {
       <div className="relative min-h-screen bg-gradient-to-b from-[#F0F7FD]/40 via-white to-slate-50 font-sans overflow-hidden">
         {/* Background blueprint dots */}
         <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+        {/* Architectural linework stream */}
+        <ArchitecturalLineworkBackground theme="light" opacity={0.25} mask="fade-edges" />
 
         <section className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -114,7 +116,7 @@ export default function ContactPage() {
               <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
                 Get in Touch
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] mb-4 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] mb-4 tracking-normal">
                 Contact information
               </h2>
               <div className="w-16 h-1 bg-[#2495D3] mb-6 rounded-full" />
@@ -159,7 +161,9 @@ export default function ContactPage() {
                   <div>
                     <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Headquarters</div>
                     <span className="text-[#1C3A62] font-medium text-sm sm:text-base leading-relaxed block">
-                      1st Floor, MBC Park, Kasarvadavli, Sainath Nagar, Near Big Mall, Thane (W) – 400615, Maharashtra
+                      1st Floor, MBC Park, Kasarvadavli,Near Big Mall, Thane (W) – 400615, Maharashtra
+
+
                     </span>
                   </div>
                 </div>
@@ -202,7 +206,7 @@ export default function ContactPage() {
                   {/* Top Accent Strip */}
                   <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
 
-                  <h2 className="text-2xl sm:text-3xl font-bold text-[#1C3A62] mb-2 tracking-tight">
+                  <h2 className="text-2xl sm:text-3xl font-normal text-[#1C3A62] mb-2 tracking-normal">
                     Send Us a Message
                   </h2>
                   <p className="text-[#585858] mb-8 leading-relaxed font-normal text-sm sm:text-base">
@@ -215,7 +219,7 @@ export default function ContactPage() {
                         <CheckCircle2 className="w-10 h-10" />
                       </div>
                       <div className="space-y-2">
-                        <h3 className="text-2xl font-bold text-[#1C3A62]">
+                        <h3 className="text-2xl font-normal text-[#1C3A62]">
                           Message Sent Successfully!
                         </h3>
                         <p className="text-sm sm:text-base text-[#585858] max-w-md mx-auto leading-relaxed">

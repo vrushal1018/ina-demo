@@ -7,6 +7,7 @@ import { Calendar, ArrowRight, BookOpen } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import BlogHero from "@/components/BlogHero";
 import AnimateIn from "@/components/AnimateIn";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 import { blogs } from "@/data/blogs";
 
 export default function BlogsPage() {
@@ -17,6 +18,8 @@ export default function BlogsPage() {
       <div className="relative min-h-screen bg-gradient-to-b from-white via-slate-50 to-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
         {/* Blueprint dots accent */}
         <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
+        {/* Architectural linework stream */}
+        <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
 
         <div className="relative z-10 max-w-7xl mx-auto pt-4">
           {/* Header Section */}
@@ -30,7 +33,7 @@ export default function BlogsPage() {
                 <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
                   Our Blog
                 </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] leading-tight tracking-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] leading-tight tracking-normal">
                   <span className="block">View All</span>
                   <span className="block mt-1 text-[#2495D3]">Knowledge Posts</span>
                 </h2>
@@ -89,7 +92,7 @@ export default function BlogsPage() {
                     {/* Card Body */}
                     <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between">
                       <div>
-                        <h3 className="text-xl font-bold text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors line-clamp-2">
+                        <h3 className="text-xl font-normal text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors line-clamp-2">
                           {post.title}
                         </h3>
 

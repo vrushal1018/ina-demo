@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Mail, ArrowUpRight, Award } from 'lucide-react';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 const departments = ['Admin', 'HR', 'Technical'];
 
@@ -268,15 +269,20 @@ export default function OurTeam() {
   }, [currentIndex, isPaused, maxIndex, selectedDepartment]);
 
   return (
-    <section className="bg-white text-[#383838] py-20 lg:py-28 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-slate-100">
-      <div className="max-w-7xl mx-auto w-full">
+    <section className="relative bg-white text-[#383838] py-20 lg:py-28 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-slate-100">
+      {/* Background blueprint dots */}
+      <div className="absolute inset-0 blueprint-dots opacity-25 pointer-events-none" />
+      {/* Architectural linework stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" flipY={true} />
+
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Section Header */}
         <div className="text-center mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold uppercase tracking-widest">
             <Award className="w-3.5 h-3.5 text-[#2495D3]" />
             <span>Operational Executives</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#1C3A62]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-normal text-[#1C3A62]">
             Meet Our Leadership Team
           </h2>
           <p className="text-[#585858] max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
@@ -347,7 +353,7 @@ export default function OurTeam() {
                   {/* Body Content */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-lg font-bold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-1">
+                      <h3 className="text-lg font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-1">
                         {member.name}
                       </h3>
                       <p className="text-xs font-semibold text-[#2495D3] mt-0.5 mb-2 line-clamp-1">

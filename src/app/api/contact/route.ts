@@ -192,11 +192,15 @@ Inquiry routed to: ${recipientEmail}
       success: true,
       message: "Thank you for reaching out! Your message has been sent successfully. Our team will get back to you shortly.",
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error sending contact email:", error);
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Failed to send your message. Please try again later or email us directly.";
     return NextResponse.json(
       {
-        error: error?.message || "Failed to send your message. Please try again later or email us directly.",
+        error: errorMessage,
       },
       { status: 500 }
     );

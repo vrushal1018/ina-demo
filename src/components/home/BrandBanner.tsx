@@ -81,12 +81,12 @@ export default function BrandBanner() {
             {[...RESIDENTIAL_LOGOS, ...RESIDENTIAL_LOGOS].map((brand, idx) => (
               <div
                 key={`${brand.name}-${idx}`}
-                className="flex items-center justify-center shrink-0 px-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-xs hover:shadow-md hover:border-[#2495D3]/30 transition-all duration-300 hover:scale-105 cursor-pointer"
+                className="flex items-center justify-center shrink-0 px-4 sm:px-6 py-2 bg-transparent transition-all duration-300 hover:scale-110 cursor-pointer"
               >
                 <img
                   src={brand.src}
                   alt={brand.name}
-                  className="h-10 sm:h-14 md:h-16 w-auto max-w-[200px] object-contain"
+                  className="h-10 sm:h-14 md:h-16 w-auto max-w-[200px] object-contain transition-all duration-300 hover:brightness-105"
                   loading="lazy"
                 />
               </div>

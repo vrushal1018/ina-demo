@@ -7,6 +7,7 @@ import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 export default function TransitionServicesPage() {
   return (
@@ -20,6 +21,8 @@ export default function TransitionServicesPage() {
         <section className="relative bg-gradient-to-b from-[#F0F7FD]/50 via-white to-white py-8 lg:py-14 overflow-hidden">
           {/* Blueprint grid accent */}
           <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
+          {/* Architectural linework stream */}
+          <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             {/* Breadcrumbs */}
@@ -39,7 +42,7 @@ export default function TransitionServicesPage() {
                   <span>Smooth Mobilization & Operations</span>
                 </div>
 
-                <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-[#1C3A62]">
+                <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-[#1C3A62]">
                   TRANSITION
                   <br />
                   SERVICES
@@ -137,7 +140,7 @@ export default function TransitionServicesPage() {
                       Overview
                     </div>
 
-                    <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1C3A62]">
+                    <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-[#1C3A62]">
                       What are Transition Services?
                     </h2>
                     <div className="w-16 h-1 bg-[#2495D3] mt-3 mb-6 rounded-full" />

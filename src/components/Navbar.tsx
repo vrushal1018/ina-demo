@@ -26,7 +26,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <img src="/Ina Logo-1.jpg.png" alt="INA Logo" className="h-14 w-auto object-contain rounded-lg shadow-lg" />
             <span className="text-xl font-medium tracking-tight text-white flex items-center gap-1.5">
-              INA <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-medium border border-purple-500/30">Next.js v15</span>
+              Ina <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-medium border border-purple-500/30">Next.js v15</span>
             </span>
           </div>
 
@@ -37,7 +37,7 @@ export default function Navbar() {
               <a href="#services" className="hover:text-purple-400 transition-colors flex items-center gap-1.5 h-full">
                 <LayoutGrid className="w-4 h-4 text-orange-400" /> Services
               </a>
-              
+
               {/* Mega Menu Dropdown */}
               <div className="absolute top-full left-0 w-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 origin-top-left z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

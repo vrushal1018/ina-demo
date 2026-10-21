@@ -1,27 +1,33 @@
 "use client";
 
 import React, {
-  useState,
-  useRef,
-  useEffect,
-  useTransition,
-  useCallback,
   Suspense,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
 
 import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
 
 import {
-  OrbitControls,
   Html,
   Line,
-  Grid,
-  useTexture, // Added useTexture so it's ready for your map image
+  OrbitControls,
+  useTexture,
 } from "@react-three/drei";
 
 import * as THREE from "three";
 
-import { MapPin, Navigation, Building2 } from "lucide-react";
+import {
+  MapPin,
+  Navigation,
+  Building2,
+  ExternalLink,
+  Globe2,
+} from "lucide-react";
+
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 /* =========================================================
    TYPES
@@ -34,21 +40,29 @@ interface Location {
   address: string;
   lat: number;
   lng: number;
+
+  // Offsets in the globe's local tangent plane.
+  // Larger values provide more space between labels.
+  labelOffset: [number, number];
 }
 
 /* =========================================================
-   LOCATIONS
+   OFFICE LOCATIONS
+
+   Each offset is tuned individually to spread the labels
+   around the India region while keeping their real locations.
 ========================================================= */
 
 const locations: Location[] = [
   {
     id: 1,
-    city: "Mumbai [Head Office]",
+    city: "Mumbai · HQ",
     country: "Maharashtra",
     address:
       "1st Floor, MBC Park, Kasarvadavli, Sainath Nagar, Near Big Mall, Thane (W) – 400607",
     lat: 19.2684,
     lng: 72.9669,
+    labelOffset: [-0.92, 0.40],
   },
   {
     id: 2,
@@ -58,6 +72,7 @@ const locations: Location[] = [
       "32/15778, Springs Cascade, Opp. EMC Hospital, Peringatt Road, Palarivattom, Ernakulam – 682025",
     lat: 9.9982,
     lng: 76.3078,
+    labelOffset: [-0.85, -0.72],
   },
   {
     id: 3,
@@ -67,6 +82,7 @@ const locations: Location[] = [
       "4th Floor, House Bearing No: 8-4-369/1/1/2, Hemavathi Nagar, Meter Factory Road, Erragadda, Hyderabad – 500018",
     lat: 17.4583,
     lng: 78.4419,
+    labelOffset: [0.88, 0.38],
   },
   {
     id: 4,
@@ -76,6 +92,7 @@ const locations: Location[] = [
       "101, A, Trade Centre, 18th, South Tukoganj, Near Crown Plaza Hotel, Indore – 452001",
     lat: 22.7161,
     lng: 75.8823,
+    labelOffset: [-0.60, 0.96],
   },
   {
     id: 5,
@@ -85,6 +102,7 @@ const locations: Location[] = [
       "2nd Floor, Unit No ASO 228, Bharti Astra Tower, Rajarhat, Newtown, Kolkata – 700156",
     lat: 22.5833,
     lng: 88.4667,
+    labelOffset: [1.02, 0.82],
   },
   {
     id: 6,
@@ -94,6 +112,7 @@ const locations: Location[] = [
       "101, Flat No. 003, NGR Patel Paradise, Ground Floor, Wasa Layout, Doddanekkundi, Bangalore – 560037",
     lat: 12.9719,
     lng: 77.6974,
+    labelOffset: [0.72, -0.80],
   },
   {
     id: 7,
@@ -103,6 +122,7 @@ const locations: Location[] = [
       "No. 1/181 A, Bajanai Kovil Street, Injambakkam, Chennai – 600115",
     lat: 12.9224,
     lng: 80.2505,
+    labelOffset: [1.12, -0.35],
   },
   {
     id: 8,
@@ -112,6 +132,7 @@ const locations: Location[] = [
       "Office No. 201, Block -A Plot No. 82, Sector -63, Noida – 201307",
     lat: 28.628,
     lng: 77.3789,
+    labelOffset: [0.42, 1.05],
   },
   {
     id: 9,
@@ -121,6 +142,7 @@ const locations: Location[] = [
       "Office No 39 S.F, J B Tower, Opp Doordarshan Kendra, Drive In Road, Thaltej, Ahmedabad – 380054",
     lat: 23.0487,
     lng: 72.5273,
+    labelOffset: [-1.10, 0.90],
   },
   {
     id: 10,
@@ -130,6 +152,7 @@ const locations: Location[] = [
       "G-411, 3rd Floor, Mega Centre, Hadapsar, Pune – 411028",
     lat: 18.5039,
     lng: 73.9288,
+    labelOffset: [-1.15, -0.12],
   },
   {
     id: 11,
@@ -139,228 +162,249 @@ const locations: Location[] = [
       "House No M-53/11, Flat No: S-Iv, Soares Apts., Mollar Corlim, Panjim – 403110",
     lat: 15.4989,
     lng: 73.8278,
+    labelOffset: [-0.42, -1.02],
   },
 ];
 
 /* =========================================================
-   FLAT PROJECTION (GEO → 2D Plane)
+   GOOGLE MAPS
 ========================================================= */
 
-function latLngToVector3(lat: number, lng: number): THREE.Vector3 {
-  const scale = 0.35;
-  // Center of India bounding box is roughly Lng: 83, Lat: 22.8
-  const x = (lng - 83) * scale;
-  const z = -(lat - 22.8) * scale;
+function openGoogleMaps(loc: Location) {
+  const query = `${loc.address}, ${loc.city}, ${loc.country}, India`;
 
-  return new THREE.Vector3(x, 0, z);
+  const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    query
+  )}`;
+
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 
 /* =========================================================
-   INDIA MAP OVERLAY (The Map on the Black Surface)
+   LATITUDE / LONGITUDE → GLOBE POSITION
 ========================================================= */
 
-function IndiaMapPlane() {
-  const mapTexture = useTexture("/original-6a1bb1cdbd94bf7543f3ccf4957a28df.webp");
+function latLngToGlobePosition(
+  lat: number,
+  lng: number,
+  radius: number
+): THREE.Vector3 {
+  const phi = THREE.MathUtils.degToRad(90 - lat);
+  const theta = THREE.MathUtils.degToRad(lng + 180);
 
-  return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.015, 0]}>
-      {/* 
-        This is perfectly scaled to match India's Latitude/Longitude 
-        bounding box spread at our 0.35 scale factor. 
-      */}
-      <planeGeometry args={[10.0, 10.36]} />
-      <meshBasicMaterial
-        color="#4cb3eb"
-        transparent
-        opacity={0.5} 
-        map={mapTexture} 
-        depthWrite={false}
-      />
-    </mesh>
+  return new THREE.Vector3(
+    -radius * Math.sin(phi) * Math.cos(theta),
+    radius * Math.cos(phi),
+    radius * Math.sin(phi) * Math.sin(theta)
   );
 }
 
 /* =========================================================
-   LOCATION MARKER (3D PIN)
+   SPREAD LABELS ALONG THE LOCAL GLOBE SURFACE
+
+   Unlike global X/Y offsets, these offsets follow the local
+   geographic directions at each office.
+
+   eastOffset: moves a label east or west.
+   northOffset: moves a label north or south.
+
+   The connector still begins at the true coordinates.
 ========================================================= */
 
-function LocationMarker({
+function getSpreadLabelPosition(
+  lat: number,
+  lng: number,
+  offset: [number, number],
+  radius: number
+): THREE.Vector3 {
+  const latitude = THREE.MathUtils.degToRad(lat);
+  const longitude = THREE.MathUtils.degToRad(lng);
+
+  const actualPosition = latLngToGlobePosition(lat, lng, 1).normalize();
+
+  // Local east direction on the globe.
+  const east = new THREE.Vector3(
+    Math.sin(longitude),
+    0,
+    -Math.cos(longitude)
+  ).normalize();
+
+  // Local north direction on the globe.
+  const north = new THREE.Vector3(
+    Math.sin(latitude) * Math.cos(longitude),
+    Math.cos(latitude),
+    Math.sin(latitude) * Math.sin(longitude)
+  ).normalize();
+
+  // Move along the local tangent plane, then project back
+  // onto the sphere so labels remain arranged around the globe.
+  return actualPosition
+    .clone()
+    .addScaledVector(east, offset[0])
+    .addScaledVector(north, offset[1])
+    .normalize()
+    .multiplyScalar(radius);
+}
+
+/* =========================================================
+   CLICKABLE GLOBE LABEL
+========================================================= */
+
+function GlobeLocationLabel({
   loc,
-  activeLocation,
+  isSelected,
   onSelectLocation,
 }: {
   loc: Location;
-  activeLocation: Location | null;
+  isSelected: boolean;
   onSelectLocation: (loc: Location) => void;
 }) {
-  const isSelected = activeLocation?.id === loc.id;
-  const position = latLngToVector3(loc.lat, loc.lng);
+  const actualPosition = useMemo(
+    () => latLngToGlobePosition(loc.lat, loc.lng, 2.012),
+    [loc.lat, loc.lng]
+  );
 
-  const handleClick = (e: ThreeEvent<MouseEvent>) => {
-    e.stopPropagation();
-    onSelectLocation(loc);
-  };
+  const labelPosition = useMemo(
+    () =>
+      getSpreadLabelPosition(
+        loc.lat,
+        loc.lng,
+        loc.labelOffset,
+        2.045
+      ),
+    [loc.lat, loc.lng, loc.labelOffset]
+  );
+
+  const handleClick = useCallback(
+    (event: ThreeEvent<MouseEvent>) => {
+      event.stopPropagation();
+      onSelectLocation(loc);
+      openGoogleMaps(loc);
+    },
+    [loc, onSelectLocation]
+  );
 
   return (
-    <group position={position}>
-      {/* Ground Glow Ring */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.02, 0]}>
-        <ringGeometry
-          args={[
-            isSelected ? 0.15 : 0.08,
-            isSelected ? 0.22 : 0.12,
-            32,
-          ]}
-        />
-        <meshBasicMaterial
-          color={isSelected ? "#FFFFFF" : "#2495D3"}
-          transparent
-          opacity={isSelected ? 0.8 : 0.4}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-
-      {/* Center dot on ground */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.025, 0]}>
-        <circleGeometry args={[0.04, 16]} />
-        <meshBasicMaterial color={isSelected ? "#FFFFFF" : "#2495D3"} />
-      </mesh>
-
-      {/* Vertical Pin Line */}
+    <group>
+      {/* Subtle connector to the actual office coordinates */}
       <Line
-        points={[
-          [0, 0, 0],
-          [0, isSelected ? 0.8 : 0.4, 0],
-        ]}
-        color={isSelected ? "#FFFFFF" : "#2495D3"}
-        lineWidth={isSelected ? 2 : 1}
+        points={[actualPosition, labelPosition]}
+        color={isSelected ? "#FFFFFF" : "#70C9FF"}
         transparent
-        opacity={isSelected ? 0.9 : 0.4}
+        opacity={isSelected ? 0.95 : 0.65}
+        lineWidth={1}
+        depthTest
       />
 
-      {/* Top Node */}
-      <mesh
-        position={[0, isSelected ? 0.8 : 0.4, 0]}
-        onClick={handleClick}
-        onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = "pointer"; }}
-        onPointerOut={(e) => { document.body.style.cursor = "auto"; }}
-      >
-        <sphereGeometry args={[isSelected ? 0.06 : 0.04, 16, 16]} />
-        <meshStandardMaterial
-          color={isSelected ? "#FFFFFF" : "#2495D3"}
-          emissive={isSelected ? "#FFFFFF" : "#000000"}
-          emissiveIntensity={0.5}
-        />
-      </mesh>
-
-      {/* HTML Label */}
+      {/* Compact office label */}
       <Html
-        position={[0, isSelected ? 0.95 : 0.55, 0]}
+        position={labelPosition.toArray()}
         center
-        zIndexRange={[100, 0]}
+        distanceFactor={7.5}
+        occlude
+        zIndexRange={[30, 0]}
+        style={{
+          pointerEvents: "auto",
+          userSelect: "none",
+          whiteSpace: "nowrap",
+        }}
       >
-        <div
-          onClick={(e) => {
-            e.stopPropagation();
-            onSelectLocation(loc);
-          }}
-          className="pointer-events-auto cursor-pointer"
+        <button
+          type="button"
+          aria-label={`Open ${loc.city} office in Google Maps`}
+          title={`Open ${loc.city} in Google Maps`}
+          onClick={handleClick}
+          className={`
+            flex items-center gap-1
+            whitespace-nowrap rounded-md border
+            px-1.5 py-1
+            text-[9px] font-semibold leading-tight
+            shadow-md backdrop-blur-md
+            transition-colors duration-200
+            sm:px-2 sm:py-1
+            sm:text-[10px]
+            ${isSelected
+              ? "border-white/80 bg-[#2495D3] text-white shadow-[0_0_12px_rgba(36,149,211,0.45)]"
+              : "border-white/25 bg-[#102744]/90 text-white hover:border-[#70C9FF] hover:bg-[#2495D3]"
+            }
+          `}
         >
-          <div
-            className={`
-              flex items-center gap-1.5 whitespace-nowrap rounded-lg border backdrop-blur-md shadow-lg transition-all duration-300
-              ${isSelected
-                ? "px-3 py-1.5 bg-[#1C3A62] text-white border-[#2495D3] scale-105"
-                : "px-2 py-1 bg-white/90 text-[#1C3A62] border-white/50 opacity-80 hover:opacity-100 hover:scale-105"
-              }
-            `}
-          >
-            <MapPin
-              className={
-                isSelected
-                  ? "w-3.5 h-3.5 text-[#2495D3]"
-                  : "w-3 h-3 text-[#1C3A62]"
-              }
-            />
-            <span
-              className={
-                isSelected
-                  ? "text-xs font-semibold"
-                  : "text-[10px] font-medium"
-              }
-            >
-              {loc.city}
-            </span>
-          </div>
-        </div>
+          <MapPin
+            className="h-2.5 w-2.5 shrink-0 text-[#70C9FF]"
+          />
+
+          <span>{loc.city}</span>
+
+          <ExternalLink
+            className="h-2 w-2 shrink-0 opacity-70"
+          />
+        </button>
       </Html>
     </group>
   );
 }
 
 /* =========================================================
-   FLAT MAP GROUP (Slides to center active pin)
+   EARTH GLOBE
 ========================================================= */
 
-function MapGroup({
+function EarthGlobe({
   activeLocation,
   onSelectLocation,
 }: {
   activeLocation: Location | null;
   onSelectLocation: (loc: Location) => void;
 }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const targetPosition = useRef(new THREE.Vector3());
+  const globeRef = useRef<THREE.Group>(null);
 
-  useEffect(() => {
-    if (!activeLocation) return;
-    const locPos = latLngToVector3(activeLocation.lat, activeLocation.lng);
-    targetPosition.current.set(-locPos.x, 0, -locPos.z);
-  }, [activeLocation]);
+  const earthTexture = useTexture(
+    "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg"
+  );
 
-  useFrame(() => {
-    if (!groupRef.current) return;
-    groupRef.current.position.lerp(targetPosition.current, 0.05);
+  useMemo(() => {
+    earthTexture.colorSpace = THREE.SRGBColorSpace;
+    earthTexture.anisotropy = 8;
+  }, [earthTexture]);
+
+  useFrame((_, delta) => {
+    if (!globeRef.current) return;
+
+    globeRef.current.rotation.y += delta * 0.10;
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={globeRef} rotation={[0, -2.2, 0]}>
+      {/* EARTH SURFACE */}
+      <mesh>
+        <sphereGeometry args={[2, 96, 96]} />
 
-      {/* Sleek Black Base Plate */}
-      <mesh position={[0, -0.1, 0]}>
-        <cylinderGeometry args={[8.5, 8.5, 0.2, 64]} />
         <meshStandardMaterial
-          color="#0F223D"
-          transparent
-          opacity={0.9}
-          roughness={0.1}
-          metalness={0.8}
+          map={earthTexture}
+          roughness={0.95}
+          metalness={0.02}
         />
       </mesh>
 
-      {/* Tech Grid Overlay */}
-      <Grid
-        position={[0, 0.005, 0]}
-        args={[14, 14]}
-        cellSize={0.5}
-        cellThickness={0.5}
-        cellColor="#2495D3"
-        sectionSize={2.5}
-        sectionThickness={1}
-        sectionColor="#2495D3"
-        fadeDistance={10}
-        fadeStrength={1}
-      />
+      {/* ATMOSPHERE */}
+      <mesh>
+        <sphereGeometry args={[2.055, 64, 64]} />
 
-      {/* THE INDIA MAP LAYER */}
-      <IndiaMapPlane />
+        <meshBasicMaterial
+          color="#2495D3"
+          transparent
+          opacity={0.12}
+          side={THREE.BackSide}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
 
-      {/* Render all Locations */}
+      {/* OFFICE LABELS */}
       {locations.map((loc) => (
-        <LocationMarker
+        <GlobeLocationLabel
           key={loc.id}
           loc={loc}
-          activeLocation={activeLocation}
+          isSelected={activeLocation?.id === loc.id}
           onSelectLocation={onSelectLocation}
         />
       ))}
@@ -369,121 +413,322 @@ function MapGroup({
 }
 
 /* =========================================================
+   GLOBE SCENE
+========================================================= */
+
+function GlobeScene({
+  activeLocation,
+  onSelectLocation,
+}: {
+  activeLocation: Location | null;
+  onSelectLocation: (loc: Location) => void;
+}) {
+  return (
+    <>
+      <ambientLight intensity={1.5} />
+
+      <directionalLight
+        position={[5, 4, 6]}
+        intensity={2.2}
+      />
+
+      <pointLight
+        position={[-4, 2, -3]}
+        intensity={25}
+        color="#2495D3"
+      />
+
+      <Suspense fallback={null}>
+        <EarthGlobe
+          activeLocation={activeLocation}
+          onSelectLocation={onSelectLocation}
+        />
+      </Suspense>
+
+      <OrbitControls
+        enableZoom
+        enablePan={false}
+        enableRotate
+        minDistance={4.5}
+        maxDistance={9}
+        rotateSpeed={0.5}
+        zoomSpeed={0.7}
+        enableDamping
+        dampingFactor={0.05}
+        minPolarAngle={Math.PI / 5}
+        maxPolarAngle={(Math.PI * 4) / 5}
+      />
+    </>
+  );
+}
+
+/* =========================================================
    MAIN COMPONENT
 ========================================================= */
 
 export default function WhereAreWeLocated() {
-  const [activeLocation, setActiveLocation] = useState<Location | null>(
-    locations[0]
-  );
-  const [, startTransition] = useTransition();
+  const [activeLocation, setActiveLocation] =
+    useState<Location | null>(locations[0]);
 
-  const handleSelectLocation = useCallback((loc: Location) => {
-    startTransition(() => {
+  const handleSelectLocation = useCallback(
+    (loc: Location) => {
       setActiveLocation(loc);
-    });
-  }, []);
+    },
+    []
+  );
 
   return (
-    <section className="relative w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden border-t border-slate-100">
-      {/* Background grid accent */}
-      <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
+    <section
+      className="
+        relative w-full overflow-hidden
+        border-t border-slate-100
+        bg-white px-4 py-16
+        font-sans sm:px-6 sm:py-20
+        lg:px-12 lg:py-24
+      "
+    >
+      <div className="blueprint-dots pointer-events-none absolute inset-0 opacity-30" />
 
-      <div className="relative max-w-7xl mx-auto">
+      <ArchitecturalLineworkBackground
+        theme="light"
+        opacity={0.2}
+        mask="fade-edges"
+      />
 
-        {/* HEADING */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold uppercase tracking-wider">
-            <Building2 className="w-3.5 h-3.5" />
+      <div className="relative z-10 mx-auto max-w-7xl">
+        {/* SECTION HEADING */}
+        <div className="mx-auto mb-12 max-w-3xl space-y-3 text-center sm:mb-16">
+          <div
+            className="
+              inline-flex items-center gap-2
+              rounded-full border border-[#2495D3]/20
+              bg-[#2495D3]/10 px-3.5 py-1.5
+              text-xs font-semibold uppercase tracking-wider
+              text-[#2495D3]
+            "
+          >
+            <Globe2 className="h-3.5 w-3.5" />
             <span>Our Presence</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
+
+          <h2 className="text-3xl font-normal tracking-normal text-[#1C3A62] sm:text-4xl lg:text-5xl">
             Where Are We Located?
           </h2>
-          <p className="text-base sm:text-lg text-[#585858]">
-            Explore our office hubs across India.
+
+          <p className="text-base text-[#585858] sm:text-lg">
+            Explore Ina TechFM&apos;s network of offices across India.
           </p>
-          <div className="w-16 h-1 bg-[#2495D3] mx-auto rounded-full" />
+
+          <div className="mx-auto h-1 w-16 rounded-full bg-[#2495D3]" />
         </div>
 
-        {/* MAIN CONTAINER */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F8FAFC] rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/80 shadow-lg">
+        {/* MAIN CONTENT */}
+        <div
+          className="
+            grid grid-cols-1 items-center gap-6
+            rounded-3xl border border-slate-200/80
+            bg-[#F8FAFC] p-4 shadow-lg
+            sm:gap-8 sm:p-6
+            lg:grid-cols-12 lg:p-8
+          "
+        >
+          {/* ROTATING EARTH */}
+          <div
+            className="
+              relative h-[360px] w-full overflow-hidden
+              rounded-2xl
+              bg-gradient-to-b from-[#102744] via-[#07182D] to-[#030B16]
+              sm:h-[460px]
+              lg:col-span-8 lg:h-[550px]
+            "
+          >
+            <div
+              className="
+                pointer-events-none absolute left-1/2 top-1/2
+                h-[300px] w-[300px]
+                -translate-x-1/2 -translate-y-1/2
+                rounded-full bg-[#2495D3]/10 blur-[90px]
+                sm:h-[400px] sm:w-[400px]
+              "
+            />
 
-          {/* 3D CANVAS */}
-          <div className="lg:col-span-8 relative w-full h-[400px] sm:h-[500px] lg:h-[550px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#1C3A62] to-[#0a1629]">
             <Canvas
-              // Isometric-style angled camera setup
-              camera={{ position: [0, 6, 7], fov: 45 }}
-              dpr={[1, 2]}
+              camera={{
+                position: [0, 0, 6.6],
+                fov: 42,
+              }}
+              dpr={[1, 1.75]}
+              gl={{
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance",
+              }}
             >
-              <ambientLight intensity={0.6} />
-              <directionalLight position={[5, 10, 5]} intensity={1.5} />
-              <pointLight position={[-5, 5, 2]} intensity={1} color="#2495D3" />
-
-              <Suspense fallback={null}>
-                <MapGroup
-                  activeLocation={activeLocation}
-                  onSelectLocation={handleSelectLocation}
-                />
-              </Suspense>
-
-              <OrbitControls
-                enableZoom={true}
-                minDistance={3}
-                maxDistance={14}
-                enablePan={false}
-                rotateSpeed={0.5}
-                dampingFactor={0.05}
-                enableDamping
-                maxPolarAngle={Math.PI / 2.5}
-                minPolarAngle={Math.PI / 6}
+              <GlobeScene
+                activeLocation={activeLocation}
+                onSelectLocation={handleSelectLocation}
               />
             </Canvas>
 
-            <div className="absolute bottom-4 left-4 bg-[#1C3A62]/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-xs text-white/80 flex items-center gap-2 pointer-events-none">
-              <Navigation className="w-3.5 h-3.5 text-[#2495D3]" />
-              Drag to rotate • Scroll to zoom
+            {/* TOP LABEL */}
+            <div
+              className="
+                pointer-events-none absolute left-4 top-4
+                flex items-center gap-2
+                rounded-lg border border-white/10
+                bg-[#102744]/75 px-3 py-2
+                text-xs text-white/80 backdrop-blur-md
+              "
+            >
+              <span className="h-2 w-2 animate-pulse rounded-full bg-[#2495D3]" />
+              <span>INA TECHFM • GLOBAL NETWORK</span>
+            </div>
+
+            {/* INTERACTION HINT */}
+            <div
+              className="
+                pointer-events-none absolute bottom-4 left-4
+                flex items-center gap-2
+                rounded-lg border border-white/10
+                bg-[#102744]/80 px-3 py-2
+                text-[10px] text-white/80 backdrop-blur-md
+                sm:text-xs
+              "
+            >
+              <Navigation className="h-3.5 w-3.5 shrink-0 text-[#2495D3]" />
+
+              <span>
+                Drag to explore • Scroll to zoom • Click an office
+              </span>
+            </div>
+
+            {/* LOCATION COUNT */}
+            <div
+              className="
+                pointer-events-none absolute bottom-4 right-4
+                rounded-lg border border-white/10
+                bg-[#102744]/80 px-3 py-2
+                text-xs text-white/80 backdrop-blur-md
+              "
+            >
+              <span className="font-semibold text-[#2495D3]">
+                {locations.length}
+              </span>{" "}
+              office locations
             </div>
           </div>
 
-          {/* OFFICE LIST */}
-          <div className="lg:col-span-4 flex flex-col gap-3">
-            <h3 className="text-lg font-medium text-[#1C3A62] mb-1 flex items-center gap-2">
-              <Building2 className="w-5 h-5 text-[#2495D3]" />
-              Our Headquarters & Offices
-            </h3>
+          {/* OFFICE DIRECTORY */}
+          <div className="flex min-w-0 flex-col gap-3 lg:col-span-4">
+            <div className="mb-1 flex items-center justify-between gap-2">
+              <h3 className="flex items-center gap-2 text-base font-semibold text-[#1C3A62] sm:text-lg">
+                <Building2 className="h-5 w-5 shrink-0 text-[#2495D3]" />
+                Our Offices
+              </h3>
 
-            <div className="flex flex-col gap-2.5 max-h-[460px] overflow-y-auto pr-1">
+              <span className="rounded-full bg-[#2495D3]/10 px-2.5 py-1 text-xs font-medium text-[#2495D3]">
+                {locations.length} Locations
+              </span>
+            </div>
+
+            <p className="mb-1 text-sm leading-relaxed text-[#585858]">
+              Select an office to open its address in Google Maps.
+            </p>
+
+            <div
+              className="
+                flex max-h-[460px] flex-col gap-2.5
+                overflow-y-auto pr-1
+              "
+            >
               {locations.map((loc) => {
                 const isActive = activeLocation?.id === loc.id;
+
                 return (
                   <button
                     key={loc.id}
-                    onClick={() => handleSelectLocation(loc)}
-                    className={`w-full text-left p-4 rounded-xl transition-all duration-200 border flex flex-col justify-between 
+                    type="button"
+                    onClick={() => {
+                      handleSelectLocation(loc);
+                      openGoogleMaps(loc);
+                    }}
+                    className={`
+                      group flex w-full flex-col justify-between
+                      rounded-xl border p-3.5 text-left
+                      transition-all duration-200
+                      focus-visible:outline-none
+                      focus-visible:ring-2
+                      focus-visible:ring-[#2495D3]
+                      sm:p-4
                       ${isActive
-                        ? "bg-[#1C3A62] text-white border-[#2495D3] shadow-md transform -translate-y-0.5"
-                        : "bg-white text-[#383838] border-gray-200 hover:border-[#2495D3]/40 hover:bg-gray-50"
+                        ? "border-[#2495D3] bg-[#1C3A62] text-white shadow-md"
+                        : "border-gray-200 bg-white text-[#383838] hover:-translate-y-0.5 hover:border-[#2495D3]/50 hover:bg-slate-50"
                       }
                     `}
                   >
-                    <div className="flex items-center justify-between w-full gap-2">
-                      <span className={`font-medium text-sm sm:text-base ${isActive ? "text-white" : "text-[#1C3A62]"}`}>
+                    <div className="flex w-full items-center justify-between gap-2">
+                      <span
+                        className={`
+                          text-sm font-semibold sm:text-base
+                          ${isActive ? "text-white" : "text-[#1C3A62]"}
+                        `}
+                      >
                         {loc.city}
                       </span>
-                      <span className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap ${isActive ? "bg-[#2495D3] text-white" : "bg-gray-100 text-[#585858]"}`}>
+
+                      <span
+                        className={`
+                          whitespace-nowrap rounded-full px-2 py-0.5
+                          text-[10px] font-medium sm:text-xs
+                          ${isActive
+                            ? "bg-[#2495D3] text-white"
+                            : "bg-gray-100 text-[#585858]"
+                          }
+                        `}
+                      >
                         {loc.country}
                       </span>
                     </div>
-                    <p className={`text-xs mt-2 leading-relaxed ${isActive ? "text-gray-300" : "text-[#585858]"}`}>
+
+                    <p
+                      className={`
+                        mt-2 text-xs leading-relaxed
+                        ${isActive ? "text-gray-300" : "text-[#585858]"}
+                      `}
+                    >
                       {loc.address}
                     </p>
+
+                    <div
+                      className={`
+                        mt-3 flex items-center gap-1.5 text-xs font-medium
+                        ${isActive
+                          ? "text-[#70C9FF]"
+                          : "text-[#2495D3] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                        }
+                      `}
+                    >
+                      <MapPin className="h-3.5 w-3.5" />
+
+                      View on Google Maps
+
+                      <ExternalLink className="ml-auto h-3.5 w-3.5" />
+                    </div>
                   </button>
                 );
               })}
             </div>
-          </div>
 
+            {/* DIRECTORY FOOTER */}
+            <p className="mt-1 flex items-start gap-2 text-xs leading-relaxed text-[#585858]">
+              <Navigation className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#2495D3]" />
+
+              <span>
+                Our offices support coordinated facility management
+                operations across multiple regions of India.
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </section>

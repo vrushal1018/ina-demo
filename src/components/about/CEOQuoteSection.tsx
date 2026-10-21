@@ -4,12 +4,15 @@ import React from "react";
 import Image from "next/image";
 import { Users2, Award } from "lucide-react";
 import aboutUsImg from "../../../public/about us.png";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function CEOQuoteSection() {
   return (
     <section className="relative w-full bg-gradient-to-b from-white via-[#F0F7FD]/40 to-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Subtle blueprint grid background */}
       <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+      {/* Architectural linework stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.24} mask="fade-edges" flipX={true} />
 
       <div className="relative max-w-7xl mx-auto">
         <div className="relative bg-white rounded-3xl border border-slate-200/80 shadow-2xl shadow-[#1C3A62]/5 p-6 sm:p-10 lg:p-14 overflow-hidden">
@@ -83,7 +86,7 @@ export default function CEOQuoteSection() {
               {/* Author & Workforce Profile */}
               <div className="pt-6 border-t border-slate-100">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-3">
-                  <h3 className="text-2xl font-bold text-[#1C3A62] tracking-tight">
+                  <h3 className="text-2xl font-normal text-[#1C3A62] tracking-normal">
                     Our People
                   </h3>
                   <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#2495D3] bg-[#2495D3]/10 px-3 py-1 rounded-full w-fit">
