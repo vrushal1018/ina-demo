@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 
-import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 
 import {
   Html,
@@ -276,7 +276,7 @@ function GlobeLocationLabel({
   );
 
   const handleClick = useCallback(
-    (event: ThreeEvent<MouseEvent>) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       onSelectLocation(loc);
       openGoogleMaps(loc);
