@@ -14,6 +14,7 @@ import {
   BookOpen,
 } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 import { getBlogBySlug, blogs, BlogPost } from '@/data/blogs';
 
 // Clean SVG Brand Icons
@@ -123,8 +124,13 @@ export default function BlogDetailPage() {
     <>
       <SiteHeader />
 
-      <div className="bg-white min-h-screen font-sans text-[#383838] relative pt-8 pb-24">
-        <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-white min-h-screen font-sans text-[#383838] relative pt-8 pb-24 overflow-hidden">
+        {/* Blueprint dots accent */}
+        <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
+        {/* Architectural linework stream */}
+        <ArchitecturalLineworkBackground theme="light" opacity={0.2} mask="fade-edges" />
+
+        <div className="relative z-10 max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Back Navigation Bar */}
           <div className="mb-8">
             <Link
@@ -153,7 +159,7 @@ export default function BlogDetailPage() {
             </div>
 
             {/* Main Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 tracking-tight text-[#1C3A62]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal leading-tight mb-5 tracking-normal text-[#1C3A62]">
               {post.title}
             </h1>
 
@@ -243,7 +249,7 @@ export default function BlogDetailPage() {
             <main className="flex-1 max-w-2xl text-[#383838] text-base md:text-lg leading-relaxed">
               {post.sections?.map((section) => (
                 <section key={section.id} id={section.id} className="mb-12 scroll-mt-28">
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#1C3A62] mb-5 tracking-tight">
+                  <h2 className="text-2xl md:text-3xl font-normal text-[#1C3A62] mb-5 tracking-normal">
                     {section.title}
                   </h2>
 

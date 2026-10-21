@@ -4,12 +4,15 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Home, Sparkles, ChevronRight } from "lucide-react";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function BlogHero() {
   return (
     <section className="relative w-full py-20 lg:py-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-b from-[#0A1629] via-[#1C3A62] to-[#0A1629] text-white font-sans">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
+      {/* Architectural Linework Background Stream */}
+      <ArchitecturalLineworkBackground theme="dark" opacity={0.35} showBeacons={true} mask="fade-edges" />
 
       {/* Ambient Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#2495D3]/20 rounded-full blur-[100px] pointer-events-none" />
@@ -37,7 +40,7 @@ export default function BlogHero() {
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-4 text-white">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.08] tracking-normal mb-4 text-white">
           Insights,
           <br />
           Ideas & Innovation

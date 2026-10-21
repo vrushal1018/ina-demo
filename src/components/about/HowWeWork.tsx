@@ -102,7 +102,7 @@ export default function OurValues() {
             <span>Our Values</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] tracking-normal leading-tight">
             What We Stand For
           </h2>
 
@@ -155,7 +155,7 @@ export default function OurValues() {
                       isEven ? 'md:mr-auto' : 'md:ml-auto'
                     }`}
                   >
-                    <div className="bg-white p-7 md:p-8 rounded-2xl border border-slate-200/80 shadow-lg shadow-slate-100/80 hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 group relative overflow-hidden">
+                    <div className="bg-transparent p-7 md:p-8 rounded-2xl border border-slate-200/80 shadow-lg shadow-slate-100/80 hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 group relative overflow-hidden">
                       {/* Top Bar Accent */}
                       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -168,7 +168,7 @@ export default function OurValues() {
                           <span className="text-[11px] font-bold text-[#2495D3] tracking-widest uppercase">
                             Pillar {value.number}
                           </span>
-                          <h3 className="text-xl md:text-2xl font-bold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
+                          <h3 className="text-xl md:text-2xl font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
                             {value.title}
                           </h3>
                         </div>

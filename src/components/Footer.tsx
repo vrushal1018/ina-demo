@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin, ArrowRight, ShieldCheck, Clock, Building2 } from "lucide-react";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -26,6 +27,8 @@ export default function Footer() {
     <footer className="relative bg-[#0A1629] text-white pt-20 pb-12 overflow-hidden border-t border-[#1C3A62]">
       {/* Subtle Architectural Grid Background */}
       <div className="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" />
+      {/* Authentic Architectural Linework Background in Dark Theme */}
+      <ArchitecturalLineworkBackground theme="dark" opacity={0.25} mask="fade-top" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#2495D3]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1C3A62]/30 rounded-full blur-3xl pointer-events-none" />
 
@@ -37,7 +40,7 @@ export default function Footer() {
               <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
               <span>Pan-India Facility Engineering Excellence</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight leading-snug">
+            <h3 className="text-2xl sm:text-3xl font-normal text-white tracking-normal leading-snug">
               Empowering People. Enriching Assets.
             </h3>
             <p className="mt-2 text-slate-400 text-sm sm:text-base leading-relaxed">
@@ -91,7 +94,7 @@ export default function Footer() {
 
           {/* Col 2: Services */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#2495D3]">
+            <h4 className="text-xs font-normal uppercase tracking-widest text-[#2495D3]">
               Services
             </h4>
             <ul className="space-y-2.5">
@@ -111,7 +114,7 @@ export default function Footer() {
 
           {/* Col 3: Navigation */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#2495D3]">
+            <h4 className="text-xs font-normal uppercase tracking-widest text-[#2495D3]">
               Company
             </h4>
             <ul className="space-y-2.5">
@@ -131,7 +134,7 @@ export default function Footer() {
 
           {/* Col 4: Contact & HQ */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-[#2495D3]">
+            <h4 className="text-xs font-normal uppercase tracking-widest text-[#2495D3]">
               Headquarters
             </h4>
             <div className="space-y-3.5 text-xs sm:text-sm text-slate-300">

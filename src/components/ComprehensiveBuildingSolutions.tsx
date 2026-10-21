@@ -158,7 +158,7 @@ export default function ComprehensiveBuildingSolutions() {
               <Layers className="w-3.5 h-3.5" />
               <span>See all Services</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] leading-[1.1] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] leading-[1.1] tracking-normal">
               Comprehensive Facility <br className="hidden md:block" />
               Management Solutions
             </h2>
@@ -210,9 +210,8 @@ export default function ComprehensiveBuildingSolutions() {
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
-            className={`flex gap-6 overflow-x-auto pb-12 pt-4 px-4 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] select-none ${
-              isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab'
-            }`}
+            className={`flex gap-6 overflow-x-auto pb-12 pt-4 px-4 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] select-none ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab'
+              }`}
           >
             {services.map((service, index) => {
               const Icon = service.icon;
@@ -243,7 +242,7 @@ export default function ComprehensiveBuildingSolutions() {
                       </div>
 
                       {/* Content */}
-                      <h3 className="text-xl font-bold text-[#1C3A62] mb-3 pr-2 leading-snug group-hover:text-[#2495D3] transition-colors">
+                      <h3 className="text-xl font-normal text-[#1C3A62] mb-3 pr-2 leading-snug group-hover:text-[#2495D3] transition-colors">
                         {service.title}
                       </h3>
                       <p className="text-[#585858] text-[14px] mb-6 flex-grow leading-relaxed">

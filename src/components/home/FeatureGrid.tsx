@@ -60,9 +60,9 @@ export default function FeatureGrid() {
   return (
     <section className="relative bg-[#F8F9FA] py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background blueprint subtle accents */}
-      <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
+      <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.32} mask="fade-edges" />
+      <ArchitecturalLineworkBackground theme="light" opacity={0.42} mask="fade-edges" />
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#2495D3]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1C3A62]/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -77,7 +77,7 @@ export default function FeatureGrid() {
           <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
             Why Ina Tech FM
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C3A62] mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] mb-4 tracking-normal">
             Why Ina Tech FM
           </h2>
           <p className="text-base sm:text-lg text-[#585858] font-medium max-w-xl mx-auto">
@@ -95,21 +95,21 @@ export default function FeatureGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, margin: "-30px" }}
                 transition={{ duration: 0.5, delay: idx * 0.06, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="group relative flex flex-col justify-between p-7 sm:p-8 rounded-3xl bg-white border border-slate-200/80 hover:border-[#2495D3]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 hover:-translate-y-1.5 overflow-hidden"
+                className="group relative flex flex-col justify-between p-7 sm:p-8 rounded-3xl bg-transparent hover:bg-white/15 border border-slate-300/80 hover:border-[#2495D3]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 hover:-translate-y-1.5 overflow-hidden shadow-xs"
               >
                 {/* Subtle top index number */}
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-2xl bg-slate-50 group-hover:bg-[#2495D3] border border-slate-100 group-hover:border-[#2495D3] flex items-center justify-center text-[#1C3A62] group-hover:text-white shadow-xs transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl bg-white/50 group-hover:bg-[#2495D3] border border-slate-200/70 group-hover:border-[#2495D3] flex items-center justify-center text-[#1C3A62] group-hover:text-white shadow-xs transition-all duration-300">
                     <Icon className="w-7 h-7 transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <span className="font-heading text-xs font-bold text-slate-300 group-hover:text-[#2495D3] transition-colors">
+                  <span className="font-heading text-xs font-normal text-slate-400 group-hover:text-[#2495D3] transition-colors">
                     {feature.num}
                   </span>
                 </div>
 
                 <div className="flex-grow">
                   {/* Title */}
-                  <h3 className="text-lg sm:text-xl font-semibold text-[#1C3A62] mb-3 group-hover:text-[#2495D3] transition-colors duration-300 leading-snug">
+                  <h3 className="text-lg sm:text-xl font-normal text-[#1C3A62] mb-3 group-hover:text-[#2495D3] transition-colors duration-300 leading-snug">
                     {feature.title}
                   </h3>
 

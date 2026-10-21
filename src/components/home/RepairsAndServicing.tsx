@@ -77,15 +77,19 @@ export default function RepairsAndServicing() {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-50 scale-105 transition-transform duration-1000"
+          className="absolute inset-0 w-full h-full object-cover opacity-65 scale-105 transition-transform duration-1000"
         >
           <source
-            src="/Technician_using_tablet_in_serve…_20261015165052_gwr_video_mvp.mp4"
+            src="/Technician_using_tablet_in_service.mp4"
+            type="video/mp4"
+          />
+          <source
+            src="/Technician_using_tablet_in_serve%E2%80%A6_20261015165052_gwr_video_mvp.mp4"
             type="video/mp4"
           />
         </video>
         {/* Architectural Gradient & Blueprint Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/92 via-[#0A1629]/80 to-[#0A1629]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/85 via-[#0A1629]/65 to-[#0A1629]/90" />
         <div className="absolute inset-0 blueprint-grid opacity-15" />
       </div>
 
@@ -105,7 +109,7 @@ export default function RepairsAndServicing() {
               <span>Engineering & Maintenance</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-white tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-normal leading-[1.15]">
               Expert Engineering & Facility Management Services
             </h2>
           </div>
@@ -168,7 +172,7 @@ export default function RepairsAndServicing() {
                   delay: idx * 0.05,
                   ease: [0.21, 0.47, 0.32, 0.98],
                 }}
-                className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-white/[0.07] hover:bg-white/[0.13] border border-white/10 hover:border-[#2495D3]/50 backdrop-blur-md transition-all duration-300 hover:shadow-2xl hover:shadow-[#2495D3]/15 hover:-translate-y-1.5 overflow-hidden"
+                className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-transparent hover:bg-white/[0.08] border border-white/15 hover:border-[#2495D3]/60 transition-all duration-300 hover:shadow-2xl hover:shadow-[#2495D3]/15 hover:-translate-y-1.5 overflow-hidden"
               >
                 <div>
                   {/* Top Row: Icon Container and Index Number */}
@@ -182,7 +186,7 @@ export default function RepairsAndServicing() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-[#2495D3] transition-colors duration-300 leading-snug mb-2.5">
+                  <h3 className="text-base sm:text-lg font-normal text-white group-hover:text-[#2495D3] transition-colors duration-300 leading-snug mb-2.5">
                     {item.title}
                   </h3>
 
@@ -210,22 +214,22 @@ export default function RepairsAndServicing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-20px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-12 sm:mt-16 p-6 sm:p-7 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-md grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+          className="mt-12 sm:mt-16 p-6 sm:p-7 rounded-3xl bg-transparent border border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
         >
           <div>
-            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">24/7/365</div>
+            <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">24/7/365</div>
             <div className="text-xs text-slate-400 mt-1">Live Engineering Support</div>
           </div>
           <div>
-            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">100% SLA</div>
+            <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">100% SLA</div>
             <div className="text-xs text-slate-400 mt-1">Uptime Commitment</div>
           </div>
           <div>
-            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">Zero-Harm</div>
+            <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">Zero-Harm</div>
             <div className="text-xs text-slate-400 mt-1">Safety First Protocols</div>
           </div>
           <div>
-            <div className="text-xl sm:text-2xl font-bold text-white tracking-tight">Pan-India</div>
+            <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">Pan-India</div>
             <div className="text-xs text-slate-400 mt-1">Technical Deployment</div>
           </div>
         </motion.div>

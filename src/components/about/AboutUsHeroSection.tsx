@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function AboutUsHeroSection() {
   const galleryImages = [
@@ -42,6 +43,8 @@ export default function AboutUsHeroSection() {
     <section className="relative w-full bg-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
+      {/* Architectural linework stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.25} mask="fade-edges" />
 
       <div className="relative max-w-7xl mx-auto">
 
@@ -55,7 +58,7 @@ export default function AboutUsHeroSection() {
           <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
             About Us
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#1C3A62] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1C3A62] tracking-normal">
             About Us
           </h1>
           <p className="mt-4 text-base sm:text-lg text-[#585858] font-medium max-w-xl mx-auto">
@@ -98,7 +101,7 @@ export default function AboutUsHeroSection() {
           <span className="text-xs sm:text-sm font-bold tracking-widest text-[#2495D3] uppercase block mb-4">
             What we do
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-normal text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
             We enrich your assets through expert repairs and proactive maintenance, extending their lifespan and keeping your facility safe, efficient and reliable.
           </h2>
         </motion.div>

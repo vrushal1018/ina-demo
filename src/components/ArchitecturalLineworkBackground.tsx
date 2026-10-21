@@ -19,6 +19,8 @@ interface ArchitecturalLineworkBackgroundProps {
   mask?: 'fade-edges' | 'fade-top' | 'fade-bottom' | 'fade-sides' | 'none';
   /** Flip vertically to create visual variety between consecutive sections */
   flipY?: boolean;
+  /** Flip horizontally to create visual variety between consecutive sections */
+  flipX?: boolean;
   /** Additional CSS classes for the container */
   className?: string;
   /** Custom inline styles */
@@ -33,15 +35,16 @@ export default function ArchitecturalLineworkBackground({
   showBeacons = true,
   mask = 'fade-edges',
   flipY = false,
+  flipX = false,
   className = '',
   style,
   aspectRatio = 'slice',
 }: ArchitecturalLineworkBackgroundProps) {
   const uniqueId = useId().replace(/:/g, '');
 
-  // Default opacity tailored for pristine legibility and luxury feel
+  // Default opacity tailored for refined, elegant architectural presence
   const resolvedOpacity =
-    opacity !== undefined ? opacity : theme === 'dark' ? 0.6 : 0.35;
+    opacity !== undefined ? opacity : theme === 'dark' ? 0.6 : 0.38;
 
   // 4 Rhythmic Phase Groups for continuous seamless loop without visual gaps
   // Mathematical period = 2500 units (exact match to curve arc length)
@@ -51,32 +54,32 @@ export default function ArchitecturalLineworkBackground({
       dashArray: '1400 1100',
       duration: '18s',
       delay: '0s',
-      strokeWidth: theme === 'light' ? 0.85 : 0.95,
-      baseOpacity: theme === 'light' ? 0.75 : 0.85,
+      strokeWidth: theme === 'light' ? 1.0 : 1.1,
+      baseOpacity: 0.85,
     },
     {
       groupClass: 'arch-group-contour',
       dashArray: '1200 1300',
       duration: '20s',
       delay: '-5s',
-      strokeWidth: theme === 'light' ? 0.75 : 0.85,
-      baseOpacity: theme === 'light' ? 0.62 : 0.72,
+      strokeWidth: theme === 'light' ? 0.88 : 0.98,
+      baseOpacity: 0.75,
     },
     {
       groupClass: 'arch-group-horizon',
       dashArray: '1600 900',
       duration: '22s',
       delay: '-10s',
-      strokeWidth: theme === 'light' ? 0.65 : 0.75,
-      baseOpacity: theme === 'light' ? 0.52 : 0.6,
+      strokeWidth: theme === 'light' ? 0.78 : 0.88,
+      baseOpacity: 0.65,
     },
     {
       groupClass: 'arch-group-depth',
       dashArray: '1000 1500',
       duration: '25s',
       delay: '-15s',
-      strokeWidth: theme === 'light' ? 0.55 : 0.65,
-      baseOpacity: theme === 'light' ? 0.42 : 0.48,
+      strokeWidth: theme === 'light' ? 0.68 : 0.78,
+      baseOpacity: 0.55,
     },
   ];
 
@@ -86,13 +89,12 @@ export default function ArchitecturalLineworkBackground({
       return '#2495D3';
     }
     if (theme === 'light') {
-      // Architectural blueprint inks on white paper:
-      // alternating subtle cyan, soft steel blue, and light indigo
+      // Light, airy cyan and soft sky blueprint drafting lines (no dark inks)
       const palette = [
-        'rgba(36, 149, 211, 0.65)',
-        'rgba(72, 143, 205, 0.5)',
-        'rgba(28, 58, 98, 0.42)',
-        'rgba(36, 149, 211, 0.35)',
+        'rgba(36, 149, 211, 0.55)', // Brand Cyan #2495D3
+        'rgba(72, 143, 205, 0.48)', // Soft Sky Blue #488FCD
+        'rgba(56, 189, 248, 0.42)', // Luminous Cyan
+        'rgba(36, 149, 211, 0.35)', // Delicate Blueprint Cyan
       ];
       return palette[idx % palette.length];
     }
@@ -147,9 +149,8 @@ export default function ArchitecturalLineworkBackground({
       aria-hidden="true"
     >
       <svg
-        className={`w-full h-full arch-linework-svg ${
-          flipY ? 'scale-y-[-1]' : ''
-        }`}
+        className={`w-full h-full arch-linework-svg ${flipY ? 'scale-y-[-1]' : ''
+          } ${flipX ? 'scale-x-[-1]' : ''}`}
         viewBox={lineworkData.viewBox}
         preserveAspectRatio={preserveAspectRatioSetting}
         xmlns="http://www.w3.org/2000/svg"
@@ -204,9 +205,8 @@ export default function ArchitecturalLineworkBackground({
                 strokeWidth={groupConfig.strokeWidth}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className={`arch-path ${groupConfig.groupClass} ${
-                  isMobileHidden ? 'arch-mobile-hidden' : ''
-                }`}
+                className={`arch-path ${groupConfig.groupClass} ${isMobileHidden ? 'arch-mobile-hidden' : ''
+                  }`}
                 style={{
                   strokeDasharray: groupConfig.dashArray,
                   animationDuration: groupConfig.duration,

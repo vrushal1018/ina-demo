@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function SectorsWeOperate() {
   const doors = [
@@ -53,10 +54,12 @@ export default function SectorsWeOperate() {
     <section className="py-20 sm:py-28 bg-white text-[#383838] relative overflow-hidden">
       {/* Background blueprint elements */}
       <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+      {/* Authentic Architectural Linework Drawing Stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.28} flipY={true} mask="fade-edges" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="relative rounded-[2.5rem] border border-[#2495D3]/20 bg-gradient-to-br from-[#f0f7fd] via-[#f7fbfe] to-[#eaf4fc] py-14 sm:py-20 px-6 sm:px-12 lg:px-16 shadow-lg overflow-hidden">
-          
+
           {/* Decorative Corner Accents */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-[#2495D3]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#1C3A62]/10 rounded-full blur-3xl pointer-events-none" />
@@ -72,7 +75,7 @@ export default function SectorsWeOperate() {
             <div className="mb-4 inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3]">
               Sectors We Operate
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1C3A62] tracking-tight mb-5 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] tracking-normal mb-5 leading-tight">
               Sectors We Operate
             </h2>
             <p className="text-base sm:text-lg text-[#585858] leading-relaxed font-normal">
@@ -106,7 +109,7 @@ export default function SectorsWeOperate() {
                     className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1C3A62] via-transparent to-black/20" />
-                  
+
                   {/* Sector Tag Indicator */}
                   <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white text-[11px] font-medium tracking-wide">
                     Sector #{idx + 1}
@@ -115,7 +118,7 @@ export default function SectorsWeOperate() {
 
                 {/* Card Footer */}
                 <div className="p-6 bg-[#1C3A62] text-white flex flex-col justify-between flex-grow border-t border-white/10">
-                  <h3 className="text-xl font-semibold text-white mb-4 tracking-wide truncate">
+                  <h3 className="text-xl font-normal text-white mb-4 tracking-normal truncate">
                     {door.title}
                   </h3>
 

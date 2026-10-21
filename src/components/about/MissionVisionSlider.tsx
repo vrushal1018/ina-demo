@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Compass, Eye, Target } from "lucide-react";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 import missionImg from "../../../public/mission.png";
 import visionImg from "../../../public/vision.png";
 import goalsImg from "../../../public/goals.png";
@@ -13,7 +14,7 @@ interface Slide {
   description: string;
   image: string | import("next/image").StaticImageData;
   alt: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const slides: Slide[] = [
@@ -69,8 +70,13 @@ export default function MissionVisionSlider() {
 
   return (
     <section className="relative w-full bg-white py-14 sm:py-20 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        
+      {/* Blueprint grid dots */}
+      <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
+      {/* Architectural linework stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.2} mask="fade-edges" />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+
         {/* Interactive Top Tab Switcher */}
         <div className="flex items-center justify-center gap-3 mb-8 sm:mb-10 flex-wrap">
           {slides.map((slide, idx) => {
@@ -80,11 +86,10 @@ export default function MissionVisionSlider() {
               <button
                 key={slide.id}
                 onClick={() => setCurrentIndex(idx)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  isCurrent
+                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${isCurrent
                     ? "bg-[#1C3A62] text-white shadow-lg shadow-[#1C3A62]/20 scale-105"
                     : "bg-slate-100 text-[#585858] hover:bg-slate-200"
-                }`}
+                  }`}
               >
                 <Icon className={`w-4 h-4 ${isCurrent ? "text-[#2495D3]" : "text-slate-500"}`} />
                 <span>{slide.title}</span>
@@ -99,9 +104,8 @@ export default function MissionVisionSlider() {
           {slides.map((slide, idx) => (
             <div
               key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
             >
               <Image
                 src={slide.image}
@@ -125,7 +129,7 @@ export default function MissionVisionSlider() {
                 <div className="inline-block rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
                   Strategic Foundation
                 </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight mb-4 leading-tight font-heading">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-normal mb-4 leading-tight font-heading">
                   {slides[currentIndex].title}
                 </h2>
                 <p className="text-base sm:text-lg lg:text-xl text-slate-200 font-normal leading-relaxed max-w-xl">
@@ -161,11 +165,10 @@ export default function MissionVisionSlider() {
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
                   aria-label={`Go to slide ${idx + 1}`}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    idx === currentIndex
+                  className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentIndex
                       ? "w-12 bg-[#2495D3]"
                       : "w-3 bg-white/30 hover:bg-white/60"
-                  }`}
+                    }`}
                 />
               ))}
             </div>

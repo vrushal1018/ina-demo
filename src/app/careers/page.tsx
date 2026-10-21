@@ -21,6 +21,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import AnimateIn from '@/components/AnimateIn';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 interface JobDetails {
   id: number;
@@ -190,11 +191,13 @@ export default function CareersPage() {
       }
 
       setIsSubmitted(true);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Submission error:", err);
-      setErrorMessage(
-        err.message || "Failed to submit your application. Please check your network or try again."
-      );
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Failed to submit your application. Please check your network or try again.";
+      setErrorMessage(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -206,6 +209,8 @@ export default function CareersPage() {
       <div className="relative min-h-screen bg-gradient-to-b from-[#F0F7FD]/40 via-white to-slate-50 py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
         {/* Background Blueprint dots */}
         <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+        {/* Architectural linework stream */}
+        <ArchitecturalLineworkBackground theme="light" opacity={0.25} mask="fade-edges" />
 
         <div className="relative z-10 max-w-4xl mx-auto pt-6">
           {/* Header Section */}
@@ -217,7 +222,7 @@ export default function CareersPage() {
             <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3]">
               Careers at Ina Tech FM
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] mb-4 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] mb-4 tracking-normal">
               Currently Open Positions
             </h1>
             <p className="text-[#585858] max-w-xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
@@ -239,14 +244,13 @@ export default function CareersPage() {
                     className="flex items-center gap-3 cursor-pointer group/title mb-3 w-fit"
                     onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
                   >
-                    <h2 className="text-2xl sm:text-3xl font-bold text-[#1C3A62] tracking-tight group-hover/title:text-[#2495D3] transition-colors">
+                    <h2 className="text-2xl sm:text-3xl font-normal text-[#1C3A62] tracking-normal group-hover/title:text-[#2495D3] transition-colors">
                       {technicalSupervisorJob.title}
                     </h2>
                     <div className="p-1.5 rounded-full bg-slate-100 group-hover/title:bg-[#2495D3]/10 transition-colors">
                       <ChevronDown
-                        className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${
-                          isDescriptionOpen ? 'rotate-180' : ''
-                        }`}
+                        className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${isDescriptionOpen ? 'rotate-180' : ''
+                          }`}
                       />
                     </div>
                   </div>
@@ -298,14 +302,13 @@ export default function CareersPage() {
 
               {/* Animated Expandable Details */}
               <div
-                className={`grid transition-all duration-300 ease-in-out ${
-                  isDescriptionOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'
-                }`}
+                className={`grid transition-all duration-300 ease-in-out ${isDescriptionOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'
+                  }`}
               >
                 <div className="overflow-hidden space-y-6">
                   {/* Overview */}
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-2 flex items-center gap-1.5">
+                    <h3 className="text-xs font-normal uppercase tracking-wider text-[#1C3A62] mb-2 flex items-center gap-1.5">
                       <Sparkles className="w-3.5 h-3.5 text-[#2495D3]" />
                       <span>Role Overview</span>
                     </h3>
@@ -316,7 +319,7 @@ export default function CareersPage() {
 
                   {/* Key Responsibilities */}
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                    <h3 className="text-xs font-normal uppercase tracking-wider text-[#1C3A62] mb-3">
                       Key Responsibilities
                     </h3>
                     <ul className="space-y-2.5">
@@ -331,7 +334,7 @@ export default function CareersPage() {
 
                   {/* Qualifications */}
                   <div>
-                    <h3 className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                    <h3 className="text-xs font-normal uppercase tracking-wider text-[#1C3A62] mb-3">
                       Qualifications & Skills
                     </h3>
                     <ul className="space-y-2.5">
@@ -382,7 +385,7 @@ export default function CareersPage() {
                   <Briefcase className="w-3 h-3" />
                   <span>Job Application</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#1C3A62] tracking-tight">
+                <h3 className="text-2xl font-normal text-[#1C3A62] tracking-normal">
                   Apply for Technical Supervisor
                 </h3>
                 <p className="text-sm text-[#585858] mt-1 font-medium">
@@ -406,7 +409,7 @@ export default function CareersPage() {
                 <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner border border-emerald-200">
                   <CheckCircle2 className="w-9 h-9" />
                 </div>
-                <h4 className="text-2xl font-bold text-[#1C3A62]">Application Submitted!</h4>
+                <h4 className="text-2xl font-normal text-[#1C3A62]">Application Submitted!</h4>
                 <p className="text-sm sm:text-base text-[#585858] max-w-md mx-auto leading-relaxed">
                   Thank you, <strong className="text-[#1C3A62]">{name}</strong>. Your application and resume have been sent directly to{" "}
                   <strong className="text-[#2495D3]">jaisalil.s@inaspaceworks.com</strong>.
@@ -522,11 +525,10 @@ export default function CareersPage() {
                       onDragOver={handleDragOver}
                       onDragLeave={handleDragLeave}
                       onDrop={handleDrop}
-                      className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 ${
-                        isDragging
+                      className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 ${isDragging
                           ? 'border-[#2495D3] bg-[#2495D3]/5 scale-[0.99]'
                           : 'border-slate-200 hover:border-[#2495D3] hover:bg-slate-50'
-                      }`}
+                        }`}
                     >
                       <div className="w-12 h-12 rounded-xl bg-[#2495D3]/10 text-[#2495D3] flex items-center justify-center mx-auto mb-3">
                         <UploadCloud className="w-6 h-6" />

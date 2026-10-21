@@ -15,6 +15,7 @@ import {
   Activity, Heart, Plus, Clipboard, PlusCircle, Thermometer, Eye, Droplet, Users, Crosshair,
   Handshake,
 } from "lucide-react";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 // --- Mock Data for the 5 Categories ---
 const partnerCategories = [
@@ -105,7 +106,7 @@ const hexClipPath = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50
 
 interface LogoItem {
   name: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   color: string;
 }
 
@@ -163,6 +164,8 @@ export default function ClientsCorner() {
     <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-[#F0F7FD]/30 via-white to-slate-50 font-sans">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+      {/* Authentic Architectural Linework Drawing Stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.28} mask="fade-edges" />
 
       {/* Ambient Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 overflow-hidden pointer-events-none">
@@ -180,7 +183,7 @@ export default function ClientsCorner() {
           <h4 className="text-[#2495D3] font-bold text-sm md:text-base tracking-wide uppercase mb-3 hidden">
             INA partner
           </h4>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1C3A62] mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#1C3A62] mb-6 tracking-normal">
             Technologies & Partners with INA
           </h2>
           <p className="text-[#585858] text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -197,11 +200,10 @@ export default function ClientsCorner() {
             <button
               key={cat.id}
               onClick={() => setActiveTab(idx)}
-              className={`px-5 py-2.5 rounded-xl sm:rounded-full text-sm font-semibold transition-all duration-300 ${
-                activeTab === idx
+              className={`px-5 py-2.5 rounded-xl sm:rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === idx
                   ? "bg-[#1C3A62] text-white shadow-md scale-105"
                   : "bg-transparent text-[#585858] hover:bg-slate-100 hover:text-[#1C3A62]"
-              }`}
+                }`}
             >
               {cat.name}
             </button>

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Plus } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 interface ServiceItem {
@@ -85,7 +85,7 @@ export default function ServicesSection() {
             <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
               Our Service
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[50px] font-semibold text-[#1C3A62] leading-[1.15] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-[50px] font-normal text-[#1C3A62] leading-[1.15] tracking-normal">
               Comprehensive Facility Management Solutions
             </h2>
           </div>
@@ -127,8 +127,8 @@ export default function ServicesSection() {
                 key={`${service.id}-${index}`}
                 className="w-[320px] sm:w-[380px] md:w-[400px] flex-shrink-0"
               >
-                <div className="group relative bg-white rounded-3xl p-8 sm:p-9 transition-all duration-300 border border-slate-200/80 hover:border-[#2495D3]/40 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[400px] hover:-translate-y-1.5 overflow-hidden">
-                  
+                <div className="group relative bg-transparent hover:bg-white/15 rounded-3xl p-8 sm:p-9 transition-all duration-300 border border-slate-300/80 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[400px] hover:-translate-y-1.5 overflow-hidden">
+
                   {/* Subtle architectural card watermark */}
                   <div className="absolute -right-6 -bottom-6 w-32 h-32 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity pointer-events-none">
                     <img src={service.icon} alt="" className="w-full h-full object-contain" />
@@ -136,7 +136,7 @@ export default function ServicesSection() {
 
                   <div>
                     {/* Icon Container with glowing aura on hover */}
-                    <div className="w-16 h-16 rounded-2xl bg-slate-50 group-hover:bg-[#2495D3] border border-slate-100 group-hover:border-[#2495D3] p-3 flex items-center justify-center mb-7 transition-all duration-300 shadow-xs">
+                    <div className="w-16 h-16 rounded-2xl bg-white/60 group-hover:bg-[#2495D3] border border-slate-200/70 group-hover:border-[#2495D3] p-3 flex items-center justify-center mb-7 transition-all duration-300 shadow-xs">
                       <img
                         src={service.icon}
                         alt={service.title}
@@ -145,7 +145,7 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-semibold text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors duration-300">
+                    <h3 className="text-xl sm:text-2xl font-normal text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors duration-300">
                       {service.title}
                     </h3>
 
@@ -158,7 +158,7 @@ export default function ServicesSection() {
                   {/* Read More Action Button */}
                   <Link
                     href={service.href}
-                    className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-100 text-[#1C3A62] font-semibold text-sm group-hover:text-[#2495D3] transition-colors duration-200 mt-auto"
+                    className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-200/80 text-[#1C3A62] font-semibold text-sm group-hover:text-[#2495D3] transition-colors duration-200 mt-auto"
                   >
                     <span>Read More</span>
                     <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-[#2495D3] text-[#1C3A62] group-hover:text-white flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1">

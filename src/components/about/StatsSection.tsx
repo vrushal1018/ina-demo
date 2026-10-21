@@ -3,12 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Building2, Users, Briefcase, Award } from "lucide-react";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 interface StatItem {
   id: number;
   value: string;
   description: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const stats: StatItem[] = [
@@ -41,6 +42,10 @@ const stats: StatItem[] = [
 export default function StatsSection() {
   return (
     <section className="relative w-full bg-white py-14 sm:py-20 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+      {/* Blueprint grid accent */}
+      <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
+      {/* Architectural linework stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.2} mask="fade-edges" />
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
           {stats.map((stat, idx) => {
@@ -52,7 +57,7 @@ export default function StatsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, margin: "-30px" }}
                 transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="group relative bg-[#F8FAFC] rounded-3xl p-8 flex flex-col justify-between min-h-[220px] transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-[#1C3A62]/6 border border-slate-200/80 hover:border-[#2495D3]/40 hover:-translate-y-1 overflow-hidden"
+                className="group relative bg-transparent rounded-3xl p-8 flex flex-col justify-between min-h-[220px] transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 border border-slate-200/80 hover:border-[#2495D3]/40 hover:-translate-y-1 overflow-hidden"
               >
                 {/* Top Icon Badge */}
                 <div className="flex items-center justify-between mb-6">
@@ -64,7 +69,7 @@ export default function StatsSection() {
 
                 <div>
                   {/* Stat Number */}
-                  <h3 className="text-4xl sm:text-5xl font-bold text-[#1C3A62] tracking-tight group-hover:text-[#2495D3] transition-colors duration-300 font-heading">
+                  <h3 className="text-4xl sm:text-5xl font-normal text-[#1C3A62] tracking-normal group-hover:text-[#2495D3] transition-colors duration-300 font-heading">
                     {stat.value}
                   </h3>
 

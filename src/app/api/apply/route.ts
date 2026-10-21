@@ -140,9 +140,9 @@ export async function POST(req: NextRequest) {
 
             <div class="section-title">Attached Resume</div>
             ${attachments.length > 0
-              ? `<p style="font-size: 14px; color: #2e7d32; font-weight: 600;">✓ Resume attached: <em>${attachments[0].filename}</em> (${(attachments[0].content.length / 1024).toFixed(1)} KB)</p>`
-              : `<p style="font-size: 14px; color: #d32f2f;">No resume was uploaded.</p>`
-            }
+        ? `<p style="font-size: 14px; color: #2e7d32; font-weight: 600;">✓ Resume attached: <em>${attachments[0].filename}</em> (${(attachments[0].content.length / 1024).toFixed(1)} KB)</p>`
+        : `<p style="font-size: 14px; color: #d32f2f;">No resume was uploaded.</p>`
+      }
           </div>
           <div class="footer">
             <p style="margin: 0;">This email was automatically generated from the Careers page at <strong>Ina Tech FM</strong>.</p>
@@ -166,11 +166,15 @@ export async function POST(req: NextRequest) {
       success: true,
       message: "Application submitted successfully! Your resume has been sent to our recruitment team.",
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error sending application email:", error);
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "Failed to submit application. Please check your SMTP settings or try again later.";
     return NextResponse.json(
       {
-        error: error?.message || "Failed to submit application. Please check your SMTP settings or try again later.",
+        error: errorMessage,
       },
       { status: 500 }
     );

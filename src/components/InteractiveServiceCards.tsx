@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Smartphone,
   MousePointerClick,
@@ -9,9 +10,11 @@ import {
   Cloud,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   ArrowRight,
   Sparkles,
 } from 'lucide-react';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 const defaultServices = [
   {
@@ -43,7 +46,7 @@ const defaultServices = [
 
 export interface ServiceItem {
   title: string;
-  icon: any;
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
   description: string;
 }
 
@@ -66,6 +69,8 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
     <div className="relative py-20 lg:py-28 bg-[#F0F7FD]/30 flex flex-col items-center font-sans overflow-hidden border-t border-slate-100">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
+      {/* Architectural linework stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.24} mask="fade-edges" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
@@ -76,7 +81,7 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
           <div className="mb-4 hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
             Our Services
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1C3A62] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] tracking-normal">
             What We Offer
           </h2>
           <div className="w-16 h-1 bg-[#2495D3] mt-3 rounded-full" />
@@ -109,7 +114,7 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
 
         <div
           ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto pb-12 pt-4 px-4 sm:px-6 md:px-12 lg:px-16 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+          className="flex items-start gap-6 overflow-x-auto pb-12 pt-4 px-4 sm:px-6 md:px-12 lg:px-16 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
         >
           {services.map((service, index) => (
             <ServiceCard key={index} {...service} />
@@ -120,32 +125,98 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
   );
 }
 
-function ServiceCard({ title, icon: Icon, description }: { title: string; icon: any; description: string }) {
-  return (
-    <div className="relative w-[320px] sm:w-[360px] md:w-[390px] min-h-[420px] bg-white rounded-2xl flex-shrink-0 snap-center shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 p-7 sm:p-9 flex flex-col border border-slate-200/90 group overflow-hidden">
-      {/* Top Brand Accent Line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+function ServiceCard({
+  title,
+  icon: Icon,
+  description,
+}: {
+  title: string;
+  icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+  description: string;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
 
-      {/* Icon */}
-      <div className="w-14 h-14 rounded-xl bg-[#F0F7FD] text-[#1C3A62] flex items-center justify-center mb-6 group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 shadow-sm">
-        <Icon size={28} strokeWidth={1.75} />
+  return (
+    <div
+      onClick={() => setIsOpen((prev) => !prev)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setIsOpen((prev) => !prev);
+        }
+      }}
+      className={`group relative w-[320px] sm:w-[360px] md:w-[390px] bg-transparent rounded-2xl flex-shrink-0 snap-center transition-all duration-300 p-6 sm:p-7 flex flex-col border cursor-pointer select-none overflow-hidden ${
+        isOpen
+          ? 'border-[#2495D3] shadow-lg shadow-[#1C3A62]/6'
+          : 'border-slate-200/80 hover:border-[#2495D3]/60 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 hover:-translate-y-1'
+      }`}
+    >
+      {/* Top Brand Accent Line */}
+      <div
+        className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent transition-opacity duration-300 ${
+          isOpen ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+        }`}
+      />
+
+      {/* Heading Section: Icon + Dropdown Arrow */}
+      <div className="flex items-center justify-between gap-3 mb-4">
+        <div
+          className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 shadow-xs shrink-0 ${
+            isOpen
+              ? 'bg-[#2495D3] border-[#2495D3] text-white'
+              : 'bg-white border-slate-200/80 text-[#1C3A62] group-hover:bg-[#2495D3] group-hover:border-[#2495D3] group-hover:text-white'
+          }`}
+        >
+          <Icon size={24} strokeWidth={1.75} />
+        </div>
+
+        {/* Small arrow for dropdown */}
+        <div
+          className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 ${
+            isOpen
+              ? 'rotate-180 bg-[#2495D3] text-white border-[#2495D3] shadow-xs'
+              : 'text-slate-400 border-slate-200/80 bg-white group-hover:border-[#2495D3] group-hover:text-[#2495D3]'
+          }`}
+          aria-label={isOpen ? "Collapse details" : "Expand details"}
+        >
+          <ChevronDown size={18} strokeWidth={2} />
+        </div>
       </div>
 
-      {/* Title */}
-      <h3 className="font-bold text-xl sm:text-2xl text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors">
+      {/* Service Title */}
+      <h3
+        className={`font-normal text-xl sm:text-2xl leading-snug transition-colors ${
+          isOpen ? 'text-[#2495D3]' : 'text-[#1C3A62] group-hover:text-[#2495D3]'
+        }`}
+      >
         {title}
       </h3>
 
-      {/* Description */}
-      <p className="text-[#585858] text-[14px] sm:text-[15px] leading-relaxed mb-6 flex-grow font-normal">
-        {description}
-      </p>
+      {/* Dropdown Data Section */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="overflow-hidden"
+          >
+            <div className="pt-4 mt-4 border-t border-slate-200/70">
+              <p className="text-[#585858] text-[14px] sm:text-[15px] leading-relaxed mb-4 font-normal">
+                {description}
+              </p>
 
-      {/* Action */}
-      <div className="flex items-center gap-2 text-[#2495D3] font-semibold text-xs tracking-wider uppercase group-hover:text-[#1C3A62] transition-colors mt-auto w-fit">
-        <span>Learn More</span>
-        <ArrowRight size={16} className="transform group-hover:translate-x-1.5 transition-transform" />
-      </div>
+              <div className="flex items-center gap-2 text-[#2495D3] font-semibold text-xs tracking-wider uppercase group-hover:text-[#1C3A62] transition-colors w-fit">
+                <span>Learn More</span>
+                <ArrowRight size={15} className="transform group-hover:translate-x-1.5 transition-transform" />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

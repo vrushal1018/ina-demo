@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, Quote, Award } from 'lucide-react';
+import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 interface TeamMember {
   id: string;
@@ -65,6 +66,8 @@ export default function InteractiveTeamSlider() {
     <section className="relative w-full bg-slate-50/50 text-[#1C3A62] py-20 lg:py-28 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
+      {/* Architectural linework stream */}
+      <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
 
       {/* Header */}
       <div className="relative max-w-7xl mx-auto text-center mb-16 lg:mb-20">
@@ -72,7 +75,7 @@ export default function InteractiveTeamSlider() {
           <Award className="w-3.5 h-3.5 text-[#2495D3]" />
           <span>Leadership</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1C3A62] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] tracking-normal">
           OUR BOARD
         </h2>
         <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-4 rounded-full" />
@@ -120,7 +123,7 @@ export default function InteractiveTeamSlider() {
                         <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-2">
                           {member.role}
                         </span>
-                        <h3 className="text-xl sm:text-2xl font-bold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors">
+                        <h3 className="text-xl sm:text-2xl font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors">
                           {member.name}
                         </h3>
                         <p className="text-sm text-[#585858] font-medium mt-1">
@@ -177,7 +180,7 @@ export default function InteractiveTeamSlider() {
                   <span className="text-xs font-bold text-[#2495D3] uppercase tracking-widest block mb-2">
                     {selectedMember.role}
                   </span>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-[#1C3A62] mb-6 tracking-tight">
+                  <h2 className="text-3xl sm:text-4xl font-normal text-[#1C3A62] mb-6 tracking-normal">
                     {selectedMember.name}
                   </h2>
 
