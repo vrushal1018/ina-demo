@@ -8,19 +8,19 @@ export default function Footer() {
 
   const services = [
     { name: "Hard FM", href: "/services/hard-fm" },
-    { name: "Transition Services", href: "/services/transition-services" },
-    { name: "Sustainability Services", href: "/services/sustainability-services" },
-    { name: "Technical Services", href: "/services/technical-services" },
-    { name: "Audit & Offerings", href: "/services/audit-and-offerings" },
-    { name: "Allied Services", href: "/services/allied-services" },
+    { name: "Transition services", href: "/services/transition-services" },
+    { name: "Sustainability services", href: "/services/sustainability-services" },
+    { name: "Technical services", href: "/services/technical-services" },
+    { name: "Audit & offerings", href: "/services/audit-and-offerings" },
+    { name: "Allied services", href: "/services/allied-services" },
   ];
 
   const quickLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "Clients Corner", href: "/clients-corner" },
+    { name: "About us", href: "/about" },
+    { name: "Clients corner", href: "/clients-corner" },
     { name: "Careers", href: "/careers" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Contact us", href: "/contact" },
   ];
 
   return (
@@ -38,10 +38,10 @@ export default function Footer() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 text-xs font-semibold text-[#2495D3] mb-4">
               <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
-              <span>Pan-India Facility Engineering Excellence</span>
+              <span>Pan-India facility engineering excellence</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-normal text-white tracking-normal leading-snug">
-              Empowering People. Enriching Assets.
+              Empowering people. Enriching assets.
             </h3>
             <p className="mt-2 text-slate-400 text-sm sm:text-base leading-relaxed">
               Comprehensive engineering and facility management solutions focused on reliable, sustainable and efficient operations.
@@ -53,7 +53,7 @@ export default function Footer() {
               href="/contact"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white text-sm font-semibold tracking-wide transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:translate-y-0"
             >
-              <span>Talk to Our Experts</span>
+              <span>Talk to our experts</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
@@ -94,7 +94,7 @@ export default function Footer() {
 
           {/* Col 2: Services */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-normal uppercase tracking-widest text-[#2495D3]">
+            <h4 className="text-sm font-semibold tracking-wide text-[#2495D3]">
               Services
             </h4>
             <ul className="space-y-2.5">
@@ -114,7 +114,7 @@ export default function Footer() {
 
           {/* Col 3: Navigation */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-xs font-normal uppercase tracking-widest text-[#2495D3]">
+            <h4 className="text-sm font-semibold tracking-wide text-[#2495D3]">
               Company
             </h4>
             <ul className="space-y-2.5">
@@ -134,7 +134,7 @@ export default function Footer() {
 
           {/* Col 4: Contact & HQ */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-normal uppercase tracking-widest text-[#2495D3]">
+            <h4 className="text-sm font-semibold tracking-wide text-[#2495D3]">
               Headquarters
             </h4>
             <div className="space-y-3.5 text-xs sm:text-sm text-slate-300">

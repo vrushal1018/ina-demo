@@ -42,7 +42,7 @@ const VALUES: ValueItem[] = [
   {
     id: 3,
     number: '03',
-    title: 'People First',
+    title: 'People first',
     description:
       'We prioritize team and customer satisfaction.',
     icon: Users,
@@ -58,7 +58,7 @@ const VALUES: ValueItem[] = [
   {
     id: 5,
     number: '05',
-    title: 'Customer First',
+    title: 'Customer first',
     description:
       'Customer in the centre of all our actions.',
     icon: HeartHandshake,
@@ -88,7 +88,7 @@ export default function OurValues() {
   });
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-white via-slate-50/40 to-white text-[#383838] py-20 lg:py-28 overflow-hidden font-sans border-t border-slate-100">
+    <section className="relative w-full bg-gradient-to-b from-white via-slate-50/40 to-white text-[#383838] py-10 sm:py-14 lg:py-16 overflow-hidden font-sans border-t border-slate-100">
       {/* Background Blueprint Grid */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
@@ -96,21 +96,21 @@ export default function OurValues() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-widest uppercase">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide">
             <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>Our Values</span>
+            <span>Our values</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] tracking-normal leading-tight">
-            What We Stand For
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] tracking-normal leading-tight">
+            What we stand for
           </h2>
 
-          <p className="text-[#585858] text-base md:text-lg leading-relaxed font-normal">
+          <p className="text-[#585858] text-sm md:text-base leading-relaxed font-normal">
             Our values guide every decision we make, shaping how we work,
             collaborate, and create lasting value for our customers and people.
           </p>
-          <div className="w-16 h-1 bg-[#2495D3] mx-auto rounded-full" />
+          <div className="w-12 h-1 bg-[#2495D3] mx-auto rounded-full" />
         </div>
 
         {/* Values Timeline Container */}
@@ -124,7 +124,7 @@ export default function OurValues() {
           </div>
 
           {/* Values */}
-          <div className="space-y-12 md:space-y-20 relative z-10">
+          <div className="space-y-6 md:space-y-8 relative z-10">
             {VALUES.map((value, index) => {
               const Icon = value.icon;
               const isEven = index % 2 === 0;
@@ -135,7 +135,7 @@ export default function OurValues() {
                   className="relative flex flex-col md:flex-row items-start md:items-center"
                 >
                   {/* Timeline Center Node */}
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-white border-4 border-[#2495D3] shadow-lg shadow-[#2495D3]/20 flex items-center justify-center z-20 transition-transform duration-300 hover:scale-115">
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white border-4 border-[#2495D3] shadow-lg shadow-[#2495D3]/20 flex items-center justify-center z-20 transition-transform duration-300 hover:scale-115">
                     <span className="text-[#1C3A62] font-bold text-xs tracking-wider">
                       {value.number}
                     </span>
@@ -143,7 +143,7 @@ export default function OurValues() {
 
                   {/* Value Card */}
                   <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{
@@ -151,21 +151,21 @@ export default function OurValues() {
                       delay: index * 0.08,
                       ease: [0.215, 0.61, 0.355, 1],
                     }}
-                    className={`pl-16 md:pl-0 w-full md:w-[calc(50%-48px)] ${
+                    className={`pl-16 md:pl-0 w-full md:w-[calc(50%-40px)] ${
                       isEven ? 'md:mr-auto' : 'md:ml-auto'
                     }`}
                   >
-                    <div className="bg-transparent p-7 md:p-8 rounded-2xl border border-slate-200/80 shadow-lg shadow-slate-100/80 hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 group relative overflow-hidden">
+                    <div className="bg-transparent p-5 md:p-6 rounded-2xl border border-slate-200/80 shadow-lg shadow-slate-100/80 hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 group relative overflow-hidden">
                       {/* Top Bar Accent */}
                       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                       {/* Header */}
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 rounded-xl bg-[#1C3A62] text-[#2495D3] flex items-center justify-center group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 flex-shrink-0 shadow-md">
-                          <Icon className="w-6 h-6 stroke-[2]" />
+                      <div className="flex items-center gap-3.5 mb-3">
+                        <div className="w-10 h-10 rounded-xl bg-[#1C3A62] text-[#2495D3] flex items-center justify-center group-hover:bg-[#2495D3] group-hover:text-white transition-colors duration-300 flex-shrink-0 shadow-md">
+                          <Icon className="w-5 h-5 stroke-[2]" />
                         </div>
                         <div>
-                          <span className="text-[11px] font-bold text-[#2495D3] tracking-widest uppercase">
+                          <span className="text-[11px] font-semibold text-[#2495D3] tracking-wide">
                             Pillar {value.number}
                           </span>
                           <h3 className="text-xl md:text-2xl font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">

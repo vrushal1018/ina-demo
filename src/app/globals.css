@@ -10,7 +10,7 @@
 
 @theme {
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-heading: "Integral CF", var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-blue: #2495D3;
   --color-brand-navy: #1C3A62;
@@ -60,12 +60,9 @@
   h6,
   .font-heading {
     font-family: var(--font-heading);
-    font-weight: 400 !important;
-    font-synthesis: none !important;
-    font-synthesis-weight: none !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 0.015em;
+    letter-spacing: -0.015em;
   }
 }
 

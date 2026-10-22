@@ -27,9 +27,8 @@ export default function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-400 ease-out ${
-        startFade ? 'opacity-0 pointer-events-none' : 'opacity-100'
-      }`}
+      className={`fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-400 ease-out ${startFade ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
     >
       <div className="relative flex flex-col items-center justify-center p-6">
         <div className="relative w-44 sm:w-56 h-auto transition-transform duration-500 ease-out transform scale-100">

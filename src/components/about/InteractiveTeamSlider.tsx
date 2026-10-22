@@ -63,26 +63,26 @@ export default function InteractiveTeamSlider() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   return (
-    <section className="relative w-full bg-slate-50/50 text-[#1C3A62] py-20 lg:py-28 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans">
+    <section className="relative w-full bg-slate-50/50 text-[#1C3A62] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
       {/* Architectural linework stream */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
 
       {/* Header */}
-      <div className="relative max-w-7xl mx-auto text-center mb-16 lg:mb-20">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold uppercase tracking-widest mb-3">
+      <div className="relative max-w-7xl mx-auto text-center mb-8 sm:mb-10">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold tracking-wide mb-3">
           <Award className="w-3.5 h-3.5 text-[#2495D3]" />
           <span>Leadership</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] tracking-normal">
-          OUR BOARD
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] tracking-normal">
+          Our board
         </h2>
-        <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-4 rounded-full" />
+        <div className="w-12 h-1 bg-[#2495D3] mx-auto mt-3 rounded-full" />
       </div>
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto relative min-h-[550px]">
+      <div className="max-w-7xl mx-auto relative min-h-[450px]">
         <AnimatePresence mode="wait">
           {!selectedMember ? (
             /* ================= SLIDER VIEW ================= */
@@ -94,21 +94,21 @@ export default function InteractiveTeamSlider() {
               transition={{ duration: 0.4 }}
               className="relative"
             >
-              <div className="flex flex-wrap justify-center gap-8 lg:gap-10">
+              <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
                 {TEAM.map((member) => (
                   <motion.div
                     key={member.id}
                     onClick={() => setSelectedMember(member)}
-                    className="w-full sm:w-[320px] lg:w-[340px] flex-shrink-0 group cursor-pointer"
+                    className="w-full sm:w-[300px] lg:w-[320px] flex-shrink-0 group cursor-pointer"
                     whileHover={{ y: -6 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="relative bg-white rounded-3xl p-6 border border-slate-200/80 shadow-lg shadow-slate-200/50 group-hover:border-[#2495D3] group-hover:shadow-2xl transition-all duration-300 flex flex-col items-center">
+                    <div className="relative bg-white rounded-2xl p-5 border border-slate-200/80 shadow-lg shadow-slate-200/50 group-hover:border-[#2495D3] group-hover:shadow-2xl transition-all duration-300 flex flex-col items-center">
                       {/* Architectural corner mark */}
                       <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-[#2495D3]/40 group-hover:bg-[#2495D3] group-hover:scale-150 transition-all" />
 
                       {/* Image Pedestal */}
-                      <div className="relative w-full h-[360px] rounded-2xl bg-gradient-to-b from-slate-100 to-slate-200/60 overflow-hidden flex items-end justify-center mb-6 border border-slate-200/60 group-hover:from-[#F0F7FD] group-hover:to-slate-100 transition-colors">
+                      <div className="relative w-full h-[280px] rounded-xl bg-gradient-to-b from-slate-100 to-slate-200/60 overflow-hidden flex items-end justify-center mb-4 border border-slate-200/60 group-hover:from-[#F0F7FD] group-hover:to-slate-100 transition-colors">
                         <motion.img
                           layoutId={`member-image-${member.id}`}
                           src={member.image}
@@ -120,7 +120,7 @@ export default function InteractiveTeamSlider() {
 
                       {/* Info & CTA */}
                       <div className="w-full text-center">
-                        <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-2">
+                        <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold tracking-wide mb-2">
                           {member.role}
                         </span>
                         <h3 className="text-xl sm:text-2xl font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors">
@@ -131,7 +131,7 @@ export default function InteractiveTeamSlider() {
                         </p>
 
                         <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#2495D3] group-hover:gap-2.5 transition-all">
-                          <span>View Executive Profile</span>
+                          <span>View executive profile</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </div>
                       </div>
@@ -177,7 +177,7 @@ export default function InteractiveTeamSlider() {
 
                 {/* Right Side: Data Content */}
                 <div className="lg:col-span-7 flex flex-col justify-center">
-                  <span className="text-xs font-bold text-[#2495D3] uppercase tracking-widest block mb-2">
+                  <span className="text-xs font-semibold text-[#2495D3] tracking-wide block mb-2">
                     {selectedMember.role}
                   </span>
                   <h2 className="text-3xl sm:text-4xl font-normal text-[#1C3A62] mb-6 tracking-normal">

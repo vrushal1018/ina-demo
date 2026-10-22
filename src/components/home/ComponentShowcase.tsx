@@ -172,8 +172,8 @@ export function CustomButton() {
               {/* Analytics Metric Card */}
               <div className="glass-card p-6 rounded-2xl space-y-4 border border-white/10">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-                    Total Active Users
+                  <span className="text-xs font-semibold text-zinc-400">
+                    Total active users
                   </span>
                   <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                     <Activity className="w-4 h-4" />

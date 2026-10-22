@@ -161,7 +161,7 @@ export default function ClientsCorner() {
   ];
 
   return (
-    <section className="relative w-full py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-[#F0F7FD]/30 via-white to-slate-50 font-sans">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 overflow-hidden bg-gradient-to-b from-[#F0F7FD]/30 via-white to-slate-50 font-sans">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream */}
@@ -175,18 +175,15 @@ export default function ClientsCorner() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Header Area */}
-        <div className="text-center max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wider uppercase mb-4">
+        <div className="text-center max-w-3xl mb-8">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
             <Handshake className="w-3.5 h-3.5" />
-            <span>INA partner</span>
+            <span>INA partners</span>
           </div>
-          <h4 className="text-[#2495D3] font-bold text-sm md:text-base tracking-wide uppercase mb-3 hidden">
-            INA partner
-          </h4>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#1C3A62] mb-6 tracking-normal">
-            Technologies & Partners with INA
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#1C3A62] mb-3 tracking-normal">
+            Technologies & partners with INA
           </h2>
-          <p className="text-[#585858] text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-[#585858] text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
             Our goals are ambitious and can only be achieved in partnership with others.
             We work with a number of technology partners who help us
             deliver outstanding facility management solutions globally.
@@ -241,8 +238,8 @@ export default function ClientsCorner() {
                   className="object-contain filter drop-shadow-2xl"
                   priority
                 />
-                <span className="text-[11px] font-semibold tracking-widest text-[#2495D3] uppercase mt-2">
-                  Integrated Facility Management
+                <span className="text-[11px] font-semibold tracking-wide text-[#2495D3] mt-2">
+                  Integrated facility management
                 </span>
               </div>
             </div>
@@ -273,8 +270,8 @@ export default function ClientsCorner() {
               height={100}
               className="object-contain filter drop-shadow-2xl mb-2"
             />
-            <span className="text-[11px] font-semibold tracking-wider text-[#2495D3] uppercase">
-              {activeCategory.name} Partners
+            <span className="text-[11px] font-semibold tracking-wide text-[#2495D3]">
+              {activeCategory.name} partners
             </span>
           </div>
 

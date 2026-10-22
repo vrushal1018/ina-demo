@@ -105,77 +105,75 @@ export default function ContactPage() {
         {/* Architectural linework stream */}
         <ArchitecturalLineworkBackground theme="light" opacity={0.25} mask="fade-edges" />
 
-        <section className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <section className="relative z-10 py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Contact Information */}
             <div className="lg:col-span-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>Get in Touch</span>
+                <span>Get in touch</span>
               </div>
-              <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
-                Get in Touch
+              <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium text-[#2495D3]">
+                Get in touch
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] mb-4 tracking-normal">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1C3A62] mb-3 tracking-normal">
                 Contact information
               </h2>
-              <div className="w-16 h-1 bg-[#2495D3] mb-6 rounded-full" />
-              <p className="text-[#585858] mb-10 leading-relaxed font-normal text-base sm:text-lg">
+              <div className="w-16 h-1 bg-[#2495D3] mb-4 rounded-full" />
+              <p className="text-[#585858] mb-5 leading-relaxed font-normal text-sm sm:text-base">
                 We help you find direction, remove friction, and keep your business moving
                 forward—strategically and confidently.
               </p>
 
               {/* Contact detail cards */}
-              <div className="space-y-4 mb-10">
+              <div className="space-y-3 mb-6">
                 {/* Phone */}
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
-                  <div className="w-12 h-12 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0">
-                    <Phone className="w-5 h-5 stroke-[2]" />
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
+                  <div className="w-10 h-10 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0">
+                    <Phone className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Phone</div>
-                    <a href="tel:+919326906715" className="text-[#1C3A62] font-semibold text-base sm:text-lg hover:text-[#2495D3] transition-colors">
+                    <div className="text-xs font-semibold text-slate-400 tracking-wide">Phone</div>
+                    <a href="tel:+919326906715" className="text-[#1C3A62] font-semibold text-sm sm:text-base hover:text-[#2495D3] transition-colors">
                       +91-9326906715
                     </a>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
-                  <div className="w-12 h-12 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0">
-                    <Mail className="w-5 h-5 stroke-[2]" />
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
+                  <div className="w-10 h-10 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0">
+                    <Mail className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email</div>
-                    <a href="mailto:connect@inatechfmglobal.com" className="text-[#1C3A62] font-semibold text-sm sm:text-base hover:text-[#2495D3] transition-colors truncate block">
+                    <div className="text-xs font-semibold text-slate-400 tracking-wide">Email</div>
+                    <a href="mailto:connect@inatechfmglobal.com" className="text-[#1C3A62] font-semibold text-xs sm:text-sm hover:text-[#2495D3] transition-colors truncate block">
                       connect@inatechfmglobal.com
                     </a>
                   </div>
                 </div>
 
                 {/* Address */}
-                <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
-                  <div className="w-12 h-12 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0 mt-0.5">
-                    <MapPin className="w-5 h-5 stroke-[2]" />
+                <div className="flex items-start gap-3.5 p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
+                  <div className="w-10 h-10 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0 mt-0.5">
+                    <MapPin className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Headquarters</div>
-                    <span className="text-[#1C3A62] font-medium text-sm sm:text-base leading-relaxed block">
+                    <div className="text-xs font-semibold text-slate-400 tracking-wide">Headquarters</div>
+                    <span className="text-[#1C3A62] font-medium text-xs sm:text-sm leading-relaxed block">
                       1st Floor, MBC Park, Kasarvadavli,Near Big Mall, Thane (W) – 400615, Maharashtra
-
-
                     </span>
                   </div>
                 </div>
 
                 {/* Hours */}
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
-                  <div className="w-12 h-12 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0">
-                    <Clock className="w-5 h-5 stroke-[2]" />
+                <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-[#2495D3] hover:shadow-md transition-all group">
+                  <div className="w-10 h-10 rounded-xl bg-[#F0F7FD] group-hover:bg-[#2495D3] group-hover:text-white flex items-center justify-center text-[#1C3A62] transition-colors duration-300 flex-shrink-0">
+                    <Clock className="w-4 h-4 stroke-[2]" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Business Hours</div>
-                    <span className="text-[#1C3A62] font-medium text-sm sm:text-base">
+                    <div className="text-xs font-semibold text-slate-400 tracking-wide">Business hours</div>
+                    <span className="text-[#1C3A62] font-medium text-xs sm:text-sm">
                       Mon - Fri, 9:00 AM - 6:00 PM
                     </span>
                   </div>
@@ -183,8 +181,8 @@ export default function ContactPage() {
               </div>
 
               {/* Map Embed */}
-              <AnimateIn delay={0.2} minHeight="280px" className="w-full">
-                <div className="w-full h-72 rounded-2xl overflow-hidden shadow-lg border border-slate-200/80">
+              <AnimateIn delay={0.2} minHeight="240px" className="w-full">
+                <div className="w-full h-56 sm:h-64 rounded-2xl overflow-hidden shadow-lg border border-slate-200/80">
                   <iframe
                     title="Location Map"
                     src="https://www.google.com/maps?q=1st+Floor%2C+MBC+Park%2C+Kasarvadavli%2C+Sainath+Nagar%2C+Thane+West%2C+Maharashtra+400615&output=embed"
@@ -201,15 +199,15 @@ export default function ContactPage() {
 
             {/* Right Column: Contact Form */}
             <div className="lg:col-span-7">
-              <AnimateIn delay={0.15} minHeight="550px">
-                <div className="relative bg-white p-8 sm:p-10 lg:p-12 rounded-3xl shadow-xl border border-slate-200/90 overflow-hidden">
+              <AnimateIn delay={0.15} minHeight="450px">
+                <div className="relative bg-white p-6 sm:p-8 lg:p-10 rounded-3xl shadow-xl border border-slate-200/90 overflow-hidden">
                   {/* Top Accent Strip */}
                   <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
 
                   <h2 className="text-2xl sm:text-3xl font-normal text-[#1C3A62] mb-2 tracking-normal">
-                    Send Us a Message
+                    Send us a message
                   </h2>
-                  <p className="text-[#585858] mb-8 leading-relaxed font-normal text-sm sm:text-base">
+                  <p className="text-[#585858] mb-5 leading-relaxed font-normal text-sm sm:text-base">
                     Fill up the form and our team will get back to you within 24 hours.
                   </p>
 
@@ -254,7 +252,7 @@ export default function ContactPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         {/* First Name */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62]">
+                          <label className="text-xs font-semibold tracking-wide text-[#1C3A62]">
                             First name <span className="text-red-500">*</span>
                           </label>
                           <div className="relative">
@@ -275,7 +273,7 @@ export default function ContactPage() {
 
                         {/* Last Name */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62]">Last name</label>
+                          <label className="text-xs font-semibold tracking-wide text-[#1C3A62]">Last name</label>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                               <User className="h-4 w-4 text-slate-400" />
@@ -293,7 +291,7 @@ export default function ContactPage() {
 
                         {/* Email */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62]">
+                          <label className="text-xs font-semibold tracking-wide text-[#1C3A62]">
                             Email <span className="text-red-500">*</span>
                           </label>
                           <div className="relative">
@@ -314,7 +312,7 @@ export default function ContactPage() {
 
                         {/* Phone */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62]">Phone</label>
+                          <label className="text-xs font-semibold tracking-wide text-[#1C3A62]">Phone</label>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                               <Phone className="h-4 w-4 text-slate-400" />
@@ -332,7 +330,7 @@ export default function ContactPage() {
 
                         {/* Company Name */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62]">Company Name</label>
+                          <label className="text-xs font-semibold tracking-wide text-[#1C3A62]">Company name</label>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                               <Building2 className="h-4 w-4 text-slate-400" />
@@ -350,7 +348,7 @@ export default function ContactPage() {
 
                         {/* Subject */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62]">Subject</label>
+                          <label className="text-xs font-semibold tracking-wide text-[#1C3A62]">Subject</label>
                           <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                               <BookOpen className="h-4 w-4 text-slate-400" />
@@ -369,7 +367,7 @@ export default function ContactPage() {
 
                       {/* Message Textarea */}
                       <div className="flex flex-col gap-1.5 mt-2">
-                        <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62]">
+                        <label className="text-xs font-semibold tracking-wide text-[#1C3A62]">
                           Message <span className="text-red-500">*</span>
                         </label>
                         <textarea
@@ -388,17 +386,17 @@ export default function ContactPage() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full bg-[#2495D3] hover:bg-[#1C3A62] disabled:opacity-75 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-semibold uppercase tracking-wider text-sm transition-all duration-300 shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                          className="w-full bg-[#2495D3] hover:bg-[#1C3A62] disabled:opacity-75 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-semibold tracking-wide text-sm transition-all duration-300 shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                         >
                           {isSubmitting ? (
                             <>
                               <Loader2 className="w-5 h-5 animate-spin" />
-                              <span>Sending Message...</span>
+                              <span>Sending message...</span>
                             </>
                           ) : (
                             <>
                               <Send className="w-4 h-4" />
-                              <span>Send Message</span>
+                              <span>Send message</span>
                             </>
                           )}
                         </button>

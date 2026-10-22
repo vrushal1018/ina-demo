@@ -61,27 +61,27 @@ const agents: Agent[] = [
 
 export default function TrustedAgentsSection() {
   return (
-    <section className="w-full bg-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 font-sans relative overflow-hidden">
+    <section className="w-full bg-white py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 font-sans relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Heading */}
-        <div className="text-center mb-12 sm:mb-16">
-          <span className="text-[#1C3A62] font-semibold tracking-wider uppercase text-sm mb-3 block">
+        <div className="text-center mb-8 sm:mb-10">
+          <span className="text-[#1C3A62] font-semibold tracking-wide text-xs sm:text-sm mb-2 block">
             Leadership
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight">
-            Meet Our Board
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-[#1C3A62] tracking-tight">
+            Meet our board
           </h2>
         </div>
 
         {/* Agents Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {agents.map((agent) => (
-            <div key={agent.id} className="flex flex-col group p-4 sm:p-5 rounded-[2rem] hover:bg-slate-50 transition-colors duration-300">
+            <div key={agent.id} className="flex flex-col group p-4 rounded-2xl hover:bg-slate-50 transition-colors duration-300">
 
               {/* Agent Image Card */}
-              <div className="relative w-full h-[320px] sm:h-[360px] lg:h-[400px] rounded-[1.5rem] overflow-hidden mb-6 bg-gradient-to-b from-[#F0F6FA] to-[#E2ECF4] border border-[#2495D3]/10">
+              <div className="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] rounded-2xl overflow-hidden mb-4 bg-gradient-to-b from-[#F0F6FA] to-[#E2ECF4] border border-[#2495D3]/10">
                 <Image
                   src={agent.image}
                   alt={agent.name}
@@ -92,11 +92,11 @@ export default function TrustedAgentsSection() {
               </div>
 
               {/* Agent Info */}
-              <div className="flex flex-col text-left px-2 pb-2">
-                <h3 className="text-xl sm:text-2xl font-medium text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
+              <div className="flex flex-col text-left px-1 pb-1">
+                <h3 className="text-lg sm:text-xl font-medium text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
                   {agent.name}
                 </h3>
-                <p className="text-sm text-[#585858] font-medium mt-1 mb-5">
+                <p className="text-xs sm:text-sm text-[#585858] font-medium mt-1 mb-3">
                   {agent.role}
                 </p>
 

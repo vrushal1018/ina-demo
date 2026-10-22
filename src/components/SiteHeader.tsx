@@ -12,10 +12,10 @@ export default function SiteHeader() {
 
   const navLinks = [
     { name: "About us", href: "/about" },
-    { name: "Clients Corner", href: "/clients-corner" },
+    { name: "Clients corner", href: "/clients-corner" },
     { name: "Careers", href: "/careers" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact Us", href: "/contact" },
+    { name: "Contact us", href: "/contact" },
   ];
 
   const isActive = (href: string) => {
@@ -81,7 +81,7 @@ export default function SiteHeader() {
                 : "text-[#383838] hover:text-[#2495D3]"
               }`}
           >
-            Clients Corner
+            Clients corner
             {isActive("/clients-corner") && (
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#2495D3] rounded-full" />
             )}
@@ -120,7 +120,7 @@ export default function SiteHeader() {
                 : "text-[#383838] hover:text-[#2495D3]"
               }`}
           >
-            Contact Us
+            Contact us
             {isActive("/contact") && (
               <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#2495D3] rounded-full" />
             )}
@@ -136,7 +136,7 @@ export default function SiteHeader() {
             </div>
             <div className="flex flex-col text-left">
               <span className="text-[11px] text-[#878787] font-semibold tracking-wide">
-                Call Ina Tech FM
+                Call INA Tech FM
               </span>
               <a
                 href="tel:+919326906715"
@@ -151,7 +151,7 @@ export default function SiteHeader() {
             href="/contact"
             className="px-6 py-2.5 rounded-full bg-[#1C3A62] text-white text-sm font-semibold hover:bg-[#2495D3] transition-all duration-300 shadow-md hover:shadow-lg shadow-[#1C3A62]/15 hover:-translate-y-0.5 active:translate-y-0"
           >
-            Contact Us
+            Contact us
           </Link>
         </div>
 
@@ -177,7 +177,7 @@ export default function SiteHeader() {
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
           >
-            About Us
+            About us
           </Link>
           <a
             href="#repairs"
@@ -191,7 +191,7 @@ export default function SiteHeader() {
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
           >
-            Clients Corner
+            Clients corner
           </Link>
           <Link
             href="/careers"
@@ -212,7 +212,7 @@ export default function SiteHeader() {
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
           >
-            Contact Us
+            Contact us
           </Link>
 
           <div className="pt-4 flex flex-col space-y-3">
@@ -223,14 +223,14 @@ export default function SiteHeader() {
               <div className="w-8 h-8 rounded-full bg-[#1C3A62] text-white flex items-center justify-center">
                 <Phone className="w-4 h-4 text-[#2495D3]" />
               </div>
-              <span>Call Ina Tech FM: +91-9326906715</span>
+              <span>Call INA Tech FM: +91-9326906715</span>
             </a>
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="px-6 py-3.5 rounded-full bg-[#2495D3] hover:bg-[#1C3A62] text-white text-base font-semibold text-center shadow-lg active:scale-95 transition-all"
             >
-              Contact Us
+              Contact us
             </Link>
           </div>
         </div>

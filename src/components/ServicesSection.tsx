@@ -14,11 +14,11 @@ import {
 export default function ServicesSection() {
   const services = [
     { name: 'Hard FM', icon: Building2, link: '/services/hard-fm' },
-    { name: 'Allied Services', icon: UsersRound, link: '/services/allied-services' },
-    { name: 'Audit & Offerings', icon: ClipboardCheck, link: '/services/audit-and-offerings' },
-    { name: 'Sustainability Services', icon: Leaf, link: '/services/sustainability-services' },
-    { name: 'Technical Services', icon: Wrench, link: '/services/technical-services' },
-    { name: 'Transition Services', icon: ArrowRightLeft, link: '/services/transition-services' },
+    { name: 'Allied services', icon: UsersRound, link: '/services/allied-services' },
+    { name: 'Audit & offerings', icon: ClipboardCheck, link: '/services/audit-and-offerings' },
+    { name: 'Sustainability services', icon: Leaf, link: '/services/sustainability-services' },
+    { name: 'Technical services', icon: Wrench, link: '/services/technical-services' },
+    { name: 'Transition services', icon: ArrowRightLeft, link: '/services/transition-services' },
   ];
 
   return (
@@ -28,8 +28,8 @@ export default function ServicesSection() {
         {/* Left Side: Editorial Image Card */}
         <div className="w-full lg:w-5/12 relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629] p-6 flex flex-col justify-between min-h-[300px] border border-white/10 shadow-lg">
           <div className="relative z-10">
-            <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/30 text-[#2495D3] text-xs font-semibold tracking-wide uppercase mb-3">
-              Core Capabilities
+            <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/30 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
+              Core capabilities
             </span>
             <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight leading-snug">
               Best practice services for best customer outcomes
@@ -44,7 +44,7 @@ export default function ServicesSection() {
               href="/contact"
               className="inline-flex items-center gap-2 text-xs font-semibold text-white bg-[#2495D3] hover:bg-[#488FCD] px-5 py-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-lg"
             >
-              <span>Explore All Capabilities</span>
+              <span>Explore all capabilities</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

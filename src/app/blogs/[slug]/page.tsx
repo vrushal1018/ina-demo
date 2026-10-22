@@ -149,7 +149,7 @@ export default function BlogDetailPage() {
               {post.tags?.map((tag, idx) => (
                 <span
                   key={idx}
-                  className={`px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider rounded-lg border ${getTagClasses(
+                  className={`px-3 py-1 text-[11px] sm:text-xs font-semibold tracking-wide rounded-lg border ${getTagClasses(
                     tag.color
                   )}`}
                 >
@@ -220,7 +220,7 @@ export default function BlogDetailPage() {
             {/* Sidebar Navigation */}
             <aside className="w-full md:w-60 lg:w-64 flex-shrink-0">
               <div className="sticky top-28 bg-slate-50/80 backdrop-blur-md rounded-2xl p-5 border border-slate-200/80 shadow-sm">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1C3A62] mb-3">
+                <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
                   <BookOpen className="w-3.5 h-3.5 text-[#2495D3]" />
                   <span>Contents</span>
                 </div>
@@ -314,7 +314,7 @@ export default function BlogDetailPage() {
 
               {/* Mobile Social Share Bar */}
               <div className="flex md:hidden items-center gap-3 pt-8 border-t border-slate-100 mt-10">
-                <span className="text-xs font-semibold text-[#585858] uppercase tracking-wider flex items-center gap-1.5">
+                <span className="text-xs font-semibold text-[#585858] tracking-wide flex items-center gap-1.5">
                   <Share2 size={14} /> Share:
                 </span>
                 <button
