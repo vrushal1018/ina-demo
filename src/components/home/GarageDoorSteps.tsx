@@ -41,11 +41,11 @@ const STEPS: Step[] = [
 
 export default function FacilityManagementSteps() {
   return (
-    <section className="relative w-full py-10 sm:py-14 lg:py-16 bg-[#F8F9FA] overflow-hidden font-sans border-t border-slate-200/60">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#E5F3FA] to-[#EEF7FC] overflow-hidden font-sans border-t border-[#1C3A62]/20">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.3} mask="fade-edges" />
+      <ArchitecturalLineworkBackground theme="light" opacity={0.38} mask="fade-edges" />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -58,7 +58,7 @@ export default function FacilityManagementSteps() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24"
           >
-            <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3] mb-3">
+            <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
               Our methodology
             </div>
 
@@ -93,7 +93,7 @@ export default function FacilityManagementSteps() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, margin: "-30px" }}
                     transition={{ duration: 0.5, delay: index * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-                    className="group relative flex items-start gap-4 p-5 sm:p-6 rounded-2xl bg-transparent border border-slate-300/80 hover:border-[#2495D3]/50 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1"
+                    className="group relative flex items-start gap-4 p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-[#2495D3]/25 hover:border-[#2495D3]/50 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
                     {/* Step Number Badge with Gradient */}
                     <div className="w-11 h-11 rounded-xl bg-[#1C3A62] group-hover:bg-[#2495D3] text-white flex items-center justify-center text-base font-normal shrink-0 shadow-md transition-colors duration-300 font-heading">

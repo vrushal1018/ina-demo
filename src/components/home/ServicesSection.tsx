@@ -66,11 +66,11 @@ export default function ServicesSection() {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="relative w-full bg-slate-50 py-10 sm:py-14 lg:py-16 font-sans overflow-hidden border-y border-slate-200/60">
+    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#EDF6FC] py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
       {/* Background blueprint elements */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.26} flipY={true} mask="fade-edges" />
+      <ArchitecturalLineworkBackground theme="light" opacity={0.35} flipY={true} mask="fade-edges" />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-8 sm:mb-10">
         {/* Header Section */}
@@ -82,9 +82,9 @@ export default function ServicesSection() {
           className="flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
           <div className="max-w-2xl">
-            <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3] mb-3">
+            {/* <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
               Our services
-            </div>
+            </div> */}
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal">
               Comprehensive facility management solutions
             </h2>
@@ -105,8 +105,8 @@ export default function ServicesSection() {
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Left and Right Fade Gradients */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
 
         {/* Animated Track */}
         <motion.div
@@ -127,7 +127,7 @@ export default function ServicesSection() {
                 key={`${service.id}-${index}`}
                 className="w-[280px] sm:w-[320px] md:w-[350px] flex-shrink-0"
               >
-                <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-6 sm:p-7 transition-all duration-300 border border-slate-300/80 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[300px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
+                <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-6 sm:p-7 transition-all duration-300 border border-[#2495D3]/25 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[300px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
 
                   {/* Subtle architectural card watermark */}
                   <div className="absolute -right-6 -bottom-6 w-32 h-32 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity pointer-events-none">
@@ -136,7 +136,7 @@ export default function ServicesSection() {
 
                   <div>
                     {/* Icon Container with glowing aura on hover */}
-                    <div className="w-13 h-13 rounded-xl bg-white/60 group-hover:bg-[#2495D3] border border-slate-200/70 group-hover:border-[#2495D3] p-2.5 flex items-center justify-center mb-5 transition-all duration-300 shadow-xs">
+                    <div className="w-13 h-13 rounded-xl bg-transparent group-hover:bg-[#2495D3] border border-[#2495D3]/25 group-hover:border-[#2495D3] p-2.5 flex items-center justify-center mb-5 transition-all duration-300 shadow-xs">
                       <img
                         src={service.icon}
                         alt={service.title}

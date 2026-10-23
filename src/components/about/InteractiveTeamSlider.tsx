@@ -35,7 +35,7 @@ const TEAM: TeamMember[] = [
     id: '2',
     name: 'Lipson Paul',
     role: 'Co-Founder',
-    image: '/lipson%20paul.png',
+    image: '/director photos/lipson1-ink.jpeg',
     bio: [
       'Mo leads the engineering division, overseeing AI models, software architecture, and hardware integration across autonomous systems.',
       'He brings over two decades of tech leadership, previously spearheading enterprise cloud transformation and scalable infrastructure initiatives.'
@@ -48,7 +48,7 @@ const TEAM: TeamMember[] = [
     id: '3',
     name: 'Jose TP',
     role: 'Co-Founder',
-    image: '/Jose%20sir.png',
+    image: '/director photos/jose sir-whimsi.jpeg',
     bio: [
       'David shapes user interaction, vehicle interface UX, and spatial product experience across physical and digital touchpoints.',
       'A passionate designer focused on human-centric technology that blends naturally into daily life.'
@@ -67,7 +67,7 @@ export default function InteractiveTeamSlider() {
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
       {/* Architectural linework stream */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
+      <ArchitecturalLineworkBackground theme="light" opacity={0.38} mask="fade-edges" />
 
       {/* Header */}
       <div className="relative max-w-7xl mx-auto text-center mb-8 sm:mb-10">
@@ -103,17 +103,21 @@ export default function InteractiveTeamSlider() {
                     whileHover={{ y: -6 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="relative bg-white rounded-2xl p-5 border border-slate-200/80 shadow-lg shadow-slate-200/50 group-hover:border-[#2495D3] group-hover:shadow-2xl transition-all duration-300 flex flex-col items-center">
+                    <div className="relative bg-transparent hover:bg-white/15 rounded-2xl p-5 border border-[#2495D3]/25 group-hover:border-[#2495D3] shadow-md group-hover:shadow-2xl group-hover:shadow-[#2495D3]/15 transition-all duration-300 flex flex-col items-center">
                       {/* Architectural corner mark */}
                       <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-[#2495D3]/40 group-hover:bg-[#2495D3] group-hover:scale-150 transition-all" />
 
                       {/* Image Pedestal */}
-                      <div className="relative w-full h-[280px] rounded-xl bg-gradient-to-b from-slate-100 to-slate-200/60 overflow-hidden flex items-end justify-center mb-4 border border-slate-200/60 group-hover:from-[#F0F7FD] group-hover:to-slate-100 transition-colors">
+                      <div className="relative w-full h-[280px] rounded-xl bg-transparent overflow-hidden flex items-end justify-center mb-4 border border-[#2495D3]/20 group-hover:border-[#2495D3]/50 transition-colors">
                         <motion.img
                           layoutId={`member-image-${member.id}`}
                           src={member.image}
                           alt={member.name}
-                          className="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-500"
+                          className={`w-full h-full ${
+                            member.image.toLowerCase().endsWith('.png')
+                              ? 'object-contain object-bottom'
+                              : 'object-cover object-top'
+                          } group-hover:scale-105 transition-transform duration-500`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#1C3A62]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
@@ -130,7 +134,7 @@ export default function InteractiveTeamSlider() {
                           {member.role}
                         </p>
 
-                        <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#2495D3] group-hover:gap-2.5 transition-all">
+                        <div className="mt-4 pt-4 border-t border-[#2495D3]/15 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#2495D3] group-hover:gap-2.5 transition-all">
                           <span>View executive profile</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </div>
@@ -165,12 +169,16 @@ export default function InteractiveTeamSlider() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
                 {/* Left Side: Animated Image */}
                 <div className="lg:col-span-5 flex justify-center items-end">
-                  <div className="relative w-full max-w-[360px] h-[440px] rounded-2xl bg-gradient-to-b from-slate-100 to-slate-200/80 overflow-hidden border border-slate-200 flex items-end justify-center">
+                  <div className="relative w-full max-w-[360px] h-[440px] rounded-2xl bg-transparent overflow-hidden border border-[#2495D3]/25 flex items-end justify-center">
                     <motion.img
                       layoutId={`member-image-${selectedMember.id}`}
                       src={selectedMember.image}
                       alt={selectedMember.name}
-                      className="w-full h-full object-contain object-bottom"
+                      className={`w-full h-full ${
+                        selectedMember.image.toLowerCase().endsWith('.png')
+                          ? 'object-contain object-bottom'
+                          : 'object-cover object-top'
+                      }`}
                     />
                   </div>
                 </div>

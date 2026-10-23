@@ -55,7 +55,7 @@ const RESIDENTIAL_LOGOS = [
 
 export default function BrandBanner() {
   return (
-    <section className="relative w-full bg-[#F8F9FA] py-8 sm:py-10 overflow-hidden border-b border-slate-200/60">
+    <section className="relative w-full bg-gradient-to-b from-[#F4FAFD] to-[#F8FBFE] py-8 sm:py-10 overflow-hidden">
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
       <motion.div
@@ -67,7 +67,7 @@ export default function BrandBanner() {
       >
         {/* Header Title with Lucide Icon in Sleek Pill */}
         <div className="flex items-center justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 shadow-xs text-[#1C3A62] font-semibold text-xs sm:text-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-[#2495D3]/25 shadow-xs text-[#1C3A62] font-semibold text-xs sm:text-sm">
             <ShieldCheck className="w-4 h-4 text-[#2495D3]" />
             <span>Brands & elite residential properties we service</span>
             <ArrowDownRight className="w-4 h-4 text-[#2495D3]" />

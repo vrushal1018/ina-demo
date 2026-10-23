@@ -58,7 +58,7 @@ export default function FeatureGrid() {
   ];
 
   return (
-    <section className="relative bg-[#F8F9FA] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
@@ -74,15 +74,15 @@ export default function FeatureGrid() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-8 sm:mb-10"
         >
-          <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3] mb-3">
+          {/* <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
             Why INA Tech FM
-          </div>
+          </div> */}
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1C3A62] mb-2 tracking-normal">
-            Why INA Tech FM
+            Why Ina TechFM ?
           </h2>
-          <p className="text-sm sm:text-base text-[#585858] font-medium max-w-xl mx-auto">
+          {/* <p className="text-sm sm:text-base text-[#585858] font-medium max-w-xl mx-auto">
             Goals to create sustainable future
-          </p>
+          </p> */}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
@@ -95,11 +95,11 @@ export default function FeatureGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, margin: "-30px" }}
                 transition={{ duration: 0.5, delay: idx * 0.06, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-slate-300/80 hover:border-[#2495D3]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 hover:-translate-y-1.5 overflow-hidden shadow-xs"
+                className="group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-[#2495D3]/25 hover:border-[#2495D3]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 hover:-translate-y-1.5 overflow-hidden"
               >
                 {/* Subtle top index number */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-white/50 group-hover:bg-[#2495D3] border border-slate-200/70 group-hover:border-[#2495D3] flex items-center justify-center text-[#1C3A62] group-hover:text-white shadow-xs transition-all duration-300">
+                  <div className="w-11 h-11 rounded-xl bg-transparent group-hover:bg-[#2495D3] border border-[#2495D3]/25 group-hover:border-[#2495D3] flex items-center justify-center text-[#1C3A62] group-hover:text-white shadow-xs transition-all duration-300">
                     <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
                   <span className="font-heading text-xs font-normal text-slate-400 group-hover:text-[#2495D3] transition-colors">
