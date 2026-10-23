@@ -165,12 +165,13 @@ export default function SiteHeader() {
                     <Link
                       href="/"
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center bg-white/95 px-3 py-1.5 rounded-xl shadow-md transition-transform hover:scale-105"
+                      className="inline-block transition-transform hover:scale-105 active:scale-95"
+                      title="INA TechFM"
                     >
                       <img
-                        src="/Ina Logo-1.jpg.png"
-                        alt="INA Logo"
-                        className="h-10 sm:h-11 w-auto object-contain"
+                        src="/Ina TechFM Logo white.png"
+                        alt="INA TechFM Logo"
+                        className="h-10 sm:h-12 w-auto object-contain drop-shadow-md"
                       />
                     </Link>
 
@@ -338,38 +339,28 @@ export default function SiteHeader() {
                   </nav>
                 </div>
 
-                {/* Bottom Section: Contact Widget & Primary CTA */}
-                <div className="pt-6 border-t border-white/10 mt-6 space-y-3.5">
+                {/* Bottom Section: Contact Widget */}
+                <div className="pt-4 border-t border-white/10 mt-4 space-y-2.5">
                   {/* Phone Call Strip */}
                   <a
                     href="tel:+919326906715"
-                    className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                    className="flex items-center gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
                   >
-                    <div className="w-10 h-10 rounded-full bg-[#2495D3] text-white flex items-center justify-center shrink-0 shadow-md">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#2495D3] text-white flex items-center justify-center shrink-0 shadow-md">
                       <Phone className="w-4 h-4" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[11px] text-slate-400 font-semibold tracking-wide">
+                      <span className="text-[10px] sm:text-[11px] text-slate-400 font-semibold tracking-wide">
                         Direct Support Line
                       </span>
-                      <span className="text-sm font-semibold text-white tracking-wide">
+                      <span className="text-xs sm:text-sm font-semibold text-white tracking-wide">
                         +91-9326906715
                       </span>
                     </div>
                   </a>
 
-                  {/* Contact Button */}
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white text-sm font-semibold tracking-wide shadow-lg shadow-[#2495D3]/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
-                  >
-                    <span>Talk to our experts</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
                   {/* Verification Footer Text */}
-                  <div className="text-center text-[11px] text-slate-400 pt-1">
+                  <div className="text-center text-[10px] sm:text-[11px] text-slate-400 pt-0.5">
                     <span>3,000+ Employees • Pan-India Facility Engineering</span>
                   </div>
                 </div>
