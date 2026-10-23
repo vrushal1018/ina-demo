@@ -1,21 +1,105 @@
 "use client";
 
-import React, { useState } from "react";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import {
+  Phone,
+  Menu,
+  X,
+  ChevronDown,
+  ChevronRight,
+  ArrowRight,
+  ShieldCheck,
+  Building2,
+  Wrench,
+  Leaf,
+  Layers,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ServicesSection from "./ServicesSection";
+import { motion, AnimatePresence } from "framer-motion";
+import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function SiteHeader() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [servicesExpanded, setServicesExpanded] = useState(false);
   const pathname = usePathname();
 
+  // Close drawer on route navigation
+  useEffect(() => {
+    setIsOpen(false);
+    setServicesExpanded(false);
+  }, [pathname]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Prevent background scroll when vertical navbar drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const navLinks = [
+    { name: "Home", href: "/" },
     { name: "About us", href: "/about" },
     { name: "Clients corner", href: "/clients-corner" },
     { name: "Careers", href: "/careers" },
     { name: "Blogs", href: "/blogs" },
     { name: "Contact us", href: "/contact" },
+  ];
+
+  const servicesList = [
+    {
+      name: "Hard FM",
+      href: "/services/hard-fm",
+      desc: "Core technical & engineering infrastructure",
+      icon: Building2,
+    },
+    {
+      name: "Transition services",
+      href: "/services/transition-services",
+      desc: "Smooth operational site takeovers",
+      icon: Layers,
+    },
+    {
+      name: "Sustainability services",
+      href: "/services/sustainability-services",
+      desc: "Energy & carbon footprint reduction",
+      icon: Leaf,
+    },
+    {
+      name: "Technical services",
+      href: "/services/technical-services",
+      desc: "MEP, HVAC & critical systems upkeep",
+      icon: Wrench,
+    },
+    {
+      name: "Audit & offerings",
+      href: "/services/audit-and-offerings",
+      desc: "Statutory, safety & energy compliance",
+      icon: ShieldCheck,
+    },
+    {
+      name: "Allied services",
+      href: "/services/allied-services",
+      desc: "Integrated soft & specialized facility support",
+      icon: Sparkles,
+    },
   ];
 
   const isActive = (href: string) => {
@@ -26,215 +110,274 @@ export default function SiteHeader() {
   const isServicesActive = pathname.startsWith("/services");
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-xs transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <>
+      {/* ================= TRANSPARENT LEFT EDGE INDICATOR ================= */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="fixed left-0 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2.5 py-4 sm:py-5 px-2 sm:px-2.5 rounded-r-2xl bg-slate-900/45 hover:bg-slate-900/70 backdrop-blur-md border-y border-r border-white/20 hover:border-[#2495D3]/60 text-white/80 hover:text-white transition-all duration-300 shadow-2xl group hover:px-3 cursor-pointer active:scale-95"
+        aria-label="Open navigation menu"
+        title="Open Navigation Menu"
+      >
+        <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse shadow-sm shadow-[#2495D3]" />
+        <span className="[writing-mode:vertical-lr] text-[11px] font-semibold tracking-widest uppercase text-white/90 group-hover:text-[#2495D3] transition-colors">
+          Menu
+        </span>
+        <ChevronRight className="w-4 h-4 text-[#2495D3] group-hover:translate-x-1 transition-transform" />
+      </button>
 
-        {/* INA Brand Logo */}
-        <div className="flex items-center space-x-2.5 cursor-pointer group">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/Ina Logo-1.jpg.png"
-              alt="INA Logo"
-              className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+      {/* ================= VERTICAL NAVBAR (OFF-CANVAS DRAWER) ================= */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 cursor-pointer"
+              aria-hidden="true"
             />
-          </Link>
-        </div>
 
-        {/* Floating Rounded Capsule Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center bg-white text-[#383838] px-6 py-2.5 rounded-full border border-slate-200 shadow-xs space-x-7 text-sm font-medium">
-          <Link
-            href="/about"
-            className={`transition-colors relative py-1 ${isActive("/about")
-                ? "text-[#2495D3] font-semibold"
-                : "text-[#383838] hover:text-[#2495D3]"
-              }`}
-          >
-            About us
-            {isActive("/about") && (
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#2495D3] rounded-full" />
-            )}
-          </Link>
-
-          {/* Services with Mega Menu Dropdown */}
-          <div className="group relative">
-            <a
-              href="#repairs"
-              className={`hover:text-[#2495D3] transition-colors py-4 -my-4 flex items-center gap-1 ${isServicesActive ? "text-[#2495D3] font-semibold" : "text-[#383838]"
-                }`}
+            {/* Vertical Drawer Panel */}
+            <motion.aside
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-y-0 left-0 w-full sm:w-[380px] md:w-[420px] bg-[#0A1629]/95 text-white backdrop-blur-2xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto"
             >
-              <span>Services</span>
-              <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#2495D3] group-hover:rotate-180 transition-transform duration-300" />
-            </a>
+              {/* Architectural Blueprint & Linework Background */}
+              <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
+              <ArchitecturalLineworkBackground
+                theme="dark"
+                opacity={0.28}
+                mask="fade-edges"
+              />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#2495D3]/15 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#1C3A62]/30 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Mega Menu Dropdown */}
-            <div className="fixed top-[76px] left-0 w-full pt-3 px-4 sm:px-6 lg:px-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pointer-events-none group-hover:pointer-events-auto">
-              <div className="max-w-7xl mx-auto w-full bg-white shadow-2xl border border-slate-200/80 overflow-hidden transform group-hover:translate-y-0 -translate-y-2 transition-all duration-300 rounded-3xl max-h-[82vh] overflow-y-auto">
-                <ServicesSection />
+              <div className="relative z-10 flex flex-col h-full justify-between p-6 sm:p-7">
+                {/* Top Section: Brand Logo & Close Button */}
+                <div>
+                  <div className="flex items-center justify-between pb-5 border-b border-white/10">
+                    <Link
+                      href="/"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center bg-white/95 px-3 py-1.5 rounded-xl shadow-md transition-transform hover:scale-105"
+                    >
+                      <img
+                        src="/Ina Logo-1.jpg.png"
+                        alt="INA Logo"
+                        className="h-10 sm:h-11 w-auto object-contain"
+                      />
+                    </Link>
+
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#2495D3] text-white flex items-center justify-center transition-all duration-300 border border-white/15 shadow-sm active:scale-95 cursor-pointer"
+                      aria-label="Close navigation menu"
+                    >
+                      <X className="w-5 h-5 transition-transform hover:rotate-90 duration-300" />
+                    </button>
+                  </div>
+
+                  {/* Brand Tagline Badge */}
+                  <div className="mt-4 mb-6">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 text-xs font-semibold text-[#2495D3]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] animate-pulse" />
+                      <span>Empowering people. Enriching assets.</span>
+                    </div>
+                  </div>
+
+                  {/* Vertical Navigation Links */}
+                  <nav className="space-y-1.5">
+                    {/* Home Link */}
+                    <Link
+                      href="/"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
+                        isActive("/") && pathname === "/"
+                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
+                    >
+                      <span>Home</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+
+                    {/* About Us Link */}
+                    <Link
+                      href="/about"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
+                        isActive("/about")
+                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
+                    >
+                      <span>About us</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+
+                    {/* Services Accordion Menu */}
+                    <div className="rounded-xl overflow-hidden transition-colors">
+                      <button
+                        onClick={() => setServicesExpanded(!servicesExpanded)}
+                        className={`w-full group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 cursor-pointer ${
+                          isServicesActive
+                            ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                            : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
+                      >
+                        <span>Services</span>
+                        <ChevronDown
+                          className={`w-4 h-4 text-[#2495D3] transition-transform duration-300 ${
+                            servicesExpanded ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+
+                      {/* Expandable Submenu */}
+                      <AnimatePresence>
+                        {servicesExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="overflow-hidden pl-4 pr-1 py-1 space-y-1 border-l-2 border-[#2495D3]/30 ml-3 mt-1"
+                          >
+                            {servicesList.map((service) => {
+                              const ServiceIcon = service.icon;
+                              const isSubActive = pathname === service.href;
+                              return (
+                                <Link
+                                  key={service.href}
+                                  href={service.href}
+                                  onClick={() => setIsOpen(false)}
+                                  className={`flex items-start gap-2.5 p-2 rounded-lg transition-all ${
+                                    isSubActive
+                                      ? "bg-[#2495D3]/20 text-[#2495D3]"
+                                      : "text-slate-300 hover:text-white hover:bg-white/10"
+                                  }`}
+                                >
+                                  <ServiceIcon className="w-4 h-4 text-[#2495D3] shrink-0 mt-0.5" />
+                                  <div className="flex-1">
+                                    <div className="text-xs sm:text-sm font-semibold">
+                                      {service.name}
+                                    </div>
+                                    <div className="text-[11px] text-slate-400 line-clamp-1">
+                                      {service.desc}
+                                    </div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    {/* Clients Corner Link */}
+                    <Link
+                      href="/clients-corner"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
+                        isActive("/clients-corner")
+                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
+                    >
+                      <span>Clients corner</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+
+                    {/* Careers Link */}
+                    <Link
+                      href="/careers"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
+                        isActive("/careers")
+                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
+                    >
+                      <span>Careers</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+
+                    {/* Blogs Link */}
+                    <Link
+                      href="/blogs"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
+                        isActive("/blogs")
+                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
+                    >
+                      <span>Blogs</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+
+                    {/* Contact Us Link */}
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
+                        isActive("/contact")
+                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                      }`}
+                    >
+                      <span>Contact us</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+                  </nav>
+                </div>
+
+                {/* Bottom Section: Contact Widget & Primary CTA */}
+                <div className="pt-6 border-t border-white/10 mt-6 space-y-3.5">
+                  {/* Phone Call Strip */}
+                  <a
+                    href="tel:+919326906715"
+                    className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-[#2495D3] text-white flex items-center justify-center shrink-0 shadow-md">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[11px] text-slate-400 font-semibold tracking-wide">
+                        Direct Support Line
+                      </span>
+                      <span className="text-sm font-semibold text-white tracking-wide">
+                        +91-9326906715
+                      </span>
+                    </div>
+                  </a>
+
+                  {/* Contact Button */}
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white text-sm font-semibold tracking-wide shadow-lg shadow-[#2495D3]/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <span>Talk to our experts</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  {/* Verification Footer Text */}
+                  <div className="text-center text-[11px] text-slate-400 pt-1">
+                    <span>3,000+ Employees • Pan-India Facility Engineering</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <Link
-            href="/clients-corner"
-            className={`transition-colors relative py-1 ${isActive("/clients-corner")
-                ? "text-[#2495D3] font-semibold"
-                : "text-[#383838] hover:text-[#2495D3]"
-              }`}
-          >
-            Clients corner
-            {isActive("/clients-corner") && (
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#2495D3] rounded-full" />
-            )}
-          </Link>
-
-          <Link
-            href="/careers"
-            className={`transition-colors relative py-1 ${isActive("/careers")
-                ? "text-[#2495D3] font-semibold"
-                : "text-[#383838] hover:text-[#2495D3]"
-              }`}
-          >
-            Careers
-            {isActive("/careers") && (
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#2495D3] rounded-full" />
-            )}
-          </Link>
-
-          <Link
-            href="/blogs"
-            className={`transition-colors relative py-1 ${isActive("/blogs")
-                ? "text-[#2495D3] font-semibold"
-                : "text-[#383838] hover:text-[#2495D3]"
-              }`}
-          >
-            Blogs
-            {isActive("/blogs") && (
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#2495D3] rounded-full" />
-            )}
-          </Link>
-
-          <Link
-            href="/contact"
-            className={`transition-colors relative py-1 ${isActive("/contact")
-                ? "text-[#2495D3] font-semibold"
-                : "text-[#383838] hover:text-[#2495D3]"
-              }`}
-          >
-            Contact us
-            {isActive("/contact") && (
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-[#2495D3] rounded-full" />
-            )}
-          </Link>
-        </nav>
-
-        {/* Desktop Right Phone Widget & Contact Button */}
-        <div className="hidden md:flex items-center space-x-6">
-          {/* Call Widget */}
-          <div className="flex items-center space-x-3 text-right">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[#2495D3] bg-[#1C3A62] flex items-center justify-center text-white font-medium text-sm shadow-sm transition-transform hover:scale-105">
-              <Phone className="w-4 h-4 text-[#2495D3]" />
-            </div>
-            <div className="flex flex-col text-left">
-              <span className="text-[11px] text-[#878787] font-semibold tracking-wide">
-                Call INA Tech FM
-              </span>
-              <a
-                href="tel:+919326906715"
-                className="text-sm font-semibold text-[#1C3A62] hover:text-[#2495D3] transition-colors"
-              >
-                +91-9326906715
-              </a>
-            </div>
-          </div>
-
-          <Link
-            href="/contact"
-            className="px-6 py-2.5 rounded-full bg-[#1C3A62] text-white text-sm font-semibold hover:bg-[#2495D3] transition-all duration-300 shadow-md hover:shadow-lg shadow-[#1C3A62]/15 hover:-translate-y-0.5 active:translate-y-0"
-          >
-            Contact us
-          </Link>
-        </div>
-
-        {/* Mobile Navigation Toggle Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2.5 rounded-xl text-[#383838] hover:text-[#1C3A62] hover:bg-slate-100 transition-colors"
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <Menu className="w-6 h-6" />
-          )}
-        </button>
-      </div>
-
-      {/* Mobile Dropdown Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/98 backdrop-blur-lg border-b border-slate-200 px-6 pt-4 pb-8 space-y-3 shadow-2xl absolute w-full left-0 top-[80px] animate-in fade-in slide-in-from-top-2 duration-200 z-50">
-          <Link
-            href="/about"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
-          >
-            About us
-          </Link>
-          <a
-            href="#repairs"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
-          >
-            Services
-          </a>
-          <Link
-            href="/clients-corner"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
-          >
-            Clients corner
-          </Link>
-          <Link
-            href="/careers"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
-          >
-            Careers
-          </Link>
-          <Link
-            href="/blogs"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
-          >
-            Blogs
-          </Link>
-          <Link
-            href="/contact"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block py-2.5 text-base font-semibold text-[#383838] hover:text-[#2495D3] border-b border-slate-100"
-          >
-            Contact us
-          </Link>
-
-          <div className="pt-4 flex flex-col space-y-3">
-            <a
-              href="tel:+919326906715"
-              className="flex items-center space-x-3 text-[#1C3A62] font-semibold text-sm p-3 rounded-xl bg-slate-50 border border-slate-200/60"
-            >
-              <div className="w-8 h-8 rounded-full bg-[#1C3A62] text-white flex items-center justify-center">
-                <Phone className="w-4 h-4 text-[#2495D3]" />
-              </div>
-              <span>Call INA Tech FM: +91-9326906715</span>
-            </a>
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-6 py-3.5 rounded-full bg-[#2495D3] hover:bg-[#1C3A62] text-white text-base font-semibold text-center shadow-lg active:scale-95 transition-all"
-            >
-              Contact us
-            </Link>
-          </div>
-        </div>
-      )}
-    </header>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
