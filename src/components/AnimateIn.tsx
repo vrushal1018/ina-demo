@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export interface AnimateInProps {
   children: React.ReactNode;
@@ -47,16 +47,60 @@ export default function AnimateIn({
   className = '',
   minHeight,
   id,
+  rootMargin = '500px 0px',
+  lazy = true,
 }: AnimateInProps) {
+  const [isVisible, setIsVisible] = useState(!lazy);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!lazy || isVisible) return;
+
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      const timer = setTimeout(() => setIsVisible(true), 0);
+      return () => clearTimeout(timer);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry && (entry.isIntersecting || entry.intersectionRatio > 0)) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin,
+        threshold: 0,
+      }
+    );
+
+    const el = containerRef.current;
+    if (el) {
+      observer.observe(el);
+    }
+
+    // Safety fallback: ensure component renders after 1500ms regardless
+    const safetyTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(safetyTimer);
+    };
+  }, [lazy, isVisible, rootMargin]);
+
   return (
     <div
+      ref={containerRef}
       id={id}
       style={{
-        minHeight: minHeight ? (typeof minHeight === 'number' ? `${minHeight}px` : minHeight) : undefined,
+        minHeight: typeof minHeight === 'number' ? `${minHeight}px` : minHeight,
       }}
       className={`w-full ${className}`}
     >
-      {children}
+      {isVisible ? children : (minHeight ? <SectionSkeleton height={minHeight} /> : null)}
     </div>
   );
 }

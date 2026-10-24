@@ -116,10 +116,20 @@ export default function SiteHeader() {
 
   return (
     <>
-      {/* ================= TRANSPARENT LEFT EDGE INDICATOR ================= */}
+      {/* ================= MOBILE FLOATING MENU TRIGGER ================= */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed left-0 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center gap-2.5 py-4 sm:py-5 px-2 sm:px-2.5 rounded-r-2xl bg-slate-900/45 hover:bg-slate-900/70 backdrop-blur-md border-y border-r border-white/20 hover:border-[#2495D3]/60 text-white/80 hover:text-white transition-all duration-300 shadow-2xl group hover:px-3 cursor-pointer active:scale-95"
+        className="sm:hidden fixed top-4 right-4 z-40 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A1629]/85 hover:bg-[#0A1629] backdrop-blur-md border border-[#2495D3]/40 text-white shadow-xl active:scale-95 transition-all cursor-pointer"
+        aria-label="Open navigation menu"
+      >
+        <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
+        <span className="text-xs font-semibold tracking-wide">Menu</span>
+      </button>
+
+      {/* ================= DESKTOP/TABLET LEFT EDGE INDICATOR ================= */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="hidden sm:flex fixed left-0 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-2.5 py-4 sm:py-5 px-2 sm:px-2.5 rounded-r-2xl bg-slate-900/45 hover:bg-slate-900/70 backdrop-blur-md border-y border-r border-white/20 hover:border-[#2495D3]/60 text-white/80 hover:text-white transition-all duration-300 shadow-2xl group hover:px-3 cursor-pointer active:scale-95"
         aria-label="Open navigation menu"
         title="Open Navigation Menu"
       >
@@ -130,20 +140,23 @@ export default function SiteHeader() {
         <ChevronRight className="w-4 h-4 text-[#2495D3] group-hover:translate-x-1 transition-transform" />
       </button>
 
-      {/* ================= VERTICAL NAVBAR (OFF-CANVAS DRAWER) ================= */}
-      {isOpen && (
-        <>
-          {/* Backdrop Overlay */}
-          <div
-            onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 cursor-pointer"
-            aria-hidden="true"
-          />
+      {/* ================= VERTICAL NAVBAR (OFF-CANVAS DRAWER WITH PREFETCHING) ================= */}
+      {/* Backdrop Overlay */}
+      <div
+        onClick={() => setIsOpen(false)}
+        className={`fixed inset-0 bg-black/65 backdrop-blur-sm z-50 cursor-pointer transition-opacity duration-300 ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!isOpen}
+      />
 
-          {/* Vertical Drawer Panel */}
-          <aside
-            className="fixed inset-y-0 left-0 w-full sm:w-[380px] md:w-[420px] bg-[#0A1629]/95 text-white backdrop-blur-2xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto"
-          >
+      {/* Vertical Drawer Panel */}
+      <aside
+        className={`fixed inset-y-0 left-0 w-full sm:w-[380px] md:w-[420px] bg-[#0A1629]/95 text-white backdrop-blur-xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out will-change-transform ${
+          isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full pointer-events-none"
+        }`}
+        aria-hidden={!isOpen}
+      >
               {/* Architectural Blueprint & Linework Background */}
               <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
               <ArchitecturalLineworkBackground
@@ -347,8 +360,6 @@ export default function SiteHeader() {
                 </div>
               </div>
             </aside>
-          </>
-        )}
     </>
   );
 }

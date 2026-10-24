@@ -75,7 +75,7 @@ export default function RepairsAndServicing() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover opacity-65 scale-105 transition-transform duration-1000"
         >
           <source

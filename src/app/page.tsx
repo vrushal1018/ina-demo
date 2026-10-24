@@ -38,7 +38,7 @@ export default function Home() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover opacity-60 scale-105 transition-transform duration-1000"
           >
             <source src="/ITFheromain%20(3).mp4" type="video/mp4" />
