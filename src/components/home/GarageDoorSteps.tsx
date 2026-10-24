@@ -41,14 +41,14 @@ const STEPS: Step[] = [
 
 export default function FacilityManagementSteps() {
   return (
-    <section className="relative w-full py-20 md:py-28 bg-[#F8F9FA] overflow-hidden font-sans border-t border-slate-200/60">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#E5F3FA] to-[#EEF7FC] overflow-hidden font-sans border-t border-[#1C3A62]/20">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.3} mask="fade-edges" />
+      <ArchitecturalLineworkBackground theme="light" opacity={0.38} mask="fade-edges" />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Left Column: Sticky Editorial Header */}
           <motion.div
@@ -56,17 +56,17 @@ export default function FacilityManagementSteps() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, margin: "-30px" }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28"
+            className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24"
           >
-            <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
-              Our Methodology
+            <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+              Our methodology
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-[46px] font-normal text-[#1C3A62] leading-[1.15] tracking-normal mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal mb-4">
               Engineering solutions built around your needs
             </h2>
 
-            <p className="text-[#585858] text-base md:text-lg leading-relaxed font-normal mb-8">
+            <p className="text-[#585858] text-sm sm:text-base leading-relaxed font-normal mb-6">
               We work closely with our clients to understand their facilities,
               optimise engineering assets and deliver reliable, sustainable
               solutions that support long-term operational performance.
@@ -74,16 +74,16 @@ export default function FacilityManagementSteps() {
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#1C3A62] text-white font-semibold text-sm rounded-full shadow-lg shadow-[#1C3A62]/20 hover:bg-[#2495D3] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#1C3A62] text-white font-semibold text-xs sm:text-sm rounded-full shadow-lg shadow-[#1C3A62]/20 hover:bg-[#2495D3] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
             >
-              <span>Talk to Our Experts</span>
+              <span>Talk to our experts</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
 
           {/* Right Column: Connected Steps Timeline */}
           <div className="lg:col-span-7 relative">
-            <div className="flex flex-col gap-6 relative">
+            <div className="flex flex-col gap-4 relative">
 
               {STEPS.map((step, index) => {
                 return (
@@ -93,20 +93,20 @@ export default function FacilityManagementSteps() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, margin: "-30px" }}
                     transition={{ duration: 0.5, delay: index * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
-                    className="group relative flex items-start gap-6 p-7 sm:p-8 rounded-3xl bg-transparent border border-slate-300/80 hover:border-[#2495D3]/50 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1"
+                    className="group relative flex items-start gap-4 p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-[#2495D3]/25 hover:border-[#2495D3]/50 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
                     {/* Step Number Badge with Gradient */}
-                    <div className="w-14 h-14 rounded-2xl bg-[#1C3A62] group-hover:bg-[#2495D3] text-white flex items-center justify-center text-lg font-normal shrink-0 shadow-md transition-colors duration-300 font-heading">
+                    <div className="w-11 h-11 rounded-xl bg-[#1C3A62] group-hover:bg-[#2495D3] text-white flex items-center justify-center text-base font-normal shrink-0 shadow-md transition-colors duration-300 font-heading">
                       {step.number}
                     </div>
 
                     {/* Step Details */}
-                    <div className="pt-1 flex-grow">
-                      <h3 className="text-xl sm:text-2xl font-normal text-[#1C3A62] group-hover:text-[#2495D3] mb-3 leading-snug transition-colors duration-300">
+                    <div className="pt-0.5 flex-grow">
+                      <h3 className="text-base sm:text-lg font-normal text-[#1C3A62] group-hover:text-[#2495D3] mb-1.5 leading-snug transition-colors duration-300">
                         {step.title}
                       </h3>
 
-                      <p className="text-[#585858] text-sm sm:text-[15px] leading-relaxed font-normal">
+                      <p className="text-[#585858] text-xs sm:text-sm leading-relaxed font-normal">
                         {step.description}
                       </p>
                     </div>

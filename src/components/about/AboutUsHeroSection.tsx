@@ -40,7 +40,7 @@ export default function AboutUsHeroSection() {
   ];
 
   return (
-    <section className="relative w-full bg-white py-16 sm:py-24 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+    <section className="relative w-full bg-white py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -53,28 +53,28 @@ export default function AboutUsHeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-14 sm:mb-20"
+          className="text-center max-w-3xl mx-auto mb-8 sm:mb-10"
         >
-          <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
-            About Us
+          <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-3">
+            About us
           </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1C3A62] tracking-normal">
-            About Us
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] tracking-normal">
+            About us
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-[#585858] font-medium max-w-xl mx-auto">
-            Helping You Find the Perfect Place to Call Business.
+          <p className="mt-3 text-sm sm:text-base text-[#585858] font-medium max-w-xl mx-auto">
+            Helping you find the perfect place to call business.
           </p>
         </motion.div>
 
         {/* Staggered Gallery Grid with Architectural Framing */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 items-center mb-16 sm:mb-24">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 items-center mb-8 sm:mb-12">
           {galleryImages.map((img, idx) => (
             <motion.div
               key={img.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className={`relative w-full ${img.heightClass} rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-slate-100 group`}
+              className={`relative w-full ${img.heightClass} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-slate-100 group`}
             >
               <Image
                 src={img.src}
@@ -95,10 +95,10 @@ export default function AboutUsHeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-30px" }}
           transition={{ duration: 0.6 }}
-          className="max-w-5xl text-left p-8 sm:p-12 rounded-3xl bg-[#F8F9FA] border border-slate-200/80 shadow-xs relative overflow-hidden"
+          className="max-w-5xl text-left p-6 sm:p-8 rounded-2xl bg-[#F8F9FA] border border-slate-200/80 shadow-xs relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-2 h-full bg-[#2495D3]" />
-          <span className="text-xs sm:text-sm font-bold tracking-widest text-[#2495D3] uppercase block mb-4">
+          <span className="text-xs sm:text-sm font-semibold tracking-wide text-[#2495D3] block mb-4">
             What we do
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-normal text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">

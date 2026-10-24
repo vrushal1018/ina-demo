@@ -60,8 +60,8 @@ export default function LineworkDemoPage() {
                 <Compass className="w-5 h-5 animate-spin-slow" />
               </div>
               <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-white">
-                  INA TechFM Linework Engine
+                <div className="text-xs font-semibold tracking-wide text-white">
+                  INA TechFM linework engine
                 </div>
                 <div className="text-[11px] text-slate-400">
                   43 Authentic Vector Curves Extracted from lineworkina.pdf
@@ -145,14 +145,14 @@ export default function LineworkDemoPage() {
         {/* Hero Content Layer - Validating Readability over Animation */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-7">
           <div
-            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur-md shadow-sm border ${
+            className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide backdrop-blur-md shadow-sm border ${
               theme === 'light'
                 ? 'bg-[#2495D3]/15 text-[#2495D3] border-[#2495D3]/30'
                 : 'bg-[#2495D3]/20 text-[#2495D3] border-[#2495D3]/40'
             }`}
           >
             <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
-            <span>Architectural Motion Design System</span>
+            <span>Architectural motion design system</span>
           </div>
 
           <h1
@@ -160,8 +160,8 @@ export default function LineworkDemoPage() {
               theme === 'light' ? 'text-[#1C3A62]' : 'text-white'
             }`}
           >
-            Engineering Precision. <br />
-            <span className="text-[#2495D3]">Architectural Rhythm.</span>
+            Engineering precision. <br />
+            <span className="text-[#2495D3]">Architectural rhythm.</span>
           </h1>
 
           <p

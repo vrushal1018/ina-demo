@@ -20,29 +20,29 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    title: "Our Mission",
+    title: "Our mission",
     description:
       "To deliver efficient, sustainable, and technology-enabled facility management solutions that enhance asset performance, optimize energy consumption, ensure compliance, and create better environments for our customers.",
     image: missionImg,
-    alt: "Our Mission",
+    alt: "Our mission",
     icon: Compass,
   },
   {
     id: 2,
-    title: "Our Vision",
+    title: "Our vision",
     description:
       "To be the first choice in Engineering Facility Management by delivering innovative, technology-driven solutions that create lasting value for our customers.",
     image: visionImg,
-    alt: "Our Vision",
+    alt: "Our vision",
     icon: Eye,
   },
   {
     id: 3,
-    title: "Our Goals",
+    title: "Our goals",
     description:
       "To achieve operational excellence, drive sustainable growth, embrace innovative technologies, and deliver measurable value through reliable, efficient, and customer-focused facility management solutions.",
     image: goalsImg,
-    alt: "Our Goals",
+    alt: "Our goals",
     icon: Target,
   },
 ];
@@ -69,7 +69,7 @@ export default function MissionVisionSlider() {
   }, [handleNext]);
 
   return (
-    <section className="relative w-full bg-white py-14 sm:py-20 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+    <section className="relative w-full bg-white py-10 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Blueprint grid dots */}
       <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -78,7 +78,7 @@ export default function MissionVisionSlider() {
       <div className="relative z-10 max-w-7xl mx-auto">
 
         {/* Interactive Top Tab Switcher */}
-        <div className="flex items-center justify-center gap-3 mb-8 sm:mb-10 flex-wrap">
+        <div className="flex items-center justify-center gap-3 mb-5 sm:mb-6 flex-wrap">
           {slides.map((slide, idx) => {
             const Icon = slide.icon;
             const isCurrent = idx === currentIndex;
@@ -86,7 +86,7 @@ export default function MissionVisionSlider() {
               <button
                 key={slide.id}
                 onClick={() => setCurrentIndex(idx)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${isCurrent
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${isCurrent
                     ? "bg-[#1C3A62] text-white shadow-lg shadow-[#1C3A62]/20 scale-105"
                     : "bg-slate-100 text-[#585858] hover:bg-slate-200"
                   }`}
@@ -99,7 +99,7 @@ export default function MissionVisionSlider() {
         </div>
 
         {/* Presentation Stage */}
-        <div className="relative w-full h-[500px] sm:h-[560px] lg:h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200/80">
+        <div className="relative w-full h-[380px] sm:h-[440px] lg:h-[460px] rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200/80">
           {/* Slide Images (Fading transition) */}
           {slides.map((slide, idx) => (
             <div
@@ -121,13 +121,13 @@ export default function MissionVisionSlider() {
           ))}
 
           {/* Foreground Content */}
-          <div className="absolute inset-0 z-20 flex flex-col justify-end p-8 sm:p-12 lg:p-16">
+          <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 sm:p-8 lg:p-10">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
 
               {/* Text Block */}
               <div className="max-w-2xl text-white">
-                <div className="inline-block rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
-                  Strategic Foundation
+                <div className="inline-block rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-4">
+                  Strategic foundation
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-normal mb-4 leading-tight font-heading">
                   {slides[currentIndex].title}

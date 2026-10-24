@@ -27,22 +27,22 @@ const services = [
     icon: Activity,
   },
   {
-    title: 'Asset Outage Minimization',
+    title: 'Asset outage minimization',
     description: 'Minimizing asset outages and breakdowns to avoid business disruptions.',
     icon: ShieldCheck,
   },
   {
-    title: 'Predictive Maintenance',
+    title: 'Predictive maintenance',
     description: 'Systematic monitoring and maintenance based on asset performance and condition.',
     icon: LineChart,
   },
   {
-    title: 'Preventive Maintenance',
+    title: 'Preventive maintenance',
     description: 'Planned maintenance aimed at preventing failures and maintaining asset reliability.',
     icon: Wrench,
   },
   {
-    title: '360° Asset Performance',
+    title: '360° asset performance',
     description: 'Using technology to provide a 360-degree view of overall asset operating performance.',
     icon: Target,
   },
@@ -52,27 +52,27 @@ const services = [
     icon: Settings,
   },
   {
-    title: 'Man, Machine & Technology',
+    title: 'Man, machine & technology',
     description: 'Combining skilled manpower, equipment and technology for effective asset management.',
     icon: Users,
   },
   {
-    title: 'Digitalized Schedules',
+    title: 'Digitalized schedules',
     description: 'Using digitalization to improve maintenance scheduling and operational planning.',
     icon: CalendarDays,
   },
   {
-    title: 'Controlled Documentation',
+    title: 'Controlled documentation',
     description: 'Maintaining controlled documentation for better operational management.',
     icon: FileText,
   },
   {
-    title: 'Cost Optimization',
+    title: 'Cost optimization',
     description: 'Exploring opportunities to reduce operating expenditure while optimizing asset performance.',
     icon: TrendingDown,
   },
   {
-    title: 'Safety & Employee Well-being',
+    title: 'Safety & employee well-being',
     description: 'Maintaining a safe workplace while prioritizing employee well-being.',
     icon: Heart,
   },
@@ -144,7 +144,7 @@ export default function ComprehensiveBuildingSolutions() {
   };
 
   return (
-    <section className="relative bg-white py-20 lg:py-28 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-t border-slate-100">
+    <section className="relative bg-white py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-t border-slate-100">
       {/* Background blueprint dots */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
@@ -152,17 +152,17 @@ export default function ComprehensiveBuildingSolutions() {
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-8 sm:mb-10 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wider uppercase mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 text-xs rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] font-semibold tracking-wide mb-3">
               <Layers className="w-3.5 h-3.5" />
-              <span>See all Services</span>
+              <span>See all services</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] leading-[1.1] tracking-normal">
-              Comprehensive Facility <br className="hidden md:block" />
-              Management Solutions
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.1] tracking-normal">
+              Comprehensive facility <br className="hidden md:block" />
+              management solutions
             </h2>
-            <div className="w-16 h-1 bg-[#2495D3] mt-4 rounded-full" />
+            <div className="w-16 h-1 bg-[#2495D3] mt-3 rounded-full" />
           </div>
 
           <div className="flex flex-col items-start lg:items-end gap-6">
@@ -250,8 +250,8 @@ export default function ComprehensiveBuildingSolutions() {
                       </p>
 
                       {/* Action Link */}
-                      <div className="inline-flex items-center text-[#1C3A62] font-semibold text-xs tracking-wider uppercase group-hover:text-[#2495D3] transition-colors w-max mt-auto pointer-events-auto gap-1.5">
-                        <span>Read More</span>
+                      <div className="inline-flex items-center text-[#1C3A62] font-semibold text-xs tracking-wide group-hover:text-[#2495D3] transition-colors w-max mt-auto pointer-events-auto gap-1.5">
+                        <span>Read more</span>
                         <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>

@@ -38,7 +38,7 @@ interface JobDetails {
 
 const technicalSupervisorJob: JobDetails = {
   id: 1,
-  title: "Technical Supervisor",
+  title: "Technical supervisor",
   department: "Operations & Technical FM",
   location: "Thane / Mumbai, Maharashtra",
   type: "Full-Time",
@@ -206,34 +206,34 @@ export default function CareersPage() {
   return (
     <>
       <SiteHeader />
-      <div className="relative min-h-screen bg-gradient-to-b from-[#F0F7FD]/40 via-white to-slate-50 py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-b from-[#F0F7FD]/40 via-white to-slate-50 py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
         {/* Background Blueprint dots */}
         <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
         {/* Architectural linework stream */}
         <ArchitecturalLineworkBackground theme="light" opacity={0.25} mask="fade-edges" />
 
-        <div className="relative z-10 max-w-4xl mx-auto pt-6">
+        <div className="relative z-10 max-w-4xl mx-auto pt-2">
           {/* Header Section */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-4">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
               <Briefcase className="w-3.5 h-3.5" />
-              <span>Careers at Ina Tech FM</span>
+              <span>Careers at INA Tech FM</span>
             </div>
-            <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3]">
-              Careers at Ina Tech FM
+            <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-semibold text-[#2495D3]">
+              Careers at INA Tech FM
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] mb-4 tracking-normal">
-              Currently Open Positions
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] mb-3 tracking-normal">
+              Currently open positions
             </h1>
-            <p className="text-[#585858] max-w-xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
+            <p className="text-[#585858] max-w-xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
               Join our dedicated team of engineers and facility management experts building dependable, sustainable workspaces.
             </p>
-            <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-4 rounded-full" />
+            <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-3 rounded-full" />
           </div>
 
           {/* Job Listing Card */}
-          <AnimateIn delay={0.1} minHeight="400px">
-            <div className="relative bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl border border-slate-200/90 overflow-hidden group">
+          <AnimateIn delay={0.1} minHeight="360px">
+            <div className="relative bg-white rounded-3xl p-5 sm:p-7 md:p-8 shadow-xl border border-slate-200/90 overflow-hidden group">
               {/* Top Accent Strip */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
 
@@ -290,9 +290,9 @@ export default function CareersPage() {
                 <div className="flex md:flex-col items-start md:items-end justify-between gap-3 pt-2 md:pt-0">
                   <button
                     onClick={openApplyModal}
-                    className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-xl font-semibold text-sm uppercase tracking-wider transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+                    className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
                   >
-                    Apply Now
+                    Apply now
                   </button>
                   <span className="text-xs text-slate-400 font-medium hidden md:inline">
                     Sends to: HR Desk
@@ -308,9 +308,9 @@ export default function CareersPage() {
                 <div className="overflow-hidden space-y-6">
                   {/* Overview */}
                   <div>
-                    <h3 className="text-xs font-normal uppercase tracking-wider text-[#1C3A62] mb-2 flex items-center gap-1.5">
+                    <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-2 flex items-center gap-1.5">
                       <Sparkles className="w-3.5 h-3.5 text-[#2495D3]" />
-                      <span>Role Overview</span>
+                      <span>Role overview</span>
                     </h3>
                     <p className="text-[#585858] leading-relaxed text-[15px] font-normal">
                       {technicalSupervisorJob.description}
@@ -319,8 +319,8 @@ export default function CareersPage() {
 
                   {/* Key Responsibilities */}
                   <div>
-                    <h3 className="text-xs font-normal uppercase tracking-wider text-[#1C3A62] mb-3">
-                      Key Responsibilities
+                    <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+                      Key responsibilities
                     </h3>
                     <ul className="space-y-2.5">
                       {technicalSupervisorJob.responsibilities.map((resp, i) => (
@@ -334,8 +334,8 @@ export default function CareersPage() {
 
                   {/* Qualifications */}
                   <div>
-                    <h3 className="text-xs font-normal uppercase tracking-wider text-[#1C3A62] mb-3">
-                      Qualifications & Skills
+                    <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+                      Qualifications & skills
                     </h3>
                     <ul className="space-y-2.5">
                       {technicalSupervisorJob.qualifications.map((qual, i) => (
@@ -354,7 +354,7 @@ export default function CareersPage() {
                     </p>
                     <button
                       onClick={openApplyModal}
-                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95"
+                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95"
                     >
                       Apply for this position
                     </button>
@@ -381,12 +381,12 @@ export default function CareersPage() {
             {/* Modal Header */}
             <div className="flex items-start justify-between pb-4 border-b border-slate-100 mb-6">
               <div>
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2495D3]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#2495D3] mb-2">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2495D3]/10 px-3 py-1 text-xs font-semibold tracking-wide text-[#2495D3] mb-2">
                   <Briefcase className="w-3 h-3" />
-                  <span>Job Application</span>
+                  <span>Job application</span>
                 </div>
                 <h3 className="text-2xl font-normal text-[#1C3A62] tracking-normal">
-                  Apply for Technical Supervisor
+                  Apply for technical supervisor
                 </h3>
                 <p className="text-sm text-[#585858] mt-1 font-medium">
                   Please fill in your details. Your application will be sent to our recruitment team.
@@ -440,9 +440,9 @@ export default function CareersPage() {
 
                 {/* Candidate Name */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                  <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-[#2495D3]" />
-                    Full Name <span className="text-red-500">*</span>
+                    Full name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
@@ -458,9 +458,9 @@ export default function CareersPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Contact Number */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                    <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
                       <Phone className="w-3.5 h-3.5 text-[#2495D3]" />
-                      Contact Number <span className="text-red-500">*</span>
+                      Contact number <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
@@ -474,9 +474,9 @@ export default function CareersPage() {
 
                   {/* Email */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                    <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
                       <Mail className="w-3.5 h-3.5 text-[#2495D3]" />
-                      Email Address
+                      Email address
                     </label>
                     <input
                       type="email"
@@ -490,9 +490,9 @@ export default function CareersPage() {
 
                 {/* Address */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                  <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
                     <MapPin className="w-3.5 h-3.5 text-[#2495D3]" />
-                    Current Address <span className="text-red-500">*</span>
+                    Current address <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     required
@@ -506,9 +506,9 @@ export default function CareersPage() {
 
                 {/* Resume Upload Section */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-[#1C3A62] flex items-center gap-1.5">
+                  <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
                     <FileText className="w-3.5 h-3.5 text-[#2495D3]" />
-                    Upload Resume <span className="text-red-500">*</span>
+                    Upload resume <span className="text-red-500">*</span>
                   </label>
 
                   <input

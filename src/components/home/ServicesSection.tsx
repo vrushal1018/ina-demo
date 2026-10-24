@@ -25,35 +25,35 @@ const SERVICES: ServiceItem[] = [
   {
     id: 'Transition Services',
     icon: '/transition services.png',
-    title: 'Transition Services',
+    title: 'Transition services',
     description: 'Transform raw data into actionable insights that drive smarter decisions, improved forecasting, and business innovation.',
     href: '/services/transition-services',
   },
   {
     id: 'Sustainability Services',
     icon: '/Sustainability Services.png',
-    title: 'Sustainability Services',
+    title: 'Sustainability services',
     description: 'Responsive, user-centric websites built with modern frameworks to deliver performance, accessibility, and brand impact.',
     href: '/services/sustainability-services',
   },
   {
     id: 'Technical Services',
     icon: '/technical services.png',
-    title: 'Technical Services',
+    title: 'Technical services',
     description: 'We help you design, deploy, and manage secure, scalable, and high-performance cloud infrastructure that supports modern business.',
     href: '/services/technical-services',
   },
   {
     id: 'Audit & Offerings',
     icon: '/audit offerings.png',
-    title: 'Audit & Offerings',
+    title: 'Audit & offerings',
     description: 'We identify system vulnerabilities, assess potential threats, and implement advanced security protocols to safeguard your data and digital assets.',
     href: '/services/audit-and-offerings',
   },
   {
     id: 'Allied Services',
     icon: '/allied services.png',
-    title: 'Allied Services',
+    title: 'Allied services',
     description: 'Our team builds secure, scalable SaaS products from the ground up—ensuring seamless performance, intuitive user experiences.',
     href: '/services/allied-services',
   },
@@ -66,32 +66,32 @@ export default function ServicesSection() {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="relative w-full bg-slate-50 py-20 md:py-28 font-sans overflow-hidden border-y border-slate-200/60">
+    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#EDF6FC] py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
       {/* Background blueprint elements */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.26} flipY={true} mask="fade-edges" />
+      <ArchitecturalLineworkBackground theme="light" opacity={0.35} flipY={true} mask="fade-edges" />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-16">
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-8 sm:mb-10">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-30px" }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-8"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
           <div className="max-w-2xl">
-            <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] mb-4">
-              Our Service
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-[50px] font-normal text-[#1C3A62] leading-[1.15] tracking-normal">
-              Comprehensive Facility Management Solutions
+            {/* <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+              Our services
+            </div> */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal">
+              Comprehensive facility management solutions
             </h2>
           </div>
 
           <div className="max-w-md">
-            <p className="text-[#585858] text-sm md:text-base leading-relaxed font-normal">
+            <p className="text-[#585858] text-xs sm:text-sm leading-relaxed font-normal">
               From engineering and technical facility management to sustainability, transition, and allied services, we deliver integrated solutions designed to improve efficiency, reliability, safety, and long-term asset performance..
             </p>
           </div>
@@ -100,17 +100,17 @@ export default function ServicesSection() {
 
       {/* Continuous Marquee Slider Container */}
       <div
-        className="w-full relative overflow-hidden py-4"
+        className="w-full relative overflow-hidden py-2"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Left and Right Fade Gradients */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
 
         {/* Animated Track */}
         <motion.div
-          className="flex gap-7 w-max px-4"
+          className="flex gap-5 sm:gap-6 w-max px-4"
           animate={{
             x: isPaused ? undefined : ['0%', '-50%'],
           }}
@@ -125,9 +125,9 @@ export default function ServicesSection() {
             return (
               <div
                 key={`${service.id}-${index}`}
-                className="w-[320px] sm:w-[380px] md:w-[400px] flex-shrink-0"
+                className="w-[280px] sm:w-[320px] md:w-[350px] flex-shrink-0"
               >
-                <div className="group relative bg-transparent hover:bg-white/15 rounded-3xl p-8 sm:p-9 transition-all duration-300 border border-slate-300/80 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[400px] hover:-translate-y-1.5 overflow-hidden">
+                <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-6 sm:p-7 transition-all duration-300 border border-[#2495D3]/25 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[300px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
 
                   {/* Subtle architectural card watermark */}
                   <div className="absolute -right-6 -bottom-6 w-32 h-32 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity pointer-events-none">
@@ -136,11 +136,11 @@ export default function ServicesSection() {
 
                   <div>
                     {/* Icon Container with glowing aura on hover */}
-                    <div className="w-16 h-16 rounded-2xl bg-white/60 group-hover:bg-[#2495D3] border border-slate-200/70 group-hover:border-[#2495D3] p-3 flex items-center justify-center mb-7 transition-all duration-300 shadow-xs">
+                    <div className="w-13 h-13 rounded-xl bg-transparent group-hover:bg-[#2495D3] border border-[#2495D3]/25 group-hover:border-[#2495D3] p-2.5 flex items-center justify-center mb-5 transition-all duration-300 shadow-xs">
                       <img
                         src={service.icon}
                         alt={service.title}
-                        className="w-10 h-10 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300"
+                        className="w-8 h-8 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300"
                       />
                     </div>
 

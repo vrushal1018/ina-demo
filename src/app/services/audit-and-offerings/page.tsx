@@ -60,15 +60,15 @@ export default function AuditAndOfferingsPage() {
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-12">
               {/* LEFT CONTENT */}
               <div className="relative z-30">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-4">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-4">
                   <FileCheck2 className="w-3.5 h-3.5" />
-                  <span>Engineering Audits & Analysis</span>
+                  <span>Engineering audits & analysis</span>
                 </div>
 
                 <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-[#1C3A62]">
-                  AUDIT &
+                  Audit &
                   <br />
-                  OFFERINGS
+                  offerings
                 </h1>
                 <div className="w-20 h-1 bg-[#2495D3] mt-4 mb-6 rounded-full" />
 
@@ -82,7 +82,7 @@ export default function AuditAndOfferingsPage() {
                     href="/contact"
                     className="inline-flex items-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#1C3A62] px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:scale-95"
                   >
-                    <span>Book an Appointment</span>
+                    <span>Book an appointment</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
 
@@ -90,7 +90,7 @@ export default function AuditAndOfferingsPage() {
                     href="/contact"
                     className="inline-flex items-center rounded-xl border-2 border-[#1C3A62] px-8 py-3.5 font-semibold text-[#1C3A62] transition-all duration-300 hover:bg-[#1C3A62] hover:text-white hover:-translate-y-0.5 active:scale-95"
                   >
-                    Contact Us
+                    Contact us
                   </Link>
                 </div>
               </div>
@@ -137,15 +137,15 @@ export default function AuditAndOfferingsPage() {
         {/* =========================================================
             OVERVIEW SECTION
         ========================================================== */}
-        <AnimateIn delay={0.1} minHeight="450px">
-          <section className="bg-white py-12 lg:py-16">
+        <AnimateIn delay={0.1} minHeight="400px">
+          <section className="bg-white py-8 lg:py-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="relative overflow-hidden rounded-3xl bg-slate-50/70 p-6 sm:p-10 lg:p-14 border border-slate-200 shadow-xl">
+              <div className="relative overflow-hidden rounded-3xl bg-slate-50/70 p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-xl">
                 <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
 
-                <div className="relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+                <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
                   {/* OVERVIEW IMAGE */}
-                  <div className="lg:col-span-5 relative flex h-[320px] sm:h-[380px] lg:h-[420px] items-center justify-center">
+                  <div className="lg:col-span-5 relative flex h-[280px] sm:h-[320px] lg:h-[360px] items-center justify-center">
                     <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-[#1C3A62] to-[#0F223D] p-6 flex items-center justify-center">
                       <img
                         src="/Audit%26Offerings.svg"
@@ -159,12 +159,12 @@ export default function AuditAndOfferingsPage() {
 
                   {/* OVERVIEW CONTENT */}
                   <div className="lg:col-span-7">
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#2495D3]/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#2495D3]">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#2495D3]/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3]">
                       Overview
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-[#1C3A62]">
-                      What are Audit & Offerings?
+                      What are audits & offerings?
                     </h2>
                     <div className="w-16 h-1 bg-[#2495D3] mt-3 mb-6 rounded-full" />
 
@@ -174,10 +174,10 @@ export default function AuditAndOfferingsPage() {
 
                     <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {[
-                        'Facility Audits',
-                        'Performance Assessment',
-                        'Bespoke Solutions',
-                        'Risk Management',
+                        'Facility audits',
+                        'Performance assessment',
+                        'Bespoke solutions',
+                        'Risk management',
                       ].map((item, index) => (
                         <li
                           key={index}

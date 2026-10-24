@@ -269,7 +269,7 @@ export default function OurTeam() {
   }, [currentIndex, isPaused, maxIndex, selectedDepartment]);
 
   return (
-    <section className="relative bg-white text-[#383838] py-20 lg:py-28 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-slate-100">
+    <section className="relative bg-white text-[#383838] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-slate-100">
       {/* Background blueprint dots */}
       <div className="absolute inset-0 blueprint-dots opacity-25 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -277,21 +277,21 @@ export default function OurTeam() {
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Section Header */}
-        <div className="text-center mb-12 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold uppercase tracking-widest">
+        <div className="text-center mb-6 sm:mb-8 space-y-2.5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold tracking-wide">
             <Award className="w-3.5 h-3.5 text-[#2495D3]" />
-            <span>Operational Executives</span>
+            <span>Operational executives</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-normal text-[#1C3A62]">
-            Meet Our Leadership Team
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-normal text-[#1C3A62]">
+            Meet our leadership team
           </h2>
-          <p className="text-[#585858] max-w-2xl mx-auto text-base sm:text-lg font-normal leading-relaxed">
-            Our Experienced Professionals Are Dedicated To Delivering Excellence, Innovation, And Outstanding Results For Our Clients.
+          <p className="text-[#585858] max-w-2xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
+            Our experienced professionals are dedicated to delivering excellence, innovation, and outstanding results for our clients.
           </p>
         </div>
 
         {/* Department Filter Toggle Switcher */}
-        <div className="flex justify-center items-center gap-2.5 mb-12 flex-wrap">
+        <div className="flex justify-center items-center gap-2 mb-6 sm:mb-8 flex-wrap">
           {departments.map((dept) => {
             const isSelected = selectedDepartment === dept;
             const count = teamMembers.filter((m) => m.department === dept).length;
@@ -300,14 +300,14 @@ export default function OurTeam() {
               <button
                 key={dept}
                 onClick={() => handleDepartmentChange(dept)}
-                className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 border flex items-center gap-2 ${
+                className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 border flex items-center gap-1.5 ${
                   isSelected
                     ? 'bg-[#1C3A62] text-white border-[#1C3A62] shadow-lg shadow-[#1C3A62]/20 scale-105'
                     : 'bg-slate-50 text-[#585858] border-slate-200 hover:border-[#2495D3] hover:text-[#1C3A62]'
                 }`}
               >
                 <span>{dept}</span>
-                <span className={`text-xs px-2 py-0.5 rounded-full ${isSelected ? 'bg-[#2495D3] text-white' : 'bg-slate-200 text-[#585858]'}`}>
+                <span className={`text-[11px] px-1.5 py-0.5 rounded-full ${isSelected ? 'bg-[#2495D3] text-white' : 'bg-slate-200 text-[#585858]'}`}>
                   {count}
                 </span>
               </button>
@@ -317,7 +317,7 @@ export default function OurTeam() {
 
         {/* Carousel Viewport Container */}
         <div
-          className="relative overflow-hidden py-4 px-1"
+          className="relative overflow-hidden py-2 px-1"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -333,19 +333,19 @@ export default function OurTeam() {
                 className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0"
               >
                 {/* Modern Architectural Card */}
-                <div className="group relative bg-white rounded-2xl p-5 border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 flex flex-col justify-between h-[460px] overflow-hidden">
+                <div className="group relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 flex flex-col justify-between h-[410px] overflow-hidden">
                   {/* Top Bar Accent */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   {/* Image Container */}
-                  <div className="relative w-full h-[220px] rounded-xl overflow-hidden bg-slate-100 border border-slate-100 mb-4 flex-shrink-0">
+                  <div className="relative w-full h-[180px] rounded-xl overflow-hidden bg-slate-100 border border-slate-100 mb-3 flex-shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#1C3A62]/90 backdrop-blur-sm text-[11px] font-semibold text-white tracking-wider uppercase">
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#1C3A62]/90 backdrop-blur-sm text-[11px] font-semibold text-white tracking-wide">
                       {member.department}
                     </div>
                   </div>

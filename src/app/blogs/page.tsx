@@ -15,31 +15,31 @@ export default function BlogsPage() {
     <>
       <SiteHeader />
       <BlogHero />
-      <div className="relative min-h-screen bg-gradient-to-b from-white via-slate-50 to-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-b from-white via-slate-50 to-white py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
         {/* Blueprint dots accent */}
         <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
         {/* Architectural linework stream */}
         <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
 
-        <div className="relative z-10 max-w-7xl mx-auto pt-4">
+        <div className="relative z-10 max-w-7xl mx-auto pt-2">
           {/* Header Section */}
-          <AnimateIn delay={0.1} minHeight="120px">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16 pb-8 border-b border-slate-100">
+          <AnimateIn delay={0.1} minHeight="100px">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-8 pb-5 border-b border-slate-100">
               <div className="max-w-xl">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold uppercase tracking-wider mb-4">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
                   <BookOpen className="w-3.5 h-3.5" />
-                  <span>Our Blog</span>
+                  <span>Our blog</span>
                 </div>
-                <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
-                  Our Blog
+                <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium text-[#2495D3]">
+                  Our blog
                 </div>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#1C3A62] leading-tight tracking-normal">
-                  <span className="block">View All</span>
-                  <span className="block mt-1 text-[#2495D3]">Knowledge Posts</span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-tight tracking-normal">
+                  <span className="block">View all</span>
+                  <span className="block mt-1 text-[#2495D3]">knowledge posts</span>
                 </h2>
               </div>
-              <div className="max-w-md lg:pb-2">
-                <p className="text-[#585858] text-base sm:text-lg leading-relaxed font-normal">
+              <div className="max-w-md lg:pb-1">
+                <p className="text-[#585858] text-sm sm:text-base leading-relaxed font-normal">
                   Dive into expert-written articles, tutorials, and insights
                   designed to help you stay ahead in the fast-moving world of
                   technology and innovation.
@@ -49,8 +49,8 @@ export default function BlogsPage() {
           </AnimateIn>
 
           {/* Blog Grid */}
-          <AnimateIn delay={0.15} minHeight="600px">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimateIn delay={0.15} minHeight="500px">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {blogs.map((post, idx) => (
                 <Link
                   key={post.id}
@@ -102,8 +102,8 @@ export default function BlogsPage() {
                       </div>
 
                       {/* Card Footer */}
-                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#2495D3] group-hover:text-[#1C3A62] transition-colors uppercase tracking-wider">
-                        <span>Read More</span>
+                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#2495D3] group-hover:text-[#1C3A62] transition-colors tracking-wide">
+                        <span>Read more</span>
                         <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>

@@ -66,25 +66,25 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
   };
 
   return (
-    <div className="relative py-20 lg:py-28 bg-[#F0F7FD]/30 flex flex-col items-center font-sans overflow-hidden border-t border-slate-100">
+    <div className="relative py-10 sm:py-14 lg:py-16 bg-[#F0F7FD]/30 flex flex-col items-center font-sans overflow-hidden border-t border-slate-100">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
       {/* Architectural linework stream */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.24} mask="fade-edges" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-2.5">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Our Services</span>
+            <span>Our services</span>
           </div>
-          <div className="mb-4 hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-[#2495D3]">
-            Our Services
+          <div className="mb-4 hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium text-[#2495D3]">
+            Our services
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] tracking-normal">
-            What We Offer
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1C3A62] tracking-normal">
+            What we offer
           </h2>
-          <div className="w-16 h-1 bg-[#2495D3] mt-3 rounded-full" />
+          <div className="w-16 h-1 bg-[#2495D3] mt-2.5 rounded-full" />
         </div>
 
         <div className="flex gap-3">
@@ -209,8 +209,8 @@ function ServiceCard({
                 {description}
               </p>
 
-              <div className="flex items-center gap-2 text-[#2495D3] font-semibold text-xs tracking-wider uppercase group-hover:text-[#1C3A62] transition-colors w-fit">
-                <span>Learn More</span>
+              <div className="flex items-center gap-2 text-[#2495D3] font-semibold text-xs tracking-wide group-hover:text-[#1C3A62] transition-colors w-fit">
+                <span>Learn more</span>
                 <ArrowRight size={15} className="transform group-hover:translate-x-1.5 transition-transform" />
               </div>
             </div>

@@ -482,9 +482,9 @@ export default function WhereAreWeLocated() {
       className="
         relative w-full overflow-hidden
         border-t border-slate-100
-        bg-white px-4 py-16
-        font-sans sm:px-6 sm:py-20
-        lg:px-12 lg:py-24
+        bg-white px-4 py-10
+        font-sans sm:px-6 sm:py-14
+        lg:px-12 lg:py-16
       "
     >
       <div className="blueprint-dots pointer-events-none absolute inset-0 opacity-30" />
@@ -497,29 +497,29 @@ export default function WhereAreWeLocated() {
 
       <div className="relative z-10 mx-auto max-w-7xl">
         {/* SECTION HEADING */}
-        <div className="mx-auto mb-12 max-w-3xl space-y-3 text-center sm:mb-16">
+        <div className="mx-auto mb-6 max-w-3xl space-y-2.5 text-center sm:mb-8">
           <div
             className="
               inline-flex items-center gap-2
               rounded-full border border-[#2495D3]/20
               bg-[#2495D3]/10 px-3.5 py-1.5
-              text-xs font-semibold uppercase tracking-wider
+              text-xs font-semibold tracking-wide
               text-[#2495D3]
             "
           >
             <Globe2 className="h-3.5 w-3.5" />
-            <span>Our Presence</span>
+            <span>Our presence</span>
           </div>
 
-          <h2 className="text-3xl font-normal tracking-normal text-[#1C3A62] sm:text-4xl lg:text-5xl">
-            Where Are We Located?
+          <h2 className="text-2xl font-normal tracking-normal text-[#1C3A62] sm:text-3xl lg:text-4xl">
+            Where are we located?
           </h2>
 
-          <p className="text-base text-[#585858] sm:text-lg">
+          <p className="text-sm text-[#585858] sm:text-base">
             Explore Ina TechFM&apos;s network of offices across India.
           </p>
 
-          <div className="mx-auto h-1 w-16 rounded-full bg-[#2495D3]" />
+          <div className="mx-auto h-1 w-12 rounded-full bg-[#2495D3]" />
         </div>
 
         {/* MAIN CONTENT */}
@@ -535,11 +535,11 @@ export default function WhereAreWeLocated() {
           {/* ROTATING EARTH */}
           <div
             className="
-              relative h-[360px] w-full overflow-hidden
+              relative h-[340px] w-full overflow-hidden
               rounded-2xl
               bg-gradient-to-b from-[#102744] via-[#07182D] to-[#030B16]
-              sm:h-[460px]
-              lg:col-span-8 lg:h-[550px]
+              sm:h-[400px]
+              lg:col-span-8 lg:h-[480px]
             "
           >
             <div

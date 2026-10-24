@@ -68,7 +68,7 @@ export default function RepairsAndServicing() {
   ];
 
   return (
-    <section className="relative py-20 md:py-28 bg-[#0A1629] text-white overflow-hidden">
+    <section className="relative py-10 sm:py-14 lg:py-16 bg-[#0A1629] text-white overflow-hidden">
       {/* Background Video with continuous loop in full high resolution */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -100,23 +100,23 @@ export default function RepairsAndServicing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: "-30px" }}
           transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 sm:mb-16"
+          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10"
         >
           {/* Left Title & Badge */}
-          <div className="max-w-2xl space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#2495D3] backdrop-blur-md shadow-sm">
+          <div className="max-w-2xl space-y-3">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3] backdrop-blur-md shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
-              <span>Engineering & Maintenance</span>
+              <span>Engineering & maintenance</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-normal leading-[1.15]">
-              Expert Engineering & Facility Management Services
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-normal leading-[1.15]">
+              Expert engineering & facility management services
             </h2>
           </div>
 
           {/* Right Lead Paragraph & Action Buttons */}
-          <div className="max-w-xl space-y-6">
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+          <div className="max-w-xl space-y-4">
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
               From critical engineering assets to day-to-day facility
               operations, every environment requires reliable, efficient,
               and proactive management. At Ina Tech FM, we combine engineering
@@ -125,35 +125,35 @@ export default function RepairsAndServicing() {
               sustainable operational outcomes.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="/contact"
-                className="px-8 py-3.5 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white font-semibold text-sm tracking-wide text-center transition-all duration-300 shadow-xl shadow-[#2495D3]/30 hover:-translate-y-0.5 active:translate-y-0"
+                className="px-6 py-2.5 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white font-semibold text-xs sm:text-sm tracking-wide text-center transition-all duration-300 shadow-xl shadow-[#2495D3]/30 hover:-translate-y-0.5 active:translate-y-0"
               >
-                Talk to Our Experts
+                Talk to our experts
               </a>
 
               <a
                 href="#services"
-                className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md font-semibold text-sm tracking-wide text-center transition-all duration-300 flex items-center justify-center space-x-2 hover:-translate-y-0.5 active:translate-y-0"
+                className="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/25 backdrop-blur-md font-semibold text-xs sm:text-sm tracking-wide text-center transition-all duration-300 flex items-center justify-center space-x-2 hover:-translate-y-0.5 active:translate-y-0"
               >
-                <PhoneCall className="w-4 h-4 text-[#2495D3]" />
-                <span>Explore Our Services</span>
+                <PhoneCall className="w-3.5 h-3.5 text-[#2495D3]" />
+                <span>Explore our services</span>
               </a>
             </div>
           </div>
         </motion.div>
 
         {/* Section Divider / Capabilities Subheading */}
-        <div className="flex items-center justify-between mb-8 pb-4 border-t border-white/10 pt-8">
-          <p className="text-base sm:text-lg font-semibold text-white flex items-center gap-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3]" />
+        <div className="flex items-center justify-between mb-5 pb-3 border-t border-white/10 pt-5">
+          <p className="text-sm sm:text-base font-semibold text-white flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#2495D3]" />
             <span>Our engineering and facility management expertise includes:</span>
           </p>
 
           <span className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-slate-300">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Active Operations Across India</span>
+            <span>Active operations across India</span>
           </span>
         </div>
 
@@ -198,8 +198,8 @@ export default function RepairsAndServicing() {
 
                 {/* Bottom Accent */}
                 <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-                  <span className="text-[11px] font-medium text-slate-400 group-hover:text-slate-200 transition-colors uppercase tracking-wider">
-                    Verified Protocol
+                  <span className="text-[11px] font-medium text-slate-400 group-hover:text-slate-200 transition-colors tracking-wide">
+                    Verified protocol
                   </span>
                   <CheckCircle2 className="w-4 h-4 text-[#2495D3] opacity-60 group-hover:opacity-100 transition-opacity" />
                 </div>
@@ -218,19 +218,19 @@ export default function RepairsAndServicing() {
         >
           <div>
             <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">24/7/365</div>
-            <div className="text-xs text-slate-400 mt-1">Live Engineering Support</div>
+            <div className="text-xs text-slate-400 mt-1">Live engineering support</div>
           </div>
           <div>
             <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">100% SLA</div>
-            <div className="text-xs text-slate-400 mt-1">Uptime Commitment</div>
+            <div className="text-xs text-slate-400 mt-1">Uptime commitment</div>
           </div>
           <div>
             <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">Zero-Harm</div>
-            <div className="text-xs text-slate-400 mt-1">Safety First Protocols</div>
+            <div className="text-xs text-slate-400 mt-1">Safety-first protocols</div>
           </div>
           <div>
             <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">Pan-India</div>
-            <div className="text-xs text-slate-400 mt-1">Technical Deployment</div>
+            <div className="text-xs text-slate-400 mt-1">Technical deployment</div>
           </div>
         </motion.div>
 

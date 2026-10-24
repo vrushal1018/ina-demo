@@ -37,32 +37,32 @@ export default function AboutPage() {
         <AboutUsHeroSection />
 
         {/* Below-the-fold sections load on scroll */}
-        <AnimateIn delay={0.1} minHeight="260px" id="stats">
+        <AnimateIn delay={0.1} minHeight="200px" id="stats">
           <StatsSection />
         </AnimateIn>
 
-        <AnimateIn delay={0.1} minHeight="460px" id="mission-vision">
+        <AnimateIn delay={0.1} minHeight="400px" id="mission-vision">
           <MissionVisionSlider />
         </AnimateIn>
 
-        <AnimateIn delay={0.1} minHeight="360px" id="ceo-quote">
+        <AnimateIn delay={0.1} minHeight="320px" id="ceo-quote">
           <CEOQuoteSection />
         </AnimateIn>
 
-        <AnimateIn delay={0.1} minHeight="560px" id="leadership">
+        <AnimateIn delay={0.1} minHeight="440px" id="leadership">
           <InteractiveTeamSlider />
         </AnimateIn>
 
-        <AnimateIn delay={0.1} minHeight="620px" id="our-team">
+        <AnimateIn delay={0.1} minHeight="480px" id="our-team">
           <OurTeam />
         </AnimateIn>
 
-        <AnimateIn delay={0.1} minHeight="500px" id="how-we-work">
+        <AnimateIn delay={0.1} minHeight="420px" id="how-we-work">
           <HowWeWork />
         </AnimateIn>
 
         {/* Pan-India 3D Regional Map & Office Locations */}
-        <AnimateIn delay={0.1} minHeight="650px" id="locations">
+        <AnimateIn delay={0.1} minHeight="480px" id="locations">
           <WhereAreWeLocated />
         </AnimateIn>
       </main>
