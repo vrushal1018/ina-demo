@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
@@ -61,13 +60,7 @@ export default function SectorsWeOperate() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-20px" }}
-          transition={{ duration: 0.5 }}
-          className="w-full mb-4 sm:mb-6"
-        >
+        <div className="w-full mb-4 sm:mb-6">
           <h2 className="text-2xl sm:text-3xl lg:text-3xl font-normal text-[#1C3A62] tracking-normal mb-1.5 leading-tight">
             Sectors we operate
           </h2>
@@ -77,17 +70,13 @@ export default function SectorsWeOperate() {
             solutions that keep assets efficient, environments safe, and operations running
             seamlessly.
           </p>
-        </motion.div>
+        </div>
 
         {/* 8-Card High-End Architectural Sector Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {doors.map((door, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-20px" }}
-              transition={{ duration: 0.4, delay: idx * 0.04, ease: [0.21, 0.47, 0.32, 0.98] }}
               className="group relative flex flex-col rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-[#1C3A62] border border-[#1C3A62]/50 hover:-translate-y-1"
             >
               {/* Image Box with Zoom Effect & Gradient Vignette */}
@@ -96,6 +85,8 @@ export default function SectorsWeOperate() {
                   src={door.image}
                   alt={door.alt}
                   fill
+                  loading="lazy"
+                  quality={75}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out opacity-90 group-hover:opacity-100"
                 />
@@ -123,7 +114,7 @@ export default function SectorsWeOperate() {
                   <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-200" />
                 </a>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

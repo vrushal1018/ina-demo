@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Building2, Users, Briefcase, Award } from "lucide-react";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
@@ -48,15 +47,11 @@ export default function StatsSection() {
       <ArchitecturalLineworkBackground theme="light" opacity={0.2} mask="fade-edges" />
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {stats.map((stat, idx) => {
+          {stats.map((stat) => {
             const Icon = stat.icon;
             return (
-              <motion.div
+              <div
                 key={stat.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-30px" }}
-                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
                 className="group relative bg-transparent rounded-2xl p-6 flex flex-col justify-between min-h-[180px] transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 border border-slate-200/80 hover:border-[#2495D3]/40 hover:-translate-y-1 overflow-hidden"
               >
                 {/* Top Icon Badge */}
@@ -81,7 +76,7 @@ export default function StatsSection() {
 
                 {/* Bottom accent glow */}
                 <div className="mt-6 w-8 h-0.5 bg-slate-200 group-hover:w-full group-hover:bg-[#2495D3] transition-all duration-500 rounded-full" />
-              </motion.div>
+              </div>
             );
           })}
         </div>

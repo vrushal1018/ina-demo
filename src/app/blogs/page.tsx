@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Calendar, ArrowRight, BookOpen } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import BlogHero from "@/components/BlogHero";
@@ -51,21 +50,13 @@ export default function BlogsPage() {
           {/* Blog Grid */}
           <AnimateIn delay={0.15} minHeight="500px">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {blogs.map((post, idx) => (
+              {blogs.map((post) => (
                 <Link
                   key={post.id}
                   href={`/blogs/${post.slug}`}
                   className="block h-full group focus:outline-none"
                 >
-                  <motion.article
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-30px" }}
-                    transition={{
-                      duration: 0.5,
-                      delay: (idx % 3) * 0.08,
-                      ease: [0.21, 0.47, 0.32, 0.98],
-                    }}
+                  <article
                     className="relative flex flex-col h-full bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-200/90 overflow-hidden hover:-translate-y-1 group-hover:border-[#2495D3]"
                   >
                     {/* Top Accent Strip */}
@@ -107,7 +98,7 @@ export default function BlogsPage() {
                         <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
-                  </motion.article>
+                  </article>
                 </Link>
               ))}
             </div>

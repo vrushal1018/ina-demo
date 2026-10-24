@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Home, Sparkles, ChevronRight } from "lucide-react";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
@@ -17,12 +16,7 @@ export default function BlogHero() {
       {/* Ambient Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#2495D3]/20 rounded-full blur-[100px] pointer-events-none" />
 
-      <motion.div
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className="relative z-10 max-w-3xl mx-auto flex flex-col items-center"
-      >
+      <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center">
         {/* Breadcrumb Navigation Capsule */}
         <div className="inline-flex items-center gap-2 text-xs sm:text-sm mb-4 text-white/80 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 shadow-sm">
           <Link href="/" className="flex items-center gap-1.5 hover:text-[#2495D3] transition-colors">
@@ -52,7 +46,7 @@ export default function BlogHero() {
           Explore expert articles, tech trends, and practical tips to keep your
           business ahead of the curve.
         </p>
-      </motion.div>
+      </div>
     </section>
   );
 }

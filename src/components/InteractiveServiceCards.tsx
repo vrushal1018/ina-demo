@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   Smartphone,
   MousePointerClick,
@@ -195,28 +194,24 @@ function ServiceCard({
       </h3>
 
       {/* Dropdown Data Section */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="overflow-hidden"
-          >
-            <div className="pt-4 mt-4 border-t border-slate-200/70">
-              <p className="text-[#585858] text-[14px] sm:text-[15px] leading-relaxed mb-4 font-normal">
-                {description}
-              </p>
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="pt-4 mt-4 border-t border-slate-200/70">
+            <p className="text-[#585858] text-[14px] sm:text-[15px] leading-relaxed mb-4 font-normal">
+              {description}
+            </p>
 
-              <div className="flex items-center gap-2 text-[#2495D3] font-semibold text-xs tracking-wide group-hover:text-[#1C3A62] transition-colors w-fit">
-                <span>Learn more</span>
-                <ArrowRight size={15} className="transform group-hover:translate-x-1.5 transition-transform" />
-              </div>
+            <div className="flex items-center gap-2 text-[#2495D3] font-semibold text-xs tracking-wide group-hover:text-[#1C3A62] transition-colors w-fit">
+              <span>Learn more</span>
+              <ArrowRight size={15} className="transform group-hover:translate-x-1.5 transition-transform" />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
