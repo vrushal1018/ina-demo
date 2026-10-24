@@ -3,21 +3,36 @@
 import React, { useEffect, useState } from 'react';
 
 export default function LoadingScreen() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [startFade, setStartFade] = useState(false);
 
   useEffect(() => {
-    // Show clean logo briefly, then fade out smoothly
+    // Check if splash was already shown during this browser session
+    try {
+      if (sessionStorage.getItem('ina_splash_seen')) {
+        return;
+      }
+    } catch {
+      // Ignore storage errors in private/incognito mode
+    }
+
+    const showTimer = setTimeout(() => {
+      setIsLoading(true);
+    }, 0);
+
     const fadeTimer = setTimeout(() => {
       setStartFade(true);
-    }, 450);
+    }, 150);
 
-    // Remove from DOM when animation completes
     const removeTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 850);
+      try {
+        sessionStorage.setItem('ina_splash_seen', '1');
+      } catch {}
+    }, 320);
 
     return () => {
+      clearTimeout(showTimer);
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
     };
