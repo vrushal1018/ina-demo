@@ -2,8 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 interface Step {
@@ -51,13 +50,7 @@ export default function FacilityManagementSteps() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Left Column: Sticky Editorial Header */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: "-30px" }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24"
-          >
+          <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24">
             <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
               Our methodology
             </div>
@@ -79,20 +72,16 @@ export default function FacilityManagementSteps() {
               <span>Talk to our experts</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-          </motion.div>
+          </div>
 
           {/* Right Column: Connected Steps Timeline */}
           <div className="lg:col-span-7 relative">
             <div className="flex flex-col gap-4 relative">
 
-              {STEPS.map((step, index) => {
+              {STEPS.map((step) => {
                 return (
-                  <motion.div
+                  <div
                     key={step.number}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, margin: "-30px" }}
-                    transition={{ duration: 0.5, delay: index * 0.08, ease: [0.21, 0.47, 0.32, 0.98] }}
                     className="group relative flex items-start gap-4 p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-[#2495D3]/25 hover:border-[#2495D3]/50 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
                     {/* Step Number Badge with Gradient */}
@@ -110,7 +99,7 @@ export default function FacilityManagementSteps() {
                         {step.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
 

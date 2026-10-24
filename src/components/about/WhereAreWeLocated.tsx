@@ -358,13 +358,14 @@ function EarthGlobe({
   const globeRef = useRef<THREE.Group>(null);
 
   const earthTexture = useTexture(
-    "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg"
+    "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
+    (texture) => {
+      if (texture instanceof THREE.Texture) {
+        texture.colorSpace = THREE.SRGBColorSpace;
+        texture.anisotropy = 8;
+      }
+    }
   );
-
-  useMemo(() => {
-    earthTexture.colorSpace = THREE.SRGBColorSpace;
-    earthTexture.anisotropy = 8;
-  }, [earthTexture]);
 
   useFrame((_, delta) => {
     if (!globeRef.current) return;

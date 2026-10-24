@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowDownRight, ShieldCheck } from 'lucide-react';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
@@ -58,13 +57,7 @@ export default function BrandBanner() {
     <section className="relative w-full bg-gradient-to-b from-[#F4FAFD] to-[#F8FBFE] py-8 sm:py-10 overflow-hidden">
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, margin: "-30px" }}
-        transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Title with Lucide Icon in Sleek Pill */}
         <div className="flex items-center justify-center mb-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-[#2495D3]/25 shadow-xs text-[#1C3A62] font-semibold text-xs sm:text-sm">
@@ -88,25 +81,27 @@ export default function BrandBanner() {
                   alt={brand.name}
                   className="w-full h-full object-contain transition-all duration-300 hover:brightness-105"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Tailwind Animation Styling via CSS in JS/JSX */}
+      {/* Hardware-Accelerated Marquee Styling */}
       <style jsx global>{`
         @keyframes marquee {
           0% {
-            transform: translateX(0%);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate3d(-50%, 0, 0);
           }
         }
         .animate-marquee {
           animation: marquee 35s linear infinite;
+          will-change: transform;
         }
       `}</style>
     </section>

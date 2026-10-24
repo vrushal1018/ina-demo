@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 
 export interface LazySectionProps {
   children: React.ReactNode;
@@ -52,10 +51,6 @@ export default function LazySection({
   id,
   fallback,
   lazy = false,
-  delay = 0,
-  direction = 'up',
-  amount = 0.05,
-  once = false,
 }: LazySectionProps) {
   const [isLoaded, setIsLoaded] = useState(!lazy);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -107,21 +102,13 @@ export default function LazySection({
     };
   }, [lazy, isLoaded, rootMargin, threshold, id]);
 
-  const directions = {
-    up: { y: 28, x: 0 },
-    down: { y: -28, x: 0 },
-    left: { x: 28, y: 0 },
-    right: { x: -28, y: 0 },
-    none: { x: 0, y: 0 },
-  };
-
   if (!isLoaded) {
     return (
       <div
         ref={containerRef}
         id={id}
         style={{ minHeight: typeof minHeight === 'number' ? `${minHeight}px` : minHeight }}
-        className={`w-full bg-white transition-opacity duration-300 ${className}`}
+        className={`w-full bg-white ${className}`}
       >
         {fallback || (minHeight ? <SectionSkeleton height={minHeight} /> : null)}
       </div>
@@ -129,34 +116,15 @@ export default function LazySection({
   }
 
   return (
-    <motion.div
+    <div
       ref={containerRef}
       id={id}
-      initial={{
-        opacity: 0,
-        ...directions[direction],
-      }}
-      whileInView={{
-        opacity: 1,
-        x: 0,
-        y: 0,
-      }}
-      viewport={{
-        once,
-        amount: typeof amount === 'number' ? Math.min(amount, 0.08) : amount,
-        margin: '-30px 0px -30px 0px',
-      }}
-      transition={{
-        duration: 0.55,
-        delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
-      }}
       style={{
         minHeight: minHeight ? (typeof minHeight === 'number' ? `${minHeight}px` : minHeight) : undefined,
       }}
       className={`w-full ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

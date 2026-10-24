@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function AboutUsHeroSection() {
@@ -49,12 +48,7 @@ export default function AboutUsHeroSection() {
       <div className="relative max-w-7xl mx-auto">
 
         {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-8 sm:mb-10"
-        >
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-3">
             About us
           </div>
@@ -64,16 +58,13 @@ export default function AboutUsHeroSection() {
           <p className="mt-3 text-sm sm:text-base text-[#585858] font-medium max-w-xl mx-auto">
             Helping you find the perfect place to call business.
           </p>
-        </motion.div>
+        </div>
 
         {/* Staggered Gallery Grid with Architectural Framing */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 items-center mb-8 sm:mb-12">
-          {galleryImages.map((img, idx) => (
-            <motion.div
+          {galleryImages.map((img) => (
+            <div
               key={img.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
               className={`relative w-full ${img.heightClass} rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-slate-100 group`}
             >
               <Image
@@ -85,18 +76,12 @@ export default function AboutUsHeroSection() {
                 priority={img.id === 3}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1C3A62]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Content Footer / "What we do" Statement */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-30px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-5xl text-left p-6 sm:p-8 rounded-2xl bg-[#F8F9FA] border border-slate-200/80 shadow-xs relative overflow-hidden"
-        >
+        <div className="max-w-5xl text-left p-6 sm:p-8 rounded-2xl bg-[#F8F9FA] border border-slate-200/80 shadow-xs relative overflow-hidden">
           <div className="absolute top-0 left-0 w-2 h-full bg-[#2495D3]" />
           <span className="text-xs sm:text-sm font-semibold tracking-wide text-[#2495D3] block mb-4">
             What we do
@@ -104,7 +89,7 @@ export default function AboutUsHeroSection() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-normal text-[#1C3A62] leading-tight sm:leading-snug lg:leading-tight">
             We enrich your assets through expert repairs and proactive maintenance, extending their lifespan and keeping your facility safe, efficient and reliable.
           </h2>
-        </motion.div>
+        </div>
 
       </div>
     </section>

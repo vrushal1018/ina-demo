@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Phone,
-  Menu,
   X,
   ChevronDown,
   ChevronRight,
@@ -17,18 +16,24 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [servicesExpanded, setServicesExpanded] = useState(false);
   const pathname = usePathname();
+  const prevPathnameRef = useRef(pathname);
 
   // Close drawer on route navigation
   useEffect(() => {
-    setIsOpen(false);
-    setServicesExpanded(false);
+    if (prevPathnameRef.current !== pathname) {
+      prevPathnameRef.current = pathname;
+      const timer = setTimeout(() => {
+        setIsOpen(false);
+        setServicesExpanded(false);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
   }, [pathname]);
 
   // Close on Escape key
@@ -126,28 +131,19 @@ export default function SiteHeader() {
       </button>
 
       {/* ================= VERTICAL NAVBAR (OFF-CANVAS DRAWER) ================= */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Backdrop Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 cursor-pointer"
-              aria-hidden="true"
-            />
+      {isOpen && (
+        <>
+          {/* Backdrop Overlay */}
+          <div
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 cursor-pointer"
+            aria-hidden="true"
+          />
 
-            {/* Vertical Drawer Panel */}
-            <motion.aside
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-y-0 left-0 w-full sm:w-[380px] md:w-[420px] bg-[#0A1629]/95 text-white backdrop-blur-2xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto"
-            >
+          {/* Vertical Drawer Panel */}
+          <aside
+            className="fixed inset-y-0 left-0 w-full sm:w-[380px] md:w-[420px] bg-[#0A1629]/95 text-white backdrop-blur-2xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto"
+          >
               {/* Architectural Blueprint & Linework Background */}
               <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
               <ArchitecturalLineworkBackground
@@ -198,11 +194,10 @@ export default function SiteHeader() {
                     <Link
                       href="/"
                       onClick={() => setIsOpen(false)}
-                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
-                        isActive("/") && pathname === "/"
-                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
-                          : "text-slate-300 hover:text-white hover:bg-white/10"
-                      }`}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/") && pathname === "/"
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
                     >
                       <span>Home</span>
                       <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -212,11 +207,10 @@ export default function SiteHeader() {
                     <Link
                       href="/about"
                       onClick={() => setIsOpen(false)}
-                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
-                        isActive("/about")
-                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
-                          : "text-slate-300 hover:text-white hover:bg-white/10"
-                      }`}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/about")
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
                     >
                       <span>About us</span>
                       <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -226,70 +220,60 @@ export default function SiteHeader() {
                     <div className="rounded-xl overflow-hidden transition-colors">
                       <button
                         onClick={() => setServicesExpanded(!servicesExpanded)}
-                        className={`w-full group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 cursor-pointer ${
-                          isServicesActive
-                            ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
-                            : "text-slate-300 hover:text-white hover:bg-white/10"
-                        }`}
+                        className={`w-full group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 cursor-pointer ${isServicesActive
+                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                          : "text-slate-300 hover:text-white hover:bg-white/10"
+                          }`}
                       >
                         <span>Services</span>
                         <ChevronDown
-                          className={`w-4 h-4 text-[#2495D3] transition-transform duration-300 ${
-                            servicesExpanded ? "rotate-180" : ""
-                          }`}
+                          className={`w-4 h-4 text-[#2495D3] transition-transform duration-300 ${servicesExpanded ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
 
                       {/* Expandable Submenu */}
-                      <AnimatePresence>
-                        {servicesExpanded && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="overflow-hidden pl-4 pr-1 py-1 space-y-1 border-l-2 border-[#2495D3]/30 ml-3 mt-1"
-                          >
-                            {servicesList.map((service) => {
-                              const ServiceIcon = service.icon;
-                              const isSubActive = pathname === service.href;
-                              return (
-                                <Link
-                                  key={service.href}
-                                  href={service.href}
-                                  onClick={() => setIsOpen(false)}
-                                  className={`flex items-start gap-2.5 p-2 rounded-lg transition-all ${
-                                    isSubActive
-                                      ? "bg-[#2495D3]/20 text-[#2495D3]"
-                                      : "text-slate-300 hover:text-white hover:bg-white/10"
+                      {servicesExpanded && (
+                        <div
+                          className="overflow-hidden pl-4 pr-1 py-1 space-y-1 border-l-2 border-[#2495D3]/30 ml-3 mt-1"
+                        >
+                          {servicesList.map((service) => {
+                            const ServiceIcon = service.icon;
+                            const isSubActive = pathname === service.href;
+                            return (
+                              <Link
+                                key={service.href}
+                                href={service.href}
+                                onClick={() => setIsOpen(false)}
+                                className={`flex items-start gap-2.5 p-2 rounded-lg transition-all ${isSubActive
+                                  ? "bg-[#2495D3]/20 text-[#2495D3]"
+                                  : "text-slate-300 hover:text-white hover:bg-white/10"
                                   }`}
-                                >
-                                  <ServiceIcon className="w-4 h-4 text-[#2495D3] shrink-0 mt-0.5" />
-                                  <div className="flex-1">
-                                    <div className="text-xs sm:text-sm font-semibold">
-                                      {service.name}
-                                    </div>
-                                    <div className="text-[11px] text-slate-400 line-clamp-1">
-                                      {service.desc}
-                                    </div>
+                              >
+                                <ServiceIcon className="w-4 h-4 text-[#2495D3] shrink-0 mt-0.5" />
+                                <div className="flex-1">
+                                  <div className="text-xs sm:text-sm font-semibold">
+                                    {service.name}
                                   </div>
-                                </Link>
-                              );
-                            })}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                                  <div className="text-[11px] text-slate-400 line-clamp-1">
+                                    {service.desc}
+                                  </div>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
 
                     {/* Clients Corner Link */}
                     <Link
                       href="/clients-corner"
                       onClick={() => setIsOpen(false)}
-                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
-                        isActive("/clients-corner")
-                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
-                          : "text-slate-300 hover:text-white hover:bg-white/10"
-                      }`}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/clients-corner")
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
                     >
                       <span>Clients corner</span>
                       <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -299,11 +283,10 @@ export default function SiteHeader() {
                     <Link
                       href="/careers"
                       onClick={() => setIsOpen(false)}
-                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
-                        isActive("/careers")
-                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
-                          : "text-slate-300 hover:text-white hover:bg-white/10"
-                      }`}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/careers")
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
                     >
                       <span>Careers</span>
                       <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -313,11 +296,10 @@ export default function SiteHeader() {
                     <Link
                       href="/blogs"
                       onClick={() => setIsOpen(false)}
-                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
-                        isActive("/blogs")
-                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
-                          : "text-slate-300 hover:text-white hover:bg-white/10"
-                      }`}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/blogs")
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
                     >
                       <span>Blogs</span>
                       <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -327,11 +309,10 @@ export default function SiteHeader() {
                     <Link
                       href="/contact"
                       onClick={() => setIsOpen(false)}
-                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${
-                        isActive("/contact")
-                          ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
-                          : "text-slate-300 hover:text-white hover:bg-white/10"
-                      }`}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/contact")
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
                     >
                       <span>Contact us</span>
                       <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
@@ -365,10 +346,9 @@ export default function SiteHeader() {
                   </div>
                 </div>
               </div>
-            </motion.aside>
+            </aside>
           </>
         )}
-      </AnimatePresence>
     </>
   );
 }

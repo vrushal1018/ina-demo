@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import React from 'react';
 import {
   LucideIcon,
   Eye,
@@ -74,19 +73,6 @@ const VALUES: ValueItem[] = [
 ];
 
 export default function OurValues() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start 70%', 'end 85%'],
-  });
-
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   return (
     <section className="relative w-full bg-gradient-to-b from-white via-slate-50/40 to-white text-[#383838] py-10 sm:py-14 lg:py-16 overflow-hidden font-sans border-t border-slate-100">
       {/* Background Blueprint Grid */}
@@ -114,13 +100,10 @@ export default function OurValues() {
         </div>
 
         {/* Values Timeline Container */}
-        <div ref={containerRef} className="relative max-w-5xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           {/* Vertical Connecting Line */}
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-slate-200/80 z-0 rounded-full">
-            <motion.div
-              style={{ scaleY }}
-              className="w-full h-full bg-gradient-to-b from-[#2495D3] via-[#1C3A62] to-[#2495D3] origin-top rounded-full shadow-[0_0_12px_rgba(36,149,211,0.5)]"
-            />
+            <div className="w-full h-full bg-gradient-to-b from-[#2495D3] via-[#1C3A62] to-[#2495D3] origin-top rounded-full shadow-[0_0_12px_rgba(36,149,211,0.5)]" />
           </div>
 
           {/* Values */}
@@ -142,15 +125,7 @@ export default function OurValues() {
                   </div>
 
                   {/* Value Card */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-40px' }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.08,
-                      ease: [0.215, 0.61, 0.355, 1],
-                    }}
+                  <div
                     className={`pl-16 md:pl-0 w-full md:w-[calc(50%-40px)] ${
                       isEven ? 'md:mr-auto' : 'md:ml-auto'
                     }`}
@@ -179,7 +154,7 @@ export default function OurValues() {
                         {value.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               );
             })}

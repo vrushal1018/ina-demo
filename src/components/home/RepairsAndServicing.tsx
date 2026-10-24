@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import {
   CheckCircle2,
   PhoneCall,
@@ -95,13 +94,7 @@ export default function RepairsAndServicing() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-30px" }}
-          transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10"
-        >
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10">
           {/* Left Title & Badge */}
           <div className="max-w-2xl space-y-3">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3] backdrop-blur-md shadow-sm">
@@ -142,7 +135,7 @@ export default function RepairsAndServicing() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Section Divider / Capabilities Subheading */}
         <div className="flex items-center justify-between mb-5 pb-3 border-t border-white/10 pt-5">
@@ -162,16 +155,8 @@ export default function RepairsAndServicing() {
           {expertiseList.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <motion.div
+              <div
                 key={idx}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-20px" }}
-                transition={{
-                  duration: 0.45,
-                  delay: idx * 0.05,
-                  ease: [0.21, 0.47, 0.32, 0.98],
-                }}
                 className="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-transparent hover:bg-white/[0.08] border border-white/15 hover:border-[#2495D3]/60 transition-all duration-300 hover:shadow-2xl hover:shadow-[#2495D3]/15 hover:-translate-y-1.5 overflow-hidden"
               >
                 <div>
@@ -203,19 +188,13 @@ export default function RepairsAndServicing() {
                   </span>
                   <CheckCircle2 className="w-4 h-4 text-[#2495D3] opacity-60 group-hover:opacity-100 transition-opacity" />
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
         {/* Operational Assurance Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-20px" }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-12 sm:mt-16 p-6 sm:p-7 rounded-3xl bg-transparent border border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
-        >
+        <div className="mt-12 sm:mt-16 p-6 sm:p-7 rounded-3xl bg-transparent border border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
             <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">24/7/365</div>
             <div className="text-xs text-slate-400 mt-1">Live engineering support</div>
@@ -232,7 +211,7 @@ export default function RepairsAndServicing() {
             <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">Pan-India</div>
             <div className="text-xs text-slate-400 mt-1">Technical deployment</div>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>
