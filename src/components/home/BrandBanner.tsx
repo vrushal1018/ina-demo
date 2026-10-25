@@ -67,8 +67,8 @@ export default function BrandBanner() {
           </div>
         </div>
 
-        {/* Marquee Container with Gradient Side Masks */}
-        <div className="relative w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]">
+        {/* Marquee Container (Touch scrollable on mobile, continuous animated marquee on desktop) */}
+        <div className="relative w-full overflow-x-auto md:overflow-hidden scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:[mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]">
           <div className="flex w-max items-center gap-8 sm:gap-12 md:gap-16 animate-marquee hover:[animation-play-state:paused] py-4">
             {/* Duplicate list to achieve continuous seamless loop */}
             {[...RESIDENTIAL_LOGOS, ...RESIDENTIAL_LOGOS].map((brand, idx) => (
@@ -102,6 +102,13 @@ export default function BrandBanner() {
         .animate-marquee {
           animation: marquee 35s linear infinite;
           will-change: transform;
+        }
+        @media (max-width: 768px) {
+          .animate-marquee {
+            animation: none !important;
+            transform: none !important;
+            will-change: auto !important;
+          }
         }
       `}</style>
     </section>

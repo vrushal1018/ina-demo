@@ -369,6 +369,8 @@ function EarthGlobe({
 
   useFrame((_, delta) => {
     if (!globeRef.current) return;
+    // Skip continuous auto-rotation animation on mobile to eliminate GPU lag and scrolling stutter
+    if (typeof window !== "undefined" && window.innerWidth < 768) return;
 
     globeRef.current.rotation.y += delta * 0.10;
   });

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   CheckCircle2,
   PhoneCall,
@@ -15,6 +15,74 @@ import {
 } from "lucide-react";
 
 export default function RepairsAndServicing() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    let startTime = Date.now();
+
+    const onLoadedMetadata = () => {
+      startTime = Date.now() - (video.currentTime || 0) * 1000;
+      video.play().catch(() => {});
+    };
+
+    video.addEventListener("loadedmetadata", onLoadedMetadata);
+
+    const ensurePlay = () => {
+      if (!video) return;
+
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+
+      if (video.duration && !isNaN(video.duration) && video.duration > 0) {
+        const elapsed = (Date.now() - startTime) / 1000;
+        const targetTime = elapsed % video.duration;
+        if (Math.abs(video.currentTime - targetTime) > 1.2) {
+          try {
+            video.currentTime = targetTime;
+          } catch (e) {}
+        }
+      }
+    };
+
+    ensurePlay();
+
+    const handlePauseOrSuspend = () => {
+      ensurePlay();
+    };
+
+    const handleEnded = () => {
+      video.currentTime = 0;
+      ensurePlay();
+    };
+
+    video.addEventListener("pause", handlePauseOrSuspend);
+    video.addEventListener("suspend", handlePauseOrSuspend);
+    video.addEventListener("ended", handleEnded);
+    document.addEventListener("visibilitychange", ensurePlay);
+    window.addEventListener("focus", ensurePlay);
+    window.addEventListener("scroll", ensurePlay, { passive: true });
+
+    const interval = setInterval(ensurePlay, 500);
+
+    return () => {
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      video.removeEventListener("pause", handlePauseOrSuspend);
+      video.removeEventListener("suspend", handlePauseOrSuspend);
+      video.removeEventListener("ended", handleEnded);
+      document.removeEventListener("visibilitychange", ensurePlay);
+      window.removeEventListener("focus", ensurePlay);
+      window.removeEventListener("scroll", ensurePlay);
+      clearInterval(interval);
+    };
+  }, []);
   const expertiseList = [
     {
       num: "01",
@@ -71,19 +139,20 @@ export default function RepairsAndServicing() {
       {/* Background Video with continuous loop in full high resolution */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          preload="none"
-          className="absolute inset-0 w-full h-full object-cover opacity-65 scale-105 transition-transform duration-1000"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-65"
         >
           <source
-            src="/Technician_using_tablet_in_service.mp4"
+            src="/technician-service-optimized.mp4"
             type="video/mp4"
           />
           <source
-            src="/Technician_using_tablet_in_serve%E2%80%A6_20261015165052_gwr_video_mvp.mp4"
+            src="/Technician_using_tablet_in_service.mp4"
             type="video/mp4"
           />
         </video>

@@ -138,10 +138,6 @@ body {
   }
 }
 
-.animate-pulse-subtle {
-  animation: pulse-subtle 4s infinite ease-in-out;
-}
-
 @keyframes float-subtle {
 
   0%,
@@ -154,6 +150,41 @@ body {
   }
 }
 
-.animate-float {
-  animation: float-subtle 6s infinite ease-in-out;
+@media (min-width: 769px) {
+  .animate-pulse-subtle {
+    animation: pulse-subtle 4s infinite ease-in-out;
+  }
+
+  .animate-float {
+    animation: float-subtle 6s infinite ease-in-out;
+  }
+}
+
+/* =========================================================================
+   Mobile Performance Optimization: Disable Non-Essential Continuous Animations
+   Eliminates mobile scrolling lag, reduces GPU compositing, and saves battery.
+   ========================================================================= */
+@media (max-width: 768px) {
+
+  /* Disable heavy looping marquee and pulse animations on mobile */
+  .animate-pulse,
+  .animate-pulse-subtle,
+  .animate-pulse-slow,
+  .animate-float,
+  .animate-marquee,
+  .animate-services-track {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Hide animated SVG beacon markers on mobile */
+  .arch-beacons {
+    display: none !important;
+  }
+
+  /* Disable heavy SVG Gaussian blur filters on mobile */
+  .arch-linework-paths {
+    filter: none !important;
+  }
 }

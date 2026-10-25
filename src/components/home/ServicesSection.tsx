@@ -89,13 +89,13 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      {/* Continuous Marquee Slider Container */}
-      <div className="w-full relative overflow-hidden py-2 group/slider">
-        {/* Left and Right Fade Gradients */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
+      {/* Continuous Marquee Slider Container (Touch scrollable on mobile, animated marquee on desktop) */}
+      <div className="w-full relative overflow-x-auto md:overflow-hidden py-2 group/slider scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        {/* Left and Right Fade Gradients on desktop */}
+        <div className="hidden md:block absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
+        <div className="hidden md:block absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
 
-        {/* Animated Track with Pure CSS Hardware Acceleration */}
+        {/* Track with Hardware Acceleration on Desktop, Native Smooth Swipe on Mobile */}
         <div className="flex gap-5 sm:gap-6 w-max px-4 animate-services-track group-hover/slider:[animation-play-state:paused]">
           {SLIDER_ITEMS.map((service, index) => {
             return (
@@ -160,6 +160,13 @@ export default function ServicesSection() {
         .animate-services-track {
           animation: servicesMarquee 32s linear infinite;
           will-change: transform;
+        }
+        @media (max-width: 768px) {
+          .animate-services-track {
+            animation: none !important;
+            transform: none !important;
+            will-change: auto !important;
+          }
         }
       `}</style>
     </section>
