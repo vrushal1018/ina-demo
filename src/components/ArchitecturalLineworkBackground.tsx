@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useId } from 'react';
+import React, { useId, useRef, useState, useEffect } from 'react';
 import lineworkData from '@/data/lineworkPaths.json';
 
 interface ArchitecturalLineworkBackgroundProps {
@@ -41,6 +41,27 @@ export default function ArchitecturalLineworkBackground({
   aspectRatio = 'slice',
 }: ArchitecturalLineworkBackgroundProps) {
   const uniqueId = useId().replace(/:/g, '');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(true);
+
+  // Auto-pause when outside viewport to keep mobile scrolling buttery smooth (0% background CPU/GPU)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        rootMargin: '200px 0px 200px 0px',
+        threshold: 0,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // Default opacity tailored for refined, elegant architectural presence
   const resolvedOpacity =
@@ -140,7 +161,9 @@ export default function ArchitecturalLineworkBackground({
 
   return (
     <div
-      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 transition-opacity duration-700 ${className}`}
+      ref={containerRef}
+      className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 transition-opacity duration-700 arch-linework-container ${!isInView ? 'arch-paused' : ''
+        } ${className}`}
       style={{
         opacity: resolvedOpacity,
         ...getMaskStyle(),
@@ -156,7 +179,7 @@ export default function ArchitecturalLineworkBackground({
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Subtle glow filter for technical drafting pen feel */}
+          {/* Subtle glow filter for technical drafting pen feel on desktop */}
           <filter
             id={`arch-glow-${uniqueId}`}
             x="-20%"
@@ -184,7 +207,7 @@ export default function ArchitecturalLineworkBackground({
           </radialGradient>
         </defs>
 
-        {/* 43 Authentic Architectural Linework Curves from lineworkina.pdf */}
+        {/* Authentic Architectural Linework Curves from lineworkina.pdf */}
         <g
           className="arch-linework-paths"
           filter={theme === 'dark' ? `url(#arch-glow-${uniqueId})` : undefined}
@@ -192,8 +215,8 @@ export default function ArchitecturalLineworkBackground({
           {lineworkData.paths.map((pathItem, idx) => {
             const groupConfig = groupSettings[idx % groupSettings.length];
             const strokeColor = getPathColor(idx, pathItem.color);
-            // Hide alternate lines on mobile viewports for clean, lightweight rendering
-            const isMobileHidden = idx % 2 === 1;
+            // Curate 15 high-clarity harmonic curves on mobile for lightweight, buttery-smooth 60fps rendering
+            const isMobileHidden = idx % 3 !== 0;
 
             return (
               <path
@@ -284,14 +307,44 @@ export default function ArchitecturalLineworkBackground({
           animation-name: archLineTrace;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
-          will-change: stroke-dashoffset;
           vector-effect: non-scaling-stroke;
         }
 
-        /* Responsive Performance Optimization on Mobile */
+        /* Hardware-accelerated GPU plane */
+        .arch-linework-container {
+          transform: translate3d(0, 0, 0);
+          -webkit-transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          contain: layout paint;
+        }
+
+        /* Auto-pause when offscreen to preserve 100% mobile GPU/battery */
+        .arch-paused .arch-path {
+          animation-play-state: paused !important;
+        }
+
+        /* Responsive Performance Optimization on Mobile: 60fps fluid live animation */
         @media (max-width: 768px) {
+          /* Render 15 high-clarity harmonic curves on mobile without clutter */
           .arch-mobile-hidden {
-            display: none;
+            display: none !important;
+          }
+
+          /* Disable CPU-heavy SMIL animateMotion beacons on mobile */
+          .arch-beacons {
+            display: none !important;
+          }
+
+          /* Disable heavy Gaussian blur shader filter on mobile */
+          .arch-linework-paths {
+            filter: none !important;
+          }
+
+          /* Remove CSS mask-image on mobile to prevent per-frame alpha mask recalculations */
+          .arch-linework-container {
+            mask-image: none !important;
+            -webkit-mask-image: none !important;
           }
         }
 

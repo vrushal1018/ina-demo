@@ -31,7 +31,7 @@ export default function Home() {
 
       {/* Hero Section - Loads immediately (above the fold) */}
       <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A1629]">
-        {/* Background Video with continuous loop in full high resolution */}
+        {/* Background Video with continuous loop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
             autoPlay
@@ -39,14 +39,14 @@ export default function Home() {
             muted
             playsInline
             preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover opacity-60 scale-105 transition-transform duration-1000"
+            className="absolute inset-0 w-full h-full object-cover opacity-55 scale-105"
           >
-            <source src="/ITFheromain%20(3).mp4" type="video/mp4" />
             <source src="/ITFheromain (3).mp4" type="video/mp4" />
+            <source src="/ITFheromain%20(3).mp4" type="video/mp4" />
           </video>
-          {/* Architectural Gradient & Blueprint Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/85 via-[#0A1629]/65 to-[#0A1629]/90" />
-          <div className="absolute inset-0 blueprint-grid opacity-15" />
+          {/* Cinematic Gradient Overlay: darker on left for crisp readability, subtly transparent on right to showcase video */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1629]/95 via-[#0A1629]/80 to-[#0A1629]/45" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/70 via-transparent to-[#0A1629]/90" />
         </div>
 
         {/* Top-Left: Logo & Tagline */}
