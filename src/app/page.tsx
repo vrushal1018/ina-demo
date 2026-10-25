@@ -27,6 +27,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen bg-white font-sans text-[#383838] selection:bg-[#2495D3] selection:text-white">
       {/* Header */}
+
       <SiteHeader />
 
       {/* Hero Section - Loads immediately (above the fold) */}
