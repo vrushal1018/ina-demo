@@ -8,7 +8,7 @@ import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkB
 
 export default function CEOQuoteSection() {
   return (
-    <section className="relative w-full bg-gradient-to-b from-white via-[#F0F7FD]/40 to-white py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Subtle blueprint grid background */}
       <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
       {/* Architectural linework stream */}

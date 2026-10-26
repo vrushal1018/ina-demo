@@ -144,7 +144,7 @@ export default function ComprehensiveBuildingSolutions() {
   };
 
   return (
-    <section className="relative bg-white py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-t border-slate-100">
+    <section className="relative bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-t border-[#2495D3]/20">
       {/* Background blueprint dots */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}

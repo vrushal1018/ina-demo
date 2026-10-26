@@ -65,7 +65,7 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
   };
 
   return (
-    <div className="relative py-10 sm:py-14 lg:py-16 bg-[#F0F7FD]/30 flex flex-col items-center font-sans overflow-hidden border-t border-slate-100">
+    <div className="relative py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] flex flex-col items-center font-sans overflow-hidden border-t border-[#2495D3]/20">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -106,10 +106,10 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
 
       <div className="relative z-10 w-full">
         {/* Left fade gradient */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-r from-[#F0F7FD]/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-r from-[#D9EDF8] to-transparent z-10 pointer-events-none" />
 
         {/* Right fade gradient */}
-        <div className="absolute right-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-l from-[#F0F7FD]/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-l from-[#D9EDF8] to-transparent z-10 pointer-events-none" />
 
         <div
           ref={scrollContainerRef}

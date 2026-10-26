@@ -14,7 +14,7 @@ export default function BlogsPage() {
     <>
       <SiteHeader />
       <BlogHero />
-      <div className="relative min-h-screen bg-gradient-to-b from-white via-slate-50 to-white py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
         {/* Blueprint dots accent */}
         <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
         {/* Architectural linework stream */}

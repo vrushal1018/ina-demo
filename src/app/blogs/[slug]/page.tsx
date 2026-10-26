@@ -124,7 +124,7 @@ export default function BlogDetailPage() {
     <>
       <SiteHeader />
 
-      <div className="bg-white min-h-screen font-sans text-[#383838] relative pt-8 pb-24 overflow-hidden">
+      <div className="bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] min-h-screen font-sans text-[#383838] relative pt-8 pb-24 overflow-hidden">
         {/* Blueprint dots accent */}
         <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
         {/* Architectural linework stream */}

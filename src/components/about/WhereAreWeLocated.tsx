@@ -484,8 +484,8 @@ export default function WhereAreWeLocated() {
     <section
       className="
         relative w-full overflow-hidden
-        border-t border-slate-100
-        bg-white px-4 py-10
+        border-t border-[#2495D3]/20
+        bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] px-4 py-10
         font-sans sm:px-6 sm:py-14
         lg:px-12 lg:py-16
       "

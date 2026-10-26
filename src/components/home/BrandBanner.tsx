@@ -407,7 +407,7 @@ export default function BrandBanner() {
       : ALL_LOGOS;
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#F4FAFD] to-[#F8FBFE] py-8 sm:py-10 overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-8 sm:py-10 overflow-hidden">
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
 

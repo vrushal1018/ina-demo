@@ -8,38 +8,38 @@ export default function AboutUsHeroSection() {
   const galleryImages = [
     {
       id: 1,
-      src: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop",
-      alt: "Couple looking at their new home with a dog",
+      src: "/about 1.jpg",
+      alt: "INA facility management operations and engineering",
       heightClass: "h-[220px] sm:h-[260px] lg:h-[300px]",
     },
     {
       id: 2,
-      src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop",
-      alt: "Modern luxury apartment complex",
+      src: "/about 2.avif",
+      alt: "Technical infrastructure and facility maintenance",
       heightClass: "h-[180px] sm:h-[210px] lg:h-[240px]",
     },
     {
       id: 3,
-      src: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
-      alt: "Happy real estate agent holding keys",
+      src: "/about 3.jpg",
+      alt: "INA team on site managing client assets",
       heightClass: "h-[240px] sm:h-[290px] lg:h-[340px]",
     },
     {
       id: 4,
-      src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
-      alt: "Modern glass office building",
+      src: "/about 4.webp",
+      alt: "Commercial building and corporate engineering services",
       heightClass: "h-[180px] sm:h-[210px] lg:h-[240px]",
     },
     {
       id: 5,
-      src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
-      alt: "Professional real estate agent smiling",
+      src: "/about 5.webp",
+      alt: "Sustainable facility management solutions",
       heightClass: "h-[220px] sm:h-[260px] lg:h-[300px]",
     },
   ];
 
   return (
-    <section className="relative w-full bg-white py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -49,9 +49,9 @@ export default function AboutUsHeroSection() {
 
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-3">
+          {/* <div className="inline-block rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-3">
             About us
-          </div>
+          </div> */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#1C3A62] tracking-normal">
             About us
           </h1>
@@ -81,7 +81,7 @@ export default function AboutUsHeroSection() {
         </div>
 
         {/* Content Footer / "What we do" Statement */}
-        <div className="max-w-5xl text-left p-6 sm:p-8 rounded-2xl bg-[#F8F9FA] border border-slate-200/80 shadow-xs relative overflow-hidden">
+        <div className="w-full text-left p-6 sm:p-8 rounded-2xl bg-white/85 backdrop-blur-md border border-slate-200/80 shadow-xs relative overflow-hidden">
           <div className="absolute top-0 left-0 w-2 h-full bg-[#2495D3]" />
           <span className="text-xs sm:text-sm font-semibold tracking-wide text-[#2495D3] block mb-4">
             What we do

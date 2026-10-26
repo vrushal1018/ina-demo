@@ -63,7 +63,7 @@ const SLIDER_ITEMS = [...SERVICES, ...SERVICES];
 
 export default function ServicesSection() {
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#EDF6FC] py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
       {/* Background blueprint elements */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
@@ -92,8 +92,8 @@ export default function ServicesSection() {
       {/* Continuous Marquee Slider Container (Touch scrollable on mobile, animated marquee on desktop) */}
       <div className="w-full relative overflow-x-auto md:overflow-hidden py-2 group/slider scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {/* Left and Right Fade Gradients on desktop */}
-        <div className="hidden md:block absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
-        <div className="hidden md:block absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E7F3FA] to-transparent z-10 pointer-events-none" />
+        <div className="hidden md:block absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
+        <div className="hidden md:block absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
 
         {/* Track with Hardware Acceleration on Desktop, Native Smooth Swipe on Mobile */}
         <div className="flex gap-5 sm:gap-6 w-max px-4 animate-services-track group-hover/slider:[animation-play-state:paused]">

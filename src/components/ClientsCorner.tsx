@@ -288,7 +288,7 @@ export default function ClientsCorner() {
   ];
 
   return (
-    <section className="relative w-full py-10 sm:py-14 lg:py-16 overflow-hidden bg-gradient-to-b from-[#F0F7FD]/40 via-white to-slate-50 font-sans">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 overflow-hidden bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream */}

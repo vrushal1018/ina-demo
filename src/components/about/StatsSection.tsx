@@ -40,7 +40,7 @@ const stats: StatItem[] = [
 
 export default function StatsSection() {
   return (
-    <section className="relative w-full bg-white py-8 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-8 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
       {/* Architectural linework stream */}

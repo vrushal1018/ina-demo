@@ -19,13 +19,13 @@
   --color-brand-dark: #383838;
   --color-brand-muted: #585858;
   --color-brand-light-muted: #878787;
-  --color-brand-bg-light: #F8F9FA;
-  --color-brand-bg-tint: #F0F7FD;
+  --color-brand-bg-light: #E2F1FA;
+  --color-brand-bg-tint: #D9EDF8;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 203 52% 95%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -47,7 +47,7 @@
   }
 
   html {
-    background-color: #ffffff;
+    background-color: #D9EDF8;
     color: #383838;
     scroll-behavior: smooth;
   }
@@ -67,7 +67,7 @@
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #D9EDF8;
   color: #383838;
   font-family: var(--font-sans);
   overflow-x: hidden;

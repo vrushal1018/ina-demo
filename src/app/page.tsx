@@ -17,15 +17,15 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Feature bullets for Tech fm
-  const features = [
-    "Hard FM and Technical services",
-    "Engineering services",
-    "Sustainability services",
-    "Audits and assessments",
-  ];
+  // const features = [
+  //   "Hard FM and Technical services",
+  //   "Engineering services",
+  //   "Sustainability services",
+  //   "Audits and assessments",
+  // ];
 
   return (
-    <div className="relative min-h-screen bg-white font-sans text-[#383838] selection:bg-[#2495D3] selection:text-white">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans text-[#383838] selection:bg-[#2495D3] selection:text-white">
       {/* Header */}
 
       <SiteHeader />
@@ -70,7 +70,7 @@ export default function Home() {
         </div>
 
         {/* Feature Points in Down Corner (Bottom-Right) */}
-        <div className="absolute bottom-36 sm:bottom-36 md:bottom-10 lg:bottom-12 right-5 sm:right-8 lg:right-12 z-20 flex flex-col items-start space-y-2.5 sm:space-y-3">
+        {/* <div className="absolute bottom-36 sm:bottom-36 md:bottom-10 lg:bottom-12 right-5 sm:right-8 lg:right-12 z-20 flex flex-col items-start space-y-2.5 sm:space-y-3">
           {features.map((feature, idx) => (
             <div
               key={idx}
@@ -82,7 +82,7 @@ export default function Home() {
               </span>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Bottom Verified Metrics Strip */}
         <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-6 mt-auto">
