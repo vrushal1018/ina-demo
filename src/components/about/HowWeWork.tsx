@@ -74,7 +74,7 @@ const VALUES: ValueItem[] = [
 
 export default function OurValues() {
   return (
-    <section className="relative w-full bg-gradient-to-b from-white via-slate-50/40 to-white text-[#383838] py-10 sm:py-14 lg:py-16 overflow-hidden font-sans border-t border-slate-100">
+    <section className="relative w-full bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] text-[#383838] py-10 sm:py-14 lg:py-16 overflow-hidden font-sans border-t border-[#2495D3]/20">
       {/* Background Blueprint Grid */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}

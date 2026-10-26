@@ -4,248 +4,89 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Mail, ArrowUpRight, Award } from 'lucide-react';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
-const departments = ['Admin', 'HR', 'Technical'];
 
 const teamMembers = [
-  // ================= ADMIN DEPARTMENT (8 Members) =================
   {
     id: 1,
-    department: 'Admin',
-    name: 'George J. Talbot',
-    role: 'Managing Director',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600',
-    bio: '15+ years leading strategic growth and digital transformation initiatives.',
-    skills: ['Strategy', 'Leadership'],
+    department: 'Technical Services',
+    name: 'Amrit Guher',
+    role: 'Business Head',
+    image: '/team/Amrit Guher.jpeg',
+    imagePosition: 'center 26%',
+    bio: '15+ years leading strategic growth, technical operations, and digital transformation initiatives.',
+    skills: ['Technical FM', 'Leadership'],
   },
   {
     id: 2,
-    department: 'Admin',
-    name: 'Teresa D. Akins',
-    role: 'Operations Director',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600',
-    bio: 'Ensuring seamless operations, swift communications, and client success.',
-    skills: ['Logistics', 'Operations'],
+    department: 'Operations',
+    name: 'Sarabjeet Gujral',
+    role: 'Vice President',
+    image: '/team/Sarabjeet Gujral.jpeg',
+    imagePosition: 'center 20%',
+    bio: 'Ensuring seamless operations, swift communications, and client success across all facilities.',
+    skills: ['Operations', 'Strategy'],
   },
   {
     id: 3,
-    department: 'Admin',
-    name: 'Robert H. Vance',
-    role: 'Chief Executive Officer',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600',
-    bio: 'Steering company vision, global expansion, and executive partnerships.',
-    skills: ['Governance', 'Vision'],
+    department: 'Sales & BD',
+    name: 'Dilip Yadav',
+    role: 'Manager - Sales',
+    image: '/team/Dilip Yadav.jpeg',
+    imagePosition: 'center 12%',
+    bio: 'Driving enterprise partnerships, client engagement, and customized facility management solutions.',
+    skills: ['Sales', 'Client Relations'],
   },
   {
     id: 4,
-    department: 'Admin',
-    name: 'Eleanor Sterling',
-    role: 'Chief Financial Officer',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600',
-    bio: 'Managing corporate finances, investments, and long-term fiscal planning.',
-    skills: ['Finance', 'Investment'],
+    department: 'Transition & Mobilization',
+    name: 'Prabhavit Prakhar',
+    role: 'Transition Head',
+    image: '/team/Prabhavit Prakhar.jpeg',
+    imagePosition: 'center 14%',
+    bio: 'Specializing in seamless site takeovers, facility mobilization, and operational continuity.',
+    skills: ['Transition', 'Mobilization'],
   },
   {
     id: 5,
-    department: 'Admin',
-    name: 'Michael B. Scott',
-    role: 'Regional Manager',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600',
-    bio: 'Building vibrant office dynamics and driving team engagement across regions.',
-    skills: ['Management', 'Client Relations'],
-  },
-  {
-    id: 6,
-    department: 'Admin',
-    name: 'Patricia L. Hayes',
-    role: 'Executive Assistant',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600',
-    bio: 'Coordinating executive schedules, communications, and board meetings.',
-    skills: ['Scheduling', 'Organization'],
-  },
-  {
-    id: 7,
-    department: 'Admin',
-    name: 'Arthur Pendelton',
-    role: 'Office Manager',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600',
-    bio: 'Overseeing daily facility operations, administrative staff, and procurement.',
-    skills: ['Procurement', 'Facilities'],
-  },
-  {
-    id: 8,
-    department: 'Admin',
-    name: 'Diana Prince',
-    role: 'Legal Counsel',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600',
-    bio: 'Directing corporate compliance, contracts, and legal risk management.',
-    skills: ['Corporate Law', 'Compliance'],
-  },
-
-  // ================= HR DEPARTMENT (8 Members) =================
-  {
-    id: 9,
-    department: 'HR',
-    name: 'Sophia Loren',
-    role: 'Head of Talent',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600',
-    bio: 'Fostering inclusive culture, recruitment strategies, and employee growth.',
-    skills: ['Recruitment', 'People Ops'],
-  },
-  {
-    id: 10,
-    department: 'HR',
-    name: 'Clara Oswald',
-    role: 'HR Business Partner',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600',
-    bio: 'Connecting company culture with talent acquisition and team development.',
-    skills: ['Employee Relations', 'Policy'],
-  },
-  {
-    id: 11,
-    department: 'HR',
-    name: 'David R. Miller',
-    role: 'Talent Acquisition Lead',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600',
-    bio: 'Sourcing top-tier industry engineering talent and managing global hiring.',
-    skills: ['Headhunting', 'Interviewing'],
-  },
-  {
-    id: 12,
-    department: 'HR',
-    name: 'Hannah Abbott',
-    role: 'People Operations Manager',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600',
-    bio: 'Streamlining onboarding processes, workplace policies, and team benefits.',
-    skills: ['Onboarding', 'Payroll'],
-  },
-  {
-    id: 13,
-    department: 'HR',
-    name: 'Lucas Graham',
-    role: 'Compensation Specialist',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600',
-    bio: 'Structuring competitive salary benchmarks, bonuses, and equity packages.',
-    skills: ['Analytics', 'Compensation'],
-  },
-  {
-    id: 14,
-    department: 'HR',
-    name: 'Rachel Green',
-    role: 'Culture Lead',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600',
-    bio: 'Organizing company retreats, wellness workshops, and team initiatives.',
-    skills: ['Culture', 'Event Planning'],
-  },
-  {
-    id: 15,
-    department: 'HR',
-    name: 'Victor Vance',
-    role: 'Diversity & Inclusion Director',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600',
-    bio: 'Advancing workplace equity, diversity programs, and employee resource groups.',
-    skills: ['DEI Strategy', 'Advocacy'],
-  },
-  {
-    id: 16,
-    department: 'HR',
-    name: 'Emma Watson',
-    role: 'Learning & Development',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600',
-    bio: 'Designing employee mentorship programs, career tracks, and training modules.',
-    skills: ['Mentorship', 'Training'],
-  },
-
-  // ================= TECHNICAL DEPARTMENT (8 Members) =================
-  {
-    id: 17,
-    department: 'Technical',
-    name: 'Al C. Anderson',
-    role: 'AI Expert',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600',
-    bio: 'Architecting cutting-edge machine learning solutions and automation systems.',
-    skills: ['Machine Learning', 'Python'],
-  },
-  {
-    id: 18,
-    department: 'Technical',
-    name: 'Teresa D. Akins',
-    role: 'Lead Designer',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600',
-    bio: 'Crafting intuitive user experiences and elegant visual interface designs.',
-    skills: ['UI/UX', 'Figma'],
-  },
-  {
-    id: 19,
-    department: 'Technical',
-    name: 'Marcus Vance',
-    role: 'Tech Lead',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600',
-    bio: 'Passionate full-stack architect specializing in cloud infrastructure and React.',
-    skills: ['Next.js', 'Cloud Architecture'],
-  },
-  {
-    id: 20,
-    department: 'Technical',
-    name: 'David Kim',
-    role: 'DevOps Engineer',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600',
-    bio: 'Automating deployment pipelines and maintaining high availability infrastructure.',
-    skills: ['Kubernetes', 'AWS'],
-  },
-  {
-    id: 21,
-    department: 'Technical',
-    name: 'Sarah Connor',
-    role: 'Cybersecurity Lead',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600',
-    bio: 'Securing enterprise data, managing pen tests, and threat mitigation.',
-    skills: ['Security', 'Pen Testing'],
-  },
-  {
-    id: 22,
-    department: 'Technical',
-    name: 'James Wright',
-    role: 'Backend Architect',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600',
-    bio: 'Building scalable microservices, database schemas, and high-speed APIs.',
-    skills: ['Node.js', 'PostgreSQL'],
-  },
-  {
-    id: 23,
-    department: 'Technical',
-    name: 'Elena Rostova',
-    role: 'Frontend Engineer',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600',
-    bio: 'Specializing in reactive UI micro-interactions and performance optimization.',
-    skills: ['React', 'Tailwind CSS'],
-  },
-  {
-    id: 24,
-    department: 'Technical',
-    name: 'Brian Chen',
-    role: 'Data Scientist',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600',
-    bio: 'Extracting actionable insights from complex datasets and predictive models.',
-    skills: ['Data Mining', 'TensorFlow'],
+    department: 'Human Resources',
+    name: 'Binesh Kesavan',
+    role: 'Manager, Human Resources',
+    image: '/team/Binesh Kesavan.jpeg',
+    imagePosition: 'center 24%',
+    bio: 'Building vibrant team dynamics, talent development, and employee engagement across regions.',
+    skills: ['People Ops', 'Talent Strategy'],
   },
 ];
 
 export default function OurTeam() {
-  const [selectedDepartment, setSelectedDepartment] = useState('Admin');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [visibleItems, setVisibleItems] = useState(4);
 
-  const filteredMembers = teamMembers.filter(
-    (member) => member.department === selectedDepartment
-  );
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleItems(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleItems(2);
+      } else {
+        setVisibleItems(4);
+      }
+    };
 
-  const itemsPerPage = 4;
-  const maxIndex = Math.max(0, filteredMembers.length - itemsPerPage);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const handleDepartmentChange = (dept: string) => {
-    setSelectedDepartment(dept);
-    setCurrentIndex(0);
-  };
+  const maxIndex = Math.max(0, teamMembers.length - visibleItems);
+
+  // Keep currentIndex clamped when visibleItems changes
+  useEffect(() => {
+    if (currentIndex > maxIndex) {
+      setCurrentIndex(maxIndex);
+    }
+  }, [maxIndex, currentIndex]);
 
   const prevSlide = () => {
     if (maxIndex === 0) return;
@@ -262,14 +103,14 @@ export default function OurTeam() {
 
     const interval = setInterval(() => {
       nextSlide();
-    }, 4000);
+    }, 4500);
 
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentIndex, isPaused, maxIndex, selectedDepartment]);
+  }, [currentIndex, isPaused, maxIndex]);
 
   return (
-    <section className="relative bg-white text-[#383838] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-slate-100">
+    <section className="relative bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] text-[#383838] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-[#2495D3]/20">
       {/* Background blueprint dots */}
       <div className="absolute inset-0 blueprint-dots opacity-25 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -290,62 +131,39 @@ export default function OurTeam() {
           </p>
         </div>
 
-        {/* Department Filter Toggle Switcher */}
-        <div className="flex justify-center items-center gap-2 mb-6 sm:mb-8 flex-wrap">
-          {departments.map((dept) => {
-            const isSelected = selectedDepartment === dept;
-            const count = teamMembers.filter((m) => m.department === dept).length;
-
-            return (
-              <button
-                key={dept}
-                onClick={() => handleDepartmentChange(dept)}
-                className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 border flex items-center gap-1.5 ${
-                  isSelected
-                    ? 'bg-[#1C3A62] text-white border-[#1C3A62] shadow-lg shadow-[#1C3A62]/20 scale-105'
-                    : 'bg-slate-50 text-[#585858] border-slate-200 hover:border-[#2495D3] hover:text-[#1C3A62]'
-                }`}
-              >
-                <span>{dept}</span>
-                <span className={`text-[11px] px-1.5 py-0.5 rounded-full ${isSelected ? 'bg-[#2495D3] text-white' : 'bg-slate-200 text-[#585858]'}`}>
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
         {/* Carousel Viewport Container */}
         <div
-          className="relative overflow-hidden py-2 px-1"
+          className="relative overflow-hidden py-2"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           <div
-            className="flex transition-transform duration-500 ease-out gap-6"
+            className="flex transition-transform duration-500 ease-out"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
+              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
             }}
           >
-            {filteredMembers.map((member) => (
+            {teamMembers.map((member) => (
               <div
                 key={member.id}
-                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] flex-shrink-0"
+                style={{ width: `${100 / visibleItems}%` }}
+                className="flex-shrink-0 px-2.5 sm:px-3"
               >
                 {/* Modern Architectural Card */}
-                <div className="group relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 flex flex-col justify-between h-[410px] overflow-hidden">
+                <div className="group relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 flex flex-col justify-between h-[450px] overflow-hidden">
                   {/* Top Bar Accent */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                  {/* Image Container */}
-                  <div className="relative w-full h-[180px] rounded-xl overflow-hidden bg-slate-100 border border-slate-100 mb-3 flex-shrink-0">
+                  {/* Image Container with Custom Portrait Framing */}
+                  <div className="relative w-full h-[220px] rounded-xl overflow-hidden bg-slate-100 border border-slate-100 mb-3 flex-shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      style={{ objectPosition: member.imagePosition || 'center top' }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#1C3A62]/90 backdrop-blur-sm text-[11px] font-semibold text-white tracking-wide">
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#1C3A62]/90 backdrop-blur-sm text-[11px] font-semibold text-white tracking-wide shadow-xs">
                       {member.department}
                     </div>
                   </div>
@@ -356,7 +174,7 @@ export default function OurTeam() {
                       <h3 className="text-lg font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-1">
                         {member.name}
                       </h3>
-                      <p className="text-xs font-semibold text-[#2495D3] mt-0.5 mb-2 line-clamp-1">
+                      <p className="text-xs font-semibold text-[#2495D3] mt-0.5 mb-1.5 line-clamp-1">
                         {member.role}
                       </p>
                       <p className="text-xs text-[#585858] leading-relaxed line-clamp-2">
@@ -364,9 +182,9 @@ export default function OurTeam() {
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-slate-100 mt-2">
+                    <div className="pt-2.5 border-t border-slate-100 mt-2">
                       {/* Skills Tags */}
-                      <div className="flex flex-wrap gap-1 mb-3">
+                      <div className="flex flex-wrap gap-1 mb-2.5">
                         {member.skills.map((skill, i) => (
                           <span
                             key={i}

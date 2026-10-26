@@ -31,7 +31,7 @@ export default function AlliedServicesPage() {
     <>
       <SiteHeader />
 
-      <div className="min-h-screen overflow-hidden bg-white font-sans">
+      <div className="min-h-screen overflow-hidden bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans">
         {/* =========================================================
             HERO SECTION WITH BACKGROUND VIDEO
         ========================================================== */}
@@ -150,9 +150,9 @@ export default function AlliedServicesPage() {
             OVERVIEW SECTION
         ========================================================== */}
         <AnimateIn delay={0.1} minHeight="400px">
-          <section className="bg-white py-8 lg:py-12">
+          <section className="bg-transparent py-8 lg:py-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="relative overflow-hidden rounded-3xl bg-slate-50/70 p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-xl">
+              <div className="relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-md p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-xl">
                 <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
 
                 <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">

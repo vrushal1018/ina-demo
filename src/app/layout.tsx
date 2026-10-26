@@ -19,9 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${poppins.variable} h-full antialiased bg-white`}
+      className={`${poppins.variable} h-full antialiased bg-[#D9EDF8]`}
     >
-      <body className="min-h-full flex flex-col bg-white text-[#383838]">
+      <body className="min-h-full flex flex-col bg-[#D9EDF8] text-[#383838]">
         <LoadingScreen />
         <div className="flex-grow">
           {children}

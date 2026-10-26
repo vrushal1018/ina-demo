@@ -50,7 +50,7 @@ export default function SectorsWeOperate() {
   ];
 
   return (
-    <section className="py-6 sm:py-8 lg:py-10 lg:min-h-screen lg:flex lg:flex-col lg:justify-center bg-gradient-to-b from-[#EDF6FC] to-[#F4FAFD] text-[#383838] relative overflow-hidden">
+    <section className="py-6 sm:py-8 lg:py-10 lg:min-h-screen lg:flex lg:flex-col lg:justify-center bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] text-[#383838] relative overflow-hidden">
       {/* Background blueprint elements */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream */}

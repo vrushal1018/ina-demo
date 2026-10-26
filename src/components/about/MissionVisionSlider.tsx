@@ -69,7 +69,7 @@ export default function MissionVisionSlider() {
   }, [handleNext]);
 
   return (
-    <section className="relative w-full bg-white py-10 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Blueprint grid dots */}
       <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
       {/* Architectural linework stream */}

@@ -27,9 +27,9 @@ export function SectionSkeleton({
   return (
     <div
       style={{ minHeight: typeof height === 'number' ? `${height}px` : height }}
-      className={`w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center justify-center bg-white ${className}`}
+      className={`w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center justify-center bg-transparent ${className}`}
     >
-      <div className="w-full h-full min-h-[200px] rounded-3xl bg-slate-50/80 border border-slate-100 p-8 flex flex-col items-center justify-center">
+      <div className="w-full h-full min-h-[200px] rounded-3xl bg-white/40 border border-[#2495D3]/15 p-8 flex flex-col items-center justify-center">
         <div className="h-4 w-32 bg-slate-200/70 rounded-full mb-4" />
         <div className="h-8 w-64 max-w-full bg-slate-200/60 rounded-xl mb-6" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl opacity-70">

@@ -152,7 +152,7 @@ export default function SiteHeader() {
 
       {/* Vertical Drawer Panel */}
       <aside
-        className={`fixed inset-y-0 left-0 w-full sm:w-[380px] md:w-[420px] bg-[#0A1629]/95 text-white backdrop-blur-xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out will-change-transform ${
+        className={`fixed inset-y-0 left-0 w-full sm:w-[300px] md:w-[320px] bg-[#0A1629]/95 text-white backdrop-blur-xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out will-change-transform ${
           isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full pointer-events-none"
         }`}
         aria-hidden={!isOpen}
@@ -167,7 +167,7 @@ export default function SiteHeader() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#2495D3]/15 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#1C3A62]/30 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="relative z-10 flex flex-col h-full justify-between p-6 sm:p-7">
+              <div className="relative z-10 flex flex-col h-full justify-between p-5 sm:p-6">
                 {/* Top Section: Brand Logo & Close Button */}
                 <div>
                   <div className="flex items-center justify-between pb-5 border-b border-white/10">
@@ -180,7 +180,7 @@ export default function SiteHeader() {
                       <img
                         src="/Ina TechFM Logo white.png"
                         alt="INA TechFM Logo"
-                        className="h-10 sm:h-12 w-auto object-contain drop-shadow-md"
+                        className="h-14 sm:h-16 w-auto object-contain drop-shadow-md"
                       />
                     </Link>
 
@@ -193,16 +193,8 @@ export default function SiteHeader() {
                     </button>
                   </div>
 
-                  {/* Brand Tagline Badge */}
-                  <div className="mt-4 mb-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 text-xs font-semibold text-[#2495D3]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] animate-pulse" />
-                      <span>Empowering people. Enriching assets.</span>
-                    </div>
-                  </div>
-
                   {/* Vertical Navigation Links */}
-                  <nav className="space-y-1.5">
+                  <nav className="space-y-1.5 pt-4 sm:pt-5">
                     {/* Home Link */}
                     <Link
                       href="/"

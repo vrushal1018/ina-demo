@@ -99,7 +99,7 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <div className="relative min-h-screen bg-gradient-to-b from-[#F0F7FD]/40 via-white to-slate-50 font-sans overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans overflow-hidden">
         {/* Background blueprint dots */}
         <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
         {/* Architectural linework stream */}

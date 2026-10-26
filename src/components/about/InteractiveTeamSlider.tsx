@@ -62,7 +62,7 @@ export default function InteractiveTeamSlider() {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   return (
-    <section className="relative w-full bg-slate-50/50 text-[#1C3A62] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans">
+    <section className="relative w-full bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] text-[#1C3A62] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 overflow-hidden font-sans">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
       {/* Architectural linework stream */}

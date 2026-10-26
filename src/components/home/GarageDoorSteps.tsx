@@ -40,7 +40,7 @@ const STEPS: Step[] = [
 
 export default function FacilityManagementSteps() {
   return (
-    <section className="relative w-full py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#E5F3FA] to-[#EEF7FC] overflow-hidden font-sans border-t border-[#1C3A62]/20">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] overflow-hidden font-sans border-t border-[#1C3A62]/20">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
