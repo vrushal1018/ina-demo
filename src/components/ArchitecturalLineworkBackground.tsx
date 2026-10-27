@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import lineworkData from '@/data/lineworkPaths.json';
 
 interface ArchitecturalLineworkBackgroundProps {
@@ -40,6 +40,27 @@ export default function ArchitecturalLineworkBackground({
   style,
   aspectRatio = 'slice',
 }: ArchitecturalLineworkBackgroundProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(true);
+
+  // Focus animation: only animate when in or near viewport (200px buffer)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        rootMargin: '200px 0px 200px 0px',
+        threshold: 0,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
   // Lighter, delicate opacity tailored for a subtle, high-end architectural presence
   const resolvedOpacity =
     opacity !== undefined ? opacity : theme === 'dark' ? 0.28 : 0.18;
@@ -142,6 +163,7 @@ export default function ArchitecturalLineworkBackground({
 
   return (
     <div
+      ref={containerRef}
       className={`absolute inset-0 overflow-hidden pointer-events-none select-none z-0 arch-linework-container ${className}`}
       style={{
         opacity: resolvedOpacity,
@@ -184,6 +206,7 @@ export default function ArchitecturalLineworkBackground({
                         animationTimingFunction: 'linear',
                         animationIterationCount: 'infinite',
                         animationDelay: groupConfig.delay,
+                        animationPlayState: isInView ? 'running' : 'paused',
                         opacity: groupConfig.baseOpacity,
                       }
                     : {
