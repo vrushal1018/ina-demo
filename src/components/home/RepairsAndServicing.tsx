@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
 import {
   CheckCircle2,
   PhoneCall,
@@ -13,76 +12,10 @@ import {
   ShieldCheck,
   Wrench,
 } from "lucide-react";
+import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function RepairsAndServicing() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-
-    let startTime = Date.now();
-
-    const onLoadedMetadata = () => {
-      startTime = Date.now() - (video.currentTime || 0) * 1000;
-      video.play().catch(() => {});
-    };
-
-    video.addEventListener("loadedmetadata", onLoadedMetadata);
-
-    const ensurePlay = () => {
-      if (!video) return;
-
-      if (video.paused) {
-        video.play().catch(() => {});
-      }
-
-      if (video.duration && !isNaN(video.duration) && video.duration > 0) {
-        const elapsed = (Date.now() - startTime) / 1000;
-        const targetTime = elapsed % video.duration;
-        if (Math.abs(video.currentTime - targetTime) > 1.2) {
-          try {
-            video.currentTime = targetTime;
-          } catch (e) {}
-        }
-      }
-    };
-
-    ensurePlay();
-
-    const handlePauseOrSuspend = () => {
-      ensurePlay();
-    };
-
-    const handleEnded = () => {
-      video.currentTime = 0;
-      ensurePlay();
-    };
-
-    video.addEventListener("pause", handlePauseOrSuspend);
-    video.addEventListener("suspend", handlePauseOrSuspend);
-    video.addEventListener("ended", handleEnded);
-    document.addEventListener("visibilitychange", ensurePlay);
-    window.addEventListener("focus", ensurePlay);
-    window.addEventListener("scroll", ensurePlay, { passive: true });
-
-    const interval = setInterval(ensurePlay, 500);
-
-    return () => {
-      video.removeEventListener("loadedmetadata", onLoadedMetadata);
-      video.removeEventListener("pause", handlePauseOrSuspend);
-      video.removeEventListener("suspend", handlePauseOrSuspend);
-      video.removeEventListener("ended", handleEnded);
-      document.removeEventListener("visibilitychange", ensurePlay);
-      window.removeEventListener("focus", ensurePlay);
-      window.removeEventListener("scroll", ensurePlay);
-      clearInterval(interval);
-    };
-  }, []);
+  const videoRef = useVideoFocus();
   const expertiseList = [
     {
       num: "01",

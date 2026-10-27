@@ -31,7 +31,11 @@ const hardFmServices = [
   }
 ];
 
+import { useVideoFocus } from '@/hooks/useVideoFocus';
+
 export default function HardFMPage() {
+  const videoRef = useVideoFocus();
+
   return (
     <>
       <SiteHeader />
@@ -44,7 +48,7 @@ export default function HardFMPage() {
           {/* Background Video with continuous loop */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <video
-              autoPlay
+              ref={videoRef}
               loop
               muted
               playsInline
