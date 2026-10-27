@@ -123,6 +123,18 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Hide scrollbars while preserving scrolling capability */
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Animations */
 @keyframes pulse-subtle {
 
