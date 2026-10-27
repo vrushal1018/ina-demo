@@ -50,6 +50,8 @@
     background-color: #D9EDF8;
     color: #383838;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   h1,
@@ -133,6 +135,13 @@ body {
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Hide native vertical scrollbar (horizontal top progress bar replaces it) */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* Architectural Linework Flow Animation */
