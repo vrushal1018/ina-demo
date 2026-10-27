@@ -135,6 +135,23 @@ body {
   scrollbar-width: none;
 }
 
+/* Architectural Linework Flow Animation */
+@keyframes archLineTrace {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -2500;
+  }
+}
+
+.arch-path {
+  animation-name: archLineTrace;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  vector-effect: non-scaling-stroke;
+}
+
 /* Animations */
 @keyframes pulse-subtle {
 
