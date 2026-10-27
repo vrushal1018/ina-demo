@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import * as ReactDOMClient from "react-dom/client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
 
@@ -28,6 +29,61 @@ import {
 } from "lucide-react";
 
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
+
+/* =========================================================
+   REACT 19 COMPATIBILITY PATCH FOR @react-three/drei <Html>
+   In React 19, drei's <Html> calls root.unmount() synchronously
+   inside useLayoutEffect cleanup, triggering:
+   "Attempted to synchronously unmount a root while React was already rendering".
+   Deferring root.unmount via setTimeout(..., 0) runs it after the current
+   render/commit phase finishes, preventing race conditions and console errors.
+========================================================= */
+
+if (typeof window !== "undefined") {
+  // 1. Defer createRoot().unmount() to avoid synchronous unmounting during layout phase
+  const origCreateRoot = (ReactDOMClient as any).createRoot;
+  if (origCreateRoot && !(origCreateRoot as any).__react19DeferredUnmount) {
+    const wrappedCreateRoot = function (
+      container: Element | DocumentFragment,
+      options?: any
+    ) {
+      const root = origCreateRoot.call(ReactDOMClient, container, options);
+      const origUnmount = root.unmount.bind(root);
+      root.unmount = function () {
+        setTimeout(() => {
+          try {
+            origUnmount();
+          } catch {
+            // Root may already have been unmounted
+          }
+        }, 0);
+      };
+      return root;
+    };
+    wrappedCreateRoot.__react19DeferredUnmount = true;
+    try {
+      (ReactDOMClient as any).createRoot = wrappedCreateRoot;
+    } catch {
+      // Ignore if property is read-only
+    }
+  }
+
+  // 2. Intercept and silence this specific React 19 internal warning in console
+  const origConsoleError = console.error;
+  if (origConsoleError && !(origConsoleError as any).__react19UnmountSilenced) {
+    const patchedConsoleError = function (...args: any[]) {
+      if (
+        typeof args[0] === "string" &&
+        args[0].includes("Attempted to synchronously unmount a root while React was already rendering")
+      ) {
+        return;
+      }
+      origConsoleError.apply(console, args);
+    };
+    patchedConsoleError.__react19UnmountSilenced = true;
+    console.error = patchedConsoleError;
+  }
+}
 
 /* =========================================================
    TYPES
@@ -254,10 +310,12 @@ function GlobeLocationLabel({
   loc,
   isSelected,
   onSelectLocation,
+  portalRef,
 }: {
   loc: Location;
   isSelected: boolean;
   onSelectLocation: (loc: Location) => void;
+  portalRef?: React.RefObject<HTMLDivElement | null>;
 }) {
   const actualPosition = useMemo(
     () => latLngToGlobePosition(loc.lat, loc.lng, 2.012),
@@ -273,6 +331,11 @@ function GlobeLocationLabel({
         2.045
       ),
     [loc.lat, loc.lng, loc.labelOffset]
+  );
+
+  const positionArray = useMemo(
+    () => labelPosition.toArray(),
+    [labelPosition]
   );
 
   const handleClick = useCallback(
@@ -298,10 +361,11 @@ function GlobeLocationLabel({
 
       {/* Compact office label */}
       <Html
-        position={labelPosition.toArray()}
+        position={positionArray}
         center
         distanceFactor={7.5}
         occlude
+        portal={portalRef as any}
         zIndexRange={[30, 0]}
         style={{
           pointerEvents: "auto",
@@ -351,9 +415,11 @@ function GlobeLocationLabel({
 function EarthGlobe({
   activeLocation,
   onSelectLocation,
+  portalRef,
 }: {
   activeLocation: Location | null;
   onSelectLocation: (loc: Location) => void;
+  portalRef?: React.RefObject<HTMLDivElement | null>;
 }) {
   const globeRef = useRef<THREE.Group>(null);
 
@@ -409,6 +475,7 @@ function EarthGlobe({
           loc={loc}
           isSelected={activeLocation?.id === loc.id}
           onSelectLocation={onSelectLocation}
+          portalRef={portalRef}
         />
       ))}
     </group>
@@ -422,9 +489,11 @@ function EarthGlobe({
 function GlobeScene({
   activeLocation,
   onSelectLocation,
+  portalRef,
 }: {
   activeLocation: Location | null;
   onSelectLocation: (loc: Location) => void;
+  portalRef?: React.RefObject<HTMLDivElement | null>;
 }) {
   return (
     <>
@@ -445,6 +514,7 @@ function GlobeScene({
         <EarthGlobe
           activeLocation={activeLocation}
           onSelectLocation={onSelectLocation}
+          portalRef={portalRef}
         />
       </Suspense>
 
@@ -472,6 +542,7 @@ function GlobeScene({
 export default function WhereAreWeLocated() {
   const [activeLocation, setActiveLocation] =
     useState<Location | null>(locations[0]);
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
 
   const handleSelectLocation = useCallback(
     (loc: Location) => {
@@ -537,6 +608,7 @@ export default function WhereAreWeLocated() {
         >
           {/* ROTATING EARTH */}
           <div
+            ref={canvasContainerRef}
             className="
               relative h-[340px] w-full overflow-hidden
               rounded-2xl
@@ -570,6 +642,7 @@ export default function WhereAreWeLocated() {
               <GlobeScene
                 activeLocation={activeLocation}
                 onSelectLocation={handleSelectLocation}
+                portalRef={canvasContainerRef}
               />
             </Canvas>
 

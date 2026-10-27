@@ -158,6 +158,11 @@ body {
   .animate-float {
     animation: float-subtle 6s infinite ease-in-out;
   }
+
+  .animate-services-track:hover,
+  .animate-services-track:focus-within {
+    animation-play-state: paused !important;
+  }
 }
 
 /* =========================================================================

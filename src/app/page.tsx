@@ -118,7 +118,7 @@ export default function Home() {
       </AnimateIn>
 
       {/* Sectors We Operate Grid - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="450px" id="sectors">
+      <AnimateIn delay={0.1} minHeight="100vh" id="sectors">
         <GarageDoorTypes />
       </AnimateIn>
 
