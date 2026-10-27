@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
@@ -62,6 +62,8 @@ const SERVICES: ServiceItem[] = [
 const SLIDER_ITEMS = [...SERVICES, ...SERVICES];
 
 export default function ServicesSection() {
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
     <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
       {/* Background blueprint elements */}
@@ -90,18 +92,25 @@ export default function ServicesSection() {
       </div>
 
       {/* Continuous Marquee Slider Container (Touch scrollable on mobile, animated marquee on desktop) */}
-      <div className="w-full relative overflow-x-auto md:overflow-hidden py-2 group/slider scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <div className="w-full relative overflow-x-auto md:overflow-hidden py-2 scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {/* Left and Right Fade Gradients on desktop */}
         <div className="hidden md:block absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
         <div className="hidden md:block absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
 
         {/* Track with Hardware Acceleration on Desktop, Native Smooth Swipe on Mobile */}
-        <div className="flex gap-5 sm:gap-6 w-max px-4 animate-services-track group-hover/slider:[animation-play-state:paused]">
+        <div 
+          className="flex gap-5 sm:gap-6 w-max px-4 animate-services-track"
+          style={isPaused ? { animationPlayState: 'paused' } : undefined}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           {SLIDER_ITEMS.map((service, index) => {
             return (
               <div
                 key={`${service.id}-${index}`}
                 className="w-[280px] sm:w-[320px] md:w-[350px] flex-shrink-0"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
                 <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-6 sm:p-7 transition-all duration-300 border border-[#2495D3]/25 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[300px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
 
@@ -148,7 +157,7 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         @keyframes servicesMarquee {
           0% {
             transform: translate3d(0, 0, 0);
@@ -160,6 +169,10 @@ export default function ServicesSection() {
         .animate-services-track {
           animation: servicesMarquee 32s linear infinite;
           will-change: transform;
+        }
+        .animate-services-track:hover,
+        .animate-services-track:focus-within {
+          animation-play-state: paused !important;
         }
         @media (max-width: 768px) {
           .animate-services-track {
