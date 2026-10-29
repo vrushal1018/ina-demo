@@ -1,20 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Sparkles } from "lucide-react";
+import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function AboutUsHeroSection() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {
-        // Handle browser autoplay policy gracefully
-      });
-    }
-  }, []);
+  const videoRef = useVideoFocus();
 
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-start pt-8 sm:pt-10 lg:pt-12 pb-12 overflow-hidden bg-[#0A1629] text-white font-sans">
@@ -22,7 +14,6 @@ export default function AboutUsHeroSection() {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
-          autoPlay
           loop
           muted
           playsInline

@@ -50,6 +50,8 @@
     background-color: #D9EDF8;
     color: #383838;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   h1,
@@ -121,6 +123,42 @@ body {
   background: linear-gradient(135deg, #1C3A62 0%, #2495D3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbars while preserving scrolling capability */
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hide native vertical scrollbar (horizontal top progress bar replaces it) */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Architectural Linework Flow Animation */
+@keyframes archLineTrace {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -2500;
+  }
+}
+
+.arch-path {
+  animation-name: archLineTrace;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  vector-effect: non-scaling-stroke;
 }
 
 /* Animations */

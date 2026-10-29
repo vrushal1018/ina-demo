@@ -152,7 +152,7 @@ export default function SiteHeader() {
 
       {/* Vertical Drawer Panel */}
       <aside
-        className={`fixed inset-y-0 left-0 w-full sm:w-[300px] md:w-[320px] bg-[#0A1629]/95 text-white backdrop-blur-xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out will-change-transform ${
+        className={`fixed inset-y-0 left-0 w-full sm:w-[300px] md:w-[320px] bg-[#0A1629]/95 text-white backdrop-blur-xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden transition-transform duration-300 ease-out will-change-transform ${
           isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full pointer-events-none"
         }`}
         aria-hidden={!isOpen}

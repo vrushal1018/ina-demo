@@ -12,9 +12,11 @@ import GarageDoorTypes from "@/components/home/GarageDoorTypes";
 import BrandBanner from "@/components/home/BrandBanner";
 import RepairsAndServicing from "@/components/home/RepairsAndServicing";
 import GarageDoorSteps from "@/components/home/GarageDoorSteps";
+import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const heroVideoRef = useVideoFocus();
 
   // Feature bullets for Tech fm
   // const features = [
@@ -35,7 +37,7 @@ export default function Home() {
         {/* Background Video with continuous loop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
-            autoPlay
+            ref={heroVideoRef}
             loop
             muted
             playsInline
