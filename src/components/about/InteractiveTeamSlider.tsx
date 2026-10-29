@@ -19,7 +19,7 @@ const TEAM: TeamMember[] = [
   {
     id: '1',
     name: 'Ranjit Patil',
-    role: 'Co-Founder',
+    role: 'CEO',
     image: '/director photos/Ranjit patil sir.jpeg',
     bio: [
       'Arden, a 5th-generation San Franciscan, is Cruise\'s Chief People Officer. With over 20 years of experience in Human Resources, Arden drives Cruise\'s People strategy and execution.',
@@ -33,7 +33,7 @@ const TEAM: TeamMember[] = [
   {
     id: '2',
     name: 'Lipson Paul',
-    role: 'Co-Founder',
+    role: 'Executive Director',
     image: '/director photos/lipson sir-whimsi.jpeg',
     bio: [
       'Mo leads the engineering division, overseeing AI models, software architecture, and hardware integration across autonomous systems.',
@@ -46,7 +46,7 @@ const TEAM: TeamMember[] = [
   {
     id: '3',
     name: 'Jose TP',
-    role: 'Co-Founder',
+    role: 'Managing Director',
     image: '/director photos/jose sir-whimsi.jpeg',
     bio: [
       'David shapes user interaction, vehicle interface UX, and spatial product experience across physical and digital touchpoints.',
@@ -101,11 +101,10 @@ export default function InteractiveTeamSlider() {
                       <img
                         src={member.image}
                         alt={member.name}
-                        className={`w-full h-full ${
-                          member.image.toLowerCase().endsWith('.png')
-                            ? 'object-contain object-bottom'
-                            : 'object-cover object-top'
-                        } group-hover:scale-105 transition-transform duration-500`}
+                        className={`w-full h-full ${member.image.toLowerCase().endsWith('.png')
+                          ? 'object-contain object-bottom'
+                          : 'object-cover object-top'
+                          } group-hover:scale-105 transition-transform duration-500`}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1C3A62]/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
@@ -113,7 +112,7 @@ export default function InteractiveTeamSlider() {
                     {/* Info & CTA */}
                     <div className="w-full text-center">
                       <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold tracking-wide mb-2">
-                        {member.role}
+                        Co-Founder
                       </span>
                       <h3 className="text-xl sm:text-2xl font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors">
                         {member.name}
@@ -123,7 +122,7 @@ export default function InteractiveTeamSlider() {
                       </p>
 
                       <div className="mt-4 pt-4 border-t border-[#2495D3]/15 flex items-center justify-center gap-1.5 text-xs font-semibold text-[#2495D3] group-hover:gap-2.5 transition-all">
-                        <span>View executive profile</span>
+                        <span></span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </div>
                     </div>
@@ -154,20 +153,24 @@ export default function InteractiveTeamSlider() {
                   <img
                     src={selectedMember.image}
                     alt={selectedMember.name}
-                    className={`w-full h-full ${
-                      selectedMember.image.toLowerCase().endsWith('.png')
-                        ? 'object-contain object-bottom'
-                        : 'object-cover object-top'
-                    }`}
+                    className={`w-full h-full ${selectedMember.image.toLowerCase().endsWith('.png')
+                      ? 'object-contain object-bottom'
+                      : 'object-cover object-top'
+                      }`}
                   />
                 </div>
               </div>
 
               {/* Right Side: Data Content */}
               <div className="lg:col-span-7 flex flex-col justify-center">
-                <span className="text-xs font-semibold text-[#2495D3] tracking-wide block mb-2">
-                  {selectedMember.role}
-                </span>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold tracking-wide">
+                    Co-Founder
+                  </span>
+                  <span className="text-xs font-semibold text-slate-500 tracking-wide">
+                    {selectedMember.role}
+                  </span>
+                </div>
                 <h2 className="text-3xl sm:text-4xl font-normal text-[#1C3A62] mb-6 tracking-normal">
                   {selectedMember.name}
                 </h2>

@@ -24,7 +24,7 @@ const agents: Agent[] = [
   {
     id: 1,
     name: "Ranjit Patil",
-    role: "Co-Founder",
+    role: "CEO",
     image: imgRanjit,
     socials: {
       facebook: "#",
@@ -35,8 +35,8 @@ const agents: Agent[] = [
   },
   {
     id: 2,
-    name: "Jose Sir",
-    role: "Co-Founder",
+    name: "Jose TP",
+    role: "Managing Director",
     image: imgJose,
     socials: {
       facebook: "#",
@@ -48,7 +48,7 @@ const agents: Agent[] = [
   {
     id: 3,
     name: "Lipson Paul",
-    role: "Co-Founder",
+    role: "Executive Director",
     image: imgLipson,
     socials: {
       facebook: "#",
@@ -62,7 +62,7 @@ const agents: Agent[] = [
 export default function TrustedAgentsSection() {
   return (
     <section className="w-full bg-white py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 font-sans relative overflow-hidden">
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Section Heading */}
@@ -93,6 +93,9 @@ export default function TrustedAgentsSection() {
 
               {/* Agent Info */}
               <div className="flex flex-col text-left px-1 pb-1">
+                <span className="inline-block w-fit px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold tracking-wide mb-2">
+                  Co-Founder
+                </span>
                 <h3 className="text-lg sm:text-xl font-medium text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
                   {agent.name}
                 </h3>
