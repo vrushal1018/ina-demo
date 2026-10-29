@@ -85,11 +85,11 @@ export default function OurValues() {
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide">
             <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>Our values</span>
+            <span>Our Values</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] tracking-normal leading-tight">
-            What we stand for
+            What We Stand For
           </h2>
 
           <p className="text-[#585858] text-sm md:text-base leading-relaxed font-normal">

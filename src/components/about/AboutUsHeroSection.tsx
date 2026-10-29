@@ -34,7 +34,7 @@ export default function AboutUsHeroSection() {
             Home
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-          <span className="font-semibold text-[#2495D3]">About us</span>
+          <span className="font-semibold text-[#2495D3]">About Us</span>
         </div>
 
         {/* Blue Line - Just below Home / About us */}

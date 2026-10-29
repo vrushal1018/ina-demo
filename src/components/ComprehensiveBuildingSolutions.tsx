@@ -156,11 +156,11 @@ export default function ComprehensiveBuildingSolutions() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 text-xs rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] font-semibold tracking-wide mb-3">
               <Layers className="w-3.5 h-3.5" />
-              <span>See all services</span>
+              <span>See All Services</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.1] tracking-normal">
-              Comprehensive facility <br className="hidden md:block" />
-              management solutions
+              Comprehensive Facility <br className="hidden md:block" />
+              Management Solutions
             </h2>
             <div className="w-16 h-1 bg-[#2495D3] mt-3 rounded-full" />
           </div>

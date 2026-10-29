@@ -223,7 +223,7 @@ export default function CareersPage() {
               Careers at INA Tech FM
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] mb-3 tracking-normal">
-              Currently open positions
+              Currently Open Positions
             </h1>
             <p className="text-[#585858] max-w-xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
               Join our dedicated team of engineers and facility management experts building dependable, sustainable workspaces.

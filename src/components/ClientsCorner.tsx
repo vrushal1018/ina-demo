@@ -305,7 +305,7 @@ export default function ClientsCorner() {
         <div className="text-center max-w-3xl mb-8">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
             <Handshake className="w-3.5 h-3.5" />
-            <span>Clients corner</span>
+            <span>Clients Corner</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#1C3A62] mb-3 tracking-normal">
             Technologies & Partners with INA
@@ -335,13 +335,6 @@ export default function ClientsCorner() {
               >
                 <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#2495D3]" : "text-slate-400"}`} />
                 <span>{cat.name}</span>
-                <span
-                  className={`text-[10px] sm:text-xs font-bold px-1.5 py-0.5 rounded-full ${
-                    isActive ? "bg-[#2495D3] text-white" : "bg-slate-100 text-slate-500"
-                  }`}
-                >
-                  {cat.logos.length}
-                </span>
               </button>
             );
           })}
@@ -468,7 +461,7 @@ export default function ClientsCorner() {
               className="object-contain filter drop-shadow-2xl mb-2"
             />
             <span className="text-[11px] font-semibold tracking-wide text-[#2495D3]">
-              {activeCategory.name} Partners ({activeLogos.length})
+              {activeCategory.name} Partners
             </span>
           </div>
 
@@ -503,7 +496,7 @@ export default function ClientsCorner() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-[#1C3A62]">
-                Complete {activeCategory.name} Directory ({filteredLogos.length})
+                Complete {activeCategory.name} Directory
               </h2>
               <p className="text-slate-500 text-xs sm:text-sm mt-1">
                 Explore all verified client facilities, operations, and networks managed by INA

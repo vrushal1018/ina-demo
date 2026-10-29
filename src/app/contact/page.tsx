@@ -117,7 +117,7 @@ export default function ContactPage() {
                 Get in touch
               </div>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1C3A62] mb-3 tracking-normal">
-                Contact information
+                Contact Information
               </h2>
               <div className="w-16 h-1 bg-[#2495D3] mb-4 rounded-full" />
               <p className="text-[#585858] mb-5 leading-relaxed font-normal text-sm sm:text-base">
@@ -205,7 +205,7 @@ export default function ContactPage() {
                   <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
 
                   <h2 className="text-2xl sm:text-3xl font-normal text-[#1C3A62] mb-2 tracking-normal">
-                    Send us a message
+                    Send Us A Message
                   </h2>
                   <p className="text-[#585858] mb-5 leading-relaxed font-normal text-sm sm:text-base">
                     Fill up the form and our team will get back to you within 24 hours.

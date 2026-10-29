@@ -27,14 +27,14 @@ export default function BlogsPage() {
               <div className="max-w-xl">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
                   <BookOpen className="w-3.5 h-3.5" />
-                  <span>Our blog</span>
+                  <span>Our Blog</span>
                 </div>
                 <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium text-[#2495D3]">
-                  Our blog
+                  Our Blog
                 </div>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-tight tracking-normal">
-                  <span className="block">View all</span>
-                  <span className="block mt-1 text-[#2495D3]">knowledge posts</span>
+                  <span className="block">View All</span>
+                  <span className="block mt-1 text-[#2495D3]">Knowledge Posts</span>
                 </h2>
               </div>
               <div className="max-w-md lg:pb-1">

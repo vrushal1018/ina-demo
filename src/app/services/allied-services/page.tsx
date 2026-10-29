@@ -180,7 +180,7 @@ export default function AlliedServicesPage() {
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-[#1C3A62]">
-                      What are allied services?
+                      What Are Allied Services?
                     </h2>
                     <div className="w-16 h-1 bg-[#2495D3] mt-3 mb-6 rounded-full" />
 

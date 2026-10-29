@@ -66,8 +66,8 @@ export default function Home() {
             </Link>
             {/* Main Tagline under logo */}
             <h1 className="mt-2 sm:mt-2.5 pl-3.5 sm:pl-4 md:pl-5 lg:pl-6 text-[11px] sm:text-xs md:text-[13px] lg:text-[14px] font-normal tracking-normal leading-tight drop-shadow-md">
-              <span className="block text-white">Empowering people</span>
-              <span className="block text-[#2495D3] mt-0.5 ml-2.5 sm:ml-3 md:ml-3.5">Enriching assets</span>
+              <span className="block text-white">Empowering People</span>
+              <span className="block text-[#2495D3] mt-0.5 ml-2.5 sm:ml-3 md:ml-3.5">Enriching Assets</span>
             </h1>
           </div>
         </div>

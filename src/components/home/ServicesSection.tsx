@@ -79,7 +79,7 @@ export default function ServicesSection() {
               Our services
             </div> */}
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal">
-              Comprehensive facility management solutions
+              Comprehensive Facility Management Solutions
             </h2>
           </div>
 

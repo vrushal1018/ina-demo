@@ -438,14 +438,6 @@ export default function BrandBanner() {
               >
                 <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#2495D3]' : 'text-slate-400'}`} />
                 <span>{cat.label}</span>
-                <span
-                  className={`text-[10px] sm:text-xs font-bold px-1.5 py-0.5 rounded-full transition-colors ${isActive
-                    ? 'bg-[#2495D3] text-white'
-                    : 'bg-slate-100 text-slate-500'
-                    }`}
-                >
-                  {cat.count}
-                </span>
               </button>
             );
           })}

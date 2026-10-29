@@ -74,7 +74,7 @@ export default function SectorsWeOperate() {
         {/* Section Header */}
         <div className="w-full mb-5 sm:mb-6 lg:mb-8 text-left">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal text-[#1C3A62] tracking-normal mb-2 leading-tight">
-            Sectors we operate
+            Sectors We Operate
           </h2>
           <p className="text-sm sm:text-base text-[#585858] leading-relaxed font-normal max-w-4xl">
             From corporate workplaces to healthcare, hospitality, residential, and industrial

@@ -71,7 +71,7 @@ export default function TrustedAgentsSection() {
             Leadership
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-[#1C3A62] tracking-tight">
-            Meet our board
+            Meet Our Board
           </h2>
         </div>
 

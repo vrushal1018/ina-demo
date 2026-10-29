@@ -61,11 +61,11 @@ export default function SiteHeader() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About us", href: "/about" },
-    { name: "Clients corner", href: "/clients-corner" },
+    { name: "About Us", href: "/about" },
+    { name: "Clients Corner", href: "/clients-corner" },
     { name: "Careers", href: "/careers" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact us", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   const servicesList = [
@@ -76,31 +76,31 @@ export default function SiteHeader() {
       icon: Building2,
     },
     {
-      name: "Transition services",
+      name: "Transition Services",
       href: "/services/transition-services",
       desc: "Smooth operational site takeovers",
       icon: Layers,
     },
     {
-      name: "Sustainability services",
+      name: "Sustainability Services",
       href: "/services/sustainability-services",
       desc: "Energy & carbon footprint reduction",
       icon: Leaf,
     },
     {
-      name: "Technical services",
+      name: "Technical Services",
       href: "/services/technical-services",
       desc: "MEP, HVAC & critical systems upkeep",
       icon: Wrench,
     },
     {
-      name: "Audit & offerings",
+      name: "Audit & Offerings",
       href: "/services/audit-and-offerings",
       desc: "Statutory, safety & energy compliance",
       icon: ShieldCheck,
     },
     {
-      name: "Allied services",
+      name: "Allied Services",
       href: "/services/allied-services",
       desc: "Integrated soft & specialized facility support",
       icon: Sparkles,

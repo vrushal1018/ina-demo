@@ -105,7 +105,7 @@ export default function RepairsAndServicing() {
             </div> */}
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-normal leading-[1.15]">
-              Expert engineering & facility management services
+              Expert Engineering & Facility Management Services
             </h2>
           </div>
 
@@ -143,7 +143,7 @@ export default function RepairsAndServicing() {
         <div className="flex items-center justify-between mb-5 pb-3 border-t border-white/10 pt-5">
           <p className="text-sm sm:text-base font-semibold text-white flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#2495D3]" />
-            <span>Our engineering and facility management expertise includes:</span>
+            <span>Our Engineering And Facility Management Expertise Includes:</span>
           </p>
 
           <span className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-slate-300">
@@ -198,7 +198,7 @@ export default function RepairsAndServicing() {
         {/* Operational Assurance Bar */}
         <div className="mt-12 sm:mt-16 p-6 sm:p-7 rounded-3xl bg-transparent border border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div>
-            <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">24/7/365</div>
+            <div className="text-xl sm:text-2xl font-normal font-heading text-white tracking-normal">24x7</div>
             <div className="text-xs text-slate-400 mt-1">Live engineering support</div>
           </div>
           <div>
