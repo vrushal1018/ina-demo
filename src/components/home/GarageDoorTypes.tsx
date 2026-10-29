@@ -109,9 +109,9 @@ export default function SectorsWeOperate() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1C3A62] via-transparent to-black/30 pointer-events-none" />
 
                 {/* Sector Tag Indicator */}
-                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#0A1629]/80 border border-white/20 text-white text-[11px] font-semibold tracking-wide shadow-sm">
+                {/* <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#0A1629]/80 border border-white/20 text-white text-[11px] font-semibold tracking-wide shadow-sm">
                   Sector #{idx + 1}
-                </div>
+                </div> */}
               </div>
 
               {/* Card Footer */}

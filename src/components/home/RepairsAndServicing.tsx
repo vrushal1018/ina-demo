@@ -96,13 +96,13 @@ export default function RepairsAndServicing() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 sm:mb-10">
           {/* Left Title & Badge */}
           <div className="max-w-2xl space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3] backdrop-blur-md shadow-sm">
+            {/* <div className="inline-flex items-center gap-2 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3] backdrop-blur-md shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
               <span>Engineering & maintenance</span>
-            </div>
+            </div> */}
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-white tracking-normal leading-[1.15]">
               Expert engineering & facility management services

@@ -397,14 +397,14 @@ export default function BrandBanner() {
     activeCategory === 'malls'
       ? MALL_LOGOS
       : activeCategory === 'hospitality'
-      ? HOSPITALITY_LOGOS
-      : activeCategory === 'it-commercial'
-      ? IT_COMMERCIAL_LOGOS
-      : activeCategory === 'hospital'
-      ? HOSPITAL_LOGOS
-      : activeCategory === 'residential'
-      ? RESIDENTIAL_LOGOS
-      : ALL_LOGOS;
+        ? HOSPITALITY_LOGOS
+        : activeCategory === 'it-commercial'
+          ? IT_COMMERCIAL_LOGOS
+          : activeCategory === 'hospital'
+            ? HOSPITAL_LOGOS
+            : activeCategory === 'residential'
+              ? RESIDENTIAL_LOGOS
+              : ALL_LOGOS;
 
   return (
     <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-8 sm:py-10 overflow-hidden">
@@ -413,13 +413,13 @@ export default function BrandBanner() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Title with Lucide Icon in Sleek Pill */}
-        <div className="flex items-center justify-center mb-4">
+        {/* <div className="flex items-center justify-center mb-4">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-[#2495D3]/25 shadow-xs text-[#1C3A62] font-semibold text-xs sm:text-sm transition-all duration-300">
             <activeCategoryData.icon className="w-4 h-4 text-[#2495D3]" />
             <span>{activeCategoryData.badgeText}</span>
             <ArrowDownRight className="w-4 h-4 text-[#2495D3]" />
           </div>
-        </div>
+        </div> */}
 
         {/* Category Filter Tabs */}
         <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3 mb-6">
@@ -431,20 +431,18 @@ export default function BrandBanner() {
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
-                className={`inline-flex items-center gap-2 px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? 'bg-[#1C3A62] text-white shadow-md shadow-[#1C3A62]/20 scale-105 ring-2 ring-[#2495D3]/40'
-                    : 'bg-white/80 hover:bg-white text-slate-600 hover:text-[#1C3A62] border border-slate-200/80 hover:border-slate-300 shadow-xs'
-                }`}
+                className={`inline-flex items-center gap-2 px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${isActive
+                  ? 'bg-[#1C3A62] text-white shadow-md shadow-[#1C3A62]/20 scale-105 ring-2 ring-[#2495D3]/40'
+                  : 'bg-white/80 hover:bg-white text-slate-600 hover:text-[#1C3A62] border border-slate-200/80 hover:border-slate-300 shadow-xs'
+                  }`}
               >
                 <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#2495D3]' : 'text-slate-400'}`} />
                 <span>{cat.label}</span>
                 <span
-                  className={`text-[10px] sm:text-xs font-bold px-1.5 py-0.5 rounded-full transition-colors ${
-                    isActive
-                      ? 'bg-[#2495D3] text-white'
-                      : 'bg-slate-100 text-slate-500'
-                  }`}
+                  className={`text-[10px] sm:text-xs font-bold px-1.5 py-0.5 rounded-full transition-colors ${isActive
+                    ? 'bg-[#2495D3] text-white'
+                    : 'bg-slate-100 text-slate-500'
+                    }`}
                 >
                   {cat.count}
                 </span>
