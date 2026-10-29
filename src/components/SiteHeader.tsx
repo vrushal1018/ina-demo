@@ -61,11 +61,11 @@ export default function SiteHeader() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About us", href: "/about" },
-    { name: "Clients corner", href: "/clients-corner" },
+    { name: "About Us", href: "/about" },
+    { name: "Clients Corner", href: "/clients-corner" },
     { name: "Careers", href: "/careers" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact us", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   const servicesList = [
@@ -76,31 +76,31 @@ export default function SiteHeader() {
       icon: Building2,
     },
     {
-      name: "Transition services",
+      name: "Transition Services",
       href: "/services/transition-services",
       desc: "Smooth operational site takeovers",
       icon: Layers,
     },
     {
-      name: "Sustainability services",
+      name: "Sustainability Services",
       href: "/services/sustainability-services",
       desc: "Energy & carbon footprint reduction",
       icon: Leaf,
     },
     {
-      name: "Technical services",
+      name: "Technical Services",
       href: "/services/technical-services",
       desc: "MEP, HVAC & critical systems upkeep",
       icon: Wrench,
     },
     {
-      name: "Audit & offerings",
+      name: "Audit & Offerings",
       href: "/services/audit-and-offerings",
       desc: "Statutory, safety & energy compliance",
       icon: ShieldCheck,
     },
     {
-      name: "Allied services",
+      name: "Allied Services",
       href: "/services/allied-services",
       desc: "Integrated soft & specialized facility support",
       icon: Sparkles,
@@ -152,7 +152,7 @@ export default function SiteHeader() {
 
       {/* Vertical Drawer Panel */}
       <aside
-        className={`fixed inset-y-0 left-0 w-full sm:w-[300px] md:w-[320px] bg-[#0A1629]/95 text-white backdrop-blur-xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto transition-transform duration-300 ease-out will-change-transform ${
+        className={`fixed inset-y-0 left-0 w-full sm:w-[300px] md:w-[320px] bg-[#0A1629]/95 text-white backdrop-blur-xl z-50 border-r border-[#2495D3]/30 shadow-2xl flex flex-col justify-between overflow-y-auto no-scrollbar [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden transition-transform duration-300 ease-out will-change-transform ${
           isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full pointer-events-none"
         }`}
         aria-hidden={!isOpen}
@@ -270,6 +270,19 @@ export default function SiteHeader() {
                         </div>
                       )}
                     </div>
+
+                    {/* Sectors Link */}
+                    <Link
+                      href="/sectors"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/sectors")
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
+                    >
+                      <span>Sectors</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
 
                     {/* Clients Corner Link */}
                     <Link

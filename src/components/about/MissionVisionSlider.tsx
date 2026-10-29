@@ -20,7 +20,7 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    title: "Our mission",
+    title: "Our Mission",
     description:
       "To deliver efficient, sustainable, and technology-enabled facility management solutions that enhance asset performance, optimize energy consumption, ensure compliance, and create better environments for our customers.",
     image: missionImg,
@@ -29,7 +29,7 @@ const slides: Slide[] = [
   },
   {
     id: 2,
-    title: "Our vision",
+    title: "Our Vision",
     description:
       "To be the first choice in Engineering Facility Management by delivering innovative, technology-driven solutions that create lasting value for our customers.",
     image: visionImg,
@@ -38,7 +38,7 @@ const slides: Slide[] = [
   },
   {
     id: 3,
-    title: "Our goals",
+    title: "Our Goals",
     description:
       "To achieve operational excellence, drive sustainable growth, embrace innovative technologies, and deliver measurable value through reliable, efficient, and customer-focused facility management solutions.",
     image: goalsImg,
@@ -87,8 +87,8 @@ export default function MissionVisionSlider() {
                 key={slide.id}
                 onClick={() => setCurrentIndex(idx)}
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 ${isCurrent
-                    ? "bg-[#1C3A62] text-white shadow-lg shadow-[#1C3A62]/20 scale-105"
-                    : "bg-slate-100 text-[#585858] hover:bg-slate-200"
+                  ? "bg-[#1C3A62] text-white shadow-lg shadow-[#1C3A62]/20 scale-105"
+                  : "bg-slate-100 text-[#585858] hover:bg-slate-200"
                   }`}
               >
                 <Icon className={`w-4 h-4 ${isCurrent ? "text-[#2495D3]" : "text-slate-500"}`} />
@@ -126,9 +126,9 @@ export default function MissionVisionSlider() {
 
               {/* Text Block */}
               <div className="max-w-2xl text-white">
-                <div className="inline-block rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-4">
-                  Strategic foundation
-                </div>
+                {/* <div className="inline-block rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-4">
+                  Strategic Foundation
+                </div> */}
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-normal mb-4 leading-tight font-heading">
                   {slides[currentIndex].title}
                 </h2>
@@ -166,8 +166,8 @@ export default function MissionVisionSlider() {
                   onClick={() => setCurrentIndex(idx)}
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentIndex
-                      ? "w-12 bg-[#2495D3]"
-                      : "w-3 bg-white/30 hover:bg-white/60"
+                    ? "w-12 bg-[#2495D3]"
+                    : "w-3 bg-white/30 hover:bg-white/60"
                     }`}
                 />
               ))}

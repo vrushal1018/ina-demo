@@ -121,10 +121,10 @@ export default function OurTeam() {
         <div className="text-center mb-6 sm:mb-8 space-y-2.5">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold tracking-wide">
             <Award className="w-3.5 h-3.5 text-[#2495D3]" />
-            <span>Operational executives</span>
+            <span>Operational Executives</span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-normal text-[#1C3A62]">
-            Meet our leadership team
+            Meet Our Leadership Team
           </h2>
           <p className="text-[#585858] max-w-2xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
             Our experienced professionals are dedicated to delivering excellence, innovation, and outstanding results for our clients.

@@ -7,8 +7,11 @@ import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
+import { useVideoFocus } from '@/hooks/useVideoFocus';
 
 export default function TransitionServicesPage() {
+  const videoRef = useVideoFocus();
+
   return (
     <>
       <SiteHeader />
@@ -21,7 +24,7 @@ export default function TransitionServicesPage() {
           {/* Background Video with continuous loop */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <video
-              autoPlay
+              ref={videoRef}
               loop
               muted
               playsInline
@@ -153,7 +156,7 @@ export default function TransitionServicesPage() {
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-[#1C3A62]">
-                      What are transition services?
+                      What Are Transition Services?
                     </h2>
                     <div className="w-16 h-1 bg-[#2495D3] mt-3 mb-6 rounded-full" />
 

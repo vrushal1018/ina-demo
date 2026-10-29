@@ -71,7 +71,7 @@ export default function FeatureGrid() {
             Why INA Tech FM
           </div> */}
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1C3A62] mb-2 tracking-normal">
-            Why Ina TechFM ?
+            Why Ina TechFM?
           </h2>
           {/* <p className="text-sm sm:text-base text-[#585858] font-medium max-w-xl mx-auto">
             Goals to create sustainable future
@@ -98,7 +98,7 @@ export default function FeatureGrid() {
 
                 <div className="flex-grow">
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg font-normal text-[#1C3A62] mb-2 group-hover:text-[#2495D3] transition-colors duration-300 leading-snug">
+                  <h3 className="text-base sm:text-lg font-medium text-[#585858] mb-2 group-hover:text-[#2495D3] transition-colors duration-300 leading-snug">
                     {feature.title}
                   </h3>
 

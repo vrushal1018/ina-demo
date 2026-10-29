@@ -20,7 +20,7 @@ const TEAM: TeamMember[] = [
     id: '1',
     name: 'Ranjit Patil',
     role: 'Co-Founder',
-    image: '/bg1.png',
+    image: '/director photos/Ranjit patil sir.jpeg',
     bio: [
       'Arden, a 5th-generation San Franciscan, is Cruise\'s Chief People Officer. With over 20 years of experience in Human Resources, Arden drives Cruise\'s People strategy and execution.',
       'Her team supports Cruise\'s mission to build the most advanced self-driving vehicle by creating a high-performance culture where Cruisers can do the best work of their lives.',
@@ -34,7 +34,7 @@ const TEAM: TeamMember[] = [
     id: '2',
     name: 'Lipson Paul',
     role: 'Co-Founder',
-    image: '/director photos/lipson1-ink.jpeg',
+    image: '/director photos/lipson sir-whimsi.jpeg',
     bio: [
       'Mo leads the engineering division, overseeing AI models, software architecture, and hardware integration across autonomous systems.',
       'He brings over two decades of tech leadership, previously spearheading enterprise cloud transformation and scalable infrastructure initiatives.'
@@ -75,7 +75,7 @@ export default function InteractiveTeamSlider() {
           <span>Leadership</span>
         </div>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] tracking-normal">
-          Our board
+          Our Board
         </h2>
         <div className="w-12 h-1 bg-[#2495D3] mx-auto mt-3 rounded-full" />
       </div>

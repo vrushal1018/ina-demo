@@ -70,7 +70,7 @@ export default function FeaturesSection() {
             <Sparkles className="w-3.5 h-3.5 text-purple-400" /> Powerful Features
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white">
-            Everything you need for your modern web app
+            Everything You Need For Your Modern Web App
           </h2>
           <p className="text-zinc-400 text-base sm:text-lg">
             Designed for high productivity and visually captivating user interfaces.

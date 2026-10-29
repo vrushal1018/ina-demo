@@ -582,11 +582,11 @@ export default function WhereAreWeLocated() {
             "
           >
             <Globe2 className="h-3.5 w-3.5" />
-            <span>Our presence</span>
+            <span>Our Presence</span>
           </div>
 
           <h2 className="text-2xl font-normal tracking-normal text-[#1C3A62] sm:text-3xl lg:text-4xl">
-            Where are we located?
+            Where Are We Located?
           </h2>
 
           <p className="text-sm text-[#585858] sm:text-base">

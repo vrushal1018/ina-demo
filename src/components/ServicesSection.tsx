@@ -29,10 +29,10 @@ export default function ServicesSection() {
         <div className="w-full lg:w-5/12 relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629] p-6 flex flex-col justify-between min-h-[300px] border border-white/10 shadow-lg">
           <div className="relative z-10">
             <span className="inline-block px-3 py-1 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/30 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
-              Core capabilities
+              Core Capabilities
             </span>
             <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight leading-snug">
-              Best practice services for best customer outcomes
+              Best Practice Services For Best Customer Outcomes
             </h2>
             <p className="mt-3 text-slate-300 text-sm leading-relaxed">
               We&apos;re on a mission to make your people and places the best they can be.

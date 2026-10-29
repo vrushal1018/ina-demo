@@ -78,10 +78,10 @@ export default function InteractiveServiceCards({ services = defaultServices }: 
             <span>Our services</span>
           </div>
           <div className="mb-4 hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-medium text-[#2495D3]">
-            Our services
+            Our Services
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1C3A62] tracking-normal">
-            What we offer
+            What We Offer
           </h2>
           <div className="w-16 h-1 bg-[#2495D3] mt-2.5 rounded-full" />
         </div>

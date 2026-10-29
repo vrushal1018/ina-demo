@@ -51,12 +51,12 @@ export default function FacilityManagementSteps() {
 
           {/* Left Column: Sticky Editorial Header */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24">
-            <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
-              Our methodology
-            </div>
+            {/* <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+              Our Methodology
+            </div> */}
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal mb-4">
-              Engineering solutions built around your needs
+              Engineering Solutions Built Around Your Needs
             </h2>
 
             <p className="text-[#585858] text-sm sm:text-base leading-relaxed font-normal mb-6">

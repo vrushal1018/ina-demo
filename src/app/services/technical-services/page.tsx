@@ -31,7 +31,11 @@ const technicalServices = [
   }
 ];
 
+import { useVideoFocus } from '@/hooks/useVideoFocus';
+
 export default function TechnicalServicesPage() {
+  const videoRef = useVideoFocus();
+
   return (
     <>
       <SiteHeader />
@@ -44,7 +48,7 @@ export default function TechnicalServicesPage() {
           {/* Background Video with continuous loop */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <video
-              autoPlay
+              ref={videoRef}
               loop
               muted
               playsInline
@@ -176,7 +180,7 @@ export default function TechnicalServicesPage() {
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-[#1C3A62]">
-                      What are technical services?
+                      What Are Technical Services?
                     </h2>
                     <div className="w-16 h-1 bg-[#2495D3] mt-3 mb-6 rounded-full" />
 

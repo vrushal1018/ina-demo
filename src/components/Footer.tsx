@@ -8,19 +8,20 @@ export default function Footer() {
 
   const services = [
     { name: "Hard FM", href: "/services/hard-fm" },
-    { name: "Transition services", href: "/services/transition-services" },
-    { name: "Sustainability services", href: "/services/sustainability-services" },
-    { name: "Technical services", href: "/services/technical-services" },
-    { name: "Audit & offerings", href: "/services/audit-and-offerings" },
-    { name: "Allied services", href: "/services/allied-services" },
+    { name: "Transition Services", href: "/services/transition-services" },
+    { name: "Sustainability Services", href: "/services/sustainability-services" },
+    { name: "Technical Services", href: "/services/technical-services" },
+    { name: "Audit & Offerings", href: "/services/audit-and-offerings" },
+    { name: "Allied Services", href: "/services/allied-services" },
   ];
 
   const quickLinks = [
-    { name: "About us", href: "/about" },
-    { name: "Clients corner", href: "/clients-corner" },
+    { name: "About Us", href: "/about" },
+    { name: "Sectors We Operate", href: "/sectors" },
+    { name: "Clients Corner", href: "/clients-corner" },
     { name: "Careers", href: "/careers" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact us", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   return (
@@ -38,7 +39,7 @@ export default function Footer() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 text-xs font-semibold text-[#2495D3] mb-4">
               <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
-              <span>Pan-India facility engineering excellence</span>
+              <span>Pan-India Facility Engineering Excellence</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-normal text-white tracking-normal leading-snug">
               Empowering people. Enriching assets.

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import AnimateIn from "@/components/AnimateIn";
+import Counter from "@/components/Counter";
 
 import FeatureGrid from "@/components/home/FeatureGrid";
 import ServicesSection from "@/components/home/ServicesSection";
@@ -12,9 +13,11 @@ import GarageDoorTypes from "@/components/home/GarageDoorTypes";
 import BrandBanner from "@/components/home/BrandBanner";
 import RepairsAndServicing from "@/components/home/RepairsAndServicing";
 import GarageDoorSteps from "@/components/home/GarageDoorSteps";
+import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const heroVideoRef = useVideoFocus();
 
   // Feature bullets for Tech fm
   // const features = [
@@ -35,7 +38,7 @@ export default function Home() {
         {/* Background Video with continuous loop */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
-            autoPlay
+            ref={heroVideoRef}
             loop
             muted
             playsInline
@@ -63,8 +66,8 @@ export default function Home() {
             </Link>
             {/* Main Tagline under logo */}
             <h1 className="mt-2 sm:mt-2.5 pl-3.5 sm:pl-4 md:pl-5 lg:pl-6 text-[11px] sm:text-xs md:text-[13px] lg:text-[14px] font-normal tracking-normal leading-tight drop-shadow-md">
-              <span className="block text-white">Empowering people</span>
-              <span className="block text-[#2495D3] mt-0.5 ml-2.5 sm:ml-3 md:ml-3.5">Enriching assets</span>
+              <span className="block text-white">Empowering People</span>
+              <span className="block text-[#2495D3] mt-0.5 ml-2.5 sm:ml-3 md:ml-3.5">Enriching Assets</span>
             </h1>
           </div>
         </div>
@@ -88,20 +91,28 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-6 mt-auto">
           <div className="w-full max-w-3xl mx-auto border-t border-white/10 pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left sm:text-center">
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">78 Mn+</div>
-              <div className="text-xs text-slate-400 mt-1">Sq ft area managed</div>
+              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+                <Counter end={78} suffix="m+ sq.ft" duration={2000} />
+              </div>
+              <div className="text-xs text-slate-400 mt-1">Area Managed</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">290+</div>
+              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+                <Counter end={290} suffix="+" duration={2000} />
+              </div>
               <div className="text-xs text-slate-400 mt-1">Clients</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">3,000+</div>
+              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+                <Counter end={3000} suffix="+" duration={2000} />
+              </div>
               <div className="text-xs text-slate-400 mt-1">Employees</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">8</div>
-              <div className="text-xs text-slate-400 mt-1">Years of Experience</div>
+              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+                <Counter end={2018} useGrouping={false} duration={2000} />
+              </div>
+              <div className="text-xs text-slate-400 mt-1">Since</div>
             </div>
           </div>
         </div>

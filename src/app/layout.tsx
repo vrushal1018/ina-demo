@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import LoadingScreen from "@/components/LoadingScreen";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Footer from "@/components/Footer";
 
 const poppins = Poppins({
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${poppins.variable} h-full antialiased bg-[#D9EDF8]`}
     >
       <body className="min-h-full flex flex-col bg-[#D9EDF8] text-[#383838]">
+        <ScrollProgressBar />
         <LoadingScreen />
         <div className="flex-grow">
           {children}

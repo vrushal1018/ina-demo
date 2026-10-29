@@ -67,7 +67,7 @@ export default function CEOQuoteSection() {
               {/* Category pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-4 w-fit">
                 <Award className="w-3.5 h-3.5" />
-                <span>Culture & people</span>
+                <span>Culture & People</span>
               </div>
 
               {/* Main Statement with Dual-Tone Emphasis */}
@@ -87,7 +87,7 @@ export default function CEOQuoteSection() {
               <div className="pt-4 border-t border-slate-100">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
                   <h3 className="text-xl font-normal text-[#1C3A62] tracking-normal">
-                    Our people
+                    Our People
                   </h3>
                   <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2495D3] bg-[#2495D3]/10 px-3 py-1 rounded-full w-fit">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] animate-pulse" />
