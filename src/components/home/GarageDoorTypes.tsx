@@ -10,41 +10,49 @@ export default function SectorsWeOperate() {
   const doors = [
     {
       title: "Hospitality",
+      slug: "hospitality",
       image: "/hospitality.jpg",
       alt: "Hospitality facility entrance",
     },
     {
       title: "Malls",
+      slug: "malls",
       image: "/mall.jpg",
       alt: "Modern commercial retail entrance",
     },
     {
       title: "Healthcare",
+      slug: "healthcare",
       image: "/healthcare.jpg",
       alt: "Healthcare facility door system",
     },
     {
       title: "IT/ITES",
+      slug: "it-ites",
       image: "/IT.jpg",
       alt: "Corporate IT office entrance",
     },
     {
       title: "Residential",
+      slug: "residential",
       image: "/residential.jpg",
       alt: "Residential garage door solution",
     },
     {
       title: "Manufacturing",
+      slug: "manufacturing",
       image: "/manufacturing.jpg",
       alt: "Industrial manufacturing rolling shutter",
     },
     {
       title: "Commercial & corporate",
+      slug: "commercial-corporate",
       image: "/commercial.jpg",
       alt: "Commercial building glass door system",
     },
     {
       title: "Institution",
+      slug: "institution",
       image: "/institution.jpg",
       alt: "Institutional entry doors",
     },
@@ -65,10 +73,6 @@ export default function SectorsWeOperate() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10 w-full">
         {/* Section Header */}
         <div className="w-full mb-5 sm:mb-6 lg:mb-8 text-left">
-          {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold tracking-wide mb-2.5">
-            <Building2 className="w-3.5 h-3.5 text-[#2495D3]" />
-            <span>Multi-Sector Coverage</span>
-          </div> */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal text-[#1C3A62] tracking-normal mb-2 leading-tight">
             Sectors we operate
           </h2>
@@ -83,9 +87,10 @@ export default function SectorsWeOperate() {
         {/* 8-Card High-End Architectural Sector Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4 lg:gap-4 xl:gap-5">
           {doors.map((door, idx) => (
-            <div
+            <Link
               key={idx}
-              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 bg-[#1C3A62] border border-[#1C3A62]/70 hover:border-[#2495D3] hover:-translate-y-1.5"
+              href={`/sectors/${door.slug}`}
+              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 bg-[#1C3A62] border border-[#1C3A62]/70 hover:border-[#2495D3] hover:-translate-y-1.5 cursor-pointer"
             >
               {/* Top accent light on hover */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-20" />
@@ -115,17 +120,16 @@ export default function SectorsWeOperate() {
                   {door.title}
                 </h3>
 
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center text-xs font-semibold text-[#2495D3] hover:text-[#45B1E8] group/link transition-colors duration-200 shrink-0 ml-2"
+                <span
+                  className="inline-flex items-center text-xs font-semibold text-[#2495D3] group-hover:text-[#45B1E8] transition-colors duration-200 shrink-0 ml-2"
                 >
-                  <span className="border-b border-[#2495D3]/60 group-hover/link:border-[#45B1E8] pb-0.5">
+                  <span className="border-b border-[#2495D3]/60 group-hover:border-[#45B1E8] pb-0.5">
                     Explore
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-200" />
-                </Link>
+                  <ArrowRight className="w-3.5 h-3.5 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" />
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

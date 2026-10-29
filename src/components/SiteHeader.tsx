@@ -271,6 +271,19 @@ export default function SiteHeader() {
                       )}
                     </div>
 
+                    {/* Sectors Link */}
+                    <Link
+                      href="/sectors"
+                      onClick={() => setIsOpen(false)}
+                      className={`group flex items-center justify-between px-3.5 py-2.5 rounded-xl text-base sm:text-lg font-medium transition-all duration-200 ${isActive("/sectors")
+                        ? "bg-[#2495D3]/20 text-white border-l-4 border-[#2495D3]"
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
+                        }`}
+                    >
+                      <span>Sectors</span>
+                      <ArrowRight className="w-4 h-4 text-[#2495D3] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+
                     {/* Clients Corner Link */}
                     <Link
                       href="/clients-corner"

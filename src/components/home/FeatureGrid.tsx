@@ -98,7 +98,7 @@ export default function FeatureGrid() {
 
                 <div className="flex-grow">
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg font-normal text-[#1C3A62] mb-2 group-hover:text-[#2495D3] transition-colors duration-300 leading-snug">
+                  <h3 className="text-base sm:text-lg font-medium text-[#585858] mb-2 group-hover:text-[#2495D3] transition-colors duration-300 leading-snug">
                     {feature.title}
                   </h3>
 
