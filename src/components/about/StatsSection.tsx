@@ -3,10 +3,14 @@
 import React from "react";
 import { Building2, Users, Briefcase, Award } from "lucide-react";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
+import Counter from "@/components/Counter";
 
 interface StatItem {
   id: number;
-  value: string;
+  end: number;
+  prefix?: string;
+  suffix?: string;
+  useGrouping?: boolean;
   description: string;
   icon: React.ComponentType<{ className?: string }>;
 }
@@ -14,26 +18,31 @@ interface StatItem {
 const stats: StatItem[] = [
   {
     id: 1,
-    value: "78 Mn+",
-    description: "Sq ft area managed",
+    end: 78,
+    suffix: " Mn+",
+    description: "Sq Ft Area Managed",
     icon: Building2,
   },
   {
     id: 2,
-    value: "290+",
+    end: 290,
+    suffix: "+",
     description: "Clients",
     icon: Briefcase,
   },
   {
     id: 3,
-    value: "3,000+",
+    end: 3000,
+    suffix: "+",
+    useGrouping: true,
     description: "Employees",
     icon: Users,
   },
   {
     id: 4,
-    value: "8",
-    description: "Years of experience",
+    end: 8,
+    suffix: "",
+    description: "Years Of Experience",
     icon: Award,
   },
 ];
@@ -63,9 +72,16 @@ export default function StatsSection() {
                 </div>
 
                 <div>
-                  {/* Stat Number */}
+                  {/* Stat Number with animated counter effect */}
                   <h3 className="text-3xl sm:text-4xl font-normal text-[#1C3A62] tracking-normal group-hover:text-[#2495D3] transition-colors duration-300 font-heading">
-                    {stat.value}
+                    <Counter
+                      end={stat.end}
+                      start={0}
+                      duration={2000}
+                      prefix={stat.prefix}
+                      suffix={stat.suffix}
+                      useGrouping={stat.useGrouping ?? false}
+                    />
                   </h3>
 
                   {/* Stat Description */}

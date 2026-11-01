@@ -43,14 +43,14 @@ export default function Home() {
             muted
             playsInline
             preload="metadata"
-            className="absolute inset-0 w-full h-full object-cover opacity-55 scale-105"
+            className="absolute inset-0 w-full h-full object-cover scale-105"
           >
             <source src="/ITFheromain (3).mp4" type="video/mp4" />
             <source src="/ITFheromain%20(3).mp4" type="video/mp4" />
           </video>
           {/* Cinematic Gradient Overlay: darker on left for crisp readability, subtly transparent on right to showcase video */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1629]/95 via-[#0A1629]/80 to-[#0A1629]/45" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/70 via-transparent to-[#0A1629]/90" />
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#0A1629]/95 via-[#0A1629]/80 to-[#0A1629]/45" /> */}
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/70 via-transparent to-[#0A1629]/90" /> */}
         </div>
 
         {/* Top-Left: Logo & Tagline */}
@@ -92,7 +92,7 @@ export default function Home() {
           <div className="w-full max-w-3xl mx-auto border-t border-white/10 pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left sm:text-center">
             <div>
               <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
-                <Counter end={78} suffix="m+ sq.ft" duration={2000} />
+                <Counter end={78} suffix="m+ sft" duration={2000} />
               </div>
               <div className="text-xs text-slate-400 mt-1">Area Managed</div>
             </div>

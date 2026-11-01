@@ -2,12 +2,39 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight, ArrowRight, GitCommit } from 'lucide-react';
+import { ChevronRight, ArrowRight, GitCommit, ClipboardList, Rocket, CheckCircle2, ShieldCheck } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
 import { useVideoFocus } from '@/hooks/useVideoFocus';
+
+const transitionServices = [
+  {
+    title: "Transition Planning & Due Diligence",
+    icon: ClipboardList,
+    description: "In-depth pre-handover surveys, equipment condition indexing, and operational risk assessments to formulate a seamless facility transition roadmap.",
+    shortDescription: "Comprehensive site surveys, asset condition indexing, and takeover roadmaps.",
+  },
+  {
+    title: "Rapid Workforce Mobilization",
+    icon: Rocket,
+    description: "Fast-track onboarding and deployment of vetted technical personnel, certified engineers, and supervisory teams equipped with standard SOPs.",
+    shortDescription: "Swift deployment of certified technical staff and safety equipment.",
+  },
+  {
+    title: "Asset Cataloging & Handover",
+    icon: CheckCircle2,
+    description: "Systematic digital tagging of all MEP and civil assets, validation of single-line diagrams, statutory compliance checks, and operational log setup.",
+    shortDescription: "Digital asset tagging, equipment validation, and compliance verification.",
+  },
+  {
+    title: "Change Management & Continuity",
+    icon: ShieldCheck,
+    description: "Structured communication with building owners, tenants, and staff to guarantee zero disruptions to business operations during site changeovers.",
+    shortDescription: "Proactive occupant alignment ensuring uninterrupted business continuity.",
+  },
+];
 
 export default function TransitionServicesPage() {
   const videoRef = useVideoFocus();
@@ -194,7 +221,7 @@ export default function TransitionServicesPage() {
         </AnimateIn>
 
         <AnimateIn delay={0.1} minHeight="500px">
-          <InteractiveServiceCards />
+          <InteractiveServiceCards services={transitionServices} />
         </AnimateIn>
       </div>
     </>

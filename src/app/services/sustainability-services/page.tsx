@@ -2,12 +2,39 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight, ArrowRight, Leaf } from 'lucide-react';
+import { ChevronRight, ArrowRight, Leaf, Lightbulb, Wind, Sun } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
 import InteractiveServiceCards from '@/components/InteractiveServiceCards';
 import { useVideoFocus } from '@/hooks/useVideoFocus';
+
+const sustainabilityServices = [
+  {
+    title: "Energy Audits & Assessments",
+    icon: Lightbulb,
+    description: "Detailed diagnostic surveys of electrical distribution, lighting, and heavy utility loads to uncover energy wastage, optimize tariffs, and lower utility overheads.",
+    shortDescription: "Targeted energy studies and power quality analysis to reduce utility overheads.",
+  },
+  {
+    title: "HVAC Thermal Optimization",
+    icon: Wind,
+    description: "Comprehensive air balancing, chiller plant audits, and thermodynamic adjustments that maximize cooling efficiency and lower power consumption.",
+    shortDescription: "Chiller and AHU diagnostic tuning for peak cooling and reduced energy loads.",
+  },
+  {
+    title: "Green Building Operations",
+    icon: Leaf,
+    description: "Aligning day-to-day facility management with LEED and IGBC standards, prioritizing eco-certified chemicals, waste diversion, and water conservation.",
+    shortDescription: "Operations tailored to international green building benchmarks and eco-standards.",
+  },
+  {
+    title: "Renewable Energy Integration",
+    icon: Sun,
+    description: "Turnkey advisory and operational upkeep for on-site rooftop solar arrays, inverter stations, and carbon footprint reduction programs.",
+    shortDescription: "Solar asset maintenance and customized roadmaps for carbon footprint reduction.",
+  },
+];
 
 export default function SustainabilityServicesPage() {
   const videoRef = useVideoFocus();
@@ -194,7 +221,7 @@ export default function SustainabilityServicesPage() {
         </AnimateIn>
 
         <AnimateIn delay={0.1} minHeight="500px">
-          <InteractiveServiceCards />
+          <InteractiveServiceCards services={sustainabilityServices} />
         </AnimateIn>
       </div>
     </>

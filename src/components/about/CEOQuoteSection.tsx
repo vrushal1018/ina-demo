@@ -89,10 +89,7 @@ export default function CEOQuoteSection() {
                   <h3 className="text-xl font-normal text-[#1C3A62] tracking-normal">
                     Our People
                   </h3>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2495D3] bg-[#2495D3]/10 px-3 py-1 rounded-full w-fit">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] animate-pulse" />
-                    3000+ employees across India
-                  </span>
+
                 </div>
 
                 <p className="text-sm sm:text-base text-[#585858] font-medium mb-3">

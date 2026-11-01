@@ -12,6 +12,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://inatechfmglobal.com"),
   title: "INA - Facility Management & Technical Services",
   description: "Comprehensive engineering and facility management solutions focused on reliable, sustainable and efficient operations.",
 };
