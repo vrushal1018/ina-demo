@@ -354,7 +354,7 @@ export default function CareersPage() {
                     </p>
                     <button
                       onClick={openApplyModal}
-                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95"
+                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95 w-full sm:w-auto text-center"
                     >
                       Apply for this position
                     </button>
@@ -369,12 +369,12 @@ export default function CareersPage() {
       {/* Application Form Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeApplyModal();
           }}
         >
-          <div className="relative bg-white rounded-3xl shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto border border-slate-200 transition-all duration-300 transform scale-100 p-6 sm:p-8">
+          <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto border border-slate-200 transition-all duration-300 transform scale-100 p-5 sm:p-8">
             {/* Top Accent line */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
 
@@ -577,19 +577,19 @@ export default function CareersPage() {
                 </div>
 
                 {/* Form Actions */}
-                <div className="flex items-center justify-end gap-3 pt-3">
+                <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 pt-3">
                   <button
                     type="button"
                     onClick={closeApplyModal}
                     disabled={isSubmitting}
-                    className="px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-[#585858] hover:bg-slate-50 transition-colors cursor-pointer"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-[#585858] hover:bg-slate-50 transition-colors cursor-pointer text-center"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#2495D3] hover:bg-[#1C3A62] disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md flex items-center gap-2 cursor-pointer active:scale-95"
+                    className="w-full sm:w-auto bg-[#2495D3] hover:bg-[#1C3A62] disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                   >
                     {isSubmitting ? (
                       <>

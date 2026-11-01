@@ -102,7 +102,7 @@ export default function OurValues() {
         {/* Values Timeline Container */}
         <div className="relative max-w-5xl mx-auto">
           {/* Vertical Connecting Line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-slate-200/80 z-0 rounded-full">
+          <div className="absolute left-5 sm:left-6 md:left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-slate-200/80 z-0 rounded-full">
             <div className="w-full h-full bg-gradient-to-b from-[#2495D3] via-[#1C3A62] to-[#2495D3] origin-top rounded-full shadow-[0_0_12px_rgba(36,149,211,0.5)]" />
           </div>
 
@@ -118,7 +118,7 @@ export default function OurValues() {
                   className="relative flex flex-col md:flex-row items-start md:items-center"
                 >
                   {/* Timeline Center Node */}
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white border-4 border-[#2495D3] shadow-lg shadow-[#2495D3]/20 flex items-center justify-center z-20 transition-transform duration-300 hover:scale-115">
+                  <div className="absolute left-5 sm:left-6 md:left-1/2 -translate-x-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border-4 border-[#2495D3] shadow-lg shadow-[#2495D3]/20 flex items-center justify-center z-20 transition-transform duration-300 hover:scale-115">
                     <span className="text-[#1C3A62] font-bold text-xs tracking-wider">
                       {value.number}
                     </span>
@@ -126,7 +126,7 @@ export default function OurValues() {
 
                   {/* Value Card */}
                   <div
-                    className={`pl-16 md:pl-0 w-full md:w-[calc(50%-40px)] ${
+                    className={`pl-13 sm:pl-16 md:pl-0 w-full md:w-[calc(50%-40px)] ${
                       isEven ? 'md:mr-auto' : 'md:ml-auto'
                     }`}
                   >

@@ -99,7 +99,7 @@ export default function MissionVisionSlider() {
         </div>
 
         {/* Presentation Stage */}
-        <div className="relative w-full h-[380px] sm:h-[440px] lg:h-[460px] rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200/80">
+        <div className="relative w-full min-h-[420px] sm:min-h-0 sm:h-[440px] lg:h-[460px] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200/80">
           {/* Slide Images (Fading transition) */}
           {slides.map((slide, idx) => (
             <div
@@ -121,7 +121,7 @@ export default function MissionVisionSlider() {
           ))}
 
           {/* Foreground Content */}
-          <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 sm:p-8 lg:p-10">
+          <div className="absolute inset-0 z-20 flex flex-col justify-end p-5 sm:p-8 lg:p-10">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
 
               {/* Text Block */}
@@ -129,10 +129,10 @@ export default function MissionVisionSlider() {
                 {/* <div className="inline-block rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3] mb-4">
                   Strategic Foundation
                 </div> */}
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-normal mb-4 leading-tight font-heading">
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-normal tracking-normal mb-3 sm:mb-4 leading-tight font-heading">
                   {slides[currentIndex].title}
                 </h2>
-                <p className="text-base sm:text-lg lg:text-xl text-slate-200 font-normal leading-relaxed max-w-xl">
+                <p className="text-sm sm:text-lg lg:text-xl text-slate-200 font-normal leading-relaxed max-w-xl">
                   {slides[currentIndex].description}
                 </p>
               </div>

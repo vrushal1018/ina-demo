@@ -224,7 +224,7 @@ export default function ComprehensiveBuildingSolutions() {
               return (
                 <div
                   key={index}
-                  className="relative w-[320px] md:w-[350px] h-[380px] group snap-center shrink-0 pointer-events-none"
+                  className="relative w-[82vw] max-w-[320px] md:w-[350px] h-[380px] group snap-center shrink-0 pointer-events-none"
                 >
                   {/* Border Wrapper */}
                   <div

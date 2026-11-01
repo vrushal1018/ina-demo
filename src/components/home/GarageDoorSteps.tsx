@@ -46,7 +46,7 @@ export default function FacilityManagementSteps() {
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.38} mask="fade-edges" />
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Left Column: Sticky Editorial Header */}
@@ -67,7 +67,7 @@ export default function FacilityManagementSteps() {
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#1C3A62] text-white font-semibold text-xs sm:text-sm rounded-full shadow-lg shadow-[#1C3A62]/20 hover:bg-[#2495D3] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#1C3A62] text-white font-semibold text-xs sm:text-sm rounded-full shadow-lg shadow-[#1C3A62]/20 hover:bg-[#2495D3] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
             >
               <span>Talk to our experts</span>
               <ArrowRight className="w-4 h-4" />

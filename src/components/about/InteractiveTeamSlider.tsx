@@ -133,23 +133,23 @@ export default function InteractiveTeamSlider() {
           </div>
         ) : (
           /* ================= DETAILED FOCUSED VIEW ================= */
-          <div className="relative bg-white rounded-3xl p-6 sm:p-10 lg:p-14 border border-slate-200 shadow-2xl max-w-5xl mx-auto overflow-hidden">
+          <div className="relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-14 border border-slate-200 shadow-2xl max-w-5xl mx-auto overflow-hidden">
             {/* Top Accent Strip */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
 
             {/* Close Button */}
             <button
               onClick={() => setSelectedMember(null)}
-              className="absolute top-6 right-6 w-11 h-11 rounded-full bg-slate-100 text-[#585858] flex items-center justify-center hover:bg-[#2495D3] hover:text-white transition-colors z-30 shadow-sm"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-slate-100 text-[#585858] flex items-center justify-center hover:bg-[#2495D3] hover:text-white transition-colors z-30 shadow-sm cursor-pointer"
               aria-label="Close details"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center">
               {/* Left Side: Image */}
               <div className="lg:col-span-5 flex justify-center items-end">
-                <div className="relative w-full max-w-[360px] h-[440px] rounded-2xl bg-transparent overflow-hidden border border-[#2495D3]/25 flex items-end justify-center">
+                <div className="relative w-full max-w-[360px] h-[300px] sm:h-[440px] rounded-2xl bg-transparent overflow-hidden border border-[#2495D3]/25 flex items-end justify-center">
                   <img
                     src={selectedMember.image}
                     alt={selectedMember.name}

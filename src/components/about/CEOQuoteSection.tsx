@@ -43,21 +43,21 @@ export default function CEOQuoteSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1629]/70 via-transparent to-transparent pointer-events-none" />
 
                 {/* Floating pill badge */}
-                <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
+                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 p-2.5 sm:p-3 rounded-xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg flex items-center justify-between min-w-0">
+                  <div className="flex items-center gap-2.5 min-w-0">
                     <div className="w-9 h-9 rounded-lg bg-[#1C3A62] text-[#2495D3] flex items-center justify-center flex-shrink-0">
                       <Users2 className="w-4 h-4 stroke-[2]" />
                     </div>
-                    <div>
-                      <div className="text-xs font-semibold tracking-wide text-[#1C3A62]">
+                    <div className="min-w-0">
+                      <div className="text-xs font-semibold tracking-wide text-[#1C3A62] truncate">
                         Pan-India workforce
                       </div>
-                      <div className="text-[11px] text-[#585858]">
+                      <div className="text-[11px] text-[#585858] truncate">
                         Operational excellence across sites
                       </div>
                     </div>
                   </div>
-                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-2" />
                 </div>
               </div>
             </div>
@@ -89,10 +89,7 @@ export default function CEOQuoteSection() {
                   <h3 className="text-xl font-normal text-[#1C3A62] tracking-normal">
                     Our People
                   </h3>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2495D3] bg-[#2495D3]/10 px-3 py-1 rounded-full w-fit">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] animate-pulse" />
-                    3000+ employees across India
-                  </span>
+
                 </div>
 
                 <p className="text-sm sm:text-base text-[#585858] font-medium mb-3">

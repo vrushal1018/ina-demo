@@ -52,7 +52,7 @@ const AccordionItem = ({ title, content, isOpen, onClick }: AccordionItemProps) 
 const ImageCollage = ({ images }: { images: [string, string, string] }) => {
   // Uses the secondary color #1c3a62 as the frame/padding for the images
   return (
-    <div className="relative w-full aspect-square md:aspect-auto md:h-[500px] bg-[#1c3a62] p-2 rounded-2xl flex gap-2 shadow-lg">
+    <div className="relative w-full h-[280px] sm:h-[380px] md:h-[500px] bg-[#1c3a62] p-2 rounded-2xl flex gap-2 shadow-lg">
       <div className="w-1/2 h-full flex flex-col gap-2">
         <img
           src={images[0]}
@@ -170,10 +170,10 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
               </p>
 
               {/* Action buttons */}
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#1C3A62] px-7 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:scale-95 text-sm"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#1C3A62] px-6 sm:px-7 py-3 sm:py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm w-full sm:w-auto text-center"
                 >
                   <span>Book Sector Consultation</span>
                   <ArrowRight className="w-4 h-4" />
@@ -181,7 +181,7 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
 
                 <a
                   href="tel:+919326906715"
-                  className="inline-flex items-center gap-2 rounded-xl border-2 border-[#1C3A62] px-6 py-3.5 font-semibold text-[#1C3A62] transition-all duration-300 hover:bg-[#1C3A62] hover:text-white hover:-translate-y-0.5 active:scale-95 text-sm"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#1C3A62] px-5 sm:px-6 py-3 sm:py-3.5 font-semibold text-[#1C3A62] transition-all duration-300 hover:bg-[#1C3A62] hover:text-white hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm w-full sm:w-auto text-center"
                 >
                   <Phone className="w-4 h-4 text-[#2495D3]" />
                   <span>Call +91-9326906715</span>
@@ -240,23 +240,23 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
         {/* =========================================================
             SERVICES SECTION (EXACT REQUESTED STRUCTURE)
         ========================================================== */}
-        <section className="bg-white py-20 px-6 md:px-12 lg:px-24">
+        <section className="bg-white py-12 sm:py-16 lg:py-20 px-4 sm:px-8 lg:px-20">
           {/* Header Section */}
-          <div className="max-w-4xl mx-auto text-center mb-24">
+          <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-20">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Tailored Capabilities</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4 sm:mb-6">
               Our {sector.title} Services
             </h2>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Comprehensive engineering and facility management solutions customized to meet the operational demands of {sector.title.toLowerCase()} environments.
             </p>
           </div>
 
           {/* Services List */}
-          <div className="max-w-6xl mx-auto flex flex-col gap-24">
+          <div className="max-w-6xl mx-auto flex flex-col gap-12 sm:gap-20">
             {sector.services.map((service, index) => (
               <ServiceBlock key={index} service={service} />
             ))}

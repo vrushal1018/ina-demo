@@ -94,7 +94,7 @@ export default function HardFMPage() {
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 rounded-xl bg-[#2495D3] hover:bg-white hover:text-[#1C3A62] px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/30 hover:-translate-y-0.5 active:scale-95"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-white hover:text-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/30 hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
                   >
                     <span>Book an appointment</span>
                     <ArrowRight className="w-4 h-4" />
@@ -102,7 +102,7 @@ export default function HardFMPage() {
 
                   <Link
                     href="/contact"
-                    className="inline-flex items-center rounded-xl border-2 border-white/80 px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1C3A62] hover:-translate-y-0.5 active:scale-95 backdrop-blur-sm"
+                    className="inline-flex items-center justify-center rounded-xl border-2 border-white/80 px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1C3A62] hover:-translate-y-0.5 active:scale-95 backdrop-blur-sm text-sm sm:text-base w-full sm:w-auto text-center"
                   >
                     Contact us
                   </Link>

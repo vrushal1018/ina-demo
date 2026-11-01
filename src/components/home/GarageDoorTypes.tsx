@@ -2,8 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Building2 } from "lucide-react";
+
+
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function SectorsWeOperate() {
@@ -87,10 +87,10 @@ export default function SectorsWeOperate() {
         {/* 8-Card High-End Architectural Sector Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4 lg:gap-4 xl:gap-5">
           {doors.map((door, idx) => (
-            <Link
+            <div
               key={idx}
-              href={`/sectors/${door.slug}`}
-              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 bg-[#1C3A62] border border-[#1C3A62]/70 hover:border-[#2495D3] hover:-translate-y-1.5 cursor-pointer"
+
+              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 bg-[#1C3A62] border border-[#1C3A62]/70 hover:border-[#2495D3] hover:-translate-y-1"
             >
               {/* Top accent light on hover */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none" />
@@ -115,21 +115,21 @@ export default function SectorsWeOperate() {
               </div>
 
               {/* Card Footer */}
-              <div className="px-4 py-3 sm:py-3.5 bg-[#1C3A62] text-white flex items-center justify-between border-t border-white/10">
+              <div className="px-4 py-3 sm:py-3.5 bg-[#1C3A62] text-white flex items-center justify-start border-t border-white/10">
                 <h3 className="text-sm sm:text-base font-semibold text-white tracking-normal truncate group-hover:text-[#45B1E8] transition-colors">
                   {door.title}
                 </h3>
 
-                <span
-                  className="inline-flex items-center text-xs font-semibold text-[#2495D3] group-hover:text-[#45B1E8] transition-colors duration-200 shrink-0 ml-2"
-                >
-                  <span className="border-b border-[#2495D3]/60 group-hover:border-[#45B1E8] pb-0.5">
-                    Explore
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1 transform group-hover:translate-x-1 transition-transform duration-200" />
-                </span>
+
+
+
+
+
+
+
+
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
