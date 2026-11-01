@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module "@arcgis/core/config" {
   const esriConfig: any;
   export default esriConfig;

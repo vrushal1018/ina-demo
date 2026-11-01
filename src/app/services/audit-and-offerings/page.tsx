@@ -80,7 +80,7 @@ export default function AuditAndOfferingsPage() {
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#1C3A62] px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:scale-95"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
                   >
                     <span>Book an appointment</span>
                     <ArrowRight className="w-4 h-4" />
@@ -88,7 +88,7 @@ export default function AuditAndOfferingsPage() {
 
                   <Link
                     href="/contact"
-                    className="inline-flex items-center rounded-xl border-2 border-[#1C3A62] px-8 py-3.5 font-semibold text-[#1C3A62] transition-all duration-300 hover:bg-[#1C3A62] hover:text-white hover:-translate-y-0.5 active:scale-95"
+                    className="inline-flex items-center justify-center rounded-xl border-2 border-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-[#1C3A62] transition-all duration-300 hover:bg-[#1C3A62] hover:text-white hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
                   >
                     Contact us
                   </Link>

@@ -21,12 +21,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${poppins.variable} h-full antialiased bg-[#D9EDF8]`}
+      className={`${poppins.variable} h-full antialiased bg-[#D9EDF8] overflow-x-hidden max-w-full`}
     >
-      <body className="min-h-full flex flex-col bg-[#D9EDF8] text-[#383838]">
+      <body className="min-h-full flex flex-col bg-[#D9EDF8] text-[#383838] overflow-x-hidden max-w-full">
         <ScrollProgressBar />
         <LoadingScreen />
-        <div className="flex-grow">
+        <div className="flex-grow w-full max-w-full overflow-x-clip">
           {children}
         </div>
         <Footer />

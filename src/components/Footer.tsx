@@ -49,17 +49,17 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white text-sm font-semibold tracking-wide transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
             >
               <span>Talk to our experts</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
               href="tel:+919326906715"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/20 hover:border-white/50 text-white text-sm font-semibold transition-all duration-300 hover:bg-white/5"
+              className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-white/20 hover:border-white/50 text-white text-xs sm:text-sm font-semibold transition-all duration-300 hover:bg-white/5 w-full sm:w-auto"
             >
               <Phone className="w-4 h-4 text-[#2495D3]" />
               <span>+91-9326906715</span>
@@ -162,15 +162,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
           <div>
             © {currentYear} Ina Tech FM. All rights reserved.
           </div>
-          <div className="flex items-center gap-6 text-slate-400">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-1.5 text-slate-400 text-[11px] sm:text-xs">
             <span>Pan-India Presence</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>Predictive & Preventive Maintenance</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>ISO Compliant Operations</span>
           </div>
         </div>

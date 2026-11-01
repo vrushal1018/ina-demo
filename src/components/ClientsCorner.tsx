@@ -586,7 +586,7 @@ export default function ClientsCorner() {
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2495D3] hover:bg-[#1E7FB5] text-white text-sm font-semibold shadow-lg shadow-[#2495D3]/30 hover:scale-105 transition-all duration-300 shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#2495D3] hover:bg-[#1E7FB5] text-white text-sm font-semibold shadow-lg shadow-[#2495D3]/30 hover:scale-105 transition-all duration-300 w-full sm:w-auto shrink-0"
             >
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4" />

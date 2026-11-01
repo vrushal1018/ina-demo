@@ -77,22 +77,22 @@ export default function WhatWeOffer({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* LEFT PANEL: Large Active Service Detail */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#1C3A62] to-[#0A1629] rounded-[2rem] p-8 sm:p-10 text-white shadow-2xl flex flex-col min-h-[480px] relative overflow-hidden group">
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#1C3A62] to-[#0A1629] rounded-2xl sm:rounded-[2rem] p-6 sm:p-10 text-white shadow-2xl flex flex-col min-h-[360px] sm:min-h-[480px] relative overflow-hidden group">
             {/* Subtle background decoration */}
             <div className="absolute -bottom-12 -right-12 opacity-5 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12 pointer-events-none">
               <CurrentIcon className="w-72 h-72" />
             </div>
 
             <div className="relative z-10 flex flex-col h-full">
-              <div className="mb-8 p-4 bg-white/10 rounded-2xl w-fit backdrop-blur-md border border-white/10 shadow-inner">
-                <CurrentIcon className="w-8 h-8 text-[#45B1E8]" />
+              <div className="mb-6 sm:mb-8 p-3.5 sm:p-4 bg-white/10 rounded-2xl w-fit backdrop-blur-md border border-white/10 shadow-inner">
+                <CurrentIcon className="w-7 h-7 sm:w-8 sm:h-8 text-[#45B1E8]" />
               </div>
 
-              <h3 className="text-3xl font-semibold mb-6 leading-tight">
+              <h3 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 leading-tight">
                 {currentService.title}
               </h3>
 
-              <div className="w-12 h-1 bg-[#45B1E8] mb-6 rounded-full" />
+              <div className="w-12 h-1 bg-[#45B1E8] mb-4 sm:mb-6 rounded-full" />
 
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base flex-grow">
                 {currentService.description}
@@ -100,7 +100,7 @@ export default function WhatWeOffer({
 
               <Link
                 href="/contact"
-                className="mt-8 inline-flex items-center gap-2 text-[#45B1E8] font-medium hover:text-white transition-colors w-fit group/btn cursor-pointer"
+                className="mt-6 sm:mt-8 inline-flex items-center gap-2 text-[#45B1E8] font-medium hover:text-white transition-colors w-fit group/btn cursor-pointer text-sm"
               >
                 <span>Discuss this service</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
@@ -122,7 +122,7 @@ export default function WhatWeOffer({
                 <div
                   key={index}
                   onClick={() => setActiveService(index)}
-                  className={`cursor-pointer bg-white/90 backdrop-blur-md rounded-[2rem] p-6 sm:p-8 flex flex-col transition-all duration-300 shadow-[0_4px_20px_rgb(0,0,0,0.03)] ${
+                  className={`cursor-pointer bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[2rem] p-5 sm:p-8 flex flex-col transition-all duration-300 shadow-[0_4px_20px_rgb(0,0,0,0.03)] ${
                     isActive
                       ? "ring-2 ring-[#2495D3] shadow-lg shadow-[#2495D3]/10 scale-[1.02] -translate-y-1 bg-white"
                       : "hover:shadow-xl hover:-translate-y-1 border border-white hover:border-[#2495D3]/30"

@@ -91,25 +91,25 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-6 mt-auto">
           <div className="w-full max-w-3xl mx-auto border-t border-white/10 pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left sm:text-center">
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={78} suffix="m+ sft" duration={2000} />
               </div>
               <div className="text-xs text-slate-400 mt-1">Area Managed</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={290} suffix="+" duration={2000} />
               </div>
               <div className="text-xs text-slate-400 mt-1">Clients</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={3000} suffix="+" duration={2000} />
               </div>
               <div className="text-xs text-slate-400 mt-1">Employees</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-normal font-heading text-white tracking-normal">
+              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={2018} useGrouping={false} duration={2000} />
               </div>
               <div className="text-xs text-slate-400 mt-1">Since</div>

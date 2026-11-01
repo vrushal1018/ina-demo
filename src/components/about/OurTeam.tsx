@@ -62,6 +62,7 @@ export default function OurTeam() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [visibleItems, setVisibleItems] = useState(4);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,22 +81,42 @@ export default function OurTeam() {
   }, []);
 
   const maxIndex = Math.max(0, teamMembers.length - visibleItems);
-
-  // Keep currentIndex clamped when visibleItems changes
-  useEffect(() => {
-    if (currentIndex > maxIndex) {
-      setCurrentIndex(maxIndex);
-    }
-  }, [maxIndex, currentIndex]);
+  const safeCurrentIndex = Math.min(currentIndex, maxIndex);
 
   const prevSlide = () => {
     if (maxIndex === 0) return;
-    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+    setCurrentIndex((prev) => {
+      const cur = Math.min(prev, maxIndex);
+      return cur === 0 ? maxIndex : cur - 1;
+    });
   };
 
   const nextSlide = () => {
     if (maxIndex === 0) return;
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    setCurrentIndex((prev) => {
+      const cur = Math.min(prev, maxIndex);
+      return cur >= maxIndex ? 0 : cur + 1;
+    });
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+    setIsPaused(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    setTouchStartX(null);
+    setIsPaused(false);
   };
 
   useEffect(() => {
@@ -131,16 +152,18 @@ export default function OurTeam() {
           </p>
         </div>
 
-        {/* Carousel Viewport Container */}
+        {/* Carousel Viewport Container with Touch Swipe Support */}
         <div
-          className="relative overflow-hidden py-2"
+          className="relative overflow-hidden py-2 touch-pan-y"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <div
             className="flex transition-transform duration-500 ease-out"
             style={{
-              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
+              transform: `translateX(-${safeCurrentIndex * (100 / visibleItems)}%)`,
             }}
           >
             {teamMembers.map((member) => (
@@ -242,7 +265,7 @@ export default function OurTeam() {
           </button>
 
           <span className="bg-[#1C3A62] text-white px-5 py-2 rounded-xl text-xs font-semibold tracking-wider shadow-sm">
-            {currentIndex + 1} / {maxIndex + 1}
+            {safeCurrentIndex + 1} / {maxIndex + 1}
           </span>
 
           <button

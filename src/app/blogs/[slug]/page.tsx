@@ -348,8 +348,8 @@ export default function BlogDetailPage() {
               </div>
             </main>
 
-            {/* Desktop Social Share (Floating right) */}
-            <div className="hidden lg:flex flex-col gap-3 absolute -right-16 top-0">
+            {/* Desktop Social Share (Floating right on XL screens) */}
+            <div className="hidden xl:flex flex-col gap-3 absolute -right-16 top-0">
               <button
                 onClick={() => handleShare('linkedin')}
                 aria-label="Share on LinkedIn"
