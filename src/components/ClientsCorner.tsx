@@ -135,7 +135,6 @@ interface CategoryConfig {
   name: string;
   icon: React.ComponentType<{ className?: string }>;
   logos: LogoItem[];
-  badgeText: string;
 }
 
 const CATEGORIES: CategoryConfig[] = [
@@ -144,42 +143,36 @@ const CATEGORIES: CategoryConfig[] = [
     name: "All Clients",
     icon: Sparkles,
     logos: ALL_CLIENT_LOGOS,
-    badgeText: "73 premier clients & partners across all industry sectors",
   },
   {
     id: "hospitality",
     name: "Hospitality",
     icon: Hotel,
     logos: HOSPITALITY_LOGOS,
-    badgeText: "24 premier 5-star hotels, luxury resorts & global hospitality chains",
   },
   {
     id: "it-commercial",
     name: "IT & Commercial",
     icon: Building2,
     logos: IT_COMMERCIAL_LOGOS,
-    badgeText: "15 corporate headquarters, tech hubs & business parks",
   },
   {
     id: "malls",
     name: "Shopping Malls",
     icon: ShoppingBag,
     logos: MALL_LOGOS,
-    badgeText: "15 iconic shopping malls, mega retail centers & destinations",
   },
   {
     id: "hospital",
     name: "Hospitals",
     icon: HeartPulse,
     logos: HOSPITAL_LOGOS,
-    badgeText: "8 multi-specialty hospitals, healthcare networks & institutes",
   },
   {
     id: "residential",
     name: "Elite Residential",
     icon: HomeIcon,
     logos: RESIDENTIAL_LOGOS,
-    badgeText: "11 luxury residential townships, gated communities & towers",
   },
 ];
 
@@ -207,9 +200,9 @@ const HexItem = ({
     >
       <div className="filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_12px_32px_rgba(36,149,211,0.28)] transition-all duration-300 transform hover:-translate-y-1.5">
         <div
-          className="w-[160px] h-[140px] bg-white flex flex-col items-center justify-center gap-1.5 cursor-pointer border border-slate-100/90 px-3 py-2"
+          className="w-[160px] h-[140px] bg-white flex flex-col items-center justify-center gap-2 cursor-pointer border border-slate-100/90 px-3 py-2"
           style={{ clipPath: hexClipPath }}
-          title={`${logo.name} (${logo.category})`}
+          title={logo.name}
         >
           <div className="w-24 h-12 flex items-center justify-center">
             <img
@@ -219,11 +212,8 @@ const HexItem = ({
               loading="lazy"
             />
           </div>
-          <span className="text-[11px] font-semibold text-[#1C3A62] text-center px-2 leading-tight line-clamp-1 max-w-[124px]">
+          <span className="text-[11px] font-semibold text-[#1C3A62] text-center px-2 leading-tight line-clamp-2 max-w-[124px]">
             {logo.name}
-          </span>
-          <span className="text-[9px] font-medium text-[#2495D3] line-clamp-1">
-            {logo.tag}
           </span>
         </div>
       </div>
@@ -319,7 +309,7 @@ export default function ClientsCorner() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 bg-white/95 backdrop-blur-md p-2 rounded-2xl sm:rounded-full shadow-lg border border-slate-200/80 relative z-40">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-2 sm:mb-3 bg-white/95 backdrop-blur-md p-2 rounded-2xl sm:rounded-full shadow-lg border border-slate-200/80 relative z-40">
           {CATEGORIES.map((cat, idx) => {
             const Icon = cat.icon;
             const isActive = activeTab === idx;
@@ -327,11 +317,10 @@ export default function ClientsCorner() {
               <button
                 key={cat.id}
                 onClick={() => handleTabChange(idx)}
-                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
-                  isActive
+                className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${isActive
                     ? "bg-[#1C3A62] text-white shadow-md scale-105 ring-2 ring-[#2495D3]/40"
                     : "bg-transparent text-[#585858] hover:bg-slate-100 hover:text-[#1C3A62]"
-                }`}
+                  }`}
               >
                 <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#2495D3]" : "text-slate-400"}`} />
                 <span>{cat.name}</span>
@@ -340,15 +329,9 @@ export default function ClientsCorner() {
           })}
         </div>
 
-        {/* Category Badge Note */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-[#2495D3]/20 text-[#1C3A62] text-xs font-medium mb-6 shadow-2xs">
-          <activeCategory.icon className="w-3.5 h-3.5 text-[#2495D3]" />
-          <span>{activeCategory.badgeText}</span>
-        </div>
-
         {/* Desktop Honeycomb Showcase (hidden on small mobile screens) */}
-        <div className="hidden md:flex flex-col items-center w-full max-w-6xl mb-12">
-          <div className="relative w-full h-[660px] flex items-center justify-center">
+        <div className="hidden md:flex flex-col items-center w-full max-w-6xl mb-6 sm:mb-8">
+          <div className="relative w-full h-[470px] flex items-center justify-center">
             {/* Left Hexagon Cluster */}
             <div className="absolute top-1/2 left-1/2 -translate-x-[300px] lg:-translate-x-[320px] -translate-y-1/2 w-0 h-0 z-20">
               {leftLogos.map((logo, index) => (
@@ -428,9 +411,8 @@ export default function ClientsCorner() {
                     key={i}
                     type="button"
                     onClick={() => setHoneycombPage(i)}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${
-                      honeycombPage === i ? "w-6 bg-[#2495D3]" : "w-2 bg-slate-300 hover:bg-slate-400"
-                    }`}
+                    className={`h-2 rounded-full transition-all cursor-pointer ${honeycombPage === i ? "w-6 bg-[#2495D3]" : "w-2 bg-slate-300 hover:bg-slate-400"
+                      }`}
                     title={`Go to page ${i + 1}`}
                   />
                 ))}
@@ -450,7 +432,7 @@ export default function ClientsCorner() {
         </div>
 
         {/* Mobile View: Dedicated clean interactive cards with Center Emblem */}
-        <div className="md:hidden w-full flex flex-col items-center gap-6 mb-12">
+        <div className="md:hidden w-full flex flex-col items-center gap-4 mb-6 sm:mb-8">
           {/* Mobile Center Emblem */}
           <div className="w-full max-w-sm rounded-2xl bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629] p-6 text-center shadow-xl border border-white/10 flex flex-col items-center justify-center">
             <Image
@@ -480,11 +462,8 @@ export default function ClientsCorner() {
                     loading="lazy"
                   />
                 </div>
-                <span className="text-xs font-semibold text-[#1C3A62] line-clamp-1">
+                <span className="text-xs font-semibold text-[#1C3A62] line-clamp-2">
                   {logo.name}
-                </span>
-                <span className="text-[9px] text-[#2495D3] font-medium line-clamp-1">
-                  {logo.tag}
                 </span>
               </div>
             ))}
@@ -492,7 +471,7 @@ export default function ClientsCorner() {
         </div>
 
         {/* Full Directory & Interactive Catalog Grid Section */}
-        <div className="w-full mt-4 pt-10 border-t border-slate-200/80">
+        <div className="w-full mt-2 pt-6 sm:pt-8 border-t border-slate-200/80">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-[#1C3A62]">
@@ -555,11 +534,8 @@ export default function ClientsCorner() {
                     />
                   </div>
                   <div className="w-full mt-2 pt-2 border-t border-slate-100 flex flex-col items-center">
-                    <span className="text-xs font-semibold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-1">
+                    <span className="text-xs font-semibold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-2">
                       {logo.name}
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-medium line-clamp-1 mt-0.5">
-                      {logo.tag}
                     </span>
                   </div>
                 </div>
