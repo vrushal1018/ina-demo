@@ -231,3 +231,75 @@ body {
     filter: none !important;
   }
 }
+
+
+/* =========================================================================
+   ArcGIS 3D Globe: Hide Attribution Bar
+   ========================================================================= */
+.esri-attribution,
+.esri-attribution__sources,
+.esri-attribution__link,
+.esri-ui-bottom-right,
+.esri-ui-bottom-left {
+  display: none !important;
+}
+
+
+/* =========================================================================
+   ArcGIS 3D Globe: Operational Locations Blinking Beacons
+   ========================================================================= */
+@keyframes opBeaconPing {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.95;
+  }
+  65% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes opCoreBlink {
+  0%, 100% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 8px #00F0FF, 0 0 16px #00F0FF;
+  }
+  35% {
+    transform: scale(1);
+    opacity: 0.95;
+    box-shadow: 0 0 5px #00F0FF;
+  }
+  50%, 82% {
+    transform: scale(0.4);
+    opacity: 0.15;
+    box-shadow: 0 0 0px transparent;
+  }
+}
+
+@keyframes opBeaconHalo {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50%, 82% {
+    transform: scale(0.3);
+    opacity: 0.05;
+  }
+}
+
+.op-beacon-ping {
+  animation: opBeaconPing 2s cubic-bezier(0, 0, 0.2, 1) infinite !important;
+}
+
+.op-core-blink {
+  animation: opCoreBlink 2s ease-in-out infinite !important;
+}
+
+.op-beacon-halo {
+  animation: opBeaconHalo 2s ease-in-out infinite !important;
+}
