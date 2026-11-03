@@ -37,7 +37,7 @@ export default function CEOQuoteSection() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                  priority
+                  loading="lazy"
                 />
                 {/* Subtle gradient vignette at bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1629]/70 via-transparent to-transparent pointer-events-none" />

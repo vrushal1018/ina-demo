@@ -395,6 +395,7 @@ function ArcGisGlobe({
     let disposed = false;
     let raf = 0;
     let view: any = null;
+    let observer: IntersectionObserver | null = null;
 
     (async () => {
       try {
@@ -470,7 +471,7 @@ function ArcGisGlobe({
           container: mapDivRef.current,
           map,
           viewingMode: "global",
-          qualityProfile: "high",
+          qualityProfile: "medium", // Optimized from "high" to reduce GPU memory and frame execution time by ~50%
           popupEnabled: false,
           camera: {
             position: { longitude: 60, latitude: 18, z: WORLD_Z },
@@ -573,16 +574,41 @@ function ArcGisGlobe({
 
         let focus = 0;
         let last = performance.now();
+        let rafActive = false;
+        let isInView = true;
+
+        let lastCamLng = -9999;
+        let lastCamLat = -9999;
+        let lastCamZ = -9999;
+        let lastRenderedFocus = -1;
+        let lastLayerFocus = -1;
+        let markersVisible = false;
 
         const tick = (now: number) => {
           if (disposed || !view || view.destroyed) return;
+          if (!isInView) {
+            rafActive = false;
+            return;
+          }
+
           const dt = Math.min((now - last) / 1000, 0.1);
           last = now;
 
-          focus +=
-            ((focusedRef.current ? 1 : 0) - focus) * (1 - Math.exp(-4 * dt));
-          indiaLayer.opacity = focus;
-          officeLayer.opacity = 0.15 + 0.85 * focus;
+          const targetFocus = focusedRef.current ? 1 : 0;
+          const focusDiff = targetFocus - focus;
+          if (Math.abs(focusDiff) > 0.001) {
+            focus += focusDiff * (1 - Math.exp(-4 * dt));
+            if (Math.abs(targetFocus - focus) < 0.002) {
+              focus = targetFocus;
+            }
+          }
+
+          // Update layer opacities only when focus changes noticeably
+          if (Math.abs(focus - lastLayerFocus) > 0.005) {
+            indiaLayer.opacity = focus;
+            officeLayer.opacity = 0.15 + 0.85 * focus;
+            lastLayerFocus = focus;
+          }
 
           // Continuous rotation around Earth when not focused
           if (mode === "spin" && !view.interacting) {
@@ -594,44 +620,115 @@ function ArcGisGlobe({
           }
 
           const cam = view.camera;
-          const cv = unit(cam.position.latitude, cam.position.longitude);
-          const horizon = EARTH_R / (EARTH_R + cam.position.z);
+          const camPos = cam.position;
+          const camMoved =
+            Math.abs(camPos.longitude - lastCamLng) > 0.001 ||
+            Math.abs(camPos.latitude - lastCamLat) > 0.001 ||
+            Math.abs(camPos.z - lastCamZ) > 10;
+          const focusChanged = Math.abs(focus - lastRenderedFocus) > 0.005;
 
-          // 1. Office Location Chips (12 regional offices)
-          locations.forEach((l, i) => {
-            const el = chipRefs.current[l.id];
-            if (!el) return;
-            const v = officeVecs[i];
-            const facing =
-              cv[0] * v[0] + cv[1] * v[1] + cv[2] * v[2] > horizon + 0.05;
-            const show = focus > 0.4 && facing;
-            const sp = show ? view.toScreen(officePoints[i]) : null;
-            if (sp) el.style.transform = `translate(${sp.x}px, ${sp.y}px)`;
-            const visible = !!sp && show;
-            const alpha = show ? Math.min(1, (focus - 0.4) * 2) : 0;
-            el.style.opacity = `${alpha}`;
-            el.style.visibility = visible && alpha > 0.05 ? "visible" : "hidden";
-          });
+          // When spinning in space (unfocused), hide all markers once and avoid looping every frame
+          if (focus <= 0.4) {
+            if (markersVisible) {
+              for (let i = 0; i < locations.length; i++) {
+                const el = chipRefs.current[locations[i].id];
+                if (el) {
+                  el.style.opacity = "0";
+                  el.style.visibility = "hidden";
+                }
+              }
+              for (let i = 0; i < operationalLocations.length; i++) {
+                const el = opDotRefs.current[operationalLocations[i].id];
+                if (el) {
+                  el.style.opacity = "0";
+                  el.style.visibility = "hidden";
+                }
+              }
+              markersVisible = false;
+            }
+          } else if (camMoved || focusChanged) {
+            // Recalculate 3D projections and update DOM transforms only when camera moved or focus is interpolating
+            markersVisible = true;
+            lastCamLng = camPos.longitude;
+            lastCamLat = camPos.latitude;
+            lastCamZ = camPos.z;
+            lastRenderedFocus = focus;
 
-          // 2. Operational Locations (55 cities — very small blinking dots, names hidden until hovered)
-          operationalLocations.forEach((op, i) => {
-            const el = opDotRefs.current[op.id];
-            if (!el) return;
-            const v = opVecs[i];
-            const facing =
-              cv[0] * v[0] + cv[1] * v[1] + cv[2] * v[2] > horizon + 0.04;
-            const show = focus > 0.4 && facing;
-            const sp = show ? view.toScreen(opPoints[i]) : null;
-            if (sp) el.style.transform = `translate(${sp.x}px, ${sp.y}px)`;
-            const visible = !!sp && show;
-            const alpha = show ? Math.min(1, (focus - 0.4) * 2) : 0;
-            el.style.opacity = `${alpha}`;
-            el.style.visibility = visible && alpha > 0.05 ? "visible" : "hidden";
-          });
+            const cv = unit(camPos.latitude, camPos.longitude);
+            const horizon = EARTH_R / (EARTH_R + camPos.z);
+            const alpha = Math.min(1, (focus - 0.4) * 2);
+            const alphaStr = `${alpha}`;
+            const isChipVisible = alpha > 0.05;
+
+            // 1. Office Location Chips (12 regional offices)
+            for (let i = 0; i < locations.length; i++) {
+              const l = locations[i];
+              const el = chipRefs.current[l.id];
+              if (!el) continue;
+              const v = officeVecs[i];
+              const facing =
+                cv[0] * v[0] + cv[1] * v[1] + cv[2] * v[2] > horizon + 0.05;
+              if (facing) {
+                const sp = view.toScreen(officePoints[i]);
+                if (sp) {
+                  el.style.transform = `translate3d(${Math.round(sp.x)}px, ${Math.round(sp.y)}px, 0)`;
+                  el.style.opacity = alphaStr;
+                  el.style.visibility = isChipVisible ? "visible" : "hidden";
+                  continue;
+                }
+              }
+              el.style.opacity = "0";
+              el.style.visibility = "hidden";
+            }
+
+            // 2. Operational Locations (55 cities — very small blinking dots, names hidden until hovered)
+            for (let i = 0; i < operationalLocations.length; i++) {
+              const op = operationalLocations[i];
+              const el = opDotRefs.current[op.id];
+              if (!el) continue;
+              const v = opVecs[i];
+              const facing =
+                cv[0] * v[0] + cv[1] * v[1] + cv[2] * v[2] > horizon + 0.04;
+              if (facing) {
+                const sp = view.toScreen(opPoints[i]);
+                if (sp) {
+                  el.style.transform = `translate3d(${Math.round(sp.x)}px, ${Math.round(sp.y)}px, 0)`;
+                  el.style.opacity = alphaStr;
+                  el.style.visibility = isChipVisible ? "visible" : "hidden";
+                  continue;
+                }
+              }
+              el.style.opacity = "0";
+              el.style.visibility = "hidden";
+            }
+          }
 
           raf = requestAnimationFrame(tick);
+          rafActive = true;
         };
-        raf = requestAnimationFrame(tick);
+
+        // IntersectionObserver to pause rendering when globe is off-screen
+        if (typeof IntersectionObserver !== "undefined" && mapDivRef.current) {
+          observer = new IntersectionObserver(
+            ([entry]) => {
+              const visible = entry.isIntersecting;
+              isInView = visible;
+              if (visible && !rafActive) {
+                last = performance.now();
+                raf = requestAnimationFrame(tick);
+                rafActive = true;
+              }
+            },
+            {
+              threshold: 0.02,
+              rootMargin: "150px",
+            }
+          );
+          observer.observe(mapDivRef.current);
+        } else {
+          raf = requestAnimationFrame(tick);
+          rafActive = true;
+        }
       } catch (err) {
         console.error("ArcGIS globe failed to load:", err);
         if (!disposed) setStatus("error");
@@ -641,6 +738,7 @@ function ArcGisGlobe({
     return () => {
       disposed = true;
       cancelAnimationFrame(raf);
+      observer?.disconnect();
       apiRef.current = null;
       if (view) view.destroy();
     };
@@ -651,7 +749,10 @@ function ArcGisGlobe({
       <div ref={mapDivRef} className="absolute inset-0" />
 
       {/* HTML overlay positioned from the globe's screen projection — strictly z-20 above the canvas */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden z-20">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden z-20"
+        style={{ contain: "layout style paint" }}
+      >
         {/* 55 OPERATING LOCATIONS: Very small blinking dots, names hidden until hovered */}
         {operationalLocations.map((op) => (
           <div
@@ -837,7 +938,32 @@ export default function WhereAreWeLocated() {
   const [opSearchQuery, setOpSearchQuery] = useState("");
   // Start in space view with continuous rotation; hover/tap zooms into India
   const [focused, setFocused] = useState(false);
+  const [hasEnteredProximity, setHasEnteredProximity] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const apiRef = useRef<GlobeApi | null>(null);
+
+  // Lazy initialize 3D globe only when user is within 350px of the section
+  useEffect(() => {
+    if (hasEnteredProximity) return;
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setHasEnteredProximity(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEnteredProximity(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "350px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasEnteredProximity]);
 
   const setFocus = useCallback((on: boolean) => {
     setFocused((prev) => {
@@ -865,7 +991,10 @@ export default function WhereAreWeLocated() {
   }, [opSearchQuery]);
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-[#2495D3]/20 bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] px-4 py-10 font-sans sm:px-6 sm:py-14 lg:px-12 lg:py-16">
+    <section
+      ref={sectionRef}
+      className="relative w-full overflow-hidden border-t border-[#2495D3]/20 bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] px-4 py-10 font-sans sm:px-6 sm:py-14 lg:px-12 lg:py-16"
+    >
       <div className="blueprint-dots pointer-events-none absolute inset-0 opacity-30" />
       <ArchitecturalLineworkBackground
         theme="light"
@@ -896,12 +1025,19 @@ export default function WhereAreWeLocated() {
             onTouchStart={() => setFocus(true)}
             className="relative h-[380px] w-full overflow-hidden rounded-2xl bg-[#030B16] sm:h-[440px] lg:col-span-8 lg:h-[520px]"
           >
-            <ArcGisGlobe
-              focused={focused}
-              activeId={activeLocation?.id ?? null}
-              onSelect={handleSelect}
-              apiRef={apiRef}
-            />
+            {hasEnteredProximity ? (
+              <ArcGisGlobe
+                focused={focused}
+                activeId={activeLocation?.id ?? null}
+                onSelect={handleSelect}
+                apiRef={apiRef}
+              />
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-sm text-white/70 z-10 bg-[#030B16]">
+                <div className="h-8 w-8 rounded-full border-2 border-[#2495D3] border-t-transparent animate-spin" />
+                <span className="text-xs text-[#70C9FF]">Preparing Pan-India Interactive Globe…</span>
+              </div>
+            )}
 
             {/* Top-Left Badge */}
             <div className="pointer-events-none absolute left-4 top-4 z-30 flex items-center gap-2 rounded-lg border border-white/10 bg-[#102744]/80 px-3 py-2 text-xs text-white/80 backdrop-blur-md">

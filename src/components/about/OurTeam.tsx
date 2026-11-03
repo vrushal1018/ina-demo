@@ -13,7 +13,7 @@ const teamMembers = [
     role: 'Business Head',
     image: '/team/Amrit Guher.jpeg',
     imagePosition: 'center 26%',
-    bio: '15+ years leading strategic growth, technical operations, and digital transformation initiatives.',
+    bio: 'Spearheading business growth through strategic planning, client relationships, and operational performance.',
     skills: ['Technical FM', 'Leadership'],
   },
   {
@@ -23,7 +23,7 @@ const teamMembers = [
     role: 'Vice President',
     image: '/team/Sarabjeet Gujral.jpeg',
     imagePosition: 'center 20%',
-    bio: 'Ensuring seamless operations, swift communications, and client success across all facilities.',
+    bio: 'Driving operational excellence through strategic leadership, process optimisation, and efficient service delivery.',
     skills: ['Operations', 'Strategy'],
   },
   {
@@ -33,7 +33,7 @@ const teamMembers = [
     role: 'Manager - Sales',
     image: '/team/Dilip Yadav.jpeg',
     imagePosition: 'center 12%',
-    bio: 'Driving enterprise partnerships, client engagement, and customized facility management solutions.',
+    bio: 'Driving business expansion through strategic sales initiatives, client acquisition, and relationship management.',
     skills: ['Sales', 'Client Relations'],
   },
   {
@@ -43,7 +43,7 @@ const teamMembers = [
     role: 'Transition Head',
     image: '/team/Prabhavit Prakhar.jpeg',
     imagePosition: 'center 14%',
-    bio: 'Specializing in seamless site takeovers, facility mobilization, and operational continuity.',
+    bio: 'Leading seamless business transitions through effective planning, coordination, and execution.',
     skills: ['Transition', 'Mobilization'],
   },
   {
@@ -53,7 +53,7 @@ const teamMembers = [
     role: 'Manager, Human Resources',
     image: '/team/Binesh Kesavan.jpeg',
     imagePosition: 'center 24%',
-    bio: 'Building vibrant team dynamics, talent development, and employee engagement across regions.',
+    bio: 'Building a productive workforce through effective talent management, employee engagement, and people development.',
     skills: ['People Ops', 'Talent Strategy'],
   },
 ];
@@ -183,6 +183,8 @@ export default function OurTeam() {
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
+                      decoding="async"
                       style={{ objectPosition: member.imagePosition || 'center top' }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />

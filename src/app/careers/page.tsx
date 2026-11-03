@@ -36,33 +36,60 @@ interface JobDetails {
   qualifications: string[];
 }
 
-const technicalSupervisorJob: JobDetails = {
-  id: 1,
-  title: "Technical supervisor",
-  department: "Operations & Technical FM",
-  location: "Thane / Mumbai, Maharashtra",
-  type: "Full-Time",
-  experience: "3+ Years",
-  tags: ["Operations", "On-site", "Full-Time", "Engineering"],
-  description:
-    "As a Technical Supervisor at Ina Tech FM, you will oversee facility operations, lead on-site engineering teams, and ensure mechanical, electrical, and plumbing (MEP) infrastructure functions with maximum uptime, safety, and strict regulatory compliance.",
-  responsibilities: [
-    "Lead daily operations and preventive maintenance of facility MEP systems, HVAC, and electrical switchgear.",
-    "Manage and guide site technicians, ensuring SLA adherence and rapid turnaround for breakdown calls.",
-    "Perform routine technical audits, risk assessments, and maintain compliance with statutory health and safety standards.",
-    "Prepare comprehensive incident reports, energy log sheets, and client escalation summaries.",
-    "Liaise with clients and vendors to ensure seamless maintenance execution and budget control.",
-  ],
-  qualifications: [
-    "Diploma or Bachelor's Degree in Electrical, Mechanical, or Civil Engineering.",
-    "3+ years of hands-on experience in technical facility management or building engineering operations.",
-    "Strong technical troubleshooting skills and solid understanding of building management systems (BMS).",
-    "Excellent leadership, problem-solving, and communication skills.",
-  ],
-};
+const jobs: JobDetails[] = [
+  {
+    id: 1,
+    title: "Key Account Manager",
+    department: "Operations & Client Relations",
+    location: "Mumbai, Maharashtra",
+    type: "Full-Time",
+    experience: "5–10 Years",
+    tags: ["Account Management", "Operations", "Full-Time", "Engineering Services"],
+    description:
+      "As a Key Account Manager at Ina Tech FM, you will manage client communication, site operations, service quality, and SLA/KPI performance. You will coordinate with Engineering, Operations, HR, and Procurement teams to resolve service issues and identify opportunities for additional engineering solutions.",
+    responsibilities: [
+      "Manage client communication, site operations, service quality, and SLA/KPI performance.",
+      "Coordinate with Engineering, Operations, HR, and Procurement teams to resolve service issues.",
+      "Conduct site visits and client reviews, and prepare reports and action plans.",
+      "Monitor maintenance, manpower, billing, collections, and contract renewals.",
+      "Identify opportunities for additional engineering services.",
+    ],
+    qualifications: [
+      "Diploma or degree in Mechanical, Electrical, or a related field.",
+      "5–10 years of experience in technical facility management or engineering services.",
+      "Experience in key account management and knowledge of building systems.",
+      "Based in Goa or willing to relocate.",
+    ],
+  },
+  {
+    id: 2,
+    title: "Technical Supervisor",
+    department: "Operations & Technical FM",
+    location: "Thane / Mumbai, Maharashtra",
+    type: "Full-Time",
+    experience: "3+ Years",
+    tags: ["Operations", "On-site", "Full-Time", "Engineering"],
+    description:
+      "As a Technical Supervisor at Ina Tech FM, you will oversee facility operations, lead on-site engineering teams, and ensure mechanical, electrical, and plumbing (MEP) infrastructure functions with maximum uptime, safety, and strict regulatory compliance.",
+    responsibilities: [
+      "Lead daily operations and preventive maintenance of facility MEP systems, HVAC, and electrical switchgear.",
+      "Manage and guide site technicians, ensuring SLA adherence and rapid turnaround for breakdown calls.",
+      "Perform routine technical audits, risk assessments, and maintain compliance with statutory health and safety standards.",
+      "Prepare comprehensive incident reports, energy log sheets, and client escalation summaries.",
+      "Liaise with clients and vendors to ensure seamless maintenance execution and budget control.",
+    ],
+    qualifications: [
+      "Diploma or Bachelor's Degree in Electrical, Mechanical, or Civil Engineering.",
+      "3+ years of hands-on experience in technical facility management or building engineering operations.",
+      "Strong technical troubleshooting skills and solid understanding of building management systems (BMS).",
+      "Excellent leadership, problem-solving, and communication skills.",
+    ],
+  },
+];
 
 export default function CareersPage() {
-  const [isDescriptionOpen, setIsDescriptionOpen] = useState(true);
+  const [openJobIds, setOpenJobIds] = useState<number[]>([1]);
+  const [selectedJob, setSelectedJob] = useState<JobDetails>(jobs[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Form state
@@ -79,6 +106,12 @@ export default function CareersPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const toggleJob = (id: number) => {
+    setOpenJobIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -136,7 +169,8 @@ export default function CareersPage() {
     }
   };
 
-  const openApplyModal = () => {
+  const openApplyModal = (job: JobDetails) => {
+    setSelectedJob(job);
     resetForm();
     setIsModalOpen(true);
   };
@@ -176,7 +210,7 @@ export default function CareersPage() {
       formData.append("contact", contact.trim());
       formData.append("email", email.trim());
       formData.append("address", address.trim());
-      formData.append("jobTitle", technicalSupervisorJob.title);
+      formData.append("jobTitle", selectedJob.title);
       formData.append("resume", resumeFile);
 
       const response = await fetch("/api/apply", {
@@ -219,9 +253,6 @@ export default function CareersPage() {
               <Briefcase className="w-3.5 h-3.5" />
               <span>Careers at INA Tech FM</span>
             </div>
-            <div className="hidden rounded-full bg-[#2495D3]/10 px-4 py-1.5 text-xs font-semibold text-[#2495D3]">
-              Careers at INA Tech FM
-            </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] mb-3 tracking-normal">
               Currently Open Positions
             </h1>
@@ -231,138 +262,158 @@ export default function CareersPage() {
             <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-3 rounded-full" />
           </div>
 
-          {/* Job Listing Card */}
-          <AnimateIn delay={0.1} minHeight="360px">
-            <div className="relative bg-white rounded-3xl p-5 sm:p-7 md:p-8 shadow-xl border border-slate-200/90 overflow-hidden group">
-              {/* Top Accent Strip */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
+          {/* Job Listings List */}
+          <div className="space-y-6">
+            {jobs.map((job) => {
+              const isOpen = openJobIds.includes(job.id);
+              return (
+                <AnimateIn key={job.id} delay={0.1} minHeight="320px">
+                  <div className="relative bg-white rounded-3xl p-5 sm:p-7 md:p-8 shadow-xl border border-slate-200/90 overflow-hidden group">
+                    {/* Top Accent Strip */}
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
 
-              {/* Header row */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
-                <div>
-                  <div
-                    className="flex items-center gap-3 cursor-pointer group/title mb-3 w-fit"
-                    onClick={() => setIsDescriptionOpen(!isDescriptionOpen)}
-                  >
-                    <h2 className="text-2xl sm:text-3xl font-normal text-[#1C3A62] tracking-normal group-hover/title:text-[#2495D3] transition-colors">
-                      {technicalSupervisorJob.title}
-                    </h2>
-                    <div className="p-1.5 rounded-full bg-slate-100 group-hover/title:bg-[#2495D3]/10 transition-colors">
-                      <ChevronDown
-                        className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${isDescriptionOpen ? 'rotate-180' : ''
-                          }`}
-                      />
+                    {/* Header row */}
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+                      <div>
+                        <div
+                          className="flex items-center gap-3 cursor-pointer group/title mb-3 w-fit"
+                          onClick={() => toggleJob(job.id)}
+                        >
+                          <h2 className="text-2xl sm:text-3xl font-normal text-[#1C3A62] tracking-normal group-hover/title:text-[#2495D3] transition-colors">
+                            {job.title}
+                          </h2>
+                          <div className="p-1.5 rounded-full bg-slate-100 group-hover/title:bg-[#2495D3]/10 transition-colors">
+                            <ChevronDown
+                              className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${
+                                isOpen ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Meta items */}
+                        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-[#585858] font-medium mb-4">
+                          <span className="flex items-center gap-1.5">
+                            <Building className="w-4 h-4 text-[#2495D3]" />
+                            {job.department}
+                          </span>
+                          <span className="w-1 h-1 rounded-full bg-slate-300" />
+                          <span className="flex items-center gap-1.5">
+                            <MapPin className="w-4 h-4 text-[#2495D3]" />
+                            {job.location}
+                          </span>
+                          <span className="w-1 h-1 rounded-full bg-slate-300" />
+                          <span className="flex items-center gap-1.5">
+                            <Clock className="w-4 h-4 text-[#2495D3]" />
+                            {job.type}
+                          </span>
+                          <span className="w-1 h-1 rounded-full bg-slate-300" />
+                          <span className="flex items-center gap-1.5">
+                            <Briefcase className="w-4 h-4 text-[#2495D3]" />
+                            {job.experience}
+                          </span>
+                        </div>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2">
+                          {job.tags.map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="px-3 py-1 rounded-lg border border-slate-200 bg-slate-50 text-xs font-semibold text-[#1C3A62]"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Apply Button */}
+                      <div className="flex md:flex-col items-start md:items-end justify-between gap-3 pt-2 md:pt-0">
+                        <button
+                          onClick={() => openApplyModal(job)}
+                          className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+                        >
+                          Apply now
+                        </button>
+                        <span className="text-xs text-slate-400 font-medium hidden md:inline">
+                          Sends to: HR Desk
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Animated Expandable Details */}
+                    <div
+                      className={`grid transition-all duration-300 ease-in-out ${
+                        isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'
+                      }`}
+                    >
+                      <div className="overflow-hidden space-y-6">
+                        {/* Overview */}
+                        <div>
+                          <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-2 flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-[#2495D3]" />
+                            <span>Role overview</span>
+                          </h3>
+                          <p className="text-[#585858] leading-relaxed text-[15px] font-normal">
+                            {job.description}
+                          </p>
+                        </div>
+
+                        {/* Key Responsibilities */}
+                        <div>
+                          <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+                            Key responsibilities
+                          </h3>
+                          <ul className="space-y-2.5">
+                            {job.responsibilities.map((resp, i) => (
+                              <li
+                                key={i}
+                                className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
+                                <span>{resp}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Qualifications */}
+                        <div>
+                          <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+                            Qualifications & requirements
+                          </h3>
+                          <ul className="space-y-2.5">
+                            {job.qualifications.map((qual, i) => (
+                              <li
+                                key={i}
+                                className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
+                                <span>{qual}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Bottom Apply Action */}
+                        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                          <p className="text-sm text-[#585858] font-medium">
+                            Ready to build your career with us?
+                          </p>
+                          <button
+                            onClick={() => openApplyModal(job)}
+                            className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95 w-full sm:w-auto text-center"
+                          >
+                            Apply for {job.title}
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Meta items */}
-                  <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-[#585858] font-medium mb-4">
-                    <span className="flex items-center gap-1.5">
-                      <Building className="w-4 h-4 text-[#2495D3]" />
-                      {technicalSupervisorJob.department}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-slate-300" />
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="w-4 h-4 text-[#2495D3]" />
-                      {technicalSupervisorJob.location}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-slate-300" />
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="w-4 h-4 text-[#2495D3]" />
-                      {technicalSupervisorJob.type}
-                    </span>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {technicalSupervisorJob.tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 rounded-lg border border-slate-200 bg-slate-50 text-xs font-semibold text-[#1C3A62]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Apply Button */}
-                <div className="flex md:flex-col items-start md:items-end justify-between gap-3 pt-2 md:pt-0">
-                  <button
-                    onClick={openApplyModal}
-                    className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
-                  >
-                    Apply now
-                  </button>
-                  <span className="text-xs text-slate-400 font-medium hidden md:inline">
-                    Sends to: HR Desk
-                  </span>
-                </div>
-              </div>
-
-              {/* Animated Expandable Details */}
-              <div
-                className={`grid transition-all duration-300 ease-in-out ${isDescriptionOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'
-                  }`}
-              >
-                <div className="overflow-hidden space-y-6">
-                  {/* Overview */}
-                  <div>
-                    <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-2 flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-[#2495D3]" />
-                      <span>Role overview</span>
-                    </h3>
-                    <p className="text-[#585858] leading-relaxed text-[15px] font-normal">
-                      {technicalSupervisorJob.description}
-                    </p>
-                  </div>
-
-                  {/* Key Responsibilities */}
-                  <div>
-                    <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
-                      Key responsibilities
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {technicalSupervisorJob.responsibilities.map((resp, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
-                          <span>{resp}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Qualifications */}
-                  <div>
-                    <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
-                      Qualifications & skills
-                    </h3>
-                    <ul className="space-y-2.5">
-                      {technicalSupervisorJob.qualifications.map((qual, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
-                          <span>{qual}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Bottom Apply Action */}
-                  <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <p className="text-sm text-[#585858] font-medium">
-                      Ready to build your career with us?
-                    </p>
-                    <button
-                      onClick={openApplyModal}
-                      className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95 w-full sm:w-auto text-center"
-                    >
-                      Apply for this position
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimateIn>
+                </AnimateIn>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -386,11 +437,16 @@ export default function CareersPage() {
                   <span>Job application</span>
                 </div>
                 <h3 className="text-2xl font-normal text-[#1C3A62] tracking-normal">
-                  Apply for technical supervisor
+                  Apply for {selectedJob.title}
                 </h3>
-                <p className="text-sm text-[#585858] mt-1 font-medium">
-                  Please fill in your details. Your application will be sent to our recruitment team.
-                </p>
+                <div className="flex flex-wrap items-center gap-2 text-xs text-[#585858] mt-1.5 font-medium">
+                  <span className="flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-[#2495D3]" />
+                    {selectedJob.location}
+                  </span>
+                  <span>•</span>
+                  <span>{selectedJob.department}</span>
+                </div>
               </div>
               <button
                 type="button"
@@ -411,7 +467,7 @@ export default function CareersPage() {
                 </div>
                 <h4 className="text-2xl font-normal text-[#1C3A62]">Application Submitted!</h4>
                 <p className="text-sm sm:text-base text-[#585858] max-w-md mx-auto leading-relaxed">
-                  Thank you, <strong className="text-[#1C3A62]">{name}</strong>. Your application and resume have been sent directly to{" "}
+                  Thank you, <strong className="text-[#1C3A62]">{name}</strong>. Your application for <strong className="text-[#2495D3]">{selectedJob.title}</strong> and resume have been sent directly to{" "}
                   <strong className="text-[#2495D3]">jaisalil.s@inaspaceworks.com</strong>.
                 </p>
                 <p className="text-xs text-slate-400">
