@@ -80,17 +80,17 @@ export default function SustainabilityServicesPage() {
               <div className="relative z-30">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 text-[#45B1E8] text-xs font-semibold tracking-wide mb-4 shadow-sm backdrop-blur-sm">
                   <Leaf className="w-3.5 h-3.5" />
-                  <span>Energy & environmental optimization</span>
+                  <span>Energy Management Services & Optimization</span>
                 </div>
 
                 <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-white">
-                  Sustainability <br />
-                  services
+                  Energy Management <br />
+                  <span className="text-[#2495D3]">&amp; Sustainability</span> Services
                 </h1>
                 <div className="w-20 h-1 bg-[#2495D3] mt-4 mb-6 rounded-full" />
 
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-200">
-                  Energy-focused solutions that help optimize consumption, improve efficiency, and support sustainable operations.
+                  Data-driven energy management services and sustainable facility engineering solutions that optimize consumption, eliminate waste, and advance long-term ESG performance.
                 </p>
 
                 {/* Buttons */}

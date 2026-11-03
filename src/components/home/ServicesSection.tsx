@@ -75,17 +75,17 @@ export default function ServicesSection() {
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            {/* <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
-              Our services
-            </div> */}
+            <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+              Pan-India Facility Management
+            </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal">
-              Comprehensive Facility Management Solutions
+              Integrated Facility Management Services in India
             </h2>
           </div>
 
           <div className="max-w-md">
             <p className="text-[#585858] text-xs sm:text-sm leading-relaxed font-normal">
-              From engineering and technical facility management to sustainability, transition, and allied services, we deliver integrated solutions designed to improve efficiency, reliability, safety, and long-term asset performance..
+              As a trusted facility management company in India, INA TechFM delivers world-class facility management services—integrating technical operations, MEP maintenance, energy optimization, and workplace engineering across 55+ cities.
             </p>
           </div>
         </div>

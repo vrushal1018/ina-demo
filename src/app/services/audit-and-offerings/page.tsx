@@ -62,18 +62,17 @@ export default function AuditAndOfferingsPage() {
               <div className="relative z-30">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-4">
                   <FileCheck2 className="w-3.5 h-3.5" />
-                  <span>Engineering audits & analysis</span>
+                  <span>Facility Management Audits & Diagnostics</span>
                 </div>
 
                 <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-[#1C3A62]">
-                  Audit &
-                  <br />
-                  offerings
+                  Facility Management <br />
+                  <span className="text-[#2495D3]">Audits &amp;</span> Offerings
                 </h1>
                 <div className="w-20 h-1 bg-[#2495D3] mt-4 mb-6 rounded-full" />
 
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-[#585858]">
-                  Comprehensive diagnostic audits and bespoke engineering solutions to maximize facility efficiency and performance.
+                  Comprehensive facility management audits, technical safety diagnostics, and bespoke engineering solutions engineered to maximize asset efficiency and statutory compliance.
                 </p>
 
                 {/* Buttons */}

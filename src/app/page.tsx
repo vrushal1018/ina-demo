@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import AnimateIn from "@/components/AnimateIn";
 import Counter from "@/components/Counter";
@@ -16,7 +15,6 @@ import GarageDoorSteps from "@/components/home/GarageDoorSteps";
 import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroVideoRef = useVideoFocus();
 
   // Feature bullets for Tech fm
@@ -57,18 +55,22 @@ export default function Home() {
         <div className="relative z-10 w-full px-5 sm:px-8 lg:px-12 pt-6 sm:pt-8 lg:pt-10 flex items-start">
           {/* Brand Logo & Lockup in Hero at Left */}
           <div className="flex flex-col items-start">
-            <Link href="/" className="inline-block transition-transform hover:scale-105 active:scale-95" title="INA TechFM">
+            <Link href="/" className="inline-block transition-transform hover:scale-105 active:scale-95" title="INA TechFM - Integrated Facility Management Services in India">
               <img
                 src="/Ina TechFM Logo white.png"
-                alt="INA TechFM Logo"
+                alt="INA TechFM - Integrated Facility Management Services in India"
                 className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-xl"
               />
             </Link>
+            {/* Primary SEO H1 Heading */}
+            <h1 className="sr-only">
+              Integrated Facility Management Services in India • Facility Management Company in India
+            </h1>
             {/* Main Tagline under logo */}
-            <h1 className="mt-2 sm:mt-2.5 pl-3.5 sm:pl-4 md:pl-5 lg:pl-6 text-[11px] sm:text-xs md:text-[13px] lg:text-[14px] font-normal tracking-normal leading-tight drop-shadow-md">
+            <div className="mt-2 sm:mt-2.5 pl-3.5 sm:pl-4 md:pl-5 lg:pl-6 text-[11px] sm:text-xs md:text-[13px] lg:text-[14px] font-normal tracking-normal leading-tight drop-shadow-md">
               <span className="block text-white">Empowering People</span>
               <span className="block text-[#2495D3] mt-0.5 ml-2.5 sm:ml-3 md:ml-3.5">Enriching Assets</span>
-            </h1>
+            </div>
           </div>
         </div>
 
