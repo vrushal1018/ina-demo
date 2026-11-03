@@ -77,17 +77,17 @@ export default function TechnicalServicesPage() {
               <div className="relative z-30">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 text-[#45B1E8] text-xs font-semibold tracking-wide mb-4 shadow-sm backdrop-blur-sm">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Engineering maintenance & support</span>
+                  <span>Engineering Maintenance Services & Support</span>
                 </div>
 
                 <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-white">
-                  Technical <br />
-                  services
+                  Technical Facility <br />
+                  <span className="text-[#2495D3]">Management</span> Services
                 </h1>
                 <div className="w-20 h-1 bg-[#2495D3] mt-4 mb-6 rounded-full" />
 
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-200">
-                  Specialized technical expertise to maintain critical systems and ensure reliable facility performance.
+                  Specialized technical facility management services and proactive engineering maintenance services designed to safeguard critical utilities, optimize performance, and eliminate system downtime.
                 </p>
 
                 {/* Buttons */}

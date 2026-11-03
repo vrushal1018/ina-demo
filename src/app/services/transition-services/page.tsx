@@ -80,17 +80,17 @@ export default function TransitionServicesPage() {
               <div className="relative z-30">
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/20 border border-[#2495D3]/40 text-[#45B1E8] text-xs font-semibold tracking-wide mb-4 shadow-sm backdrop-blur-sm">
                   <GitCommit className="w-3.5 h-3.5" />
-                  <span>Smooth mobilization & operations</span>
+                  <span>Facility Transition Management & Mobilization</span>
                 </div>
 
                 <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-white">
-                  Transition <br />
-                  services
+                  Facility Transition <br />
+                  <span className="text-[#2495D3]">Management</span> Services
                 </h1>
                 <div className="w-20 h-1 bg-[#2495D3] mt-4 mb-6 rounded-full" />
 
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-200">
-                  Structured transition management to ensure smooth mobilization and continuity of facility operations.
+                  Structured facility transition management and site mobilization designed to guarantee zero-disruption takeovers, comprehensive asset verification, and SLA continuity.
                 </p>
 
                 {/* Buttons */}

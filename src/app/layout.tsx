@@ -14,21 +14,28 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL("https://inatechfmglobal.com"),
   title: {
-    default: "INA TechFM - Facility Management & Technical Services",
+    default: "Integrated Facility Management Services in India | INA TechFM",
     template: "%s | INA TechFM",
   },
   description:
-    "Comprehensive engineering and facility management solutions focused on reliable, sustainable, and efficient operations across India.",
+    "Leading facility management company in India delivering integrated facility management services, technical engineering, MEP maintenance, energy management, and 24x7 operations across 55+ cities.",
   applicationName: "INA TechFM",
+  alternates: {
+    canonical: "https://inatechfmglobal.com",
+  },
   keywords: [
-    "Facility Management",
-    "Technical Services",
-    "Engineering Operations",
-    "MEP Maintenance",
-    "HVAC",
-    "Ina TechFM",
-    "Ina Tech FM",
-    "Pan-India FM",
+    "Integrated Facility Management Services in India",
+    "Facility Management Company in India",
+    "Facility Management Services",
+    "Hard Facility Management Services",
+    "Technical Facility Management Services",
+    "Engineering Maintenance Services",
+    "Facility Transition Management",
+    "Energy Management Services",
+    "Facility Management Audits",
+    "Allied Facility Management Services",
+    "INA TechFM",
+    "Facility Management India",
   ],
   authors: [{ name: "INA TechFM", url: "https://inatechfmglobal.com" }],
   creator: "INA TechFM",
@@ -49,15 +56,15 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://inatechfmglobal.com",
     siteName: "INA TechFM",
-    title: "INA TechFM - Facility Management & Technical Services",
+    title: "Integrated Facility Management Services in India | INA TechFM",
     description:
-      "Comprehensive engineering and facility management solutions focused on reliable, sustainable, and efficient operations across India.",
+      "Leading facility management company in India delivering integrated facility management services, technical engineering, MEP maintenance, energy management, and 24x7 operations across 55+ cities.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "INA TechFM - Engineering & Facility Management Solutions",
+        alt: "INA TechFM - Integrated Facility Management Services in India",
         type: "image/png",
       },
       {
@@ -71,10 +78,95 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "INA TechFM - Facility Management & Technical Services",
+    title: "Integrated Facility Management Services in India | INA TechFM",
     description:
-      "Comprehensive engineering and facility management solutions focused on reliable, sustainable, and efficient operations across India.",
+      "Leading facility management company in India delivering integrated facility management services, technical engineering, MEP maintenance, energy management, and 24x7 operations across 55+ cities.",
     images: ["/og-image.png"],
+  },
+};
+
+const jsonLdOrganization = {
+  "@context": "https://schema.org",
+  "@type": "Corporation",
+  name: "INA TechFM",
+  alternateName: "Ina Tech FM Global",
+  url: "https://inatechfmglobal.com",
+  logo: "https://inatechfmglobal.com/Ina%20TechFM%20Logo%20white.png",
+  description:
+    "Leading facility management company in India providing integrated facility management services, technical FM, hard FM, energy management, and engineering maintenance.",
+  areaServed: {
+    "@type": "Country",
+    name: "India",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Facility Management Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Integrated Facility Management Services in India",
+          url: "https://inatechfmglobal.com",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Hard Facility Management Services",
+          url: "https://inatechfmglobal.com/services/hard-fm",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Technical Facility Management Services",
+          url: "https://inatechfmglobal.com/services/technical-services",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Engineering Maintenance Services",
+          url: "https://inatechfmglobal.com/services/technical-services",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Facility Transition Management",
+          url: "https://inatechfmglobal.com/services/transition-services",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Energy Management Services",
+          url: "https://inatechfmglobal.com/services/sustainability-services",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Facility Management Audits",
+          url: "https://inatechfmglobal.com/services/audit-and-offerings",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Allied Facility Management Services",
+          url: "https://inatechfmglobal.com/services/allied-services",
+        },
+      },
+    ],
   },
 };
 
@@ -85,6 +177,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${poppins.variable} h-full antialiased bg-[#D9EDF8] overflow-x-hidden max-w-full`}
     >
       <body className="min-h-full flex flex-col bg-[#D9EDF8] text-[#383838] overflow-x-hidden max-w-full">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
+        />
         <ScrollProgressBar />
         <LoadingScreen />
         <div className="flex-grow w-full max-w-full overflow-x-clip">

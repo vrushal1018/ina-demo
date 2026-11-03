@@ -81,13 +81,13 @@ export default function HardFMPage() {
                 </div>
 
                 <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-white">
-                  Hard <br />
-                  FM
+                  Hard Facility <br />
+                  <span className="text-[#2495D3]">Management</span> Services
                 </h1>
                 <div className="w-20 h-1 bg-[#2495D3] mt-4 mb-6 rounded-full" />
 
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-200">
-                  Comprehensive engineering and facility management solutions focused on reliable and efficient operations.
+                  Specialized hard facility management services and technical engineering solutions engineered for maximum asset uptime, reliability, and regulatory compliance.
                 </p>
 
                 {/* Buttons */}
