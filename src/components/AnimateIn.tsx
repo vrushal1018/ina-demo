@@ -80,10 +80,10 @@ export default function AnimateIn({
       observer.observe(el);
     }
 
-    // Safety fallback: ensure component renders after 1500ms regardless
+    // Safety fallback: ensure component renders after 8000ms if observer is delayed
     const safetyTimer = setTimeout(() => {
       setIsVisible(true);
-    }, 1500);
+    }, 8000);
 
     return () => {
       observer.disconnect();

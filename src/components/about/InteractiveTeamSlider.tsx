@@ -22,12 +22,11 @@ const TEAM: TeamMember[] = [
     role: 'CEO',
     image: '/director photos/Ranjit patil sir.jpeg',
     bio: [
-      'Arden, a 5th-generation San Franciscan, is Cruise\'s Chief People Officer. With over 20 years of experience in Human Resources, Arden drives Cruise\'s People strategy and execution.',
-      'Her team supports Cruise\'s mission to build the most advanced self-driving vehicle by creating a high-performance culture where Cruisers can do the best work of their lives.',
-      'Before Cruise, Arden was the VP of People at Dropbox, where she was responsible for building and scaling the company\'s culture across 12 global offices.'
+      'With 20+ years in client solutions and facility management,',
+      'Mr. Ranjit is known for his client-first approach and expertise in strategic growth and technology-driven FM.'
     ],
-    quote: 'Building high-performance culture where teams do their best work.',
-    linkedin: '#',
+    // quote: 'Building high-performance culture where teams do their best work.',
+    linkedin: 'https://www.linkedin.com/in/ranjit-patil-63a820169/',
     twitter: '#'
   },
   {
@@ -36,11 +35,11 @@ const TEAM: TeamMember[] = [
     role: 'Executive Director',
     image: '/director photos/lipson sir-whimsi.jpeg',
     bio: [
-      'Mo leads the engineering division, overseeing AI models, software architecture, and hardware integration across autonomous systems.',
-      'He brings over two decades of tech leadership, previously spearheading enterprise cloud transformation and scalable infrastructure initiatives.'
+      'A finance and business strategy specialist with 16+ years of global FM experience,',
+      'Mr. Lipson has led business transformation and drives operational excellence.'
     ],
-    quote: 'Engineering at scale is about clarity, discipline, and constant innovation.',
-    linkedin: '#',
+    // quote: 'Engineering at scale is about clarity, discipline, and constant innovation.',
+    linkedin: 'https://www.linkedin.com/in/lipsonpaul/',
     twitter: '#'
   },
   {
@@ -49,11 +48,11 @@ const TEAM: TeamMember[] = [
     role: 'Managing Director',
     image: '/director photos/jose sir-whimsi.jpeg',
     bio: [
-      'David shapes user interaction, vehicle interface UX, and spatial product experience across physical and digital touchpoints.',
-      'A passionate designer focused on human-centric technology that blends naturally into daily life.'
+      'An engineering professional with 25+ years in Integrated Technical Facility Management,',
+      'Mr. Jose is a first-generation entrepreneur who built a strong foundation for sustainable growth.'
     ],
-    quote: 'Design is not just what it looks like, but how seamlessly it works.',
-    linkedin: '#',
+    // quote: 'Design is not just what it looks like, but how seamlessly it works.',
+    linkedin: 'https://www.linkedin.com/in/josetp/',
     twitter: '#'
   }
 ];
@@ -98,9 +97,12 @@ export default function InteractiveTeamSlider() {
 
                     {/* Image Pedestal */}
                     <div className="relative w-full h-[280px] rounded-xl bg-transparent overflow-hidden flex items-end justify-center mb-4 border border-[#2495D3]/20 group-hover:border-[#2495D3]/50 transition-colors">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={member.image}
                         alt={member.name}
+                        loading="lazy"
+                        decoding="async"
                         className={`w-full h-full ${member.image.toLowerCase().endsWith('.png')
                           ? 'object-contain object-bottom'
                           : 'object-cover object-top'
@@ -150,9 +152,12 @@ export default function InteractiveTeamSlider() {
               {/* Left Side: Image */}
               <div className="lg:col-span-5 flex justify-center items-end">
                 <div className="relative w-full max-w-[360px] h-[300px] sm:h-[440px] rounded-2xl bg-transparent overflow-hidden border border-[#2495D3]/25 flex items-end justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={selectedMember.image}
                     alt={selectedMember.name}
+                    loading="lazy"
+                    decoding="async"
                     className={`w-full h-full ${selectedMember.image.toLowerCase().endsWith('.png')
                       ? 'object-contain object-bottom'
                       : 'object-cover object-top'
