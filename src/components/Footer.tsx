@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Phone, Mail, MapPin, ArrowRight, ShieldCheck, Clock, Building2 } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, ShieldCheck, Building2 } from "lucide-react";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function Footer() {
@@ -71,11 +71,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-16 border-b border-white/10">
           {/* Col 1: Brand & Identity */}
           <div className="lg:col-span-4 space-y-6">
-            <Link href="/" className="inline-block p-2 rounded-xl bg-white shadow-md">
+            <Link
+              href="/"
+              className="inline-block transition-transform hover:scale-105 active:scale-95"
+              title="INA TechFM"
+            >
               <img
-                src="/Ina Logo-1.jpg.png"
-                alt="Ina Tech FM Logo"
-                className="h-12 w-auto object-contain"
+                src="/Ina TechFM Logo white.png"
+                alt="INA TechFM Logo"
+                className="h-14 sm:h-16 w-auto object-contain drop-shadow-md"
               />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
