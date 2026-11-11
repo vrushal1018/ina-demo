@@ -33,17 +33,27 @@ export default function Home() {
 
       {/* Hero Section - Loads immediately (above the fold) */}
       <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A1629]">
-        {/* Background Video with continuous loop and instant preview poster */}
+        {/* Background Video with continuous loop and instant responsive preview poster */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
+          <picture className="absolute inset-0 w-full h-full">
+            <source media="(max-width: 768px)" srcSet="/hero-mobile-preview.webp" />
+            <source media="(min-width: 769px)" srcSet="/hero-desktop-preview.webp" />
+            <img
+              src="/hero-desktop-preview.webp"
+              alt="INA TechFM"
+              className="w-full h-full object-cover object-center"
+            />
+          </picture>
+
           <video
             ref={heroVideoRef}
             autoPlay
             loop
             muted
             playsInline
-            poster="/og-image.png"
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover scale-105"
+            className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
           >
             <source src="/itf-hero-optimized.mp4" type="video/mp4" />
             <source src="/ITFheromain%20(3).mp4" type="video/mp4" />
