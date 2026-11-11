@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import {
-  ArrowDownRight,
   Building2,
   Sparkles,
   HeartPulse,
@@ -389,9 +388,7 @@ const CATEGORIES: CategoryOption[] = [
 
 export default function BrandBanner() {
   const [activeCategory, setActiveCategory] = useState<CategoryId>('all');
-
-  const activeCategoryData =
-    CATEGORIES.find((cat) => cat.id === activeCategory) || CATEGORIES[0];
+  const [isPaused, setIsPaused] = useState(false);
 
   const currentLogos =
     activeCategory === 'malls'
@@ -443,28 +440,30 @@ export default function BrandBanner() {
           })}
         </div>
 
-        {/* Marquee Container (Touch scrollable on mobile, continuous animated marquee on desktop) */}
+        {/* Marquee Container (Continuous animated marquee on all devices with touch-pause support) */}
         <div
           key={activeCategory}
-          className="relative w-full overflow-x-auto md:overflow-hidden scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:[mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]"
+          className="relative w-full overflow-hidden py-2 [mask-image:_linear-gradient(to_right,transparent_0,_black_32px,_black_calc(100%-32px),transparent_100%)] sm:[mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]"
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
         >
           <div
-            className="flex w-max items-center gap-8 sm:gap-12 md:gap-16 animate-marquee hover:[animation-play-state:paused] py-4"
+            className="flex w-max items-center gap-6 sm:gap-12 md:gap-16 animate-marquee hover:[animation-play-state:paused] py-2 sm:py-4"
             style={{
-              animationDuration: `${Math.max(25, currentLogos.length * 1.8)}s`,
+              animationDuration: `${Math.max(22, currentLogos.length * 1.5)}s`,
+              animationPlayState: isPaused ? 'paused' : 'running',
             }}
           >
             {/* Duplicate list to achieve continuous seamless loop */}
             {[...currentLogos, ...currentLogos].map((brand, idx) => (
               <div
                 key={`${brand.name}-${idx}`}
-                className="flex items-center justify-center shrink-0 w-36 sm:w-44 md:w-52 h-18 sm:h-22 md:h-24 px-2 transition-all duration-300 hover:scale-110 cursor-pointer"
+                className="flex items-center justify-center shrink-0 w-28 sm:w-44 md:w-52 h-14 sm:h-22 md:h-24 px-2 transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
               >
                 <img
-                  src={brand.src}
+                  src={encodeURI(brand.src)}
                   alt={brand.name}
                   className="w-full h-full object-contain transition-all duration-300 hover:brightness-105"
-                  loading="lazy"
                   decoding="async"
                 />
               </div>
@@ -487,12 +486,9 @@ export default function BrandBanner() {
           animation: marquee 35s linear infinite;
           will-change: transform;
         }
-        @media (max-width: 768px) {
-          .animate-marquee {
-            animation: none !important;
-            transform: none !important;
-            will-change: auto !important;
-          }
+        .animate-marquee:hover,
+        .animate-marquee:focus-within {
+          animation-play-state: paused !important;
         }
       `}</style>
     </section>

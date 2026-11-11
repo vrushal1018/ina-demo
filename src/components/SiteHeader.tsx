@@ -178,7 +178,7 @@ export default function SiteHeader() {
                 title="INA TechFM"
               >
                 <img
-                  src="/Ina TechFM Logo white.png"
+                  src="/Ina%20TechFM%20Logo%20white.png"
                   alt="INA TechFM Logo"
                   className="h-14 sm:h-16 w-auto object-contain drop-shadow-md"
                 />

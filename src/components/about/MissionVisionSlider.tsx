@@ -49,6 +49,7 @@ const slides: Slide[] = [
 
 export default function MissionVisionSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -59,6 +60,24 @@ export default function MissionVisionSlider() {
       prevIndex === 0 ? slides.length - 1 : prevIndex - 1
     );
   }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        handleNext();
+      } else {
+        handlePrev();
+      }
+    }
+    setTouchStartX(null);
+  };
 
   // Auto-play interval (switches every 7 seconds)
   useEffect(() => {
@@ -98,8 +117,12 @@ export default function MissionVisionSlider() {
           })}
         </div>
 
-        {/* Presentation Stage */}
-        <div className="relative w-full min-h-[420px] sm:min-h-0 sm:h-[440px] lg:h-[460px] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200/80">
+        {/* Presentation Stage with Touch Swipe Support */}
+        <div 
+          className="relative w-full min-h-[460px] sm:min-h-0 sm:h-[440px] lg:h-[460px] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200/80 touch-pan-y"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {/* Slide Images (Fading transition) */}
           {slides.map((slide, idx) => (
             <div

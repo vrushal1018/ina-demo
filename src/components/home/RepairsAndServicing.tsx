@@ -77,6 +77,7 @@ export default function RepairsAndServicing() {
           loop
           muted
           playsInline
+          poster="/commercial.jpg"
           preload="auto"
           className="absolute inset-0 w-full h-full object-cover opacity-65"
         >

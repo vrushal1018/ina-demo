@@ -210,12 +210,7 @@ body {
 @media (max-width: 768px) {
 
   /* Disable heavy looping marquee and pulse animations on mobile */
-  .animate-pulse,
-  .animate-pulse-subtle,
-  .animate-pulse-slow,
-  .animate-float,
-  .animate-marquee,
-  .animate-services-track {
+  .animate-float {
     animation: none !important;
     transform: none !important;
     will-change: auto !important;

@@ -44,10 +44,12 @@ export default function AlliedServicesPage() {
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <video
               ref={videoRef}
+              autoPlay
               loop
               muted
               playsInline
-              preload="metadata"
+              poster="/allied2.jpg"
+              preload="auto"
               className="absolute inset-0 w-full h-full object-cover opacity-55 scale-105"
             >
               <source src="/service3.mp4" type="video/mp4" />
