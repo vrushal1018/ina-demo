@@ -14,19 +14,25 @@ export default function AboutUsHeroSection() {
 
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-start pt-8 sm:pt-10 lg:pt-12 pb-12 overflow-hidden bg-[#0A1629] text-white font-sans">
-      {/* Background Video with continuous loop and GPU/CPU lag prevention */}
+      {/* Background Video with continuous loop and responsive preview */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
+        <picture className="absolute inset-0 w-full h-full">
+          <source media="(max-width: 768px)" srcSet="/about-mobile-preview.webp" />
+          <source media="(min-width: 769px)" srcSet="/about-desktop-preview.webp" />
+          <img src="/about-desktop-preview.webp" alt="" className="w-full h-full object-cover object-center" />
+        </picture>
         <video
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          poster="/about 1.jpg"
+          poster="/about-mobile-preview.webp"
           preload="auto"
           disablePictureInPicture
           disableRemotePlayback
-          className="absolute inset-0 w-full h-full object-cover scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
         >
           <source src="/demovideo.mp4" type="video/mp4" />
         </video>

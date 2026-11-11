@@ -45,17 +45,23 @@ export default function HardFMPage() {
             HERO SECTION WITH BACKGROUND VIDEO
         ========================================================== */}
         <section className="relative min-h-[500px] lg:min-h-[560px] flex items-center py-10 lg:py-16 overflow-hidden bg-[#0A1629]">
-          {/* Background Video with continuous loop */}
+          {/* Background Video with continuous loop and responsive preview */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
+            <picture className="absolute inset-0 w-full h-full">
+              <source media="(max-width: 768px)" srcSet="/hardfm-mobile-preview.webp" />
+              <source media="(min-width: 769px)" srcSet="/hardfmmain.jpeg" />
+              <img src="/hardfmmain.jpeg" alt="" className="w-full h-full object-cover object-center" />
+            </picture>
             <video
               ref={videoRef}
               autoPlay
               loop
               muted
               playsInline
-              poster="/hardfmmain.jpeg"
+              poster="/hardfm-mobile-preview.webp"
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover opacity-55 scale-105"
+              className="absolute inset-0 w-full h-full object-cover object-center opacity-55 scale-100 sm:scale-105"
             >
               <source src="/service2.mp4" type="video/mp4" />
             </video>

@@ -69,17 +69,23 @@ export default function RepairsAndServicing() {
 
   return (
     <section className="relative py-10 sm:py-14 lg:py-16 bg-[#0A1629] text-white overflow-hidden">
-      {/* Background Video with continuous loop in full high resolution */}
+      {/* Background Video with continuous loop and responsive preview */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
+        <picture className="absolute inset-0 w-full h-full">
+          <source media="(max-width: 768px)" srcSet="/repairs-mobile-preview.webp" />
+          <source media="(min-width: 769px)" srcSet="/commercial.jpg" />
+          <img src="/commercial.jpg" alt="" className="w-full h-full object-cover object-center" />
+        </picture>
         <video
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          poster="/commercial.jpg"
+          poster="/repairs-mobile-preview.webp"
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover opacity-65"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-65 scale-100"
         >
           <source
             src="/technician-service-optimized.mp4"
