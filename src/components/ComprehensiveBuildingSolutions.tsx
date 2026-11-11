@@ -82,27 +82,38 @@ export default function ComprehensiveBuildingSolutions() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isInteracting, setIsInteracting] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  // Auto-play functionality
+  const getScrollStep = () => {
+    if (!scrollContainerRef.current) return 320;
+    const container = scrollContainerRef.current;
+    const firstCard = container.querySelector<HTMLElement>(':scope > div');
+    if (firstCard) {
+      return firstCard.offsetWidth + 24; // card width + gap-6
+    }
+    return Math.min(container.clientWidth * 0.85, 380);
+  };
+
+  // Auto-play functionality with touch & hover detection
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
-    if (!isDragging && !isHovered) {
+    if (!isDragging && !isHovered && !isInteracting) {
       interval = setInterval(() => {
         if (scrollContainerRef.current) {
           const { current } = scrollContainerRef;
           const isAtEnd =
-            current.scrollLeft + current.clientWidth >= current.scrollWidth - 10;
+            current.scrollLeft + current.clientWidth >= current.scrollWidth - 15;
 
           if (isAtEnd) {
             current.scrollTo({ left: 0, behavior: 'smooth' });
           } else {
-            current.scrollBy({ left: 380, behavior: 'smooth' });
+            current.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
           }
         }
-      }, 3500);
+      }, 4000);
     }
 
     return () => {
@@ -110,12 +121,13 @@ export default function ComprehensiveBuildingSolutions() {
         clearInterval(interval);
       }
     };
-  }, [isDragging, isHovered]);
+  }, [isDragging, isHovered, isInteracting]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { current } = scrollContainerRef;
-      const scrollAmount = direction === 'left' ? -380 : 380;
+      const step = getScrollStep();
+      const scrollAmount = direction === 'left' ? -step : step;
       current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -198,11 +210,9 @@ export default function ComprehensiveBuildingSolutions() {
             setIsDragging(false);
           }}
         >
-          {/* Left fade gradient */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-
-          {/* Right fade gradient */}
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          {/* Left & Right fade gradient (matching soft blue section background, desktop only) */}
+          <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-r from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
+          <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-l from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
 
           <div
             ref={scrollContainerRef}
@@ -210,7 +220,9 @@ export default function ComprehensiveBuildingSolutions() {
             onMouseLeave={handleMouseLeave}
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
-            className={`flex gap-6 overflow-x-auto pb-12 pt-4 px-4 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] select-none ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab'
+            onTouchStart={() => setIsInteracting(true)}
+            onTouchEnd={() => setTimeout(() => setIsInteracting(false), 3500)}
+            className={`flex gap-4 sm:gap-6 overflow-x-auto pb-10 sm:pb-12 pt-4 px-4 md:px-8 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] select-none ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab'
               }`}
           >
             {services.map((service, index) => {

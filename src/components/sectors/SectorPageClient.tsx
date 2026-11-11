@@ -55,24 +55,24 @@ const ImageCollage = ({ images }: { images: [string, string, string] }) => {
     <div className="relative w-full h-[280px] sm:h-[380px] md:h-[500px] bg-[#1c3a62] p-2 rounded-2xl flex gap-2 shadow-lg">
       <div className="w-1/2 h-full flex flex-col gap-2">
         <img
-          src={images[0]}
+          src={encodeURI(images[0])}
           alt="Service preview 1"
           className="w-full h-2/3 object-cover rounded-xl bg-gray-100"
-          loading="lazy"
+          decoding="async"
         />
         <img
-          src={images[1]}
+          src={encodeURI(images[1])}
           alt="Service preview 2"
           className="w-full h-1/3 object-cover rounded-xl bg-gray-100"
-          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="w-1/2 h-full">
         <img
-          src={images[2]}
+          src={encodeURI(images[2])}
           alt="Service preview 3"
           className="w-full h-full object-cover rounded-xl bg-gray-100"
-          loading="lazy"
+          decoding="async"
         />
       </div>
     </div>

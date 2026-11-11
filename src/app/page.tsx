@@ -33,22 +33,22 @@ export default function Home() {
 
       {/* Hero Section - Loads immediately (above the fold) */}
       <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A1629]">
-        {/* Background Video with continuous loop */}
+        {/* Background Video with continuous loop and instant preview poster */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <video
             ref={heroVideoRef}
+            autoPlay
             loop
             muted
             playsInline
-            preload="metadata"
+            poster="/og-image.png"
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover scale-105"
           >
-            <source src="/ITFheromain (3).mp4" type="video/mp4" />
+            <source src="/itf-hero-optimized.mp4" type="video/mp4" />
             <source src="/ITFheromain%20(3).mp4" type="video/mp4" />
+            <source src="/ITFheromain (3).mp4" type="video/mp4" />
           </video>
-          {/* Cinematic Gradient Overlay: darker on left for crisp readability, subtly transparent on right to showcase video */}
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#0A1629]/95 via-[#0A1629]/80 to-[#0A1629]/45" /> */}
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/70 via-transparent to-[#0A1629]/90" /> */}
         </div>
 
         {/* Top-Left: Logo & Tagline */}
@@ -57,7 +57,7 @@ export default function Home() {
           <div className="flex flex-col items-start">
             <Link href="/" className="inline-block transition-transform hover:scale-105 active:scale-95" title="INA TechFM - Integrated Facility Management Services in India">
               <img
-                src="/Ina TechFM Logo white.png"
+                src="/Ina%20TechFM%20Logo%20white.png"
                 alt="INA TechFM - Integrated Facility Management Services in India"
                 className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-xl"
               />
@@ -131,7 +131,7 @@ export default function Home() {
       </AnimateIn>
 
       {/* Sectors We Operate Grid - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="100vh" id="sectors">
+      <AnimateIn delay={0.1} minHeight="480px" id="sectors">
         <GarageDoorTypes />
       </AnimateIn>
 

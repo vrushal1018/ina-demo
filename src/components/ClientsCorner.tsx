@@ -206,10 +206,10 @@ const HexItem = ({
         >
           <div className="w-24 h-12 flex items-center justify-center">
             <img
-              src={logo.src}
+              src={encodeURI(logo.src)}
               alt={logo.name}
               className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
-              loading="lazy"
+              decoding="async"
             />
           </div>
           <span className="text-[11px] font-semibold text-[#1C3A62] text-center px-2 leading-tight line-clamp-2 max-w-[124px]">
@@ -456,10 +456,10 @@ export default function ClientsCorner() {
               >
                 <div className="w-full h-12 flex items-center justify-center">
                   <img
-                    src={logo.src}
+                    src={encodeURI(logo.src)}
                     alt={logo.name}
                     className="max-w-full max-h-full object-contain"
-                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <span className="text-xs font-semibold text-[#1C3A62] line-clamp-2">
@@ -527,10 +527,10 @@ export default function ClientsCorner() {
                 >
                   <div className="w-full h-16 flex items-center justify-center p-1">
                     <img
-                      src={logo.src}
+                      src={encodeURI(logo.src)}
                       alt={logo.name}
                       className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-108"
-                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <div className="w-full mt-2 pt-2 border-t border-slate-100 flex flex-col items-center">

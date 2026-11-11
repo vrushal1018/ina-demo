@@ -91,15 +91,15 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      {/* Continuous Marquee Slider Container (Touch scrollable on mobile, animated marquee on desktop) */}
-      <div className="w-full relative overflow-x-auto md:overflow-hidden py-2 scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        {/* Left and Right Fade Gradients on desktop */}
-        <div className="hidden md:block absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
-        <div className="hidden md:block absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
-
-        {/* Track with Hardware Acceleration on Desktop, Native Smooth Swipe on Mobile */}
+      {/* Continuous Marquee Slider Container (Smooth animated marquee on all devices with touch-pause support) */}
+      <div 
+        className="w-full relative overflow-hidden py-2 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)] sm:[mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-80px),transparent_100%)]"
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+      >
+        {/* Track with Hardware Acceleration on Desktop & Mobile */}
         <div 
-          className="flex gap-5 sm:gap-6 w-max px-4 animate-services-track"
+          className="flex gap-4 sm:gap-6 w-max px-4 animate-services-track"
           style={isPaused ? { animationPlayState: 'paused' } : undefined}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -108,34 +108,35 @@ export default function ServicesSection() {
             return (
               <div
                 key={`${service.id}-${index}`}
-                className="w-[280px] sm:w-[320px] md:w-[350px] flex-shrink-0"
+                className="w-[260px] sm:w-[320px] md:w-[350px] flex-shrink-0"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               >
-                <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-6 sm:p-7 transition-all duration-300 border border-[#2495D3]/25 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[300px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
+                <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-5 sm:p-7 transition-all duration-300 border border-[#2495D3]/25 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[290px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
 
                   {/* Subtle architectural card watermark */}
                   <div className="absolute -right-6 -bottom-6 w-32 h-32 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity pointer-events-none">
-                    <img src={service.icon} alt="" className="w-full h-full object-contain" />
+                    <img src={encodeURI(service.icon)} alt="" className="w-full h-full object-contain" decoding="async" />
                   </div>
 
                   <div>
                     {/* Icon Container with glowing aura on hover */}
-                    <div className="w-13 h-13 rounded-xl bg-transparent group-hover:bg-[#2495D3] border border-[#2495D3]/25 group-hover:border-[#2495D3] p-2.5 flex items-center justify-center mb-5 transition-all duration-300 shadow-xs">
+                    <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-xl bg-transparent group-hover:bg-[#2495D3] border border-[#2495D3]/25 group-hover:border-[#2495D3] p-2.5 flex items-center justify-center mb-4 sm:mb-5 transition-all duration-300 shadow-xs">
                       <img
-                        src={service.icon}
+                        src={encodeURI(service.icon)}
                         alt={service.title}
-                        className="w-8 h-8 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300"
+                        decoding="async"
+                        className="w-7 h-7 sm:w-8 sm:h-8 object-contain group-hover:brightness-0 group-hover:invert transition-all duration-300"
                       />
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl sm:text-2xl font-normal text-[#1C3A62] mb-3 leading-snug group-hover:text-[#2495D3] transition-colors duration-300">
+                    <h3 className="text-lg sm:text-2xl font-normal text-[#1C3A62] mb-2 sm:mb-3 leading-snug group-hover:text-[#2495D3] transition-colors duration-300">
                       {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-[#585858] text-sm leading-relaxed font-normal mb-8">
+                    <p className="text-[#585858] text-xs sm:text-sm leading-relaxed font-normal mb-6 sm:mb-8 line-clamp-3 sm:line-clamp-none">
                       {service.description}
                     </p>
                   </div>
@@ -143,11 +144,11 @@ export default function ServicesSection() {
                   {/* Read More Action Button */}
                   <Link
                     href={service.href}
-                    className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-200/80 text-[#1C3A62] font-semibold text-sm group-hover:text-[#2495D3] transition-colors duration-200 mt-auto"
+                    className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-200/80 text-[#1C3A62] font-semibold text-xs sm:text-sm group-hover:text-[#2495D3] transition-colors duration-200 mt-auto"
                   >
                     <span>Read More</span>
-                    <span className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-[#2495D3] text-[#1C3A62] group-hover:text-white flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1">
-                      <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 group-hover:bg-[#2495D3] text-[#1C3A62] group-hover:text-white flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1">
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
                     </span>
                   </Link>
                 </div>
@@ -173,13 +174,6 @@ export default function ServicesSection() {
         .animate-services-track:hover,
         .animate-services-track:focus-within {
           animation-play-state: paused !important;
-        }
-        @media (max-width: 768px) {
-          .animate-services-track {
-            animation: none !important;
-            transform: none !important;
-            will-change: auto !important;
-          }
         }
       `}</style>
     </section>

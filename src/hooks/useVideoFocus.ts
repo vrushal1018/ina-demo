@@ -33,10 +33,13 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
     const video = videoRef.current;
     if (!video) return;
 
-    // Autoplay compliance attributes
+    // Autoplay compliance attributes for desktop & mobile (iOS WebKit / Android Chrome)
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "true");
 
     let isVisibleInViewport = false;
     let isWindowActive = typeof document !== "undefined" ? !document.hidden : true;
@@ -47,7 +50,7 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // Autoplay policy restrictions or aborted by pause
+            // Autoplay policy restrictions (e.g. mobile battery saver or un-interacted document)
           });
         }
       }
@@ -67,6 +70,16 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
         safePause();
       }
     };
+
+    // Mobile fallback: When the mobile user touches or scrolls, attempt to play if visible
+    const handleUserGesture = () => {
+      if (isVisibleInViewport && isWindowActive && video.paused) {
+        safePlay();
+      }
+    };
+    window.addEventListener("touchstart", handleUserGesture, { passive: true });
+    window.addEventListener("scroll", handleUserGesture, { passive: true });
+    window.addEventListener("click", handleUserGesture, { passive: true });
 
     // IntersectionObserver to detect when the video component is within the viewport
     let observer: IntersectionObserver | null = null;
@@ -114,6 +127,9 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
     return () => {
       if (observer) observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("touchstart", handleUserGesture);
+      window.removeEventListener("scroll", handleUserGesture);
+      window.removeEventListener("click", handleUserGesture);
       if (pauseOnBlur) {
         window.removeEventListener("focus", handleFocus);
         window.removeEventListener("blur", handleBlur);

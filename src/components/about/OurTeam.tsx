@@ -61,7 +61,7 @@ const teamMembers = [
 export default function OurTeam() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [visibleItems, setVisibleItems] = useState(4);
+  const [visibleItems, setVisibleItems] = useState(1);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   useEffect(() => {
@@ -181,9 +181,8 @@ export default function OurTeam() {
                   <div className="relative w-full h-[220px] rounded-xl overflow-hidden bg-slate-100 border border-slate-100 mb-3 flex-shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={member.image}
+                      src={encodeURI(member.image)}
                       alt={member.name}
-                      loading="lazy"
                       decoding="async"
                       style={{ objectPosition: member.imagePosition || 'center top' }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

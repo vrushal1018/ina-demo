@@ -99,9 +99,8 @@ export default function InteractiveTeamSlider() {
                     <div className="relative w-full h-[280px] rounded-xl bg-transparent overflow-hidden flex items-end justify-center mb-4 border border-[#2495D3]/20 group-hover:border-[#2495D3]/50 transition-colors">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={member.image}
+                        src={encodeURI(member.image)}
                         alt={member.name}
-                        loading="lazy"
                         decoding="async"
                         className={`w-full h-full ${member.image.toLowerCase().endsWith('.png')
                           ? 'object-contain object-bottom'
@@ -154,9 +153,8 @@ export default function InteractiveTeamSlider() {
                 <div className="relative w-full max-w-[360px] h-[300px] sm:h-[440px] rounded-2xl bg-transparent overflow-hidden border border-[#2495D3]/25 flex items-end justify-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={selectedMember.image}
+                    src={encodeURI(selectedMember.image)}
                     alt={selectedMember.name}
-                    loading="lazy"
                     decoding="async"
                     className={`w-full h-full ${selectedMember.image.toLowerCase().endsWith('.png')
                       ? 'object-contain object-bottom'

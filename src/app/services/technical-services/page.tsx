@@ -49,10 +49,12 @@ export default function TechnicalServicesPage() {
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <video
               ref={videoRef}
+              autoPlay
               loop
               muted
               playsInline
-              preload="metadata"
+              poster="/technicalmain.avif"
+              preload="auto"
               className="absolute inset-0 w-full h-full object-cover opacity-55 scale-105"
             >
               <source src="/technical%20services.mp4" type="video/mp4" />

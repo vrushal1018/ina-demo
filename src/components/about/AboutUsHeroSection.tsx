@@ -22,7 +22,8 @@ export default function AboutUsHeroSection() {
           loop
           muted
           playsInline
-          preload="metadata"
+          poster="/about 1.jpg"
+          preload="auto"
           disablePictureInPicture
           disableRemotePlayback
           className="absolute inset-0 w-full h-full object-cover scale-105"
