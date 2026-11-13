@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight, User, Sparkles, Building2, ArrowRight, HeartHandshake } from 'lucide-react';
+import { ChevronRight, User, Sparkles, Building2, HeartHandshake } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
@@ -97,24 +97,6 @@ export default function AlliedServicesPage() {
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-200">
                   Comprehensive allied facility management services and specialized technical support designed to elevate operational standards and guest experience.
                 </p>
-
-                {/* Buttons */}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-white hover:text-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/30 hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    <span>Book an appointment</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-xl border-2 border-white/80 px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1C3A62] hover:-translate-y-0.5 active:scale-95 backdrop-blur-sm text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    Contact us
-                  </Link>
-                </div>
               </div>
 
               {/* TEMPORARILY REMOVED: HERO IMAGE CARDS */}

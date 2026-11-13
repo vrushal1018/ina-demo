@@ -3,6 +3,7 @@ const path = require('path');
 const sharp = require('sharp');
 
 const LOGO_SRC = path.join(__dirname, '..', 'public', 'Ina TechFM Logo white.png');
+const BLUE_LOGO_SRC = path.join(__dirname, '..', 'public', 'Ina Logo-1.jpg.png');
 
 if (!fs.existsSync(LOGO_SRC)) {
   console.error('Source logo not found at:', LOGO_SRC);
@@ -39,40 +40,28 @@ function createIco(pngBuffers, sizes) {
 async function generate() {
   console.log('Generating brand icons and Open Graph assets...');
 
-  // 1. Create Base 512x512 Square App Icon with Brand Navy Background
-  // Background: Deep Corporate Navy #0B1B30 with subtle gradient & brand cyan glow
+  // 1. Create Base 512x512 Square App Icon on 100% TRANSPARENT Background
+  // Extracts the official Brand Cyan-Blue Tech FM Logo without any black/navy box
   const iconSize = 512;
-  const logoTargetWidth = 430; // ~84% width for maximum clarity
-  const logoTargetHeight = Math.round(logoTargetWidth * (179 / 313)); // ~246px
+  const logoTargetWidth = 490; // fills horizontal space with elegant padding
+  const logoTargetHeight = Math.round(logoTargetWidth * (271 / 474)); // ~280px
 
-  const resizedLogo = await sharp(LOGO_SRC)
+  const trimmedBlueLogo = await sharp(BLUE_LOGO_SRC)
+    .extract({ left: 89, top: 56, width: 474, height: 271 })
     .resize(logoTargetWidth, logoTargetHeight, { fit: 'contain' })
     .toBuffer();
 
-  const iconSvgBackground = `
-    <svg width="${iconSize}" height="${iconSize}" viewBox="0 0 ${iconSize} ${iconSize}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="navyGlow" cx="50%" cy="50%" r="65%">
-          <stop offset="0%" stop-color="#143258" />
-          <stop offset="60%" stop-color="#0B1B30" />
-          <stop offset="100%" stop-color="#060F1C" />
-        </radialGradient>
-        <linearGradient id="borderGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#2495D3" stop-opacity="0.8" />
-          <stop offset="100%" stop-color="#00E5FF" stop-opacity="0.2" />
-        </linearGradient>
-      </defs>
-      <!-- Base Background with subtle rounded corners -->
-      <rect width="${iconSize}" height="${iconSize}" rx="80" fill="url(#navyGlow)" />
-      <!-- Subtle inner glowing border -->
-      <rect x="4" y="4" width="${iconSize - 8}" height="${iconSize - 8}" rx="76" fill="none" stroke="url(#borderGlow)" stroke-width="4" />
-    </svg>
-  `;
-
-  const baseIcon512 = await sharp(Buffer.from(iconSvgBackground))
+  const baseIcon512 = await sharp({
+    create: {
+      width: iconSize,
+      height: iconSize,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 }
+    }
+  })
     .composite([
       {
-        input: resizedLogo,
+        input: trimmedBlueLogo,
         top: Math.round((iconSize - logoTargetHeight) / 2),
         left: Math.round((iconSize - logoTargetWidth) / 2),
       },
@@ -83,7 +72,7 @@ async function generate() {
   // Save 512x512 icon
   fs.writeFileSync(path.join(__dirname, '..', 'src', 'app', 'icon.png'), baseIcon512);
   fs.writeFileSync(path.join(__dirname, '..', 'public', 'icon.png'), baseIcon512);
-  console.log('✓ Created src/app/icon.png & public/icon.png (512x512)');
+  console.log('✓ Created src/app/icon.png & public/icon.png (512x512 Transparent Brand Blue Logo)');
 
   // Save 192x192 icon (standard Android/PWA)
   const icon192 = await sharp(baseIcon512).resize(192, 192).png().toBuffer();
@@ -96,8 +85,8 @@ async function generate() {
   fs.writeFileSync(path.join(__dirname, '..', 'public', 'apple-icon.png'), appleIcon);
   console.log('✓ Created src/app/apple-icon.png & public/apple-icon.png (180x180)');
 
-  // 2. Generate Multi-Size ICO File (16, 32, 48, 256)
-  const icoSizes = [16, 32, 48, 256];
+  // 2. Generate Multi-Size ICO File (16, 32, 48, 64, 128, 256)
+  const icoSizes = [16, 32, 48, 64, 128, 256];
   const icoPngBuffers = [];
   for (const sz of icoSizes) {
     const buf = await sharp(baseIcon512).resize(sz, sz).png().toBuffer();
@@ -106,7 +95,7 @@ async function generate() {
   const icoBuffer = createIco(icoPngBuffers, icoSizes);
   fs.writeFileSync(path.join(__dirname, '..', 'src', 'app', 'favicon.ico'), icoBuffer);
   fs.writeFileSync(path.join(__dirname, '..', 'public', 'favicon.ico'), icoBuffer);
-  console.log('✓ Created src/app/favicon.ico & public/favicon.ico (Multi-size ICO)');
+  console.log('✓ Created src/app/favicon.ico & public/favicon.ico (Multi-size Transparent ICO)');
 
   // 3. Generate 1200x630 OpenGraph / Social Share Image
   // Used by WhatsApp, LinkedIn, Twitter/X, Facebook, Slack, iMessage, etc.
