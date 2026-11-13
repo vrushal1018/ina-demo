@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight, Zap, Thermometer, Lightbulb, Activity, ArrowRight, FileCheck2 } from 'lucide-react';
+import { ChevronRight, Zap, Thermometer, Lightbulb, Activity, FileCheck2 } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
@@ -74,24 +74,6 @@ export default function AuditAndOfferingsPage() {
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-[#585858]">
                   Comprehensive facility management audits, technical safety diagnostics, and bespoke engineering solutions engineered to maximize asset efficiency and statutory compliance.
                 </p>
-
-                {/* Buttons */}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    <span>Book an appointment</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-xl border-2 border-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-[#1C3A62] transition-all duration-300 hover:bg-[#1C3A62] hover:text-white hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    Contact us
-                  </Link>
-                </div>
               </div>
 
               {/* RIGHT IMAGE - OVERLAPPING ARCHITECTURAL PANELS */}
@@ -102,7 +84,7 @@ export default function AuditAndOfferingsPage() {
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                   <div className="absolute left-[2%] sm:left-[5%] z-0 h-[68%] w-[42%] overflow-hidden rounded-2xl shadow-xl border-2 border-white group">
                     <img
-                      src="/audit2.avif"
+                      src="/audit2.webp"
                       alt="Audit & Offerings 2"
                       className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
@@ -110,7 +92,7 @@ export default function AuditAndOfferingsPage() {
 
                   <div className="absolute right-[2%] sm:right-[5%] z-0 h-[68%] w-[42%] overflow-hidden rounded-2xl shadow-xl border-2 border-white group">
                     <img
-                      src="/audit3.avif"
+                      src="/audit3.jpg"
                       alt="Audit & Offerings 3"
                       className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />

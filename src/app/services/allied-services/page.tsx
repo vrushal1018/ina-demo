@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight, User, Sparkles, Building2, ArrowRight, HeartHandshake } from 'lucide-react';
+import { ChevronRight, User, Sparkles, Building2, HeartHandshake } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
@@ -30,6 +30,7 @@ import { useVideoFocus } from '@/hooks/useVideoFocus';
 
 export default function AlliedServicesPage() {
   const videoRef = useVideoFocus();
+  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
 
   return (
     <>
@@ -43,7 +44,11 @@ export default function AlliedServicesPage() {
           {/* Background Video with continuous loop and responsive preview */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
-            <picture className="absolute inset-0 w-full h-full">
+            <picture
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+                isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
+            >
               <source media="(max-width: 768px)" srcSet="/allied-mobile-preview.webp" />
               <source media="(min-width: 769px)" srcSet="/allied2.jpg" />
               <img src="/allied2.jpg" alt="" className="w-full h-full object-cover object-center" />
@@ -54,9 +59,9 @@ export default function AlliedServicesPage() {
               loop
               muted
               playsInline
-              poster="/allied-mobile-preview.webp"
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover object-center opacity-55 scale-100 sm:scale-105"
+              onPlaying={() => setIsVideoPlaying(true)}
+              className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
             >
               <source src="/service3.mp4" type="video/mp4" />
             </video>
@@ -92,24 +97,6 @@ export default function AlliedServicesPage() {
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-200">
                   Comprehensive allied facility management services and specialized technical support designed to elevate operational standards and guest experience.
                 </p>
-
-                {/* Buttons */}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-white hover:text-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/30 hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    <span>Book an appointment</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-xl border-2 border-white/80 px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1C3A62] hover:-translate-y-0.5 active:scale-95 backdrop-blur-sm text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    Contact us
-                  </Link>
-                </div>
               </div>
 
               {/* TEMPORARILY REMOVED: HERO IMAGE CARDS */}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   CheckCircle2,
   PhoneCall,
@@ -16,6 +17,7 @@ import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function RepairsAndServicing() {
   const videoRef = useVideoFocus();
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const expertiseList = [
     {
       num: "01",
@@ -72,7 +74,11 @@ export default function RepairsAndServicing() {
       {/* Background Video with continuous loop and responsive preview */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
-        <picture className="absolute inset-0 w-full h-full">
+        <picture
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+            isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
           <source media="(max-width: 768px)" srcSet="/repairs-mobile-preview.webp" />
           <source media="(min-width: 769px)" srcSet="/commercial.jpg" />
           <img src="/commercial.jpg" alt="" className="w-full h-full object-cover object-center" />
@@ -83,16 +89,12 @@ export default function RepairsAndServicing() {
           loop
           muted
           playsInline
-          poster="/repairs-mobile-preview.webp"
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-65 scale-100"
+          onPlaying={() => setIsVideoPlaying(true)}
+          className="absolute inset-0 w-full h-full object-cover object-center scale-100"
         >
           <source
             src="/technician-service-optimized.mp4"
-            type="video/mp4"
-          />
-          <source
-            src="/Technician_using_tablet_in_service.mp4"
             type="video/mp4"
           />
         </video>

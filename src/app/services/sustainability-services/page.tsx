@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ChevronRight, ArrowRight, Leaf, Lightbulb, Wind, Sun } from 'lucide-react';
+import { ChevronRight, Leaf, Lightbulb, Wind, Sun } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
@@ -38,6 +38,7 @@ const sustainabilityServices = [
 
 export default function SustainabilityServicesPage() {
   const videoRef = useVideoFocus();
+  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
 
   return (
     <>
@@ -51,7 +52,11 @@ export default function SustainabilityServicesPage() {
           {/* Background Video with continuous loop and responsive preview */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
-            <picture className="absolute inset-0 w-full h-full">
+            <picture
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+                isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
+            >
               <source media="(max-width: 768px)" srcSet="/sustainability-mobile-preview.webp" />
               <source media="(min-width: 769px)" srcSet="/sustainabilitymain.jpg" />
               <img src="/sustainabilitymain.jpg" alt="" className="w-full h-full object-cover object-center" />
@@ -62,9 +67,9 @@ export default function SustainabilityServicesPage() {
               loop
               muted
               playsInline
-              poster="/sustainability-mobile-preview.webp"
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover object-center opacity-55 scale-100 sm:scale-105"
+              onPlaying={() => setIsVideoPlaying(true)}
+              className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
             >
               <source src="/sustainability%20services.mp4" type="video/mp4" />
             </video>
@@ -100,63 +105,9 @@ export default function SustainabilityServicesPage() {
                 <p className="max-w-xl text-base sm:text-lg leading-relaxed text-slate-200">
                   Data-driven energy management services and sustainable facility engineering solutions that optimize consumption, eliminate waste, and advance long-term ESG performance.
                 </p>
-
-                {/* Buttons */}
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-white hover:text-[#1C3A62] px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/30 hover:-translate-y-0.5 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    <span>Book an appointment</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-xl border-2 border-white/80 px-6 sm:px-8 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-[#1C3A62] hover:-translate-y-0.5 active:scale-95 backdrop-blur-sm text-sm sm:text-base w-full sm:w-auto text-center"
-                  >
-                    Contact us
-                  </Link>
-                </div>
               </div>
 
-              {/* TEMPORARILY REMOVED: HERO IMAGE CARDS */}
-              {/*
-              <div className="relative flex w-full items-center justify-center h-[380px] sm:h-[460px] lg:h-[520px]">
-                <div className="absolute left-[8%] top-[-40px] h-[580px] w-px bg-slate-200/80 hidden sm:block" />
-                <div className="absolute right-[8%] top-[-40px] h-[580px] w-px bg-slate-200/80 hidden sm:block" />
 
-                <div className="relative z-10 w-full h-full flex items-center justify-center">
-                  <div className="absolute left-[2%] sm:left-[5%] z-0 h-[68%] w-[42%] overflow-hidden rounded-2xl shadow-xl border-2 border-white group">
-                    <img
-                      src="/sustainability2.jpg"
-                      alt="Sustainability Services 2"
-                      className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-
-                  <div className="absolute right-[2%] sm:right-[5%] z-0 h-[68%] w-[42%] overflow-hidden rounded-2xl shadow-xl border-2 border-white group">
-                    <img
-                      src="/sustainability3.jpg"
-                      alt="Sustainability Services 3"
-                      className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-
-                  <div className="relative z-10 h-[88%] w-[48%] overflow-hidden rounded-2xl shadow-2xl ring-4 ring-white border border-slate-200/60 group">
-                    <img
-                      src="/sustainabilitymain.jpg"
-                      alt="Main Sustainability Services"
-                      className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-lg bg-[#1C3A62]/90 backdrop-blur-md text-white text-xs font-semibold flex items-center justify-between">
-                      <span>Green Efficiency</span>
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              */}
             </div>
           </div>
         </section>
@@ -175,7 +126,7 @@ export default function SustainabilityServicesPage() {
                   <div className="lg:col-span-5 relative flex h-[280px] sm:h-[320px] lg:h-[360px] items-center justify-center">
                     <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-[#1C3A62] to-[#0F223D] p-6 flex items-center justify-center">
                       <img
-                        src="/Sustainability%20Services.svg"
+                        src="/Sustainability%20Services.png"
                         alt="Sustainability Services Overview"
                         loading="lazy"
                         decoding="async"
