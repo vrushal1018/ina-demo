@@ -11,13 +11,18 @@ export default function AboutUsHeroSection() {
     rootMargin: "0px",
     pauseOnBlur: true,
   });
+  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
 
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-start pt-8 sm:pt-10 lg:pt-12 pb-12 overflow-hidden bg-[#0A1629] text-white font-sans">
       {/* Background Video with continuous loop and responsive preview */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
-        <picture className="absolute inset-0 w-full h-full">
+        <picture
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+            isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
           <source media="(max-width: 768px)" srcSet="/about-mobile-preview.webp" />
           <source media="(min-width: 769px)" srcSet="/about-desktop-preview.webp" />
           <img src="/about-desktop-preview.webp" alt="" className="w-full h-full object-cover object-center" />
@@ -28,8 +33,8 @@ export default function AboutUsHeroSection() {
           loop
           muted
           playsInline
-          poster="/about-mobile-preview.webp"
           preload="auto"
+          onPlaying={() => setIsVideoPlaying(true)}
           disablePictureInPicture
           disableRemotePlayback
           className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"

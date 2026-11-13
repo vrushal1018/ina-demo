@@ -30,6 +30,7 @@ import { useVideoFocus } from '@/hooks/useVideoFocus';
 
 export default function AlliedServicesPage() {
   const videoRef = useVideoFocus();
+  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
 
   return (
     <>
@@ -43,7 +44,11 @@ export default function AlliedServicesPage() {
           {/* Background Video with continuous loop and responsive preview */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
-            <picture className="absolute inset-0 w-full h-full">
+            <picture
+              className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
+                isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
+            >
               <source media="(max-width: 768px)" srcSet="/allied-mobile-preview.webp" />
               <source media="(min-width: 769px)" srcSet="/allied2.jpg" />
               <img src="/allied2.jpg" alt="" className="w-full h-full object-cover object-center" />
@@ -54,9 +59,9 @@ export default function AlliedServicesPage() {
               loop
               muted
               playsInline
-              poster="/allied-mobile-preview.webp"
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover object-center opacity-55 scale-100 sm:scale-105"
+              onPlaying={() => setIsVideoPlaying(true)}
+              className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
             >
               <source src="/service3.mp4" type="video/mp4" />
             </video>

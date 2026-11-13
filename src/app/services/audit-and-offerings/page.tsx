@@ -102,7 +102,7 @@ export default function AuditAndOfferingsPage() {
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                   <div className="absolute left-[2%] sm:left-[5%] z-0 h-[68%] w-[42%] overflow-hidden rounded-2xl shadow-xl border-2 border-white group">
                     <img
-                      src="/audit2.avif"
+                      src="/audit2.webp"
                       alt="Audit & Offerings 2"
                       className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
@@ -110,7 +110,7 @@ export default function AuditAndOfferingsPage() {
 
                   <div className="absolute right-[2%] sm:right-[5%] z-0 h-[68%] w-[42%] overflow-hidden rounded-2xl shadow-xl border-2 border-white group">
                     <img
-                      src="/audit3.avif"
+                      src="/audit3.jpg"
                       alt="Audit & Offerings 3"
                       className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
