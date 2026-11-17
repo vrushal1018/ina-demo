@@ -9,7 +9,7 @@ import React, { useEffect, useState, type CSSProperties } from "react";
  *  OFF: set enabled to false, or delete <DiwaliTheme /> from layout.tsx.
  * ------------------------------------------------------------------ */
 const CONFIG = {
-  enabled: true,
+  enabled: false,
   startDate: "2026-11-01", // first day shown (IST) - set to Nov 1 so it's live immediately
   endDate: "2026-11-12", // last day shown (IST)
   greeting: "Happy Diwali from INA TechFM",

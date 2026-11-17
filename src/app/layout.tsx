@@ -4,7 +4,6 @@ import "./globals.css";
 import LoadingScreen from "@/components/LoadingScreen";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import Footer from "@/components/Footer";
-import DiwaliTheme from "@/components/DiwaliTheme";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -178,7 +177,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${poppins.variable} h-full antialiased bg-[#D9EDF8] overflow-x-hidden max-w-full`}
     >
       <body className="min-h-full flex flex-col bg-[#D9EDF8] text-[#383838] overflow-x-hidden max-w-full">
-        <DiwaliTheme />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
