@@ -16,21 +16,9 @@ import {
 import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function RepairsAndServicing() {
-  const videoRef = useVideoFocus();
+  const mobileVideoRef = useVideoFocus();
+  const desktopVideoRef = useVideoFocus();
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-
-  // Switch video source if viewport changes across the 768px breakpoint
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 768px)");
-    const handleMediaChange = () => {
-      if (videoRef.current) {
-        videoRef.current.load();
-        videoRef.current.play().catch(() => {});
-      }
-    };
-    mql.addEventListener("change", handleMediaChange);
-    return () => mql.removeEventListener("change", handleMediaChange);
-  }, [videoRef]);
   const expertiseList = [
     {
       num: "01",
@@ -96,31 +84,31 @@ export default function RepairsAndServicing() {
           <source media="(min-width: 769px)" srcSet="/commercial.jpg" />
           <img src="/commercial.jpg" alt="" className="w-full h-full object-cover object-center" />
         </picture>
+        {/* Mobile Phone Video - ALWAYS technician_service_vertical.mp4 */}
         <video
-          ref={videoRef}
+          ref={mobileVideoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
+          src="/technician_service_vertical.mp4"
           onPlaying={() => setIsVideoPlaying(true)}
-          className="absolute inset-0 w-full h-full object-cover object-center scale-100"
-        >
-          <source
-            media="(max-width: 768px)"
-            src="/technician_service_vertical.mp4"
-            type="video/mp4"
-          />
-          <source
-            media="(min-width: 769px)"
-            src="/technician-service-optimized.mp4"
-            type="video/mp4"
-          />
-          <source
-            src="/technician-service-optimized.mp4"
-            type="video/mp4"
-          />
-        </video>
+          className="md:hidden absolute inset-0 w-full h-full object-cover object-center scale-100"
+        />
+
+        {/* Desktop/Tablet Video - ALWAYS technician-service-optimized.mp4 */}
+        <video
+          ref={desktopVideoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          src="/technician-service-optimized.mp4"
+          onPlaying={() => setIsVideoPlaying(true)}
+          className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100"
+        />
         {/* Architectural Gradient & Blueprint Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A1629]/85 via-[#0A1629]/65 to-[#0A1629]/90" />
         <div className="absolute inset-0 blueprint-grid opacity-15" />

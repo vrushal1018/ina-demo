@@ -429,9 +429,11 @@ export default function BrandBanner() {
               : ALL_LOGOS;
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-8 sm:py-10 overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-8 sm:py-10 overflow-visible z-20">
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Title with Lucide Icon in Sleek Pill */}
@@ -472,7 +474,8 @@ export default function BrandBanner() {
           {dropdownOpen && (
             <div
               role="listbox"
-              className="absolute left-0 right-0 top-full mt-2 max-h-[175px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/95 backdrop-blur-xl rounded-2xl border border-[#2495D3]/30 shadow-xl z-50 p-1.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+              style={{ touchAction: 'pan-y' }}
+              className="absolute left-0 right-0 top-full mt-2 max-h-[260px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/98 backdrop-blur-2xl rounded-2xl border border-[#2495D3]/40 shadow-2xl z-50 p-2 pb-3.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
             >
               {CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.id;

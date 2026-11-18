@@ -48,7 +48,7 @@ export default function AnimateIn({
   minHeight,
   id,
   rootMargin = '500px 0px',
-  lazy = true,
+  lazy = false,
 }: AnimateInProps) {
   const [isVisible, setIsVisible] = useState(!lazy);
   const containerRef = useRef<HTMLDivElement>(null);
