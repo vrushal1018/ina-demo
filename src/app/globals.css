@@ -144,6 +144,29 @@ body {
   height: 0;
 }
 
+/* Explicit scroller for dropdowns and scrollable menus */
+.custom-dropdown-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #2495D3 rgba(36, 149, 211, 0.15);
+  -webkit-overflow-scrolling: touch;
+}
+.custom-dropdown-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 5px !important;
+}
+.custom-dropdown-scrollbar::-webkit-scrollbar-track {
+  background: rgba(36, 149, 211, 0.08) !important;
+  border-radius: 9999px !important;
+  margin: 6px 0 !important;
+}
+.custom-dropdown-scrollbar::-webkit-scrollbar-thumb {
+  background: #2495D3 !important;
+  border-radius: 9999px !important;
+}
+.custom-dropdown-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #1C3A62 !important;
+}
+
 /* Architectural Linework Flow Animation */
 @keyframes archLineTrace {
   0% {
