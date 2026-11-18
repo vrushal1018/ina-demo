@@ -119,11 +119,11 @@ export default function SiteHeader() {
       {/* ================= MOBILE FLOATING MENU TRIGGER ================= */}
       <button
         onClick={() => setIsOpen(true)}
-        className="sm:hidden fixed top-4 right-4 z-40 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0A1629]/85 hover:bg-[#0A1629] backdrop-blur-md border border-[#2495D3]/40 text-white shadow-xl active:scale-95 transition-all cursor-pointer"
+        className="sm:hidden fixed top-[31px] right-5 z-40 flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-[#0A1629]/90 hover:bg-[#0A1629] backdrop-blur-md border border-[#2495D3]/50 text-white shadow-xl active:scale-95 transition-all cursor-pointer"
         aria-label="Open navigation menu"
       >
-        <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
-        <span className="text-xs font-semibold tracking-wide">Menu</span>
+        <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3] animate-pulse shadow-sm shadow-[#2495D3]" />
+        <span className="text-sm font-semibold tracking-wide">Menu</span>
       </button>
 
       {/* ================= DESKTOP/TABLET LEFT EDGE INDICATOR ================= */}
