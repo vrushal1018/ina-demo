@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
 interface ServiceItem {
@@ -63,6 +63,38 @@ const SLIDER_ITEMS = [...SERVICES, ...SERVICES];
 
 export default function ServicesSection() {
   const [isPaused, setIsPaused] = useState(false);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const prevMobileCard = () => {
+    setMobileIndex((prev) => (prev === 0 ? SERVICES.length - 1 : prev - 1));
+  };
+
+  const nextMobileCard = () => {
+    setMobileIndex((prev) => (prev === SERVICES.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 45;
+    const isRightSwipe = distance < -45;
+    if (isLeftSwipe) {
+      nextMobileCard();
+    } else if (isRightSwipe) {
+      prevMobileCard();
+    }
+  };
 
   return (
     <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
@@ -91,9 +123,119 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      {/* Continuous Marquee Slider Container (Smooth animated marquee on all devices with touch-pause support) */}
+      {/* =========================================================
+          PHONE VIEW (sm:hidden): Single Card Carousel with 2 Navigation Arrows
+          Fits exactly 1 card at a time with smooth sliding and touch swipe
+      ========================================================== */}
+      <div className="block sm:hidden w-full px-5">
+        {/* Card Viewport */}
+        <div
+          className="relative w-full overflow-hidden rounded-2xl"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div
+            className="flex transition-transform duration-300 ease-out"
+            style={{ transform: `translateX(-${mobileIndex * 100}%)` }}
+          >
+            {SERVICES.map((service) => (
+              <div
+                key={service.id}
+                className="w-full flex-shrink-0"
+              >
+                <div className="relative bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-[#2495D3]/30 shadow-lg shadow-[#1C3A62]/6 flex flex-col justify-between min-h-[320px] overflow-hidden">
+                  {/* Subtle architectural card watermark */}
+                  <div className="absolute -right-4 -bottom-4 w-32 h-32 opacity-[0.05] pointer-events-none">
+                    <img
+                      src={encodeURI(service.icon)}
+                      alt=""
+                      className="w-full h-full object-contain"
+                      decoding="async"
+                    />
+                  </div>
+
+                  <div>
+                    {/* Icon Container */}
+                    <div className="w-13 h-13 rounded-xl bg-white border border-[#2495D3]/30 p-2.5 flex items-center justify-center mb-4.5 shadow-sm">
+                      <img
+                        src={encodeURI(service.icon)}
+                        alt={service.title}
+                        decoding="async"
+                        className="w-8 h-8 object-contain"
+                      />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-medium text-[#1C3A62] mb-2.5 leading-snug">
+                      {service.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[#585858] text-sm leading-relaxed font-normal mb-6">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  {/* Read More Action Button */}
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-200/90 text-[#1C3A62] font-semibold text-sm active:text-[#2495D3] transition-colors mt-auto"
+                  >
+                    <span>Read More</span>
+                    <span className="w-8 h-8 rounded-full bg-[#2495D3] text-white flex items-center justify-center shadow-sm shadow-[#2495D3]/30">
+                      <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Two Navigation Arrows + Slide Indicators */}
+        <div className="flex items-center justify-between mt-5 px-1">
+          {/* Previous Arrow Button */}
+          <button
+            onClick={prevMobileCard}
+            aria-label="Previous Service"
+            className="w-11 h-11 rounded-full bg-white hover:bg-[#2495D3] hover:text-white text-[#1C3A62] border border-[#2495D3]/30 shadow-md shadow-[#1C3A62]/6 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+          >
+            <ChevronLeft className="w-5 h-5 stroke-[2.25]" />
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex items-center gap-1.5">
+            {SERVICES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setMobileIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  mobileIndex === idx
+                    ? "w-6 bg-[#2495D3]"
+                    : "w-2 bg-[#1C3A62]/20 hover:bg-[#1C3A62]/40"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Next Arrow Button */}
+          <button
+            onClick={nextMobileCard}
+            aria-label="Next Service"
+            className="w-11 h-11 rounded-full bg-[#2495D3] hover:bg-[#1C3A62] text-white shadow-md shadow-[#2495D3]/30 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+          >
+            <ChevronRight className="w-5 h-5 stroke-[2.25]" />
+          </button>
+        </div>
+      </div>
+
+      {/* =========================================================
+          DESKTOP/TABLET VIEW (hidden sm:block): Continuous Marquee Slider
+      ========================================================== */}
       <div 
-        className="w-full relative overflow-hidden py-2 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)] sm:[mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-80px),transparent_100%)]"
+        className="hidden sm:block w-full relative overflow-hidden py-2 [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)] sm:[mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-80px),transparent_100%)]"
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
       >

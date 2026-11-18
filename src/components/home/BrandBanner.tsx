@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Building2,
   Sparkles,
@@ -8,6 +8,8 @@ import {
   Home as HomeIcon,
   Hotel,
   ShoppingBag,
+  ChevronDown,
+  Check,
 } from 'lucide-react';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 
@@ -389,6 +391,29 @@ const CATEGORIES: CategoryOption[] = [
 export default function BrandBanner() {
   const [activeCategory, setActiveCategory] = useState<CategoryId>('all');
   const [isPaused, setIsPaused] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when tapping/clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    if (dropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
+  const activeCategoryData =
+    CATEGORIES.find((cat) => cat.id === activeCategory) || CATEGORIES[0];
+  const ActiveIcon = activeCategoryData.icon;
 
   const currentLogos =
     activeCategory === 'malls'
@@ -418,8 +443,77 @@ export default function BrandBanner() {
           </div>
         </div> */}
 
-        {/* Category Filter Tabs */}
-        <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-3 mb-6">
+        {/* ================= MOBILE PHONE VIEW: Dropdown Selector ================= */}
+        <div ref={dropdownRef} className="relative sm:hidden w-full max-w-[280px] mx-auto mb-6 z-30">
+          <button
+            type="button"
+            onClick={() => setDropdownOpen((prev) => !prev)}
+            aria-expanded={dropdownOpen}
+            aria-haspopup="listbox"
+            className="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#2495D3]/40 shadow-sm text-[#1C3A62] active:scale-[0.98] transition-all cursor-pointer"
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <span className="w-7 h-7 rounded-full bg-[#1C3A62] text-white flex items-center justify-center shrink-0">
+                <ActiveIcon className="w-3.5 h-3.5 text-[#2495D3]" />
+              </span>
+              <span className="text-sm font-semibold text-[#1C3A62] truncate">
+                {activeCategoryData.label}
+              </span>
+            </div>
+
+            <ChevronDown
+              className={`w-4 h-4 text-[#2495D3] shrink-0 transition-transform duration-200 ${
+                dropdownOpen ? 'rotate-180' : ''
+              }`}
+            />
+          </button>
+
+          {/* Dropdown Menu Options */}
+          {dropdownOpen && (
+            <div
+              role="listbox"
+              className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl rounded-2xl border border-[#2495D3]/30 shadow-xl overflow-hidden z-50 p-1.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+            >
+              {CATEGORIES.map((cat) => {
+                const isSelected = activeCategory === cat.id;
+                const CatIcon = cat.icon;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    role="option"
+                    aria-selected={isSelected}
+                    onClick={() => {
+                      setActiveCategory(cat.id);
+                      setDropdownOpen(false);
+                    }}
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#1C3A62] text-white shadow-sm'
+                        : 'text-slate-700 hover:bg-[#D9EDF8]/50 hover:text-[#1C3A62]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <CatIcon
+                        className={`w-4 h-4 shrink-0 ${
+                          isSelected ? 'text-[#2495D3]' : 'text-slate-400'
+                        }`}
+                      />
+                      <span>{cat.label}</span>
+                    </div>
+
+                    {isSelected && (
+                      <Check className="w-4 h-4 text-[#2495D3] shrink-0 stroke-[2.5]" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* ================= DESKTOP/TABLET VIEW: Category Filter Tabs ================= */}
+        <div className="hidden sm:flex items-center justify-center flex-wrap gap-2 sm:gap-3 mb-6">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
             const Icon = cat.icon;

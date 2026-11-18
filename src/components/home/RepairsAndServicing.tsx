@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   CheckCircle2,
   PhoneCall,
@@ -18,6 +18,19 @@ import { useVideoFocus } from "@/hooks/useVideoFocus";
 export default function RepairsAndServicing() {
   const videoRef = useVideoFocus();
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  // Switch video source if viewport changes across the 768px breakpoint
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const handleMediaChange = () => {
+      if (videoRef.current) {
+        videoRef.current.load();
+        videoRef.current.play().catch(() => {});
+      }
+    };
+    mql.addEventListener("change", handleMediaChange);
+    return () => mql.removeEventListener("change", handleMediaChange);
+  }, [videoRef]);
   const expertiseList = [
     {
       num: "01",
@@ -93,6 +106,16 @@ export default function RepairsAndServicing() {
           onPlaying={() => setIsVideoPlaying(true)}
           className="absolute inset-0 w-full h-full object-cover object-center scale-100"
         >
+          <source
+            media="(max-width: 768px)"
+            src="/technician_service_vertical.mp4"
+            type="video/mp4"
+          />
+          <source
+            media="(min-width: 769px)"
+            src="/technician-service-optimized.mp4"
+            type="video/mp4"
+          />
           <source
             src="/technician-service-optimized.mp4"
             type="video/mp4"

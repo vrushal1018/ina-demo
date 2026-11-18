@@ -18,6 +18,19 @@ export default function Home() {
   const heroVideoRef = useVideoFocus();
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
 
+  // Switch video source if viewport changes across the 768px breakpoint
+  React.useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const handleMediaChange = () => {
+      if (heroVideoRef.current) {
+        heroVideoRef.current.load();
+        heroVideoRef.current.play().catch(() => {});
+      }
+    };
+    mql.addEventListener("change", handleMediaChange);
+    return () => mql.removeEventListener("change", handleMediaChange);
+  }, [heroVideoRef]);
+
   // Feature bullets for Tech fm
   // const features = [
   //   "Hard FM and Technical services",
@@ -61,6 +74,16 @@ export default function Home() {
             onPlaying={() => setIsVideoPlaying(true)}
             className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
           >
+            <source
+              media="(max-width: 768px)"
+              src="/inatechphoneview1.mp4"
+              type="video/mp4"
+            />
+            <source
+              media="(min-width: 769px)"
+              src="/itf-hero-optimized.mp4"
+              type="video/mp4"
+            />
             <source src="/itf-hero-optimized.mp4" type="video/mp4" />
           </video>
         </div>
@@ -83,7 +106,7 @@ export default function Home() {
             {/* Main Tagline under logo */}
             <div className="mt-2 sm:mt-2.5 pl-3.5 sm:pl-4 md:pl-5 lg:pl-6 text-[11px] sm:text-xs md:text-[13px] lg:text-[14px] font-normal tracking-normal leading-tight drop-shadow-md">
               <span className="block text-white">Empowering People</span>
-              <span className="block text-[#2495D3] mt-0.5 ml-2.5 sm:ml-3 md:ml-3.5">Enriching Assets</span>
+              <span className="block text-[#2495D3] mt-0.5">Enriching Assets</span>
             </div>
           </div>
         </div>
@@ -104,31 +127,31 @@ export default function Home() {
         </div> */}
 
         {/* Bottom Verified Metrics Strip */}
-        <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-6 mt-auto">
-          <div className="w-full max-w-3xl mx-auto border-t border-white/10 pt-6 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left sm:text-center">
-            <div>
+        <div className="relative z-10 max-w-7xl w-full mx-auto px-5 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-6 mt-auto">
+          <div className="w-full max-w-3xl mx-auto border-t border-white/10 pt-6 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 sm:gap-6 text-center">
+            <div className="flex flex-col items-center justify-center">
               <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={78} suffix="m+ sft" duration={2000} />
               </div>
-              <div className="text-xs text-slate-400 mt-1">Area Managed</div>
+              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Area Managed</div>
             </div>
-            <div>
+            <div className="flex flex-col items-center justify-center">
               <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={290} suffix="+" duration={2000} />
               </div>
-              <div className="text-xs text-slate-400 mt-1">Clients</div>
+              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Clients</div>
             </div>
-            <div>
+            <div className="flex flex-col items-center justify-center">
               <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={3000} suffix="+" duration={2000} />
               </div>
-              <div className="text-xs text-slate-400 mt-1">Employees</div>
+              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Employees</div>
             </div>
-            <div>
+            <div className="flex flex-col items-center justify-center">
               <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
                 <Counter end={2018} useGrouping={false} duration={2000} />
               </div>
-              <div className="text-xs text-slate-400 mt-1">Since</div>
+              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Since</div>
             </div>
           </div>
         </div>
