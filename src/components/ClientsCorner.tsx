@@ -300,11 +300,13 @@ export default function ClientsCorner() {
   ];
 
   return (
-    <section className="relative w-full py-10 sm:py-14 lg:py-16 overflow-hidden bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans">
-      {/* Blueprint grid accent */}
-      <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
-      {/* Authentic Architectural Linework Drawing Stream */}
-      <ArchitecturalLineworkBackground theme="light" opacity={0.28} mask="fade-edges" />
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 overflow-visible bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Blueprint grid accent */}
+        <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
+        {/* Authentic Architectural Linework Drawing Stream */}
+        <ArchitecturalLineworkBackground theme="light" opacity={0.28} mask="fade-edges" />
+      </div>
 
       {/* Ambient Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 overflow-hidden pointer-events-none">
@@ -359,7 +361,8 @@ export default function ClientsCorner() {
           {dropdownOpen && (
             <div
               role="listbox"
-              className="absolute left-0 right-0 top-full mt-2 max-h-[175px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/95 backdrop-blur-xl rounded-2xl border border-[#2495D3]/30 shadow-xl z-50 p-1.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+              style={{ touchAction: 'pan-y' }}
+              className="absolute left-0 right-0 top-full mt-2 max-h-[260px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/98 backdrop-blur-2xl rounded-2xl border border-[#2495D3]/40 shadow-2xl z-50 p-2 pb-3.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
             >
               {CATEGORIES.map((cat, idx) => {
                 const isSelected = activeTab === idx;

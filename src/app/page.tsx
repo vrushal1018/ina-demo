@@ -15,21 +15,9 @@ import GarageDoorSteps from "@/components/home/GarageDoorSteps";
 import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function Home() {
-  const heroVideoRef = useVideoFocus();
+  const mobileHeroVideoRef = useVideoFocus();
+  const desktopHeroVideoRef = useVideoFocus();
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
-
-  // Switch video source if viewport changes across the 768px breakpoint
-  React.useEffect(() => {
-    const mql = window.matchMedia("(max-width: 768px)");
-    const handleMediaChange = () => {
-      if (heroVideoRef.current) {
-        heroVideoRef.current.load();
-        heroVideoRef.current.play().catch(() => {});
-      }
-    };
-    mql.addEventListener("change", handleMediaChange);
-    return () => mql.removeEventListener("change", handleMediaChange);
-  }, [heroVideoRef]);
 
   // Feature bullets for Tech fm
   // const features = [
@@ -64,28 +52,31 @@ export default function Home() {
             />
           </picture>
 
+          {/* Mobile Phone Hero Video - ALWAYS inatechphoneview1.mp4 */}
           <video
-            ref={heroVideoRef}
+            ref={mobileHeroVideoRef}
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
+            src="/inatechphoneview1.mp4"
             onPlaying={() => setIsVideoPlaying(true)}
-            className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
-          >
-            <source
-              media="(max-width: 768px)"
-              src="/inatechphoneview1.mp4"
-              type="video/mp4"
-            />
-            <source
-              media="(min-width: 769px)"
-              src="/itf-hero-optimized.mp4"
-              type="video/mp4"
-            />
-            <source src="/itf-hero-optimized.mp4" type="video/mp4" />
-          </video>
+            className="md:hidden absolute inset-0 w-full h-full object-cover object-center"
+          />
+
+          {/* Desktop/Tablet Hero Video - ALWAYS itf-hero-optimized.mp4 */}
+          <video
+            ref={desktopHeroVideoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            src="/itf-hero-optimized.mp4"
+            onPlaying={() => setIsVideoPlaying(true)}
+            className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
+          />
         </div>
 
         {/* Top-Left: Logo & Tagline */}
