@@ -468,11 +468,11 @@ export default function BrandBanner() {
             />
           </button>
 
-          {/* Dropdown Menu Options */}
+          {/* Dropdown Menu Options with Scroller */}
           {dropdownOpen && (
             <div
               role="listbox"
-              className="absolute left-0 right-0 top-full mt-2 bg-white/95 backdrop-blur-xl rounded-2xl border border-[#2495D3]/30 shadow-xl overflow-hidden z-50 p-1.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+              className="absolute left-0 right-0 top-full mt-2 max-h-[175px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/95 backdrop-blur-xl rounded-2xl border border-[#2495D3]/30 shadow-xl z-50 p-1.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
             >
               {CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.id;
