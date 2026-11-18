@@ -1,67 +1,49 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function AboutUsHeroSection() {
-  const mobileVideoRef = useVideoFocus({
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
+
+  const videoRef = useVideoFocus({
     threshold: 0.05,
     rootMargin: "0px",
     pauseOnBlur: true,
   });
-  const desktopVideoRef = useVideoFocus({
-    threshold: 0.05,
-    rootMargin: "0px",
-    pauseOnBlur: true,
-  });
-  const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
 
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-start pt-8 sm:pt-10 lg:pt-12 pb-12 overflow-hidden bg-[#0A1629] text-white font-sans">
-      {/* Background Video with continuous loop and responsive preview */}
+      {/* Background Video with continuous loop and single-source mobile/desktop switching */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
-        <picture
-          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
-            isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+        <video
+          ref={videoRef}
+          key={isMobile === null ? "ssr" : isMobile ? "mobile" : "desktop"}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          className={`absolute inset-0 w-full h-full object-cover object-center ${
+            isMobile ? "scale-100" : "scale-100 sm:scale-105"
           }`}
+          src={isMobile === true ? "/demovideo_full_vertical.mp4" : isMobile === false ? "/demovideo.mp4" : undefined}
         >
-          <source media="(max-width: 768px)" srcSet="/about-mobile-preview.webp" />
-          <source media="(min-width: 769px)" srcSet="/about-desktop-preview.webp" />
-          <img src="/about-desktop-preview.webp" alt="" className="w-full h-full object-cover object-center" />
-        </picture>
-
-        {/* Mobile Phone Hero Video - ALWAYS /demovideo_full_vertical.mp4 */}
-        <video
-          ref={mobileVideoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          src="/demovideo_full_vertical.mp4"
-          onPlaying={() => setIsVideoPlaying(true)}
-          disablePictureInPicture
-          disableRemotePlayback
-          className="md:hidden absolute inset-0 w-full h-full object-cover object-center"
-        />
-
-        {/* Desktop/Tablet Hero Video - ALWAYS /demovideo.mp4 */}
-        <video
-          ref={desktopVideoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          src="/demovideo.mp4"
-          onPlaying={() => setIsVideoPlaying(true)}
-          disablePictureInPicture
-          disableRemotePlayback
-          className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
-        />
+          <source media="(max-width: 768px)" src="/demovideo_full_vertical.mp4" type="video/mp4" />
+          <source media="(min-width: 769px)" src="/demovideo.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex flex-col items-start">
