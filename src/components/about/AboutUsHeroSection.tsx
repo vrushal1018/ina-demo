@@ -6,7 +6,12 @@ import { ChevronRight } from "lucide-react";
 import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function AboutUsHeroSection() {
-  const videoRef = useVideoFocus({
+  const mobileVideoRef = useVideoFocus({
+    threshold: 0.05,
+    rootMargin: "0px",
+    pauseOnBlur: true,
+  });
+  const desktopVideoRef = useVideoFocus({
     threshold: 0.05,
     rootMargin: "0px",
     pauseOnBlur: true,
@@ -27,20 +32,36 @@ export default function AboutUsHeroSection() {
           <source media="(min-width: 769px)" srcSet="/about-desktop-preview.webp" />
           <img src="/about-desktop-preview.webp" alt="" className="w-full h-full object-cover object-center" />
         </picture>
+
+        {/* Mobile Phone Hero Video - ALWAYS /demovideo_full_vertical.mp4 */}
         <video
-          ref={videoRef}
+          ref={mobileVideoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
+          src="/demovideo_full_vertical.mp4"
           onPlaying={() => setIsVideoPlaying(true)}
           disablePictureInPicture
           disableRemotePlayback
-          className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
-        >
-          <source src="/demovideo.mp4" type="video/mp4" />
-        </video>
+          className="md:hidden absolute inset-0 w-full h-full object-cover object-center"
+        />
+
+        {/* Desktop/Tablet Hero Video - ALWAYS /demovideo.mp4 */}
+        <video
+          ref={desktopVideoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          src="/demovideo.mp4"
+          onPlaying={() => setIsVideoPlaying(true)}
+          disablePictureInPicture
+          disableRemotePlayback
+          className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
+        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex flex-col items-start">
