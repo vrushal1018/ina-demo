@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRequestAdminSession } from '@/lib/auth';
 import {
-  getAllJobs,
-  saveJobsToFile,
+  getAllJobsAsync,
+  addJobAsync,
+  updateJobAsync,
+  deleteJobAsync,
   JobDetails,
 } from '@/data/jobs';
 
@@ -12,7 +14,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const jobs = getAllJobs();
+  const jobs = await getAllJobsAsync();
   return NextResponse.json({
     success: true,
     jobs,
@@ -52,7 +54,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const currentJobs = getAllJobs();
+    const currentJobs = await getAllJobsAsync();
     const nextId = currentJobs.reduce((max, j) => (j.id > max ? j.id : max), 0) + 1;
 
     // Normalize tags
@@ -100,8 +102,7 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    const updatedJobs = [newJob, ...currentJobs];
-    const saved = saveJobsToFile(updatedJobs);
+    const saved = await addJobAsync(newJob);
 
     if (!saved) {
       return NextResponse.json(
@@ -138,14 +139,12 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Job ID is required' }, { status: 400 });
     }
 
-    const currentJobs = getAllJobs();
-    const jobIndex = currentJobs.findIndex((j) => j.id === Number(id));
+    const currentJobs = await getAllJobsAsync();
+    const existingJob = currentJobs.find((j) => j.id === Number(id));
 
-    if (jobIndex === -1) {
+    if (!existingJob) {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 });
     }
-
-    const existingJob = currentJobs[jobIndex];
 
     // Normalize tags if provided
     let normalizedTags = existingJob.tags;
@@ -177,8 +176,7 @@ export async function PUT(req: NextRequest) {
         : [];
     }
 
-    const updatedJob: JobDetails = {
-      ...existingJob,
+    const updates: Partial<JobDetails> = {
       title: body.title !== undefined ? String(body.title).trim() : existingJob.title,
       department: body.department !== undefined ? String(body.department).trim() : existingJob.department,
       location: body.location !== undefined ? String(body.location).trim() : existingJob.location,
@@ -191,10 +189,9 @@ export async function PUT(req: NextRequest) {
       isActive: body.isActive !== undefined ? Boolean(body.isActive) : existingJob.isActive,
     };
 
-    currentJobs[jobIndex] = updatedJob;
-    const saved = saveJobsToFile(currentJobs);
+    const updated = await updateJobAsync(Number(id), updates);
 
-    if (!saved) {
+    if (!updated) {
       return NextResponse.json(
         { error: 'Failed to update job in storage.' },
         { status: 500 }
@@ -204,7 +201,7 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({
       success: true,
       message: 'Job updated successfully',
-      job: updatedJob,
+      job: updated,
     });
   } catch (error) {
     console.error('Error updating job:', error);
@@ -237,19 +234,10 @@ export async function DELETE(req: NextRequest) {
     }
 
     const numId = Number(id);
-    const currentJobs = getAllJobs();
-    const filteredJobs = currentJobs.filter((j) => j.id !== numId);
+    const success = await deleteJobAsync(numId);
 
-    if (filteredJobs.length === currentJobs.length) {
-      return NextResponse.json({ error: 'Job not found' }, { status: 404 });
-    }
-
-    const saved = saveJobsToFile(filteredJobs);
-    if (!saved) {
-      return NextResponse.json(
-        { error: 'Failed to delete job from storage.' },
-        { status: 500 }
-      );
+    if (!success) {
+      return NextResponse.json({ error: 'Failed to delete job' }, { status: 500 });
     }
 
     return NextResponse.json({
@@ -265,4 +253,3 @@ export async function DELETE(req: NextRequest) {
     );
   }
 }
-
