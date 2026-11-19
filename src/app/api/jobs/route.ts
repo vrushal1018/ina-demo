@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import { getActiveJobs } from '@/data/jobs';
+import { getActiveJobsAsync } from '@/data/jobs';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export async function GET() {
   try {
-    const jobs = getActiveJobs();
+    const jobs = await getActiveJobsAsync();
     return NextResponse.json(
       {
         success: true,
@@ -26,4 +26,3 @@ export async function GET() {
     );
   }
 }
-
