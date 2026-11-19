@@ -55,15 +55,33 @@ export default function SiteHeader() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Prevent background scroll when fullscreen menu is open
+  // Prevent background scroll and page dragging when fullscreen menu is open
   useEffect(() => {
     if (isOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
     } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
     }
     return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
     };
   }, [isOpen]);
 
@@ -190,21 +208,23 @@ export default function SiteHeader() {
       ========================================================== */}
       <div
         id="site-menu"
-        className={`fixed inset-0 z-50 bg-[#0A1629] text-white flex flex-col justify-between overflow-y-auto no-scrollbar transition-all duration-600 ease-[cubic-bezier(0.7,0,0.2,1)] ${
+        className={`fixed inset-0 h-[100dvh] w-full max-w-full z-50 bg-[#0A1629] text-white flex flex-col justify-between overflow-x-hidden overflow-y-auto overscroll-contain touch-pan-y transition-all duration-600 ease-[cubic-bezier(0.7,0,0.2,1)] ${
           isOpen
             ? "opacity-100 pointer-events-auto [clip-path:inset(0_0_0_0)]"
             : "opacity-0 pointer-events-none [clip-path:inset(0_0_0_100%)]"
         }`}
         aria-hidden={!isOpen}
       >
-        {/* Background Architectural Grid & Linework Stream */}
-        <div className="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" />
-        <ArchitecturalLineworkBackground theme="dark" opacity={0.18} mask="fade-edges" />
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#2495D3]/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#1C3A62]/40 rounded-full blur-3xl pointer-events-none" />
+        {/* Background Architectural Grid & Linework Stream (Contained to prevent horizontal drag/scroll) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 blueprint-grid opacity-10" />
+          <ArchitecturalLineworkBackground theme="dark" opacity={0.18} mask="fade-edges" />
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#2495D3]/15 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#1C3A62]/40 rounded-full blur-3xl" />
+        </div>
 
         {/* Top Header inside Menu */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-18 sm:h-20 flex items-center justify-between border-b border-white/10 shrink-0">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between border-b border-white/10 shrink-0">
           <Link
             href="/"
             onClick={() => setIsOpen(false)}
@@ -216,13 +236,13 @@ export default function SiteHeader() {
               alt="INA TechFM"
               width={190}
               height={55}
-              className="h-10 sm:h-12 md:h-13 w-auto object-contain drop-shadow-md"
+              className="h-9 sm:h-12 md:h-13 w-auto object-contain drop-shadow-md"
             />
           </Link>
 
           <button
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-2.5 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 text-white hover:text-[#2495D3] transition-colors group active:scale-95"
+            className="flex items-center gap-2 sm:gap-2.5 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 text-white hover:text-[#2495D3] transition-colors group active:scale-95"
             aria-label="Close navigation menu"
           >
             <span className="tracking-[0.22em] font-medium select-none">Close</span>
@@ -231,8 +251,8 @@ export default function SiteHeader() {
         </div>
 
         {/* Main Content Area (2-Column Grid on Desktop matching inaspaceworks.com) */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center py-8 lg:py-12">
-          <nav className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center" aria-label="Main Navigation">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex-1 flex flex-col justify-start lg:justify-center py-6 sm:py-8 lg:py-12">
+          <nav className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center" aria-label="Main Navigation">
             {/* Left Column (Aside on Desktop) */}
             <aside className="hidden lg:flex lg:col-span-5 flex-col justify-between h-full max-h-[480px] pr-10 border-r border-white/10">
               <div>
@@ -280,19 +300,19 @@ export default function SiteHeader() {
 
             {/* Right Column (Large Typographic Navigation Links) */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              <ul className="list-none m-0 p-0 flex flex-col space-y-3 sm:space-y-4">
+              <ul className="list-none m-0 p-0 flex flex-col space-y-2.5 sm:space-y-3.5 lg:space-y-4">
                 {/* Home */}
                 <li>
                   <Link
                     href="/"
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-baseline gap-4 text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-3 ${
+                    className={`flex items-baseline gap-3 sm:gap-4 text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-2 sm:hover:translate-x-3 ${
                       isActive("/") && pathname === "/" ? "text-white font-normal" : "text-white/65"
                     }`}
                   >
                     <span>Home</span>
                     {isActive("/") && pathname === "/" && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
                     )}
                   </Link>
                 </li>
@@ -302,16 +322,16 @@ export default function SiteHeader() {
                   <div className="flex flex-col">
                     <button
                       onClick={() => setServicesExpanded(!servicesExpanded)}
-                      className={`flex items-baseline gap-3 text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-3 text-left cursor-pointer ${
+                      className={`flex items-baseline gap-2.5 sm:gap-3 text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-2 sm:hover:translate-x-3 text-left cursor-pointer ${
                         isServicesActive ? "text-white font-normal" : "text-white/65"
                       }`}
                     >
                       <span>What We Do</span>
-                      <small className="text-xs font-mono tracking-widest text-[#2495D3] font-semibold -translate-y-2 sm:-translate-y-3">
+                      <small className="text-[11px] sm:text-xs font-mono tracking-widest text-[#2495D3] font-semibold -translate-y-2 sm:-translate-y-3">
                         06
                       </small>
                       <ChevronDown
-                        className={`w-5 h-5 text-[#2495D3] transition-transform duration-300 ml-2 self-center ${
+                        className={`w-4 h-4 sm:w-5 sm:h-5 text-[#2495D3] transition-transform duration-300 ml-1.5 sm:ml-2 self-center ${
                           servicesExpanded ? "rotate-180" : ""
                         }`}
                       />
@@ -319,25 +339,25 @@ export default function SiteHeader() {
 
                     {/* Expanded Services Sub-menu */}
                     {servicesExpanded && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-4 pb-2 pl-4 border-l-2 border-[#2495D3]/40 mt-3 animate-fadeIn">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 pt-3 sm:pt-4 pb-2 pl-3 sm:pl-4 border-l-2 border-[#2495D3]/40 mt-2 sm:mt-3 animate-fadeIn">
                         {servicesList.map((service) => (
                           <Link
                             key={service.href}
                             href={service.href}
                             onClick={() => setIsOpen(false)}
-                            className={`group p-2.5 rounded-xl transition-all ${
+                            className={`group p-2 sm:p-2.5 rounded-xl transition-all ${
                               pathname === service.href
                                 ? "bg-white/10 text-white"
                                 : "text-slate-300 hover:text-white hover:bg-white/5"
                             }`}
                           >
-                            <div className="text-sm font-medium flex items-center gap-2">
+                            <div className="text-xs sm:text-sm font-medium flex items-center gap-2">
                               <span className="text-[#2495D3] group-hover:translate-x-0.5 transition-transform">
                                 →
                               </span>
                               <span>{service.name}</span>
                             </div>
-                            <div className="text-[11px] text-slate-400 mt-0.5 line-clamp-1">
+                            <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 line-clamp-1">
                               {service.desc}
                             </div>
                           </Link>
@@ -352,13 +372,13 @@ export default function SiteHeader() {
                   <Link
                     href="/about"
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-baseline gap-4 text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-3 ${
+                    className={`flex items-baseline gap-3 sm:gap-4 text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-2 sm:hover:translate-x-3 ${
                       isActive("/about") ? "text-white font-normal" : "text-white/65"
                     }`}
                   >
                     <span>About</span>
                     {isActive("/about") && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
                     )}
                   </Link>
                 </li>
@@ -368,13 +388,13 @@ export default function SiteHeader() {
                   <Link
                     href="/clients-corner"
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-baseline gap-4 text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-3 ${
+                    className={`flex items-baseline gap-3 sm:gap-4 text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-2 sm:hover:translate-x-3 ${
                       isActive("/clients-corner") ? "text-white font-normal" : "text-white/65"
                     }`}
                   >
                     <span>Clients Corner</span>
                     {isActive("/clients-corner") && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
                     )}
                   </Link>
                 </li>
@@ -384,13 +404,13 @@ export default function SiteHeader() {
                   <Link
                     href="/careers"
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-baseline gap-4 text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-3 ${
+                    className={`flex items-baseline gap-3 sm:gap-4 text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-2 sm:hover:translate-x-3 ${
                       isActive("/careers") ? "text-white font-normal" : "text-white/65"
                     }`}
                   >
                     <span>Careers</span>
                     {isActive("/careers") && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
                     )}
                   </Link>
                 </li>
@@ -400,13 +420,13 @@ export default function SiteHeader() {
                   <Link
                     href="/blogs"
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-baseline gap-4 text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-3 ${
+                    className={`flex items-baseline gap-3 sm:gap-4 text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-2 sm:hover:translate-x-3 ${
                       isActive("/blogs") ? "text-white font-normal" : "text-white/65"
                     }`}
                   >
                     <span>Blogs</span>
                     {isActive("/blogs") && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
                     )}
                   </Link>
                 </li>
@@ -416,21 +436,21 @@ export default function SiteHeader() {
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-baseline gap-4 text-3xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-3 ${
+                    className={`flex items-baseline gap-3 sm:gap-4 text-2xl sm:text-4xl lg:text-5xl font-light tracking-tight transition-all duration-300 hover:text-white hover:translate-x-2 sm:hover:translate-x-3 ${
                       isActive("/contact") ? "text-white font-normal" : "text-white/65"
                     }`}
                   >
                     <span>Contact</span>
                     {isActive("/contact") && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
                     )}
                   </Link>
                 </li>
               </ul>
 
               {/* Mobile Footer Contact Strip (visible only on mobile) */}
-              <div className="lg:hidden mt-8 pt-6 border-t border-white/10 flex flex-col gap-2">
-                <div className="text-xs text-[#2495D3] uppercase font-semibold tracking-wider">
+              <div className="lg:hidden mt-6 pt-5 border-t border-white/10 flex flex-col gap-2 pb-6">
+                <div className="text-[11px] text-[#2495D3] uppercase font-semibold tracking-wider">
                   Contact Us
                 </div>
                 <a
