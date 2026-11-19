@@ -41,7 +41,7 @@ export default function AuditAndOfferingsPage() {
         {/* =========================================================
             HERO SECTION
         ========================================================== */}
-        <section className="relative bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-8 lg:py-14 overflow-hidden">
+        <section className="relative min-h-[75vh] min-h-[75dvh] sm:min-h-[480px] lg:min-h-[520px] flex items-center bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 lg:py-14 overflow-hidden">
           {/* Blueprint grid accent */}
           <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
           {/* Architectural linework stream */}

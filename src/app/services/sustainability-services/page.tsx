@@ -48,7 +48,7 @@ export default function SustainabilityServicesPage() {
         {/* =========================================================
             HERO SECTION WITH BACKGROUND VIDEO
         ========================================================== */}
-        <section className="relative min-h-[500px] lg:min-h-[560px] flex items-center py-10 lg:py-16 overflow-hidden bg-[#0A1629]">
+        <section className="relative min-h-[80vh] min-h-[80dvh] sm:min-h-[520px] lg:min-h-[580px] flex items-center py-12 sm:py-12 lg:py-16 overflow-hidden bg-[#0A1629]">
           {/* Background Video with continuous loop and responsive preview */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
