@@ -71,9 +71,19 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
       }
     };
 
+    // Continuous loop safeguard: When the video reaches the end, reliably restart if loop is set
+    const handleEnded = () => {
+      if (video.loop) {
+        video.currentTime = 0;
+        safePlay();
+      }
+    };
+    video.addEventListener("ended", handleEnded);
+
     // Mobile fallback: When the mobile user touches or scrolls, attempt to play if visible
     const handleUserGesture = () => {
-      if (isVisibleInViewport && isWindowActive && video.paused) {
+      isWindowActive = true;
+      if (isVisibleInViewport && video.paused) {
         safePlay();
       }
     };
@@ -112,7 +122,9 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
     };
 
     const handleBlur = () => {
-      if (pauseOnBlur) {
+      // Only pause on blur if the document itself is hidden (e.g. user minimized/switched away)
+      // Mobile URL bar collapse/expand, touch gestures, and devtools device toolbar trigger false blurs
+      if (pauseOnBlur && typeof document !== "undefined" && document.hidden) {
         isWindowActive = false;
         updatePlayState();
       }
@@ -125,6 +137,7 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
     }
 
     return () => {
+      video.removeEventListener("ended", handleEnded);
       if (observer) observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("touchstart", handleUserGesture);
