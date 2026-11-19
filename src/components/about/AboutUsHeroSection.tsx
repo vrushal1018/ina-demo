@@ -1,21 +1,43 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function AboutUsHeroSection() {
   const mobileVideoRef = useVideoFocus({
-    threshold: 0.05,
-    rootMargin: "0px",
-    pauseOnBlur: true,
+    threshold: 0,
+    rootMargin: "200px",
+    pauseOnBlur: false,
   });
   const desktopVideoRef = useVideoFocus({
-    threshold: 0.05,
-    rootMargin: "0px",
-    pauseOnBlur: true,
+    threshold: 0,
+    rootMargin: "200px",
+    pauseOnBlur: false,
   });
+
+  useEffect(() => {
+    // Explicit autoplay compliance & initialization for mobile & desktop
+    const playVideo = (video: HTMLVideoElement | null) => {
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "true");
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise.catch(() => {
+          // Autoplay policy restrictions - fallback triggers on user touch/scroll
+        });
+      }
+    };
+
+    playVideo(mobileVideoRef.current);
+    playVideo(desktopVideoRef.current);
+  }, [mobileVideoRef, desktopVideoRef]);
 
   return (
     <section className="relative w-full min-h-screen min-h-[100dvh] flex flex-col justify-start pt-8 sm:pt-10 lg:pt-12 pb-12 overflow-hidden bg-[#0A1629] text-white font-sans">
@@ -28,10 +50,13 @@ export default function AboutUsHeroSection() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           src="/demovideo_full_vertical.mp4"
-          disablePictureInPicture
-          disableRemotePlayback
+          onEnded={(e) => {
+            const v = e.currentTarget;
+            v.currentTime = 0;
+            v.play().catch(() => {});
+          }}
           className="md:hidden absolute inset-0 w-full h-full object-cover object-center"
         />
 
@@ -42,10 +67,13 @@ export default function AboutUsHeroSection() {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           src="/demovideo.mp4"
-          disablePictureInPicture
-          disableRemotePlayback
+          onEnded={(e) => {
+            const v = e.currentTarget;
+            v.currentTime = 0;
+            v.play().catch(() => {});
+          }}
           className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
         />
       </div>

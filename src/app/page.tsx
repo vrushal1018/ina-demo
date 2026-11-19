@@ -15,8 +15,16 @@ import GarageDoorSteps from "@/components/home/GarageDoorSteps";
 import { useVideoFocus } from "@/hooks/useVideoFocus";
 
 export default function Home() {
-  const mobileHeroVideoRef = useVideoFocus();
-  const desktopHeroVideoRef = useVideoFocus();
+  const mobileHeroVideoRef = useVideoFocus({
+    threshold: 0,
+    rootMargin: "200px",
+    pauseOnBlur: false,
+  });
+  const desktopHeroVideoRef = useVideoFocus({
+    threshold: 0,
+    rootMargin: "200px",
+    pauseOnBlur: false,
+  });
   const [isVideoPlaying, setIsVideoPlaying] = React.useState(false);
 
   // Feature bullets for Tech fm
@@ -59,9 +67,14 @@ export default function Home() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             src="/inatechphoneview1.mp4"
             onPlaying={() => setIsVideoPlaying(true)}
+            onEnded={(e) => {
+              const v = e.currentTarget;
+              v.currentTime = 0;
+              v.play().catch(() => {});
+            }}
             className="md:hidden absolute inset-0 w-full h-full object-cover object-center"
           />
 
@@ -72,9 +85,14 @@ export default function Home() {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             src="/itf-hero-optimized.mp4"
             onPlaying={() => setIsVideoPlaying(true)}
+            onEnded={(e) => {
+              const v = e.currentTarget;
+              v.currentTime = 0;
+              v.play().catch(() => {});
+            }}
             className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
           />
         </div>
