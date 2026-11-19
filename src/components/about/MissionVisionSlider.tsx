@@ -4,9 +4,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, Compass, Eye, Target } from "lucide-react";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
-import missionImg from "../../../public/mission.png";
-import visionImg from "../../../public/vision.png";
-import goalsImg from "../../../public/goals.png";
+import missionImg from "../../../public/mission.webp";
+import visionImg from "../../../public/vision.webp";
+import goalsImg from "../../../public/goals.webp";
 
 interface Slide {
   id: number;

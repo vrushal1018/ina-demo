@@ -28,7 +28,7 @@ export default function AboutUsHeroSection() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           src="/demovideo_full_vertical.mp4"
           disablePictureInPicture
           disableRemotePlayback
@@ -42,7 +42,7 @@ export default function AboutUsHeroSection() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           src="/demovideo.mp4"
           disablePictureInPicture
           disableRemotePlayback

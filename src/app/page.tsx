@@ -59,7 +59,7 @@ export default function Home() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             src="/inatechphoneview1.mp4"
             onPlaying={() => setIsVideoPlaying(true)}
             className="md:hidden absolute inset-0 w-full h-full object-cover object-center"
@@ -72,7 +72,7 @@ export default function Home() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             src="/itf-hero-optimized.mp4"
             onPlaying={() => setIsVideoPlaying(true)}
             className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
