@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Users2, Award } from "lucide-react";
-import aboutUsImg from "../../../public/about us.png";
+import aboutUsImg from "../../../public/about us.webp";
 import ArchitecturalLineworkBackground from "@/components/ArchitecturalLineworkBackground";
 
 export default function CEOQuoteSection() {

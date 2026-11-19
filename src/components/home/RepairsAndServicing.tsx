@@ -91,7 +91,7 @@ export default function RepairsAndServicing() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           src="/technician_service_vertical.mp4"
           onPlaying={() => setIsVideoPlaying(true)}
           className="md:hidden absolute inset-0 w-full h-full object-cover object-center scale-100"
@@ -104,7 +104,7 @@ export default function RepairsAndServicing() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
           src="/technician-service-optimized.mp4"
           onPlaying={() => setIsVideoPlaying(true)}
           className="hidden md:block absolute inset-0 w-full h-full object-cover object-center scale-100"
