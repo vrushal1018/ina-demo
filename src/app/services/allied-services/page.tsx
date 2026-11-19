@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { ChevronRight, User, Sparkles, Building2, HeartHandshake } from 'lucide-react';
+import { User, Sparkles, Building2, HeartHandshake } from 'lucide-react';
 import SiteHeader from '@/components/SiteHeader';
 import AnimateIn from '@/components/AnimateIn';
 import ComprehensiveBuildingSolutions from '@/components/ComprehensiveBuildingSolutions';
@@ -71,15 +70,6 @@ export default function AlliedServicesPage() {
           </div>
 
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-            {/* Breadcrumbs */}
-            <div className="mb-8 inline-flex items-center gap-2 text-xs sm:text-sm text-slate-200 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-sm">
-              <Link href="/" className="hover:text-[#2495D3] transition-colors">Home</Link>
-              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-              <span>Services</span>
-              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-              <span className="font-semibold text-[#2495D3]">Allied Services</span>
-            </div>
-
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-12">
               {/* LEFT CONTENT */}
               <div className="relative z-30">

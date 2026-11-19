@@ -240,7 +240,7 @@ export default function CareersPage() {
   return (
     <>
       <SiteHeader />
-      <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 sm:py-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
         {/* Background Blueprint dots */}
         <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
         {/* Architectural linework stream */}
