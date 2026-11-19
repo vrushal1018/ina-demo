@@ -12,15 +12,33 @@
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand-blue: #2495D3;
-  --color-brand-navy: #1C3A62;
-  --color-brand-navy-dark: #0A1629;
-  --color-brand-blue-accent: #488FCD;
-  --color-brand-dark: #383838;
-  --color-brand-muted: #585858;
-  --color-brand-light-muted: #878787;
-  --color-brand-bg-light: #E2F1FA;
-  --color-brand-bg-tint: #D9EDF8;
+  --color-ina-blue: #1A95D1;
+  --color-ina-blue-deep: #0F6F9F;
+  --color-ina-navy: #0F3B57;
+  --color-ina-night: #082336;
+  --color-ina-ink: #2B4150;
+  --color-ina-grey: #5C6E7A;
+  --color-ina-mist: #92AAB9;
+  --color-ina-sky: #63BCE9;
+  --color-ina-tint-15: #DDEFF8;
+  --color-ina-tint-8: #EDF7FB;
+  --color-ina-tint-4: #F6FBFD;
+  --color-ina-line: #CDE8F5;
+
+  --color-brand-blue: #1A95D1;
+  --color-brand-navy: #0F3B57;
+  --color-brand-navy-dark: #082336;
+  --color-brand-blue-accent: #0F6F9F;
+  --color-brand-dark: #2B4150;
+  --color-brand-muted: #5C6E7A;
+  --color-brand-light-muted: #92AAB9;
+  --color-brand-bg-light: #EDF7FB;
+  --color-brand-bg-tint: #DDEFF8;
+}
+
+::selection {
+  background: var(--color-ina-blue);
+  color: #FFFFFF;
 }
 
 @layer base {
@@ -47,8 +65,8 @@
   }
 
   html {
-    background-color: #D9EDF8;
-    color: #383838;
+    background-color: #F6FBFD;
+    color: #2B4150;
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -69,8 +87,8 @@
 }
 
 body {
-  background-color: #D9EDF8;
-  color: #383838;
+  background-color: #F6FBFD;
+  color: #2B4150;
   font-family: var(--font-sans);
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
@@ -82,11 +100,11 @@ body {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(36, 149, 211, 0.15);
+  border: 1px solid rgba(26, 149, 209, 0.15);
 }
 
 .glass-panel-dark {
-  background: rgba(15, 34, 61, 0.85);
+  background: rgba(8, 35, 54, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -96,31 +114,31 @@ body {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(28, 58, 98, 0.08);
+  border: 1px solid rgba(15, 59, 87, 0.08);
   transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .glass-card:hover {
   background: #ffffff;
-  border-color: rgba(36, 149, 211, 0.35);
+  border-color: rgba(26, 149, 209, 0.35);
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px -12px rgba(28, 58, 98, 0.12);
+  box-shadow: 0 16px 36px -12px rgba(15, 59, 87, 0.12);
 }
 
 .blueprint-grid {
   background-image:
-    linear-gradient(to right, rgba(36, 149, 211, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(36, 149, 211, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(26, 149, 209, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 149, 209, 0.06) 1px, transparent 1px);
   background-size: 36px 36px;
 }
 
 .blueprint-dots {
-  background-image: radial-gradient(rgba(36, 149, 211, 0.2) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(26, 149, 209, 0.2) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .gradient-text-brand {
-  background: linear-gradient(135deg, #1C3A62 0%, #2495D3 100%);
+  background: linear-gradient(135deg, #0F3B57 0%, #1A95D1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -147,7 +165,7 @@ body {
 /* Explicit scroller for dropdowns and scrollable menus */
 .custom-dropdown-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #2495D3 rgba(36, 149, 211, 0.15);
+  scrollbar-color: #1A95D1 rgba(26, 149, 209, 0.15);
   -webkit-overflow-scrolling: touch;
 }
 .custom-dropdown-scrollbar::-webkit-scrollbar {
@@ -155,16 +173,16 @@ body {
   width: 5px !important;
 }
 .custom-dropdown-scrollbar::-webkit-scrollbar-track {
-  background: rgba(36, 149, 211, 0.08) !important;
+  background: rgba(26, 149, 209, 0.08) !important;
   border-radius: 9999px !important;
   margin: 6px 0 !important;
 }
 .custom-dropdown-scrollbar::-webkit-scrollbar-thumb {
-  background: #2495D3 !important;
+  background: #1A95D1 !important;
   border-radius: 9999px !important;
 }
 .custom-dropdown-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #1C3A62 !important;
+  background: #0F3B57 !important;
 }
 
 /* Architectural Linework Flow Animation */

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Hard Facility Management Services | INA TechFM India",
+  title: "Hard Facility Management Services | Ina TechFM India",
   description:
     "Leading hard facility management services across India. Expert electro-mechanical, HVAC, plumbing & sanitation, civil fabric, and fire life safety maintenance.",
   alternates: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Fire Life Safety Systems India",
   ],
   openGraph: {
-    title: "Hard Facility Management Services | INA TechFM India",
+    title: "Hard Facility Management Services | Ina TechFM India",
     description:
       "Comprehensive hard facility management services across India. Reliable upkeep of electro-mechanical, HVAC, civil, and fire systems.",
     url: "https://inatechfmglobal.com/services/hard-fm",
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Hard Facility Management Services - INA TechFM",
+        alt: "Hard Facility Management Services - Ina TechFM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hard Facility Management Services | INA TechFM India",
+    title: "Hard Facility Management Services | Ina TechFM India",
     description:
       "Specialized hard facility management services and engineering upkeep across India.",
     images: ["/og-image.png"],
@@ -47,7 +47,7 @@ const jsonLd = {
   serviceType: "Hard Facility Management",
   provider: {
     "@type": "Corporation",
-    name: "INA TechFM",
+    name: "Ina TechFM",
     url: "https://inatechfmglobal.com",
   },
   areaServed: {

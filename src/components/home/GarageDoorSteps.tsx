@@ -40,7 +40,7 @@ const STEPS: Step[] = [
 
 export default function FacilityManagementSteps() {
   return (
-    <section className="relative w-full py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] overflow-hidden font-sans border-t border-[#1C3A62]/20">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 overflow-hidden font-sans border-t border-ina-navy/20">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
@@ -51,15 +51,15 @@ export default function FacilityManagementSteps() {
 
           {/* Left Column: Sticky Editorial Header */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-24">
-            {/* <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+            {/* <div className="inline-block rounded-full bg-ina-blue/15 border border-ina-blue/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-ina-navy mb-3">
               Our Methodology
             </div> */}
 
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-ina-navy leading-[1.15] tracking-normal mb-4">
               Engineering Solutions Built Around Your Needs
             </h2>
 
-            <p className="text-[#585858] text-sm sm:text-base leading-relaxed font-normal mb-6">
+            <p className="text-ina-grey text-sm sm:text-base leading-relaxed font-normal mb-6">
               We work closely with our clients to understand their facilities,
               optimise engineering assets and deliver reliable, sustainable
               solutions that support long-term operational performance.
@@ -67,7 +67,7 @@ export default function FacilityManagementSteps() {
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#1C3A62] text-white font-semibold text-xs sm:text-sm rounded-full shadow-lg shadow-[#1C3A62]/20 hover:bg-[#2495D3] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-ina-navy text-white font-semibold text-xs sm:text-sm rounded-full shadow-lg shadow-ina-navy/20 hover:bg-ina-blue transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
             >
               <span>Talk to our experts</span>
               <ArrowRight className="w-4 h-4" />
@@ -82,20 +82,20 @@ export default function FacilityManagementSteps() {
                 return (
                   <div
                     key={step.number}
-                    className="group relative flex items-start gap-4 p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-[#2495D3]/25 hover:border-[#2495D3]/50 shadow-xs hover:shadow-xl hover:shadow-[#1C3A62]/6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+                    className="group relative flex items-start gap-4 p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-ina-blue/25 hover:border-ina-blue/50 shadow-xs hover:shadow-xl hover:shadow-ina-navy/6 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
                   >
                     {/* Step Number Badge with Gradient */}
-                    <div className="w-11 h-11 rounded-xl bg-[#1C3A62] group-hover:bg-[#2495D3] text-white flex items-center justify-center text-base font-normal shrink-0 shadow-md transition-colors duration-300 font-heading">
+                    <div className="w-11 h-11 rounded-xl bg-ina-navy group-hover:bg-ina-blue text-white flex items-center justify-center text-base font-normal shrink-0 shadow-md transition-colors duration-300 font-heading">
                       {step.number}
                     </div>
 
                     {/* Step Details */}
                     <div className="pt-0.5 flex-grow">
-                      <h3 className="text-base sm:text-lg font-normal text-[#1C3A62] group-hover:text-[#2495D3] mb-1.5 leading-snug transition-colors duration-300">
+                      <h3 className="text-base sm:text-lg font-normal text-ina-navy group-hover:text-ina-blue mb-1.5 leading-snug transition-colors duration-300">
                         {step.title}
                       </h3>
 
-                      <p className="text-[#585858] text-xs sm:text-sm leading-relaxed font-normal">
+                      <p className="text-ina-grey text-xs sm:text-sm leading-relaxed font-normal">
                         {step.description}
                       </p>
                     </div>

@@ -1,0 +1,53 @@
+[
+  {
+    "id": 1,
+    "title": "Key Account Manager",
+    "department": "Operations & Client Relations",
+    "location": "Mumbai, Maharashtra",
+    "type": "Full-Time",
+    "experience": "5–10 Years",
+    "tags": ["Account Management", "Operations", "Full-Time", "Engineering Services"],
+    "description": "As a Key Account Manager at Ina TechFM, you will manage client communication, site operations, service quality, and SLA/KPI performance. You will coordinate with Engineering, Operations, HR, and Procurement teams to resolve service issues and identify opportunities for additional engineering solutions.",
+    "responsibilities": [
+      "Manage client communication, site operations, service quality, and SLA/KPI performance.",
+      "Coordinate with Engineering, Operations, HR, and Procurement teams to resolve service issues.",
+      "Conduct site visits and client reviews, and prepare reports and action plans.",
+      "Monitor maintenance, manpower, billing, collections, and contract renewals.",
+      "Identify opportunities for additional engineering services."
+    ],
+    "qualifications": [
+      "Diploma or degree in Mechanical, Electrical, or a related field.",
+      "5–10 years of experience in technical facility management or engineering services.",
+      "Experience in key account management and knowledge of building systems.",
+      "Based in Goa or willing to relocate."
+    ],
+    "isActive": true,
+    "createdAt": "2026-11-19T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": "Technical Supervisor",
+    "department": "Operations & Technical FM",
+    "location": "Thane / Mumbai, Maharashtra",
+    "type": "Full-Time",
+    "experience": "3+ Years",
+    "tags": ["Operations", "On-site", "Full-Time", "Engineering"],
+    "description": "As a Technical Supervisor at Ina TechFM, you will oversee facility operations, lead on-site engineering teams, and ensure mechanical, electrical, and plumbing (MEP) infrastructure functions with maximum uptime, safety, and strict regulatory compliance.",
+    "responsibilities": [
+      "Lead daily operations and preventive maintenance of facility MEP systems, HVAC, and electrical switchgear.",
+      "Manage and guide site technicians, ensuring SLA adherence and rapid turnaround for breakdown calls.",
+      "Perform routine technical audits, risk assessments, and maintain compliance with statutory health and safety standards.",
+      "Prepare comprehensive incident reports, energy log sheets, and client escalation summaries.",
+      "Liaise with clients and vendors to ensure seamless maintenance execution and budget control."
+    ],
+    "qualifications": [
+      "Diploma or Bachelor's Degree in Electrical, Mechanical, or Civil Engineering.",
+      "3+ years of hands-on experience in technical facility management or building engineering operations.",
+      "Strong technical troubleshooting skills and solid understanding of building management systems (BMS).",
+      "Excellent leadership, problem-solving, and communication skills."
+    ],
+    "isActive": true,
+    "createdAt": "2026-11-19T00:00:00.000Z"
+  }
+]
+

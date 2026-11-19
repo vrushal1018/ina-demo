@@ -131,7 +131,7 @@ export default function OurTeam() {
   }, [currentIndex, isPaused, maxIndex]);
 
   return (
-    <section className="relative bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] text-[#383838] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-[#2495D3]/20">
+    <section className="relative bg-gradient-to-b from-ina-tint-8 to-ina-tint-15 text-ina-ink py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-12 flex flex-col justify-center overflow-hidden font-sans border-t border-ina-blue/20">
       {/* Background blueprint dots */}
       <div className="absolute inset-0 blueprint-dots opacity-25 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -140,14 +140,14 @@ export default function OurTeam() {
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Section Header */}
         <div className="text-center mb-6 sm:mb-8 space-y-2.5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold tracking-wide">
-            <Award className="w-3.5 h-3.5 text-[#2495D3]" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ina-navy/5 border border-ina-navy/15 text-ina-navy text-xs font-semibold tracking-wide">
+            <Award className="w-3.5 h-3.5 text-ina-blue" />
             <span>Operational Executives</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-normal text-[#1C3A62]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-normal text-ina-navy">
             Meet Our Leadership Team
           </h2>
-          <p className="text-[#585858] max-w-2xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
+          <p className="text-ina-grey max-w-2xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
             Our experienced professionals are dedicated to delivering excellence, innovation, and outstanding results for our clients.
           </p>
         </div>
@@ -173,12 +173,12 @@ export default function OurTeam() {
                 className="flex-shrink-0 px-2.5 sm:px-3"
               >
                 {/* Modern Architectural Card */}
-                <div className="group relative bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-md hover:shadow-2xl hover:border-[#2495D3] transition-all duration-300 flex flex-col justify-between h-[450px] overflow-hidden">
+                <div className="group relative bg-white rounded-2xl p-4 sm:p-5 border border-ina-line/90 shadow-md hover:shadow-2xl hover:border-ina-blue transition-all duration-300 flex flex-col justify-between h-[450px] overflow-hidden">
                   {/* Top Bar Accent */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-ina-blue to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   {/* Image Container with Custom Portrait Framing */}
-                  <div className="relative w-full h-[220px] rounded-xl overflow-hidden bg-slate-100 border border-slate-100 mb-3 flex-shrink-0">
+                  <div className="relative w-full h-[220px] rounded-xl overflow-hidden bg-ina-tint-8 border border-ina-tint-8 mb-3 flex-shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={encodeURI(member.image)}
@@ -187,7 +187,7 @@ export default function OurTeam() {
                       style={{ objectPosition: member.imagePosition || 'center top' }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#1C3A62]/90 backdrop-blur-sm text-[11px] font-semibold text-white tracking-wide shadow-xs">
+                    <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-ina-navy/90 backdrop-blur-sm text-[11px] font-semibold text-white tracking-wide shadow-xs">
                       {member.department}
                     </div>
                   </div>
@@ -195,24 +195,24 @@ export default function OurTeam() {
                   {/* Body Content */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-lg font-normal text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-1">
+                      <h3 className="text-lg font-normal text-ina-navy group-hover:text-ina-blue transition-colors line-clamp-1">
                         {member.name}
                       </h3>
-                      <p className="text-xs font-semibold text-[#2495D3] mt-0.5 mb-1.5 line-clamp-1">
+                      <p className="text-xs font-semibold text-ina-blue mt-0.5 mb-1.5 line-clamp-1">
                         {member.role}
                       </p>
-                      <p className="text-xs text-[#585858] leading-relaxed line-clamp-2">
+                      <p className="text-xs text-ina-grey leading-relaxed line-clamp-2">
                         {member.bio}
                       </p>
                     </div>
 
-                    <div className="pt-2.5 border-t border-slate-100 mt-2">
+                    <div className="pt-2.5 border-t border-ina-tint-8 mt-2">
                       {/* Skills Tags */}
                       <div className="flex flex-wrap gap-1 mb-2.5">
                         {member.skills.map((skill, i) => (
                           <span
                             key={i}
-                            className="bg-[#2495D3]/10 text-[#2495D3] text-[10px] font-semibold px-2 py-0.5 rounded-md"
+                            className="bg-ina-blue/10 text-ina-blue text-[10px] font-semibold px-2 py-0.5 rounded-md"
                           >
                             {skill}
                           </span>
@@ -224,7 +224,7 @@ export default function OurTeam() {
                         <div className="flex gap-1.5">
                           <a
                             href="#"
-                            className="w-7 h-7 rounded-lg bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#585858] flex items-center justify-center transition-colors"
+                            className="w-7 h-7 rounded-lg bg-ina-tint-8 hover:bg-ina-blue hover:text-white text-ina-grey flex items-center justify-center transition-colors"
                             aria-label="LinkedIn"
                           >
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -235,14 +235,14 @@ export default function OurTeam() {
                           </a>
                           <a
                             href="#"
-                            className="w-7 h-7 rounded-lg bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#585858] flex items-center justify-center transition-colors"
+                            className="w-7 h-7 rounded-lg bg-ina-tint-8 hover:bg-ina-blue hover:text-white text-ina-grey flex items-center justify-center transition-colors"
                             aria-label="Email"
                           >
                             <Mail className="w-3.5 h-3.5" />
                           </a>
                         </div>
 
-                        <span className="text-[11px] font-semibold text-[#1C3A62] group-hover:text-[#2495D3] inline-flex items-center gap-0.5 transition-colors">
+                        <span className="text-[11px] font-semibold text-ina-navy group-hover:text-ina-blue inline-flex items-center gap-0.5 transition-colors">
                           Profile <ArrowUpRight className="w-3 h-3" />
                         </span>
                       </div>
@@ -259,20 +259,20 @@ export default function OurTeam() {
           <button
             onClick={prevSlide}
             disabled={maxIndex === 0}
-            className="p-3 rounded-xl bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#1C3A62] transition-colors shadow-sm active:scale-95 border border-slate-200 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-3 rounded-xl bg-ina-tint-8 hover:bg-ina-blue hover:text-white text-ina-navy transition-colors shadow-sm active:scale-95 border border-ina-line disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          <span className="bg-[#1C3A62] text-white px-5 py-2 rounded-xl text-xs font-semibold tracking-wider shadow-sm">
+          <span className="bg-ina-navy text-white px-5 py-2 rounded-xl text-xs font-semibold tracking-wider shadow-sm">
             {safeCurrentIndex + 1} / {maxIndex + 1}
           </span>
 
           <button
             onClick={nextSlide}
             disabled={maxIndex === 0}
-            className="p-3 rounded-xl bg-slate-100 hover:bg-[#2495D3] hover:text-white text-[#1C3A62] transition-colors shadow-sm active:scale-95 border border-slate-200 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="p-3 rounded-xl bg-ina-tint-8 hover:bg-ina-blue hover:text-white text-ina-navy transition-colors shadow-sm active:scale-95 border border-ina-line disabled:opacity-40 disabled:cursor-not-allowed"
             aria-label="Next slide"
           >
             <ChevronRight className="w-5 h-5" />

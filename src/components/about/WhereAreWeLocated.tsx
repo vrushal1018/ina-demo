@@ -806,14 +806,14 @@ function ArcGisGlobe({
 
               {/* Hover Tooltip: reveals location name */}
               <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-50 whitespace-nowrap opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:-translate-y-1 scale-90 group-hover:scale-100">
-                <div className="flex items-center gap-1.5 rounded-lg border border-[#70C9FF]/80 bg-[#071322]/95 px-2.5 py-1 text-[11px] font-semibold text-white shadow-2xl backdrop-blur-md">
+                <div className="flex items-center gap-1.5 rounded-lg border border-ina-sky/80 bg-ina-night/95 px-2.5 py-1 text-[11px] font-semibold text-white shadow-2xl backdrop-blur-md">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#00F0FF] animate-pulse shrink-0" />
                   <span>{op.city}</span>
-                  <span className="text-[9.5px] text-[#70C9FF] font-normal">
+                  <span className="text-[9.5px] text-ina-sky font-normal">
                     ({op.state})
                   </span>
                 </div>
-                <div className="mx-auto h-0 w-0 border-x-4 border-t-4 border-x-transparent border-t-[#071322]" />
+                <div className="mx-auto h-0 w-0 border-x-4 border-t-4 border-x-transparent border-t-ina-night" />
               </div>
             </div>
           </div>
@@ -856,7 +856,7 @@ function ArcGisGlobe({
                   cx="0"
                   cy="0"
                   r="4"
-                  fill={isSel ? "#FFFFFF" : "#2495D3"}
+                  fill={isSel ? "#FFFFFF" : "#1A95D1"}
                   stroke="#FFFFFF"
                   strokeWidth="1.8"
                 />
@@ -865,7 +865,7 @@ function ArcGisGlobe({
                   cx="0"
                   cy="0"
                   r="1.8"
-                  fill={isSel ? "#1C3A62" : "#FFFFFF"}
+                  fill={isSel ? "#0F3B57" : "#FFFFFF"}
                 />
                 {/* Connecting leader line from pin to office badge */}
                 <line
@@ -895,12 +895,12 @@ function ArcGisGlobe({
                   transform: `translate(${l.chip[0]}px, ${l.chip[1]}px) translate(-50%, -50%)`,
                 }}
                 className={`pointer-events-auto absolute left-0 top-0 flex items-center gap-1.5 whitespace-nowrap rounded-lg border px-2.5 py-1 text-[10px] sm:text-[11px] font-semibold text-white shadow-xl backdrop-blur-md transition-all duration-200 hover:scale-105 cursor-pointer ${isSel
-                    ? "border-white bg-gradient-to-r from-[#2495D3] to-[#126B9C] shadow-[#2495D3]/50 ring-2 ring-white/50"
-                    : "border-[#70C9FF]/60 bg-[#071322]/90 hover:border-[#70C9FF] hover:bg-[#0C203A]"
+                    ? "border-white bg-gradient-to-r from-ina-blue to-ina-blue-deep shadow-ina-blue/50 ring-2 ring-white/50"
+                    : "border-ina-sky/60 bg-ina-night/90 hover:border-ina-sky hover:bg-ina-navy"
                   }`}
               >
                 <span
-                  className={`h-2 w-2 rounded-full ${isSel ? "bg-white shadow-[0_0_6px_#fff]" : "bg-[#2495D3] shadow-[0_0_6px_#2495D3]"
+                  className={`h-2 w-2 rounded-full ${isSel ? "bg-white shadow-[0_0_6px_#fff]" : "bg-ina-blue shadow-[0_0_6px_#1A95D1]"
                     }`}
                 />
                 <span className="tracking-wide">{l.city}</span>
@@ -993,7 +993,7 @@ export default function WhereAreWeLocated() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden border-t border-[#2495D3]/20 bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] px-4 py-10 font-sans sm:px-6 sm:py-14 lg:px-12 lg:py-16"
+      className="relative w-full overflow-hidden border-t border-ina-blue/20 bg-gradient-to-b from-ina-tint-8 to-ina-tint-15 px-4 py-10 font-sans sm:px-6 sm:py-14 lg:px-12 lg:py-16"
     >
       <div className="blueprint-dots pointer-events-none absolute inset-0 opacity-30" />
       <ArchitecturalLineworkBackground
@@ -1004,26 +1004,26 @@ export default function WhereAreWeLocated() {
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mx-auto mb-6 max-w-3xl space-y-2.5 text-center sm:mb-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#2495D3]/20 bg-[#2495D3]/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-[#2495D3]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-ina-blue/20 bg-ina-blue/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-ina-blue">
             <Globe2 className="h-3.5 w-3.5" />
             <span>Pan-India Presence</span>
           </div>
-          <h2 className="text-2xl font-normal text-[#1C3A62] sm:text-3xl lg:text-4xl">
+          <h2 className="text-2xl font-normal text-ina-navy sm:text-3xl lg:text-4xl">
             Where Are We Located?
           </h2>
-          <p className="text-sm text-[#585858] sm:text-base">
+          <p className="text-sm text-ina-grey sm:text-base">
             Explore Ina TechFM&apos;s network of 12 regional offices and 55 operational cities across India.
           </p>
-          <div className="mx-auto h-1 w-12 rounded-full bg-[#2495D3]" />
+          <div className="mx-auto h-1 w-12 rounded-full bg-ina-blue" />
         </div>
 
-        <div className="grid grid-cols-1 items-center gap-6 rounded-3xl border border-slate-200/80 bg-[#F8FAFC] p-4 shadow-lg sm:gap-8 sm:p-6 lg:grid-cols-12 lg:p-8">
+        <div className="grid grid-cols-1 items-center gap-6 rounded-3xl border border-ina-line/80 bg-[#F8FAFC] p-4 shadow-lg sm:gap-8 sm:p-6 lg:grid-cols-12 lg:p-8">
           {/* GLOBE — rotates in space; hover or tap zooms to India, revealing 55 blinking operating dots and 12 regional offices */}
           <div
             onPointerEnter={() => setFocus(true)}
             onPointerLeave={() => setFocus(false)}
             onTouchStart={() => setFocus(true)}
-            className="relative h-[380px] w-full overflow-hidden rounded-2xl bg-[#030B16] sm:h-[440px] lg:col-span-8 lg:h-[520px]"
+            className="relative h-[380px] w-full overflow-hidden rounded-2xl bg-ina-night sm:h-[440px] lg:col-span-8 lg:h-[520px]"
           >
             {hasEnteredProximity ? (
               <ArcGisGlobe
@@ -1033,20 +1033,20 @@ export default function WhereAreWeLocated() {
                 apiRef={apiRef}
               />
             ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-sm text-white/70 z-10 bg-[#030B16]">
-                <div className="h-8 w-8 rounded-full border-2 border-[#2495D3] border-t-transparent animate-spin" />
-                <span className="text-xs text-[#70C9FF]">Preparing Pan-India Interactive Globe…</span>
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-sm text-white/70 z-10 bg-ina-night">
+                <div className="h-8 w-8 rounded-full border-2 border-ina-blue border-t-transparent animate-spin" />
+                <span className="text-xs text-ina-sky">Preparing Pan-India Interactive Globe…</span>
               </div>
             )}
 
             {/* Top-Left Badge */}
-            <div className="pointer-events-none absolute left-4 top-4 z-30 flex items-center gap-2 rounded-lg border border-white/10 bg-[#102744]/80 px-3 py-2 text-xs text-white/80 backdrop-blur-md">
+            <div className="pointer-events-none absolute left-4 top-4 z-30 flex items-center gap-2 rounded-lg border border-white/10 bg-ina-navy/80 px-3 py-2 text-xs text-white/80 backdrop-blur-md">
               <span className="h-2 w-2 animate-pulse rounded-full bg-[#00E5FF]" />
               <span>INA TECHFM • PAN-INDIA NETWORK</span>
             </div>
 
             {/* Bottom-Left Dynamic Instruction Badge */}
-            <div className="pointer-events-none absolute bottom-4 left-4 z-30 flex items-center gap-2 rounded-lg border border-white/10 bg-[#102744]/80 px-3 py-2 text-[10px] text-white/80 backdrop-blur-md sm:text-xs">
+            <div className="pointer-events-none absolute bottom-4 left-4 z-30 flex items-center gap-2 rounded-lg border border-white/10 bg-ina-navy/80 px-3 py-2 text-[10px] text-white/80 backdrop-blur-md sm:text-xs">
               <MousePointer2 className="h-3.5 w-3.5 shrink-0 text-[#00E5FF]" />
               <span>
                 {focused
@@ -1056,8 +1056,8 @@ export default function WhereAreWeLocated() {
             </div>
 
             {/* Top-Right Counter Badge */}
-            <div className="pointer-events-none absolute right-4 top-4 z-30 rounded-lg border border-white/10 bg-[#102744]/80 px-3 py-2 text-xs text-white/80 backdrop-blur-md">
-              <span className="font-semibold text-[#2495D3]">
+            <div className="pointer-events-none absolute right-4 top-4 z-30 rounded-lg border border-white/10 bg-ina-navy/80 px-3 py-2 text-xs text-white/80 backdrop-blur-md">
+              <span className="font-semibold text-ina-blue">
                 {locations.length}
               </span>{" "}
               Offices •{" "}
@@ -1072,11 +1072,11 @@ export default function WhereAreWeLocated() {
           <div className="flex min-w-0 flex-col gap-3 lg:col-span-4">
             <div className="flex flex-col gap-2.5">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="flex items-center gap-2 text-base font-semibold text-[#1C3A62] sm:text-lg">
-                  <Building2 className="h-5 w-5 shrink-0 text-[#2495D3]" />
+                <h3 className="flex items-center gap-2 text-base font-semibold text-ina-navy sm:text-lg">
+                  <Building2 className="h-5 w-5 shrink-0 text-ina-blue" />
                   {directoryTab === "offices" ? "Regional Offices" : "Operations Network"}
                 </h3>
-                <span className="rounded-full bg-[#2495D3]/10 px-2.5 py-1 text-xs font-semibold text-[#2495D3]">
+                <span className="rounded-full bg-ina-blue/10 px-2.5 py-1 text-xs font-semibold text-ina-blue">
                   {directoryTab === "offices"
                     ? `${locations.length} Locations`
                     : `${operationalLocations.length} Cities`}
@@ -1084,32 +1084,32 @@ export default function WhereAreWeLocated() {
               </div>
 
               {/* Segmented Switcher */}
-              <div className="grid grid-cols-2 p-1 bg-slate-200/70 rounded-xl text-xs font-semibold">
+              <div className="grid grid-cols-2 p-1 bg-ina-line/70 rounded-xl text-xs font-semibold">
                 <button
                   type="button"
                   onClick={() => setDirectoryTab("offices")}
                   className={`py-2 px-3 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${directoryTab === "offices"
-                      ? "bg-[#1C3A62] text-white shadow-xs"
-                      : "text-slate-600 hover:text-[#1C3A62]"
+                      ? "bg-ina-navy text-white shadow-xs"
+                      : "text-ina-grey hover:text-ina-navy"
                     }`}
                 >
-                  <Building2 className="w-3.5 h-3.5 text-[#2495D3]" />
+                  <Building2 className="w-3.5 h-3.5 text-ina-blue" />
                   <span>Offices ({locations.length})</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setDirectoryTab("operations")}
                   className={`py-2 px-3 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${directoryTab === "operations"
-                      ? "bg-[#1C3A62] text-white shadow-xs"
-                      : "text-slate-600 hover:text-[#1C3A62]"
+                      ? "bg-ina-navy text-white shadow-xs"
+                      : "text-ina-grey hover:text-ina-navy"
                     }`}
                 >
-                  <Navigation className="w-3.5 h-3.5 text-[#2495D3]" />
+                  <Navigation className="w-3.5 h-3.5 text-ina-blue" />
                   <span>Operations ({operationalLocations.length})</span>
                 </button>
               </div>
 
-              <p className="text-xs text-[#585858] leading-relaxed">
+              <p className="text-xs text-ina-grey leading-relaxed">
                 {directoryTab === "offices"
                   ? "Select an office to open its verified address in Google Maps."
                   : "Explore our pan-India network of operational facility engineering locations."}
@@ -1129,37 +1129,37 @@ export default function WhereAreWeLocated() {
                         handleSelect(loc);
                         openGoogleMaps(loc);
                       }}
-                      className={`group flex w-full flex-col justify-between rounded-xl border p-3.5 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2495D3] sm:p-4 ${isActive
-                          ? "border-[#2495D3] bg-[#1C3A62] text-white shadow-md"
-                          : "border-gray-200 bg-white text-[#383838] hover:-translate-y-0.5 hover:border-[#2495D3]/50 hover:bg-slate-50"
+                      className={`group flex w-full flex-col justify-between rounded-xl border p-3.5 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ina-blue sm:p-4 ${isActive
+                          ? "border-ina-blue bg-ina-navy text-white shadow-md"
+                          : "border-gray-200 bg-white text-ina-ink hover:-translate-y-0.5 hover:border-ina-blue/50 hover:bg-slate-50"
                         }`}
                     >
                       <div className="flex w-full items-center justify-between gap-2">
                         <span
-                          className={`text-sm font-semibold sm:text-base ${isActive ? "text-white" : "text-[#1C3A62]"
+                          className={`text-sm font-semibold sm:text-base ${isActive ? "text-white" : "text-ina-navy"
                             }`}
                         >
                           {loc.city}
                         </span>
                         <span
                           className={`whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-medium sm:text-xs ${isActive
-                              ? "bg-[#2495D3] text-white"
-                              : "bg-gray-100 text-[#585858]"
+                              ? "bg-ina-blue text-white"
+                              : "bg-gray-100 text-ina-grey"
                             }`}
                         >
                           {loc.country}
                         </span>
                       </div>
                       <p
-                        className={`mt-2 text-xs leading-relaxed ${isActive ? "text-gray-300" : "text-[#585858]"
+                        className={`mt-2 text-xs leading-relaxed ${isActive ? "text-gray-300" : "text-ina-grey"
                           }`}
                       >
                         {loc.address}
                       </p>
                       <div
                         className={`mt-3 flex items-center gap-1.5 text-xs font-medium ${isActive
-                            ? "text-[#70C9FF]"
-                            : "text-[#2495D3] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                            ? "text-ina-sky"
+                            : "text-ina-blue opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
                           }`}
                       >
                         <MapPin className="h-3.5 w-3.5" />
@@ -1183,13 +1183,13 @@ export default function WhereAreWeLocated() {
                     value={opSearchQuery}
                     onChange={(e) => setOpSearchQuery(e.target.value)}
                     placeholder="Search 55 operational cities..."
-                    className="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-slate-200 bg-white shadow-2xs focus:outline-hidden focus:ring-2 focus:ring-[#2495D3]/40 focus:border-[#2495D3] transition-all"
+                    className="w-full pl-9 pr-8 py-2 text-xs rounded-xl border border-ina-line bg-white shadow-2xs focus:outline-hidden focus:ring-2 focus:ring-ina-blue/40 focus:border-ina-blue transition-all"
                   />
                   {opSearchQuery && (
                     <button
                       type="button"
                       onClick={() => setOpSearchQuery("")}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-ina-grey"
                     >
                       &times;
                     </button>
@@ -1198,7 +1198,7 @@ export default function WhereAreWeLocated() {
 
                 <div className="flex max-h-[390px] flex-col gap-2 overflow-y-auto pr-1">
                   {filteredOperations.length === 0 ? (
-                    <div className="py-8 text-center bg-white rounded-xl border border-dashed border-slate-200">
+                    <div className="py-8 text-center bg-white rounded-xl border border-dashed border-ina-line">
                       <p className="text-xs text-slate-500 font-medium">
                         No operational city found for &ldquo;{opSearchQuery}&rdquo;
                       </p>
@@ -1212,12 +1212,12 @@ export default function WhereAreWeLocated() {
                           setFocus(true);
                           openGoogleMapsCity(op.city, op.state);
                         }}
-                        className="group flex items-center justify-between p-3 rounded-xl border border-gray-200 bg-white hover:border-[#2495D3]/50 hover:bg-slate-50 transition-all text-left"
+                        className="group flex items-center justify-between p-3 rounded-xl border border-gray-200 bg-white hover:border-ina-blue/50 hover:bg-slate-50 transition-all text-left"
                       >
                         <div className="flex items-center gap-2.5">
                           <span className="h-2 w-2 rounded-full bg-[#00E5FF] animate-pulse shrink-0" />
                           <div className="flex flex-col">
-                            <span className="text-xs sm:text-sm font-semibold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors">
+                            <span className="text-xs sm:text-sm font-semibold text-ina-navy group-hover:text-ina-blue transition-colors">
                               {op.city}
                             </span>
                             <span className="text-[10px] text-slate-400">
@@ -1226,7 +1226,7 @@ export default function WhereAreWeLocated() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-1 text-[11px] font-medium text-[#2495D3] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center gap-1 text-[11px] font-medium text-ina-blue opacity-0 group-hover:opacity-100 transition-opacity">
                           <span>Maps</span>
                           <ExternalLink className="w-3 h-3" />
                         </div>
@@ -1237,8 +1237,8 @@ export default function WhereAreWeLocated() {
               </div>
             )}
 
-            <p className="mt-1 flex items-start gap-2 text-xs leading-relaxed text-[#585858]">
-              <Navigation className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#2495D3]" />
+            <p className="mt-1 flex items-start gap-2 text-xs leading-relaxed text-ina-grey">
+              <Navigation className="mt-0.5 h-3.5 w-3.5 shrink-0 text-ina-blue" />
               <span>
                 Our offices and operational hubs deliver comprehensive engineering and facility
                 management solutions across India.

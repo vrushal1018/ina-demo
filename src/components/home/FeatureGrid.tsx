@@ -57,23 +57,23 @@ export default function FeatureGrid() {
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background blueprint subtle accents */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.42} mask="fade-edges" />
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#2495D3]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1C3A62]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-ina-blue/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-ina-navy/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          {/* <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+          {/* <div className="inline-block rounded-full bg-ina-blue/15 border border-ina-blue/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-ina-navy mb-3">
             Why INA Tech FM
           </div> */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-[#1C3A62] mb-2 tracking-normal">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-ina-navy mb-2 tracking-normal">
             Why Ina TechFM?
           </h2>
-          {/* <p className="text-sm sm:text-base text-[#585858] font-medium max-w-xl mx-auto">
+          {/* <p className="text-sm sm:text-base text-ina-grey font-medium max-w-xl mx-auto">
             Goals to create sustainable future
           </p> */}
         </div>
@@ -84,32 +84,32 @@ export default function FeatureGrid() {
             return (
               <div
                 key={idx}
-                className="group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-[#2495D3]/25 hover:border-[#2495D3]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 hover:-translate-y-1.5 overflow-hidden"
+                className="group relative flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-transparent hover:bg-white/15 border border-ina-blue/25 hover:border-ina-blue/50 transition-all duration-300 hover:shadow-xl hover:shadow-ina-navy/6 hover:-translate-y-1.5 overflow-hidden"
               >
                 {/* Subtle top index number */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-transparent group-hover:bg-[#2495D3] border border-[#2495D3]/25 group-hover:border-[#2495D3] flex items-center justify-center text-[#1C3A62] group-hover:text-white shadow-xs transition-all duration-300">
+                  <div className="w-11 h-11 rounded-xl bg-transparent group-hover:bg-ina-blue border border-ina-blue/25 group-hover:border-ina-blue flex items-center justify-center text-ina-navy group-hover:text-white shadow-xs transition-all duration-300">
                     <Icon className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <span className="font-heading text-xs font-normal text-slate-400 group-hover:text-[#2495D3] transition-colors">
+                  <span className="font-heading text-xs font-normal text-slate-400 group-hover:text-ina-blue transition-colors">
                     {feature.num}
                   </span>
                 </div>
 
                 <div className="flex-grow">
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg font-medium text-[#585858] mb-2 group-hover:text-[#2495D3] transition-colors duration-300 leading-snug">
+                  <h3 className="text-base sm:text-lg font-medium text-ina-grey mb-2 group-hover:text-ina-blue transition-colors duration-300 leading-snug">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm text-[#585858] leading-relaxed font-normal">
+                  <p className="text-xs sm:text-sm text-ina-grey leading-relaxed font-normal">
                     {feature.description}
                   </p>
                 </div>
 
                 {/* Subtle bottom accent line */}
-                <div className="mt-4 w-8 h-0.5 bg-slate-200 group-hover:w-full group-hover:bg-[#2495D3] transition-all duration-500 rounded-full" />
+                <div className="mt-4 w-8 h-0.5 bg-ina-line group-hover:w-full group-hover:bg-ina-blue transition-all duration-500 rounded-full" />
               </div>
             );
           })}

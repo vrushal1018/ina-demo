@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Allied Facility Management Services | INA TechFM India",
+  title: "Allied Facility Management Services | Ina TechFM India",
   description:
     "Professional allied facility management services across India. Support operations, guest room maintenance, Ken Fixit rapid response teams, and workplace support services.",
   alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Guest Room PPM Services",
   ],
   openGraph: {
-    title: "Allied Facility Management Services | INA TechFM India",
+    title: "Allied Facility Management Services | Ina TechFM India",
     description:
       "Professional allied facility management services designed to complement and enhance day-to-day facility operations across India.",
     url: "https://inatechfmglobal.com/services/allied-services",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Allied Facility Management Services - INA TechFM",
+        alt: "Allied Facility Management Services - Ina TechFM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allied Facility Management Services | INA TechFM India",
+    title: "Allied Facility Management Services | Ina TechFM India",
     description:
       "Professional allied facility management services across India.",
     images: ["/og-image.png"],
@@ -46,7 +46,7 @@ const jsonLd = {
   serviceType: "Allied Facility Management",
   provider: {
     "@type": "Corporation",
-    name: "INA TechFM",
+    name: "Ina TechFM",
     url: "https://inatechfmglobal.com",
   },
   areaServed: {

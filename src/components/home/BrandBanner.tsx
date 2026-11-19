@@ -429,7 +429,7 @@ export default function BrandBanner() {
               : ALL_LOGOS;
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-8 sm:py-10 overflow-visible z-20">
+    <section className="relative w-full bg-gradient-to-b from-ina-tint-8 to-ina-tint-15 py-8 sm:py-10 overflow-visible z-20">
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
@@ -438,10 +438,10 @@ export default function BrandBanner() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Title with Lucide Icon in Sleek Pill */}
         {/* <div className="flex items-center justify-center mb-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-[#2495D3]/25 shadow-xs text-[#1C3A62] font-semibold text-xs sm:text-sm transition-all duration-300">
-            <activeCategoryData.icon className="w-4 h-4 text-[#2495D3]" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-ina-blue/25 shadow-xs text-ina-navy font-semibold text-xs sm:text-sm transition-all duration-300">
+            <activeCategoryData.icon className="w-4 h-4 text-ina-blue" />
             <span>{activeCategoryData.badgeText}</span>
-            <ArrowDownRight className="w-4 h-4 text-[#2495D3]" />
+            <ArrowDownRight className="w-4 h-4 text-ina-blue" />
           </div>
         </div> */}
 
@@ -452,19 +452,19 @@ export default function BrandBanner() {
             onClick={() => setDropdownOpen((prev) => !prev)}
             aria-expanded={dropdownOpen}
             aria-haspopup="listbox"
-            className="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-[#2495D3]/40 shadow-sm text-[#1C3A62] active:scale-[0.98] transition-all cursor-pointer"
+            className="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-full bg-white/95 backdrop-blur-md border border-ina-blue/40 shadow-sm text-ina-navy active:scale-[0.98] transition-all cursor-pointer"
           >
             <div className="flex items-center gap-2.5 min-w-0">
-              <span className="w-7 h-7 rounded-full bg-[#1C3A62] text-white flex items-center justify-center shrink-0">
-                <ActiveIcon className="w-3.5 h-3.5 text-[#2495D3]" />
+              <span className="w-7 h-7 rounded-full bg-ina-navy text-white flex items-center justify-center shrink-0">
+                <ActiveIcon className="w-3.5 h-3.5 text-ina-blue" />
               </span>
-              <span className="text-sm font-semibold text-[#1C3A62] truncate">
+              <span className="text-sm font-semibold text-ina-navy truncate">
                 {activeCategoryData.label}
               </span>
             </div>
 
             <ChevronDown
-              className={`w-4 h-4 text-[#2495D3] shrink-0 transition-transform duration-200 ${
+              className={`w-4 h-4 text-ina-blue shrink-0 transition-transform duration-200 ${
                 dropdownOpen ? 'rotate-180' : ''
               }`}
             />
@@ -475,7 +475,7 @@ export default function BrandBanner() {
             <div
               role="listbox"
               style={{ touchAction: 'pan-y' }}
-              className="absolute left-0 right-0 top-full mt-2 max-h-[260px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/98 backdrop-blur-2xl rounded-2xl border border-[#2495D3]/40 shadow-2xl z-50 p-2 pb-3.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+              className="absolute left-0 right-0 top-full mt-2 max-h-[260px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/98 backdrop-blur-2xl rounded-2xl border border-ina-blue/40 shadow-2xl z-50 p-2 pb-3.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
             >
               {CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.id;
@@ -492,21 +492,21 @@ export default function BrandBanner() {
                     }}
                     className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-[#1C3A62] text-white shadow-sm'
-                        : 'text-slate-700 hover:bg-[#D9EDF8]/50 hover:text-[#1C3A62]'
+                        ? 'bg-ina-navy text-white shadow-sm'
+                        : 'text-ina-ink hover:bg-ina-tint-15/50 hover:text-ina-navy'
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
                       <CatIcon
                         className={`w-4 h-4 shrink-0 ${
-                          isSelected ? 'text-[#2495D3]' : 'text-slate-400'
+                          isSelected ? 'text-ina-blue' : 'text-ina-grey'
                         }`}
                       />
                       <span>{cat.label}</span>
                     </div>
 
                     {isSelected && (
-                      <Check className="w-4 h-4 text-[#2495D3] shrink-0 stroke-[2.5]" />
+                      <Check className="w-4 h-4 text-ina-blue shrink-0 stroke-[2.5]" />
                     )}
                   </button>
                 );
@@ -526,11 +526,11 @@ export default function BrandBanner() {
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
                 className={`inline-flex items-center gap-2 px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${isActive
-                  ? 'bg-[#1C3A62] text-white shadow-md shadow-[#1C3A62]/20 scale-105 ring-2 ring-[#2495D3]/40'
-                  : 'bg-white/80 hover:bg-white text-slate-600 hover:text-[#1C3A62] border border-slate-200/80 hover:border-slate-300 shadow-xs'
+                  ? 'bg-ina-navy text-white shadow-md shadow-ina-navy/20 scale-105 ring-2 ring-ina-blue/40'
+                  : 'bg-white/80 hover:bg-white text-ina-grey hover:text-ina-navy border border-ina-line/80 hover:border-ina-line shadow-xs'
                   }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-[#2495D3]' : 'text-slate-400'}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-ina-blue' : 'text-ina-grey'}`} />
                 <span>{cat.label}</span>
               </button>
             );

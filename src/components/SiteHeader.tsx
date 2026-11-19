@@ -147,7 +147,7 @@ export default function SiteHeader() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
           isScrolled || !hasDarkHero
-            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/70 py-3 sm:py-3.5"
+            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-ina-line/70 py-3 sm:py-3.5"
             : "bg-transparent py-4 sm:py-5"
         }`}
       >
@@ -163,7 +163,7 @@ export default function SiteHeader() {
             <Link
               href="/"
               className="inline-block transition-transform hover:scale-105 active:scale-95"
-              title="INA TechFM - Integrated Facility Management Services in India"
+              title="Ina TechFM - Integrated Facility Management Services in India"
             >
               <img
                 src={
@@ -171,7 +171,7 @@ export default function SiteHeader() {
                     ? "/Ina Logo-1.jpg.png"
                     : "/Ina%20TechFM%20Logo%20white.png"
                 }
-                alt="INA TechFM"
+                alt="Ina TechFM"
                 width={190}
                 height={55}
                 className="h-10 sm:h-12 md:h-13 w-auto object-contain transition-all duration-300 drop-shadow-md"
@@ -184,8 +184,8 @@ export default function SiteHeader() {
             onClick={() => setIsOpen(true)}
             className={`flex items-center gap-2.5 sm:gap-3 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 transition-all duration-300 group active:scale-95 ${
               isScrolled || !hasDarkHero
-                ? "text-[#1C3A62] hover:text-[#2495D3]"
-                : "text-white hover:text-[#2495D3]"
+                ? "text-ina-navy hover:text-ina-blue"
+                : "text-white hover:text-ina-blue"
             }`}
             aria-expanded={isOpen}
             aria-controls="site-menu"
@@ -208,7 +208,7 @@ export default function SiteHeader() {
       ========================================================== */}
       <div
         id="site-menu"
-        className={`fixed inset-0 h-[100dvh] w-full max-w-full z-50 bg-[#0A1629] text-white flex flex-col justify-between overflow-x-hidden overflow-y-auto overscroll-contain touch-pan-y transition-all duration-600 ease-[cubic-bezier(0.7,0,0.2,1)] ${
+        className={`fixed inset-0 h-[100dvh] w-full max-w-full z-50 bg-ina-night text-white flex flex-col justify-between overflow-x-hidden overflow-y-auto overscroll-contain touch-pan-y transition-all duration-600 ease-[cubic-bezier(0.7,0,0.2,1)] ${
           isOpen
             ? "opacity-100 pointer-events-auto [clip-path:inset(0_0_0_0)]"
             : "opacity-0 pointer-events-none [clip-path:inset(0_0_0_100%)]"
@@ -219,8 +219,8 @@ export default function SiteHeader() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 blueprint-grid opacity-10" />
           <ArchitecturalLineworkBackground theme="dark" opacity={0.18} mask="fade-edges" />
-          <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#2495D3]/15 rounded-full blur-3xl" />
-          <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#1C3A62]/40 rounded-full blur-3xl" />
+          <div className="absolute -top-32 -right-32 w-96 h-96 bg-ina-blue/15 rounded-full blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-ina-navy/40 rounded-full blur-3xl" />
         </div>
 
         {/* Top Header inside Menu */}
@@ -229,11 +229,11 @@ export default function SiteHeader() {
             href="/"
             onClick={() => setIsOpen(false)}
             className="inline-block transition-transform hover:scale-105 active:scale-95"
-            title="INA TechFM"
+            title="Ina TechFM"
           >
             <img
               src="/Ina%20TechFM%20Logo%20white.png"
-              alt="INA TechFM"
+              alt="Ina TechFM"
               width={190}
               height={55}
               className="h-9 sm:h-12 md:h-13 w-auto object-contain drop-shadow-md"
@@ -242,11 +242,11 @@ export default function SiteHeader() {
 
           <button
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-2 sm:gap-2.5 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 text-white hover:text-[#2495D3] transition-colors group active:scale-95"
+            className="flex items-center gap-2 sm:gap-2.5 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 text-white hover:text-ina-sky transition-colors group active:scale-95"
             aria-label="Close navigation menu"
           >
             <span className="tracking-[0.22em] font-medium select-none">Close</span>
-            <X className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90 text-[#2495D3]" />
+            <X className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90 text-ina-sky" />
           </button>
         </div>
 
@@ -256,43 +256,43 @@ export default function SiteHeader() {
             {/* Left Column (Aside on Desktop) */}
             <aside className="hidden lg:flex lg:col-span-5 flex-col justify-between h-full max-h-[480px] pr-10 border-r border-white/10">
               <div>
-                <div className="text-xs font-semibold tracking-[0.25em] text-[#2495D3] uppercase mb-4">
+                <div className="text-xs font-semibold tracking-[0.25em] text-ina-sky uppercase mb-4">
                   Core Capabilities
                 </div>
-                <div className="space-y-2 text-2xl font-light tracking-wide text-slate-200">
+                <div className="space-y-2 text-2xl font-light tracking-wide text-ina-line">
                   <div>
-                    <span className="text-[#2495D3] font-medium">engineering</span> O&amp;M
+                    <span className="text-ina-sky font-medium">engineering</span> O&amp;M
                   </div>
                   <div>
-                    <span className="text-[#2495D3] font-medium">hard</span> FM
+                    <span className="text-ina-sky font-medium">hard</span> FM
                   </div>
                   <div>
-                    <span className="text-[#2495D3] font-medium">technical</span> services
+                    <span className="text-ina-sky font-medium">technical</span> services
                   </div>
                   <div>
-                    <span className="text-[#2495D3] font-medium">sustainability</span> FM
+                    <span className="text-ina-sky font-medium">sustainability</span> FM
                   </div>
                   <div>
-                    <span className="text-[#2495D3] font-medium">transition</span> ops
+                    <span className="text-ina-sky font-medium">transition</span> ops
                   </div>
                   <div>
-                    <span className="text-[#2495D3] font-medium">allied</span> support
+                    <span className="text-ina-sky font-medium">allied</span> support
                   </div>
                 </div>
               </div>
 
               <div className="pt-8 border-t border-white/10 space-y-2">
-                <div className="text-xs font-semibold tracking-wider text-[#2495D3] uppercase">
+                <div className="text-xs font-semibold tracking-wider text-ina-sky uppercase">
                   Direct Support
                 </div>
                 <a
                   href="tel:+919326906715"
-                  className="block text-white hover:text-[#2495D3] font-medium text-lg transition-colors"
+                  className="block text-white hover:text-ina-sky font-medium text-lg transition-colors"
                 >
                   +91 9326906715
                 </a>
-                <div className="text-xs text-slate-400">info@inatechfmglobal.com</div>
-                <div className="text-xs text-slate-400 pt-1">
+                <div className="text-xs text-ina-mist">info@inatechfmglobal.com</div>
+                <div className="text-xs text-ina-mist pt-1">
                   3,000+ Employees • Pan-India across 55+ Cities
                 </div>
               </div>
@@ -312,7 +312,7 @@ export default function SiteHeader() {
                   >
                     <span>Home</span>
                     {isActive("/") && pathname === "/" && (
-                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-ina-blue inline-block mb-1 shadow-sm shadow-ina-blue" />
                     )}
                   </Link>
                 </li>
@@ -327,11 +327,11 @@ export default function SiteHeader() {
                       }`}
                     >
                       <span>What We Do</span>
-                      <small className="text-[11px] sm:text-xs font-mono tracking-widest text-[#2495D3] font-semibold -translate-y-2 sm:-translate-y-3">
+                      <small className="text-[11px] sm:text-xs font-mono tracking-widest text-ina-blue font-semibold -translate-y-2 sm:-translate-y-3">
                         06
                       </small>
                       <ChevronDown
-                        className={`w-4 h-4 sm:w-5 sm:h-5 text-[#2495D3] transition-transform duration-300 ml-1.5 sm:ml-2 self-center ${
+                        className={`w-4 h-4 sm:w-5 sm:h-5 text-ina-blue transition-transform duration-300 ml-1.5 sm:ml-2 self-center ${
                           servicesExpanded ? "rotate-180" : ""
                         }`}
                       />
@@ -339,7 +339,7 @@ export default function SiteHeader() {
 
                     {/* Expanded Services Sub-menu */}
                     {servicesExpanded && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 pt-3 sm:pt-4 pb-2 pl-3 sm:pl-4 border-l-2 border-[#2495D3]/40 mt-2 sm:mt-3 animate-fadeIn">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 pt-3 sm:pt-4 pb-2 pl-3 sm:pl-4 border-l-2 border-ina-blue/40 mt-2 sm:mt-3 animate-fadeIn">
                         {servicesList.map((service) => (
                           <Link
                             key={service.href}
@@ -348,16 +348,16 @@ export default function SiteHeader() {
                             className={`group p-2 sm:p-2.5 rounded-xl transition-all ${
                               pathname === service.href
                                 ? "bg-white/10 text-white"
-                                : "text-slate-300 hover:text-white hover:bg-white/5"
+                                : "text-ina-mist hover:text-white hover:bg-white/5"
                             }`}
                           >
                             <div className="text-xs sm:text-sm font-medium flex items-center gap-2">
-                              <span className="text-[#2495D3] group-hover:translate-x-0.5 transition-transform">
+                              <span className="text-ina-sky group-hover:translate-x-0.5 transition-transform">
                                 →
                               </span>
                               <span>{service.name}</span>
                             </div>
-                            <div className="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 line-clamp-1">
+                            <div className="text-[10px] sm:text-[11px] text-ina-mist mt-0.5 line-clamp-1">
                               {service.desc}
                             </div>
                           </Link>
@@ -378,7 +378,7 @@ export default function SiteHeader() {
                   >
                     <span>About</span>
                     {isActive("/about") && (
-                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-ina-blue inline-block mb-1 shadow-sm shadow-ina-blue" />
                     )}
                   </Link>
                 </li>
@@ -394,7 +394,7 @@ export default function SiteHeader() {
                   >
                     <span>Clients Corner</span>
                     {isActive("/clients-corner") && (
-                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-ina-blue inline-block mb-1 shadow-sm shadow-ina-blue" />
                     )}
                   </Link>
                 </li>
@@ -410,7 +410,7 @@ export default function SiteHeader() {
                   >
                     <span>Careers</span>
                     {isActive("/careers") && (
-                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-ina-blue inline-block mb-1 shadow-sm shadow-ina-blue" />
                     )}
                   </Link>
                 </li>
@@ -426,7 +426,7 @@ export default function SiteHeader() {
                   >
                     <span>Blogs</span>
                     {isActive("/blogs") && (
-                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-ina-blue inline-block mb-1 shadow-sm shadow-ina-blue" />
                     )}
                   </Link>
                 </li>
@@ -442,7 +442,7 @@ export default function SiteHeader() {
                   >
                     <span>Contact</span>
                     {isActive("/contact") && (
-                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-[#2495D3] inline-block mb-1 shadow-sm shadow-[#2495D3]" />
+                      <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-ina-blue inline-block mb-1 shadow-sm shadow-ina-blue" />
                     )}
                   </Link>
                 </li>
@@ -450,16 +450,16 @@ export default function SiteHeader() {
 
               {/* Mobile Footer Contact Strip (visible only on mobile) */}
               <div className="lg:hidden mt-6 pt-5 border-t border-white/10 flex flex-col gap-2 pb-6">
-                <div className="text-[11px] text-[#2495D3] uppercase font-semibold tracking-wider">
+                <div className="text-[11px] text-ina-sky uppercase font-semibold tracking-wider">
                   Contact Us
                 </div>
                 <a
                   href="tel:+919326906715"
-                  className="text-white text-base font-medium hover:text-[#2495D3] transition-colors"
+                  className="text-white text-base font-medium hover:text-ina-sky transition-colors"
                 >
                   +91 9326906715
                 </a>
-                <div className="text-xs text-slate-400">
+                <div className="text-xs text-ina-mist">
                   info@inatechfmglobal.com • 55+ Cities in India
                 </div>
               </div>

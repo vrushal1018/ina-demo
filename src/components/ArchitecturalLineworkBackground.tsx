@@ -8,7 +8,7 @@ interface ArchitecturalLineworkBackgroundProps {
    * Theme mode:
    * - 'light': Refined architectural cyan & slate for white/light-grey whitespace sections
    * - 'dark': Luminous cyan/blue for dark navy sections
-   * - 'cyan': Pure corporate #2495D3 palette
+   * - 'cyan': Pure corporate #1A95D1 palette
    */
   theme?: 'dark' | 'light' | 'cyan';
   /** Base opacity multiplier for the background (0.05 to 1.0) */
@@ -105,12 +105,12 @@ export default function ArchitecturalLineworkBackground({
   // Subtle architectural colors tailored to blend harmoniously without overpowering content
   const getPathColor = (idx: number, originalColor: string) => {
     if (theme === 'cyan') {
-      return '#2495D3';
+      return '#1A95D1';
     }
     if (theme === 'light') {
       const palette = [
-        'rgba(36, 149, 211, 0.55)', // Brand Cyan #2495D3
-        'rgba(72, 143, 205, 0.45)', // Soft Sky Blue #488FCD
+        'rgba(26, 149, 209, 0.55)', // Brand Cyan #1A95D1
+        'rgba(72, 143, 205, 0.45)', // Soft Sky Blue #0F6F9F
         'rgba(56, 189, 248, 0.40)', // Luminous Cyan
         'rgba(30, 122, 178, 0.35)', // Blueprint Slate Blue
       ];

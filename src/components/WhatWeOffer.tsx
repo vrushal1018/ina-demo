@@ -66,18 +66,18 @@ export default function WhatWeOffer({
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-10 text-center sm:text-left">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#2495D3]/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3]">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-ina-blue/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-ina-blue">
             {badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-[#1C3A62]">
+          <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-ina-navy">
             {title}
           </h2>
-          <div className="w-16 h-1 bg-[#2495D3] mt-3 mb-6 rounded-full mx-auto sm:mx-0" />
+          <div className="w-16 h-1 bg-ina-blue mt-3 mb-6 rounded-full mx-auto sm:mx-0" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* LEFT PANEL: Large Active Service Detail */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#1C3A62] to-[#0A1629] rounded-2xl sm:rounded-[2rem] p-6 sm:p-10 text-white shadow-2xl flex flex-col min-h-[360px] sm:min-h-[480px] relative overflow-hidden group">
+          <div className="lg:col-span-5 bg-gradient-to-br from-ina-navy to-ina-night rounded-2xl sm:rounded-[2rem] p-6 sm:p-10 text-white shadow-2xl flex flex-col min-h-[360px] sm:min-h-[480px] relative overflow-hidden group">
             {/* Subtle background decoration */}
             <div className="absolute -bottom-12 -right-12 opacity-5 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-12 pointer-events-none">
               <CurrentIcon className="w-72 h-72" />
@@ -85,14 +85,14 @@ export default function WhatWeOffer({
 
             <div className="relative z-10 flex flex-col h-full">
               <div className="mb-6 sm:mb-8 p-3.5 sm:p-4 bg-white/10 rounded-2xl w-fit backdrop-blur-md border border-white/10 shadow-inner">
-                <CurrentIcon className="w-7 h-7 sm:w-8 sm:h-8 text-[#45B1E8]" />
+                <CurrentIcon className="w-7 h-7 sm:w-8 sm:h-8 text-ina-sky" />
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-semibold mb-4 sm:mb-6 leading-tight">
                 {currentService.title}
               </h3>
 
-              <div className="w-12 h-1 bg-[#45B1E8] mb-4 sm:mb-6 rounded-full" />
+              <div className="w-12 h-1 bg-ina-sky mb-4 sm:mb-6 rounded-full" />
 
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base flex-grow">
                 {currentService.description}
@@ -100,7 +100,7 @@ export default function WhatWeOffer({
 
               <Link
                 href="/contact"
-                className="mt-6 sm:mt-8 inline-flex items-center gap-2 text-[#45B1E8] font-medium hover:text-white transition-colors w-fit group/btn cursor-pointer text-sm"
+                className="mt-6 sm:mt-8 inline-flex items-center gap-2 text-ina-sky font-medium hover:text-white transition-colors w-fit group/btn cursor-pointer text-sm"
               >
                 <span>Discuss this service</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
@@ -124,19 +124,19 @@ export default function WhatWeOffer({
                   onClick={() => setActiveService(index)}
                   className={`cursor-pointer bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[2rem] p-5 sm:p-8 flex flex-col transition-all duration-300 shadow-[0_4px_20px_rgb(0,0,0,0.03)] ${
                     isActive
-                      ? "ring-2 ring-[#2495D3] shadow-lg shadow-[#2495D3]/10 scale-[1.02] -translate-y-1 bg-white"
-                      : "hover:shadow-xl hover:-translate-y-1 border border-white hover:border-[#2495D3]/30"
+                      ? "ring-2 ring-ina-blue shadow-lg shadow-ina-blue/10 scale-[1.02] -translate-y-1 bg-white"
+                      : "hover:shadow-xl hover:-translate-y-1 border border-white hover:border-ina-blue/30"
                   }`}
                 >
                   <div className="mb-4">
                     <span
                       className={`text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-3 block ${
-                        isActive ? "text-[#2495D3]" : "text-slate-400"
+                        isActive ? "text-ina-blue" : "text-slate-400"
                       }`}
                     >
                       Service 0{index + 1}
                     </span>
-                    <h4 className="text-xl font-semibold text-[#1C3A62] leading-tight pr-4">
+                    <h4 className="text-xl font-semibold text-ina-navy leading-tight pr-4">
                       {service.title}
                     </h4>
                   </div>
@@ -147,7 +147,7 @@ export default function WhatWeOffer({
 
                   <div
                     className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors mt-auto w-fit ${
-                      isActive ? "text-[#2495D3]" : "text-slate-400 group-hover:text-[#2495D3]"
+                      isActive ? "text-ina-blue" : "text-slate-400 group-hover:text-ina-blue"
                     }`}
                   >
                     <span>{isActive ? "Currently Viewing" : "View More"}</span>

@@ -20,8 +20,8 @@ const WhereAreWeLocated = dynamic(
     loading: () => (
       <div className="w-full min-h-[500px] flex items-center justify-center bg-slate-50">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-[#2495D3] border-t-transparent rounded-full animate-spin" />
-          <span className="text-sm text-[#1C3A62] font-semibold">Loading Pan-India Locations...</span>
+          <div className="w-10 h-10 border-4 border-ina-blue border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-ina-navy font-semibold">Loading Pan-India Locations...</span>
         </div>
       </div>
     ),
@@ -30,7 +30,7 @@ const WhereAreWeLocated = dynamic(
 
 export default function AboutPage() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA]">
+    <div className="relative min-h-screen bg-gradient-to-b from-ina-tint-15 to-ina-tint-8">
       <SiteHeader />
       <main>
         {/* Hero section loads immediately */}

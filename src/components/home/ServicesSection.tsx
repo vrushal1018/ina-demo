@@ -97,7 +97,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-ina-tint-8 to-ina-tint-15 py-10 sm:py-14 lg:py-16 font-sans overflow-hidden">
       {/* Background blueprint elements */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
@@ -107,17 +107,17 @@ export default function ServicesSection() {
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <div className="inline-block rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+            <div className="inline-block rounded-full bg-ina-blue/15 border border-ina-blue/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-ina-navy mb-3">
               Pan-India Facility Management
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.15] tracking-normal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-ina-navy leading-[1.15] tracking-normal">
               Integrated Facility Management Services in India
             </h2>
           </div>
 
           <div className="max-w-md">
-            <p className="text-[#585858] text-xs sm:text-sm leading-relaxed font-normal">
-              As a trusted facility management company in India, INA TechFM delivers world-class facility management services—integrating technical operations, MEP maintenance, energy optimization, and workplace engineering across 55+ cities.
+            <p className="text-ina-grey text-xs sm:text-sm leading-relaxed font-normal">
+              As a trusted facility management company in India, Ina TechFM delivers world-class facility management services—integrating technical operations, MEP maintenance, energy optimization, and workplace engineering across 55+ cities.
             </p>
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function ServicesSection() {
                 key={service.id}
                 className="w-full flex-shrink-0"
               >
-                <div className="relative bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-[#2495D3]/30 shadow-lg shadow-[#1C3A62]/6 flex flex-col justify-between min-h-[320px] overflow-hidden">
+                <div className="relative bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-ina-blue/30 shadow-lg shadow-ina-navy/6 flex flex-col justify-between min-h-[320px] overflow-hidden">
                   {/* Subtle architectural card watermark */}
                   <div className="absolute -right-4 -bottom-4 w-32 h-32 opacity-[0.05] pointer-events-none">
                     <img
@@ -157,7 +157,7 @@ export default function ServicesSection() {
 
                   <div>
                     {/* Icon Container */}
-                    <div className="w-13 h-13 rounded-xl bg-white border border-[#2495D3]/30 p-2.5 flex items-center justify-center mb-4.5 shadow-sm">
+                    <div className="w-13 h-13 rounded-xl bg-white border border-ina-blue/30 p-2.5 flex items-center justify-center mb-4.5 shadow-sm">
                       <img
                         src={encodeURI(service.icon)}
                         alt={service.title}
@@ -167,12 +167,12 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-medium text-[#1C3A62] mb-2.5 leading-snug">
+                    <h3 className="text-xl font-medium text-ina-navy mb-2.5 leading-snug">
                       {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-[#585858] text-sm leading-relaxed font-normal mb-6">
+                    <p className="text-ina-grey text-sm leading-relaxed font-normal mb-6">
                       {service.description}
                     </p>
                   </div>
@@ -180,10 +180,10 @@ export default function ServicesSection() {
                   {/* Read More Action Button */}
                   <Link
                     href={service.href}
-                    className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-200/90 text-[#1C3A62] font-semibold text-sm active:text-[#2495D3] transition-colors mt-auto"
+                    className="inline-flex items-center justify-between w-full pt-4 border-t border-ina-line/90 text-ina-navy font-semibold text-sm active:text-ina-blue transition-colors mt-auto"
                   >
                     <span>Read More</span>
-                    <span className="w-8 h-8 rounded-full bg-[#2495D3] text-white flex items-center justify-center shadow-sm shadow-[#2495D3]/30">
+                    <span className="w-8 h-8 rounded-full bg-ina-blue-deep text-white flex items-center justify-center shadow-sm shadow-ina-blue-deep/30">
                       <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                     </span>
                   </Link>
@@ -199,7 +199,7 @@ export default function ServicesSection() {
           <button
             onClick={prevMobileCard}
             aria-label="Previous Service"
-            className="w-11 h-11 rounded-full bg-white hover:bg-[#2495D3] hover:text-white text-[#1C3A62] border border-[#2495D3]/30 shadow-md shadow-[#1C3A62]/6 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+            className="w-11 h-11 rounded-full bg-white hover:bg-ina-blue hover:text-white text-ina-navy border border-ina-blue/30 shadow-md shadow-ina-navy/6 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5 stroke-[2.25]" />
           </button>
@@ -213,8 +213,8 @@ export default function ServicesSection() {
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   mobileIndex === idx
-                    ? "w-6 bg-[#2495D3]"
-                    : "w-2 bg-[#1C3A62]/20 hover:bg-[#1C3A62]/40"
+                    ? "w-6 bg-ina-blue"
+                    : "w-2 bg-ina-navy/20 hover:bg-ina-navy/40"
                 }`}
               />
             ))}
@@ -224,7 +224,7 @@ export default function ServicesSection() {
           <button
             onClick={nextMobileCard}
             aria-label="Next Service"
-            className="w-11 h-11 rounded-full bg-[#2495D3] hover:bg-[#1C3A62] text-white shadow-md shadow-[#2495D3]/30 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
+            className="w-11 h-11 rounded-full bg-ina-blue-deep hover:bg-ina-navy text-white shadow-md shadow-ina-blue-deep/30 flex items-center justify-center transition-all duration-200 active:scale-95 cursor-pointer"
           >
             <ChevronRight className="w-5 h-5 stroke-[2.25]" />
           </button>
@@ -254,7 +254,7 @@ export default function ServicesSection() {
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               >
-                <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-5 sm:p-7 transition-all duration-300 border border-[#2495D3]/25 hover:border-[#2495D3]/50 hover:shadow-2xl hover:shadow-[#1C3A62]/8 flex flex-col justify-between h-full min-h-[290px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
+                <div className="group relative bg-transparent hover:bg-white/15 rounded-2xl p-5 sm:p-7 transition-all duration-300 border border-ina-blue/25 hover:border-ina-blue/50 hover:shadow-2xl hover:shadow-ina-navy/8 flex flex-col justify-between h-full min-h-[290px] sm:min-h-[320px] hover:-translate-y-1.5 overflow-hidden">
 
                   {/* Subtle architectural card watermark */}
                   <div className="absolute -right-6 -bottom-6 w-32 h-32 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity pointer-events-none">
@@ -263,7 +263,7 @@ export default function ServicesSection() {
 
                   <div>
                     {/* Icon Container with glowing aura on hover */}
-                    <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-xl bg-transparent group-hover:bg-[#2495D3] border border-[#2495D3]/25 group-hover:border-[#2495D3] p-2.5 flex items-center justify-center mb-4 sm:mb-5 transition-all duration-300 shadow-xs">
+                    <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-xl bg-transparent group-hover:bg-ina-blue border border-ina-blue/25 group-hover:border-ina-blue p-2.5 flex items-center justify-center mb-4 sm:mb-5 transition-all duration-300 shadow-xs">
                       <img
                         src={encodeURI(service.icon)}
                         alt={service.title}
@@ -273,12 +273,12 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg sm:text-2xl font-normal text-[#1C3A62] mb-2 sm:mb-3 leading-snug group-hover:text-[#2495D3] transition-colors duration-300">
+                    <h3 className="text-lg sm:text-2xl font-normal text-ina-navy mb-2 sm:mb-3 leading-snug group-hover:text-ina-blue transition-colors duration-300">
                       {service.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-[#585858] text-xs sm:text-sm leading-relaxed font-normal mb-6 sm:mb-8 line-clamp-3 sm:line-clamp-none">
+                    <p className="text-ina-grey text-xs sm:text-sm leading-relaxed font-normal mb-6 sm:mb-8 line-clamp-3 sm:line-clamp-none">
                       {service.description}
                     </p>
                   </div>
@@ -286,10 +286,10 @@ export default function ServicesSection() {
                   {/* Read More Action Button */}
                   <Link
                     href={service.href}
-                    className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-200/80 text-[#1C3A62] font-semibold text-xs sm:text-sm group-hover:text-[#2495D3] transition-colors duration-200 mt-auto"
+                    className="inline-flex items-center justify-between w-full pt-4 border-t border-ina-line/80 text-ina-navy font-semibold text-xs sm:text-sm group-hover:text-ina-blue transition-colors duration-200 mt-auto"
                   >
                     <span>Read More</span>
-                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 group-hover:bg-[#2495D3] text-[#1C3A62] group-hover:text-white flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1">
+                    <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-ina-tint-8 group-hover:bg-ina-blue-deep text-ina-navy group-hover:text-white flex items-center justify-center transition-all duration-300 transform group-hover:translate-x-1">
                       <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
                     </span>
                   </Link>
