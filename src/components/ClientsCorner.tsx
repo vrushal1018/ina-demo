@@ -412,7 +412,14 @@ export default function ClientsCorner() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search clients..."
-              className="w-full h-11 pl-8 pr-7 text-xs rounded-full border border-slate-200/90 bg-white/95 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-[#2495D3]/40 focus:border-[#2495D3] transition-all text-[#1C3A62] placeholder:text-slate-400"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              onFocus={(e) => {
+                e.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest" });
+              }}
+              className="w-full h-11 pl-8 pr-7 text-[16px] sm:text-xs rounded-full border border-slate-200/90 bg-white/95 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-[#2495D3]/40 focus:border-[#2495D3] transition-[border-color,box-shadow] text-[#1C3A62] placeholder:text-slate-400"
             />
             {searchQuery && (
               <button
@@ -624,7 +631,11 @@ export default function ClientsCorner() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={`Search ${activeCategory.name.toLowerCase()} clients...`}
-                className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-full border border-slate-200 bg-white shadow-2xs focus:outline-hidden focus:ring-2 focus:ring-[#2495D3]/40 focus:border-[#2495D3] transition-all"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-full border border-slate-200 bg-white shadow-2xs focus:outline-hidden focus:ring-2 focus:ring-[#2495D3]/40 focus:border-[#2495D3] transition-[border-color,box-shadow]"
               />
               {searchQuery && (
                 <button
