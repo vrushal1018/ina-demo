@@ -45,6 +45,26 @@ export default function Home() {
       <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A1629]">
         {/* Background Video with continuous loop and instant responsive preview poster */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          {/* LCP Resource hints - Preload the high-priority hero poster */}
+          <link
+            rel="preload"
+            as="image"
+            href="/hero-mobile-preview.webp"
+            type="image/webp"
+            media="(max-width: 768px)"
+            // @ts-expect-error React 19 resource hint attribute
+            fetchpriority="high"
+          />
+          <link
+            rel="preload"
+            as="image"
+            href="/hero-desktop-preview.webp"
+            type="image/webp"
+            media="(min-width: 769px)"
+            // @ts-expect-error React 19 resource hint attribute
+            fetchpriority="high"
+          />
+
           {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
           <picture
             className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
@@ -56,6 +76,11 @@ export default function Home() {
             <img
               src="/hero-desktop-preview.webp"
               alt="INA TechFM"
+              width={1920}
+              height={1080}
+              // @ts-expect-error React 19 image priority attribute
+              fetchpriority="high"
+              decoding="async"
               className="w-full h-full object-cover object-center"
             />
           </picture>
@@ -105,6 +130,9 @@ export default function Home() {
               <img
                 src="/Ina%20TechFM%20Logo%20white.png"
                 alt="INA TechFM - Integrated Facility Management Services in India"
+                width={313}
+                height={179}
+                decoding="async"
                 className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-xl"
               />
             </Link>
@@ -167,32 +195,32 @@ export default function Home() {
       </section>
 
       {/* Feature Grid Below Hero - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="380px" id="feature-grid">
+      <AnimateIn delay={0.1} minHeight="380px" id="feature-grid" lazy={true}>
         <FeatureGrid />
       </AnimateIn>
 
       {/* Services Section - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="520px" id="services">
+      <AnimateIn delay={0.1} minHeight="520px" id="services" lazy={true}>
         <ServicesSection />
       </AnimateIn>
 
       {/* Sectors We Operate Grid - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="480px" id="sectors">
+      <AnimateIn delay={0.1} minHeight="480px" id="sectors" lazy={true}>
         <GarageDoorTypes />
       </AnimateIn>
 
       {/* Brand Banner Section - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="140px" id="brands">
+      <AnimateIn delay={0.1} minHeight="140px" id="brands" lazy={true}>
         <BrandBanner />
       </AnimateIn>
 
       {/* Repairs & Servicing Section - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="500px" id="repairs">
+      <AnimateIn delay={0.1} minHeight="500px" id="repairs" lazy={true}>
         <RepairsAndServicing />
       </AnimateIn>
 
       {/* Steps / How it works Section - Loads on scroll */}
-      <AnimateIn delay={0.1} minHeight="450px" id="how-it-works">
+      <AnimateIn delay={0.1} minHeight="450px" id="how-it-works" lazy={true}>
         <GarageDoorSteps />
       </AnimateIn>
     </div>
