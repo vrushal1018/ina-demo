@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   ChevronDown,
   ChevronUp,
-  ChevronRight,
   ArrowRight,
   Building2,
   ShieldCheck,
@@ -127,7 +126,7 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
 
       <main className="min-h-screen bg-white font-sans selection:bg-[#2495d3] selection:text-white">
         {/* =========================================================
-            HERO & BREADCRUMB HEADER
+            HERO HEADER
         ========================================================== */}
         <section className="relative bg-gradient-to-b from-[#D9EDF8] via-[#E2F1FA] to-white pt-8 pb-16 lg:pt-12 lg:pb-20 overflow-hidden border-b border-slate-200/60">
           {/* Blueprint dots & Architectural linework */}
@@ -137,19 +136,6 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1C3A62]/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
-            {/* Breadcrumb pill */}
-            <div className="mb-6 inline-flex items-center gap-2 text-xs sm:text-sm text-[#585858] bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200/80 shadow-sm">
-              <Link href="/" className="hover:text-[#2495D3] transition-colors">
-                Home
-              </Link>
-              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-              <Link href="/#sectors" className="hover:text-[#2495D3] transition-colors">
-                Sectors
-              </Link>
-              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
-              <span className="font-semibold text-[#2495D3]">{sector.title}</span>
-            </div>
-
             {/* Header Content */}
             <div className="max-w-4xl text-left">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/10 border border-[#1C3A62]/20 text-[#1C3A62] text-xs font-semibold tracking-wide mb-4">

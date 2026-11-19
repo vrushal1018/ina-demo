@@ -105,7 +105,7 @@ export default function ContactPage() {
         {/* Architectural linework stream */}
         <ArchitecturalLineworkBackground theme="light" opacity={0.25} mask="fade-edges" />
 
-        <section className="relative z-10 py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8">
+        <section className="relative z-10 pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-14 lg:pb-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Contact Information */}
             <div className="lg:col-span-5">

@@ -52,8 +52,7 @@ export default function Home() {
             href="/hero-mobile-preview.webp"
             type="image/webp"
             media="(max-width: 768px)"
-            // @ts-expect-error React 19 resource hint attribute
-            fetchpriority="high"
+            fetchPriority="high"
           />
           <link
             rel="preload"
@@ -61,8 +60,7 @@ export default function Home() {
             href="/hero-desktop-preview.webp"
             type="image/webp"
             media="(min-width: 769px)"
-            // @ts-expect-error React 19 resource hint attribute
-            fetchpriority="high"
+            fetchPriority="high"
           />
 
           {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
@@ -78,8 +76,7 @@ export default function Home() {
               alt="INA TechFM"
               width={1920}
               height={1080}
-              // @ts-expect-error React 19 image priority attribute
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="async"
               className="w-full h-full object-cover object-center"
             />
@@ -122,9 +119,9 @@ export default function Home() {
           />
         </div>
 
-        {/* Top-Left: Logo & Tagline */}
+        {/* Top-Left: Logo */}
         <div className="relative z-10 w-full px-5 sm:px-8 lg:px-12 pt-6 sm:pt-8 lg:pt-10 flex items-start">
-          {/* Brand Logo & Lockup in Hero at Left */}
+          {/* Brand Logo in Hero at Left */}
           <div className="flex flex-col items-start">
             <Link href="/" className="inline-block transition-transform hover:scale-105 active:scale-95" title="INA TechFM - Integrated Facility Management Services in India">
               <img
@@ -140,11 +137,6 @@ export default function Home() {
             <h1 className="sr-only">
               Integrated Facility Management Services in India • Facility Management Company in India
             </h1>
-            {/* Main Tagline under logo */}
-            <div className="mt-2 sm:mt-2.5 pl-3.5 sm:pl-4 md:pl-5 lg:pl-6 text-[11px] sm:text-xs md:text-[13px] lg:text-[14px] font-normal tracking-normal leading-tight drop-shadow-md">
-              <span className="block text-white">Empowering People</span>
-              <span className="block text-[#2495D3] mt-0.5">Enriching Assets</span>
-            </div>
           </div>
         </div>
 
@@ -163,32 +155,45 @@ export default function Home() {
           ))}
         </div> */}
 
-        {/* Bottom Verified Metrics Strip */}
+        {/* Bottom Verified Metrics & Tagline Band */}
         <div className="relative z-10 max-w-7xl w-full mx-auto px-5 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-6 mt-auto">
-          <div className="w-full max-w-3xl mx-auto border-t border-white/10 pt-6 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 sm:gap-6 text-center">
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
-                <Counter end={78} suffix="m+ sft" duration={2000} />
+          <div className="w-full border-t border-white/15 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            {/* Left Corner of the Band: Empowering People • Enriching Assets */}
+            <div className="flex flex-col items-start text-left shrink-0">
+              <div className="text-base sm:text-lg lg:text-xl font-light tracking-wide text-white leading-tight drop-shadow-md">
+                Empowering People
               </div>
-              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Area Managed</div>
+              <div className="text-base sm:text-lg lg:text-xl font-medium tracking-wide text-[#2495D3] leading-tight mt-0.5 drop-shadow-md">
+                Enriching Assets
+              </div>
             </div>
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
-                <Counter end={290} suffix="+" duration={2000} />
+
+            {/* Metrics Counters */}
+            <div className="w-full md:max-w-2xl grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5 sm:gap-6 text-center md:text-right">
+              <div className="flex flex-col items-center md:items-end justify-center">
+                <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
+                  <Counter end={78} suffix="m+ sft" duration={2000} />
+                </div>
+                <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Area Managed</div>
               </div>
-              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Clients</div>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
-                <Counter end={3000} suffix="+" duration={2000} />
+              <div className="flex flex-col items-center md:items-end justify-center">
+                <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
+                  <Counter end={290} suffix="+" duration={2000} />
+                </div>
+                <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Clients</div>
               </div>
-              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Employees</div>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
-                <Counter end={2018} useGrouping={false} duration={2000} />
+              <div className="flex flex-col items-center md:items-end justify-center">
+                <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
+                  <Counter end={3000} suffix="+" duration={2000} />
+                </div>
+                <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Employees</div>
               </div>
-              <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Since</div>
+              <div className="flex flex-col items-center md:items-end justify-center">
+                <div className="text-xl sm:text-2xl md:text-3xl font-normal font-heading text-white tracking-normal whitespace-nowrap">
+                  <Counter end={2018} useGrouping={false} duration={2000} />
+                </div>
+                <div className="text-xs text-slate-300 sm:text-slate-400 mt-1 whitespace-nowrap">Since</div>
+              </div>
             </div>
           </div>
         </div>
