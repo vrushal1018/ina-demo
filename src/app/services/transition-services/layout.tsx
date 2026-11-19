@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Facility Transition Management & Site Mobilization | INA TechFM",
+  title: "Facility Transition Management & Site Mobilization | Ina TechFM",
   description:
     "Structured facility transition management and site mobilization across India. Ensuring seamless operational takeover, asset tagging, risk mitigation, and SLA continuity.",
   alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Asset Handover Management",
   ],
   openGraph: {
-    title: "Facility Transition Management & Site Mobilization | INA TechFM",
+    title: "Facility Transition Management & Site Mobilization | Ina TechFM",
     description:
       "Structured facility transition management services ensuring smooth takeover and operational continuity across facilities in India.",
     url: "https://inatechfmglobal.com/services/transition-services",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Facility Transition Management - INA TechFM",
+        alt: "Facility Transition Management - Ina TechFM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Facility Transition Management & Site Mobilization | INA TechFM",
+    title: "Facility Transition Management & Site Mobilization | Ina TechFM",
     description:
       "Structured facility transition management services ensuring seamless operational continuity across India.",
     images: ["/og-image.png"],
@@ -46,7 +46,7 @@ const jsonLd = {
   serviceType: "Facility Transition Services",
   provider: {
     "@type": "Corporation",
-    name: "INA TechFM",
+    name: "Ina TechFM",
     url: "https://inatechfmglobal.com",
   },
   areaServed: {

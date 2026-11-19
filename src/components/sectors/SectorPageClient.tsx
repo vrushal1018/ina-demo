@@ -28,11 +28,11 @@ const AccordionItem = ({ title, content, isOpen, onClick }: AccordionItemProps) 
       <button
         onClick={onClick}
         type="button"
-        className="w-full flex justify-between items-center text-left text-black hover:text-[#2495d3] transition-colors focus:outline-none cursor-pointer"
+        className="w-full flex justify-between items-center text-left text-ina-navy hover:text-ina-blue transition-colors focus:outline-none cursor-pointer"
       >
         <span className="text-lg font-medium pr-4">{title}</span>
         {isOpen ? (
-          <ChevronUp className="w-5 h-5 text-[#2495d3] shrink-0" />
+          <ChevronUp className="w-5 h-5 text-ina-blue shrink-0" />
         ) : (
           <ChevronDown className="w-5 h-5 text-gray-400 shrink-0" />
         )}
@@ -49,9 +49,9 @@ const AccordionItem = ({ title, content, isOpen, onClick }: AccordionItemProps) 
 };
 
 const ImageCollage = ({ images }: { images: [string, string, string] }) => {
-  // Uses the secondary color #1c3a62 as the frame/padding for the images
+  // Uses the secondary color #0F3B57 as the frame/padding for the images
   return (
-    <div className="relative w-full h-[280px] sm:h-[380px] md:h-[500px] bg-[#1c3a62] p-2 rounded-2xl flex gap-2 shadow-lg">
+    <div className="relative w-full h-[280px] sm:h-[380px] md:h-[500px] bg-ina-navy p-2 rounded-2xl flex gap-2 shadow-lg">
       <div className="w-1/2 h-full flex flex-col gap-2">
         <img
           src={encodeURI(images[0])}
@@ -89,7 +89,7 @@ const ServiceBlock = ({ service }: { service: SectorServiceBlockData }) => {
     >
       {/* Text & Accordion Content */}
       <div className="flex-1 w-full">
-        <h2 className="text-2xl md:text-3xl font-semibold text-black mb-4">
+        <h2 className="text-2xl md:text-3xl font-semibold text-ina-navy mb-4">
           {service.title}
         </h2>
         <p className="text-gray-600 text-sm md:text-base mb-8 leading-relaxed">
@@ -124,30 +124,30 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
     <>
       <SiteHeader />
 
-      <main className="min-h-screen bg-white font-sans selection:bg-[#2495d3] selection:text-white">
+      <main className="min-h-screen bg-white font-sans selection:bg-ina-blue selection:text-white">
         {/* =========================================================
             HERO HEADER
         ========================================================== */}
-        <section className="relative bg-gradient-to-b from-[#D9EDF8] via-[#E2F1FA] to-white pt-8 pb-16 lg:pt-12 lg:pb-20 overflow-hidden border-b border-slate-200/60">
+        <section className="relative bg-gradient-to-b from-ina-tint-15 via-ina-tint-8 to-white pt-8 pb-16 lg:pt-12 lg:pb-20 overflow-hidden border-b border-ina-line/60">
           {/* Blueprint dots & Architectural linework */}
           <div className="absolute inset-0 blueprint-dots opacity-25 pointer-events-none" />
           <ArchitecturalLineworkBackground theme="light" opacity={0.22} mask="fade-edges" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#2495D3]/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1C3A62]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-ina-blue/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-ina-navy/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
             {/* Header Content */}
             <div className="max-w-4xl text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/10 border border-[#1C3A62]/20 text-[#1C3A62] text-xs font-semibold tracking-wide mb-4">
-                <Building2 className="w-3.5 h-3.5 text-[#2495D3]" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ina-navy/10 border border-ina-navy/20 text-ina-navy text-xs font-semibold tracking-wide mb-4">
+                <Building2 className="w-3.5 h-3.5 text-ina-blue" />
                 <span>{sector.badge}</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black tracking-normal mb-4 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-ina-navy tracking-normal mb-4 leading-tight">
                 {sector.title}
               </h1>
 
-              <p className="text-lg sm:text-xl font-medium text-[#2495D3] mb-4">
+              <p className="text-lg sm:text-xl font-medium text-ina-blue mb-4">
                 {sector.subtitle}
               </p>
 
@@ -159,7 +159,7 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
               <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#1C3A62] px-6 sm:px-7 py-3 sm:py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm w-full sm:w-auto text-center"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-ina-blue-deep hover:bg-ina-navy px-6 sm:px-7 py-3 sm:py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-ina-blue/25 hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm w-full sm:w-auto text-center"
                 >
                   <span>Book Sector Consultation</span>
                   <ArrowRight className="w-4 h-4" />
@@ -167,22 +167,22 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
 
                 <a
                   href="tel:+919326906715"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#1C3A62] px-5 sm:px-6 py-3 sm:py-3.5 font-semibold text-[#1C3A62] transition-all duration-300 hover:bg-[#1C3A62] hover:text-white hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm w-full sm:w-auto text-center"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-ina-navy px-5 sm:px-6 py-3 sm:py-3.5 font-semibold text-ina-navy transition-all duration-300 hover:bg-ina-navy hover:text-white hover:-translate-y-0.5 active:scale-95 text-xs sm:text-sm w-full sm:w-auto text-center"
                 >
-                  <Phone className="w-4 h-4 text-[#2495D3]" />
+                  <Phone className="w-4 h-4 text-ina-blue" />
                   <span>Call +91-9326906715</span>
                 </a>
               </div>
             </div>
 
             {/* Quick Metrics Strip */}
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-slate-300/80 pt-8">
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 border-t border-ina-line/80 pt-8">
               {sector.stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-slate-200/80 shadow-xs"
+                  className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-ina-line/80 shadow-xs"
                 >
-                  <div className="text-2xl sm:text-3xl font-bold text-[#1C3A62]">
+                  <div className="text-2xl sm:text-3xl font-bold text-ina-navy">
                     {stat.value}
                   </div>
                   <div className="text-xs sm:text-sm text-gray-500 mt-1 font-medium">
@@ -197,7 +197,7 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
         {/* =========================================================
             SECTOR QUICK SWITCHER NAV
         ========================================================== */}
-        <section className="bg-slate-50 border-b border-slate-200 py-3.5 sticky top-0 z-30 shadow-xs">
+        <section className="bg-ina-tint-8 border-b border-ina-line py-3.5 sticky top-0 z-30 shadow-xs">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
               <span className="text-xs font-bold text-gray-400 uppercase tracking-wider whitespace-nowrap mr-2">
@@ -211,8 +211,8 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
                     href={`/sectors/${s.slug}`}
                     className={`text-xs font-semibold px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                       isActive
-                        ? "bg-[#2495D3] text-white shadow-sm"
-                        : "bg-white text-gray-700 hover:text-[#2495D3] hover:bg-white/90 border border-slate-200"
+                        ? "bg-ina-blue text-white shadow-sm"
+                        : "bg-white text-gray-700 hover:text-ina-blue hover:bg-white/90 border border-ina-line"
                     }`}
                   >
                     {s.title}
@@ -229,11 +229,11 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
         <section className="bg-white py-12 sm:py-16 lg:py-20 px-4 sm:px-8 lg:px-20">
           {/* Header Section */}
           <div className="max-w-4xl mx-auto text-center mb-12 sm:mb-20">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-ina-blue/10 text-ina-blue text-xs font-semibold mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Tailored Capabilities</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-ina-navy mb-4 sm:mb-6">
               Our {sector.title} Services
             </h2>
             <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
@@ -253,13 +253,13 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
             SECTOR CLIENT LOGOS (IF APPLICABLE)
         ========================================================== */}
         {sector.clientLogos && sector.clientLogos.length > 0 && (
-          <section className="bg-slate-50 py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-200">
+          <section className="bg-ina-tint-8 py-16 px-4 sm:px-6 lg:px-8 border-t border-ina-line">
             <div className="max-w-7xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1C3A62]/5 border border-[#1C3A62]/15 text-[#1C3A62] text-xs font-semibold tracking-wide mb-3">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#2495D3]" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ina-navy/5 border border-ina-navy/15 text-ina-navy text-xs font-semibold tracking-wide mb-3">
+                <ShieldCheck className="w-3.5 h-3.5 text-ina-blue" />
                 <span>Sector Track Record</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-black mb-3">
+              <h3 className="text-2xl sm:text-3xl font-bold text-ina-navy mb-3">
                 Trusted by Leading {sector.title} Brands
               </h3>
               <p className="text-gray-600 text-sm max-w-xl mx-auto mb-10">
@@ -270,7 +270,7 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
                 {sector.clientLogos.map((logo, idx) => (
                   <div
                     key={idx}
-                    className="group flex flex-col items-center justify-center p-4 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-xs hover:shadow-md hover:border-[#2495D3]/50 transition-all duration-300"
+                    className="group flex flex-col items-center justify-center p-4 sm:p-5 rounded-xl bg-white border border-ina-line shadow-xs hover:shadow-md hover:border-ina-blue/50 transition-all duration-300"
                   >
                     <div className="relative h-12 w-28 flex items-center justify-center mb-2">
                       <img
@@ -284,7 +284,7 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
                       {logo.name}
                     </span>
                     {logo.tag && (
-                      <span className="text-[10px] text-[#2495D3] mt-0.5">
+                      <span className="text-[10px] text-ina-blue mt-0.5">
                         {logo.tag}
                       </span>
                     )}
@@ -298,22 +298,22 @@ export default function SectorPageClient({ sector }: { sector: SectorData }) {
         {/* =========================================================
             BOTTOM CALL TO ACTION
         ========================================================== */}
-        <section className="relative bg-[#1C3A62] text-white py-16 px-6 lg:px-12 overflow-hidden">
+        <section className="relative bg-ina-navy text-white py-16 px-6 lg:px-12 overflow-hidden">
           <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-80 h-80 bg-[#2495D3]/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-80 h-80 bg-ina-blue/20 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative max-w-4xl mx-auto text-center z-10">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Need specialized facility engineering for your {sector.title} assets?
             </h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-ina-mist text-sm sm:text-base leading-relaxed max-w-2xl mx-auto mb-8">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#2495D3] hover:bg-[#45B1E8] px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-[#2495D3]/30 hover:-translate-y-0.5 active:scale-95 text-sm"
+                className="inline-flex items-center gap-2 rounded-xl bg-white hover:bg-ina-tint-8 text-ina-navy px-8 py-3.5 font-semibold text-white transition-all duration-300 shadow-lg shadow-ina-blue/30 hover:-translate-y-0.5 active:scale-95 text-sm"
               >
                 <span>Request a Site Audit</span>
                 <ArrowRight className="w-4 h-4" />

@@ -36,13 +36,13 @@ export default function Home() {
   // ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans text-[#383838] selection:bg-[#2495D3] selection:text-white">
+    <div className="relative min-h-screen bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 font-sans text-ina-ink selection:bg-ina-blue selection:text-white">
       {/* Header */}
 
       <SiteHeader />
 
       {/* Hero Section - Loads immediately (above the fold) */}
-      <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-[#0A1629]">
+      <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-ina-night">
         {/* Background Video with continuous loop and instant responsive preview poster */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {/* LCP Resource hints - Preload the high-priority hero poster */}
@@ -73,7 +73,7 @@ export default function Home() {
             <source media="(min-width: 769px)" srcSet="/hero-desktop-preview.webp" />
             <img
               src="/hero-desktop-preview.webp"
-              alt="INA TechFM"
+              alt="Ina TechFM"
               width={1920}
               height={1080}
               fetchPriority="high"
@@ -123,10 +123,10 @@ export default function Home() {
         <div className="relative z-10 w-full px-5 sm:px-8 lg:px-12 pt-6 sm:pt-8 lg:pt-10 flex items-start">
           {/* Brand Logo in Hero at Left */}
           <div className="flex flex-col items-start">
-            <Link href="/" className="inline-block transition-transform hover:scale-105 active:scale-95" title="INA TechFM - Integrated Facility Management Services in India">
+            <Link href="/" className="inline-block transition-transform hover:scale-105 active:scale-95" title="Ina TechFM - Integrated Facility Management Services in India">
               <img
                 src="/Ina%20TechFM%20Logo%20white.png"
-                alt="INA TechFM - Integrated Facility Management Services in India"
+                alt="Ina TechFM - Integrated Facility Management Services in India"
                 width={313}
                 height={179}
                 decoding="async"
@@ -147,8 +147,8 @@ export default function Home() {
               key={idx}
               className="flex items-center space-x-2.5 drop-shadow-md"
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#2495D3] flex-shrink-0" />
-              <span className="text-xs sm:text-sm text-slate-200 font-medium tracking-wide">
+              <CheckCircle2 className="w-3.5 h-3.5 text-ina-blue flex-shrink-0" />
+              <span className="text-xs sm:text-sm text-ina-line font-medium tracking-wide">
                 {feature}
               </span>
             </div>
@@ -163,7 +163,7 @@ export default function Home() {
               <div className="text-base sm:text-lg lg:text-xl font-light tracking-wide text-white leading-tight drop-shadow-md">
                 Empowering People
               </div>
-              <div className="text-base sm:text-lg lg:text-xl font-medium tracking-wide text-[#2495D3] leading-tight mt-0.5 drop-shadow-md">
+              <div className="text-base sm:text-lg lg:text-xl font-medium tracking-wide text-ina-blue leading-tight mt-0.5 drop-shadow-md">
                 Enriching Assets
               </div>
             </div>

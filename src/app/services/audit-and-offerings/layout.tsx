@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Facility Management Audits & Technical Assessments | INA TechFM",
+  title: "Facility Management Audits & Technical Assessments | Ina TechFM",
   description:
     "Comprehensive facility management audits, engineering diagnostics, electrical safety checks, and statutory compliance assessments across India.",
   alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "Statutory Compliance Audits India",
   ],
   openGraph: {
-    title: "Facility Management Audits & Technical Assessments | INA TechFM",
+    title: "Facility Management Audits & Technical Assessments | Ina TechFM",
     description:
       "Diagnostic facility management audits and advisory solutions across commercial and industrial infrastructure in India.",
     url: "https://inatechfmglobal.com/services/audit-and-offerings",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Facility Management Audits - INA TechFM",
+        alt: "Facility Management Audits - Ina TechFM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Facility Management Audits & Technical Assessments | INA TechFM",
+    title: "Facility Management Audits & Technical Assessments | Ina TechFM",
     description:
       "Diagnostic facility management audits and advisory solutions across India.",
     images: ["/og-image.png"],
@@ -46,7 +46,7 @@ const jsonLd = {
   serviceType: "Technical Facility Audits & Assessments",
   provider: {
     "@type": "Corporation",
-    name: "INA TechFM",
+    name: "Ina TechFM",
     url: "https://inatechfmglobal.com",
   },
   areaServed: {

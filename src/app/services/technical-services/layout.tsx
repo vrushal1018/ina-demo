@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Technical Facility Management Services & Engineering Maintenance | INA TechFM",
+  title: "Technical Facility Management Services & Engineering Maintenance | Ina TechFM",
   description:
     "Leading provider of technical facility management services and engineering maintenance services across India. 24x7 MEP infrastructure, HVAC, high-voltage substations, and predictive maintenance.",
   alternates: {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "Preventive Maintenance Services India",
   ],
   openGraph: {
-    title: "Technical Facility Management Services & Engineering Maintenance | INA TechFM",
+    title: "Technical Facility Management Services & Engineering Maintenance | Ina TechFM",
     description:
       "Enterprise technical facility management and engineering maintenance services across India. Unmatched uptime and asset lifecycle protection.",
     url: "https://inatechfmglobal.com/services/technical-services",
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Technical Facility Management Services - INA TechFM",
+        alt: "Technical Facility Management Services - Ina TechFM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical Facility Management Services & Engineering Maintenance | INA TechFM",
+    title: "Technical Facility Management Services & Engineering Maintenance | Ina TechFM",
     description:
       "Enterprise technical facility management and engineering maintenance services across India.",
     images: ["/og-image.png"],
@@ -47,7 +47,7 @@ const jsonLd = {
   serviceType: "Technical Facility Management",
   provider: {
     "@type": "Corporation",
-    name: "INA TechFM",
+    name: "Ina TechFM",
     url: "https://inatechfmglobal.com",
   },
   areaServed: {

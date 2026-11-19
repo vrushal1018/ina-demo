@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import initialJobsData from '@/data/jobs.json';
 import SiteHeader from '@/components/SiteHeader';
 import {
   ChevronDown,
@@ -34,62 +35,41 @@ interface JobDetails {
   description: string;
   responsibilities: string[];
   qualifications: string[];
+  isActive?: boolean;
+  createdAt?: string;
 }
 
-const jobs: JobDetails[] = [
-  {
-    id: 1,
-    title: "Key Account Manager",
-    department: "Operations & Client Relations",
-    location: "Mumbai, Maharashtra",
-    type: "Full-Time",
-    experience: "5–10 Years",
-    tags: ["Account Management", "Operations", "Full-Time", "Engineering Services"],
-    description:
-      "As a Key Account Manager at Ina Tech FM, you will manage client communication, site operations, service quality, and SLA/KPI performance. You will coordinate with Engineering, Operations, HR, and Procurement teams to resolve service issues and identify opportunities for additional engineering solutions.",
-    responsibilities: [
-      "Manage client communication, site operations, service quality, and SLA/KPI performance.",
-      "Coordinate with Engineering, Operations, HR, and Procurement teams to resolve service issues.",
-      "Conduct site visits and client reviews, and prepare reports and action plans.",
-      "Monitor maintenance, manpower, billing, collections, and contract renewals.",
-      "Identify opportunities for additional engineering services.",
-    ],
-    qualifications: [
-      "Diploma or degree in Mechanical, Electrical, or a related field.",
-      "5–10 years of experience in technical facility management or engineering services.",
-      "Experience in key account management and knowledge of building systems.",
-      "Based in Goa or willing to relocate.",
-    ],
-  },
-  {
-    id: 2,
-    title: "Technical Supervisor",
-    department: "Operations & Technical FM",
-    location: "Thane / Mumbai, Maharashtra",
-    type: "Full-Time",
-    experience: "3+ Years",
-    tags: ["Operations", "On-site", "Full-Time", "Engineering"],
-    description:
-      "As a Technical Supervisor at Ina Tech FM, you will oversee facility operations, lead on-site engineering teams, and ensure mechanical, electrical, and plumbing (MEP) infrastructure functions with maximum uptime, safety, and strict regulatory compliance.",
-    responsibilities: [
-      "Lead daily operations and preventive maintenance of facility MEP systems, HVAC, and electrical switchgear.",
-      "Manage and guide site technicians, ensuring SLA adherence and rapid turnaround for breakdown calls.",
-      "Perform routine technical audits, risk assessments, and maintain compliance with statutory health and safety standards.",
-      "Prepare comprehensive incident reports, energy log sheets, and client escalation summaries.",
-      "Liaise with clients and vendors to ensure seamless maintenance execution and budget control.",
-    ],
-    qualifications: [
-      "Diploma or Bachelor's Degree in Electrical, Mechanical, or Civil Engineering.",
-      "3+ years of hands-on experience in technical facility management or building engineering operations.",
-      "Strong technical troubleshooting skills and solid understanding of building management systems (BMS).",
-      "Excellent leadership, problem-solving, and communication skills.",
-    ],
-  },
-];
+
 
 export default function CareersPage() {
+  const [jobs, setJobs] = useState<JobDetails[]>(() =>
+    (initialJobsData as JobDetails[]).filter((j) => j.isActive !== false)
+  );
   const [openJobIds, setOpenJobIds] = useState<number[]>([1]);
-  const [selectedJob, setSelectedJob] = useState<JobDetails>(jobs[0]);
+  const [selectedJob, setSelectedJob] = useState<JobDetails | null>(
+    () => (initialJobsData as JobDetails[]).find((j) => j.isActive !== false) || null
+  );
+
+  // Fetch latest active jobs from API
+  useEffect(() => {
+    async function loadActiveJobs() {
+      try {
+        const res = await fetch('/api/jobs', { cache: 'no-store' });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.jobs && Array.isArray(data.jobs)) {
+            setJobs(data.jobs);
+            if (data.jobs.length > 0 && !selectedJob) {
+              setSelectedJob(data.jobs[0]);
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load active jobs:', err);
+      }
+    }
+    loadActiveJobs();
+  }, []);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Form state
@@ -210,7 +190,7 @@ export default function CareersPage() {
       formData.append("contact", contact.trim());
       formData.append("email", email.trim());
       formData.append("address", address.trim());
-      formData.append("jobTitle", selectedJob.title);
+      formData.append("jobTitle", selectedJob?.title || "General Application");
       formData.append("resume", resumeFile);
 
       const response = await fetch("/api/apply", {
@@ -240,7 +220,7 @@ export default function CareersPage() {
   return (
     <>
       <SiteHeader />
-      <div className="relative min-h-screen bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 pt-24 sm:pt-28 lg:pt-32 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden">
         {/* Background Blueprint dots */}
         <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
         {/* Architectural linework stream */}
@@ -249,42 +229,61 @@ export default function CareersPage() {
         <div className="relative z-10 max-w-4xl mx-auto pt-2">
           {/* Header Section */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ina-blue/10 border border-ina-blue/20 text-ina-blue text-xs font-semibold tracking-wide mb-3">
               <Briefcase className="w-3.5 h-3.5" />
               <span>Careers at INA Tech FM</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] mb-3 tracking-normal">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal text-ina-navy mb-3 tracking-normal">
               Currently Open Positions
             </h1>
-            <p className="text-[#585858] max-w-xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
+            <p className="text-ina-grey max-w-xl mx-auto text-sm sm:text-base font-normal leading-relaxed">
               Join our dedicated team of engineers and facility management experts building dependable, sustainable workspaces.
             </p>
-            <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-3 rounded-full" />
+            <div className="w-16 h-1 bg-ina-blue mx-auto mt-3 rounded-full" />
           </div>
 
           {/* Job Listings List */}
           <div className="space-y-6">
-            {jobs.map((job) => {
+            {jobs.length === 0 ? (
+              <div className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-ina-line shadow-lg max-w-xl mx-auto">
+                <div className="w-16 h-16 rounded-2xl bg-ina-tint-8 border border-ina-line flex items-center justify-center mx-auto mb-4 text-ina-blue">
+                  <Briefcase className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-normal text-ina-navy mb-2">
+                  No Current Openings Available
+                </h3>
+                <p className="text-sm text-ina-grey leading-relaxed mb-6">
+                  We do not have any open positions listed at the moment, but we are always looking for exceptional engineering and FM talent.
+                </p>
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center bg-ina-navy hover:bg-ina-blue text-white px-6 py-3 rounded-xl font-semibold text-xs tracking-wide transition-all shadow-md"
+                >
+                  Contact Our HR Desk
+                </a>
+              </div>
+            ) : (
+              jobs.map((job) => {
               const isOpen = openJobIds.includes(job.id);
               return (
                 <AnimateIn key={job.id} delay={0.1} minHeight="320px">
-                  <div className="relative bg-white rounded-3xl p-5 sm:p-7 md:p-8 shadow-xl border border-slate-200/90 overflow-hidden group">
+                  <div className="relative bg-white rounded-3xl p-5 sm:p-7 md:p-8 shadow-xl border border-ina-line/90 overflow-hidden group">
                     {/* Top Accent Strip */}
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-ina-blue to-ina-navy" />
 
                     {/* Header row */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-ina-tint-8">
                       <div>
                         <div
                           className="flex items-center gap-3 cursor-pointer group/title mb-3 w-fit"
                           onClick={() => toggleJob(job.id)}
                         >
-                          <h2 className="text-2xl sm:text-3xl font-normal text-[#1C3A62] tracking-normal group-hover/title:text-[#2495D3] transition-colors">
+                          <h2 className="text-2xl sm:text-3xl font-normal text-ina-navy tracking-normal group-hover/title:text-ina-blue transition-colors">
                             {job.title}
                           </h2>
-                          <div className="p-1.5 rounded-full bg-slate-100 group-hover/title:bg-[#2495D3]/10 transition-colors">
+                          <div className="p-1.5 rounded-full bg-ina-tint-8 group-hover/title:bg-ina-blue/10 transition-colors">
                             <ChevronDown
-                              className={`w-5 h-5 text-[#1C3A62] group-hover/title:text-[#2495D3] transition-transform duration-300 ${
+                              className={`w-5 h-5 text-ina-navy group-hover/title:text-ina-blue transition-transform duration-300 ${
                                 isOpen ? 'rotate-180' : ''
                               }`}
                             />
@@ -292,24 +291,24 @@ export default function CareersPage() {
                         </div>
 
                         {/* Meta items */}
-                        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-[#585858] font-medium mb-4">
+                        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs sm:text-sm text-ina-grey font-medium mb-4">
                           <span className="flex items-center gap-1.5">
-                            <Building className="w-4 h-4 text-[#2495D3]" />
+                            <Building className="w-4 h-4 text-ina-blue" />
                             {job.department}
                           </span>
-                          <span className="w-1 h-1 rounded-full bg-slate-300" />
+                          <span className="w-1 h-1 rounded-full bg-ina-line" />
                           <span className="flex items-center gap-1.5">
-                            <MapPin className="w-4 h-4 text-[#2495D3]" />
+                            <MapPin className="w-4 h-4 text-ina-blue" />
                             {job.location}
                           </span>
-                          <span className="w-1 h-1 rounded-full bg-slate-300" />
+                          <span className="w-1 h-1 rounded-full bg-ina-line" />
                           <span className="flex items-center gap-1.5">
-                            <Clock className="w-4 h-4 text-[#2495D3]" />
+                            <Clock className="w-4 h-4 text-ina-blue" />
                             {job.type}
                           </span>
-                          <span className="w-1 h-1 rounded-full bg-slate-300" />
+                          <span className="w-1 h-1 rounded-full bg-ina-line" />
                           <span className="flex items-center gap-1.5">
-                            <Briefcase className="w-4 h-4 text-[#2495D3]" />
+                            <Briefcase className="w-4 h-4 text-ina-blue" />
                             {job.experience}
                           </span>
                         </div>
@@ -319,7 +318,7 @@ export default function CareersPage() {
                           {job.tags.map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1 rounded-lg border border-slate-200 bg-slate-50 text-xs font-semibold text-[#1C3A62]"
+                              className="px-3 py-1 rounded-lg border border-ina-line bg-ina-tint-4 text-xs font-semibold text-ina-navy"
                             >
                               {tag}
                             </span>
@@ -331,11 +330,11 @@ export default function CareersPage() {
                       <div className="flex md:flex-col items-start md:items-end justify-between gap-3 pt-2 md:pt-0">
                         <button
                           onClick={() => openApplyModal(job)}
-                          className="bg-[#2495D3] hover:bg-[#1C3A62] text-white px-8 py-3.5 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#2495D3]/20 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
+                          className="bg-ina-blue-deep hover:bg-ina-navy text-white px-8 py-3.5 rounded-xl font-semibold text-sm tracking-wide transition-all duration-300 whitespace-nowrap shadow-lg shadow-ina-blue/20 hover:-translate-y-0.5 active:scale-95 cursor-pointer"
                         >
                           Apply now
                         </button>
-                        <span className="text-xs text-slate-400 font-medium hidden md:inline">
+                        <span className="text-xs text-ina-grey font-medium hidden md:inline">
                           Sends to: HR Desk
                         </span>
                       </div>
@@ -350,27 +349,27 @@ export default function CareersPage() {
                       <div className="overflow-hidden space-y-6">
                         {/* Overview */}
                         <div>
-                          <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-2 flex items-center gap-1.5">
-                            <Sparkles className="w-3.5 h-3.5 text-[#2495D3]" />
+                          <h3 className="text-xs font-semibold tracking-wide text-ina-navy mb-2 flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-ina-blue" />
                             <span>Role overview</span>
                           </h3>
-                          <p className="text-[#585858] leading-relaxed text-[15px] font-normal">
+                          <p className="text-ina-grey leading-relaxed text-[15px] font-normal">
                             {job.description}
                           </p>
                         </div>
 
                         {/* Key Responsibilities */}
                         <div>
-                          <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+                          <h3 className="text-xs font-semibold tracking-wide text-ina-navy mb-3">
                             Key responsibilities
                           </h3>
                           <ul className="space-y-2.5">
                             {job.responsibilities.map((resp, i) => (
                               <li
                                 key={i}
-                                className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed"
+                                className="flex items-start gap-2.5 text-sm sm:text-[15px] text-ina-grey leading-relaxed"
                               >
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-ina-blue mt-2 shrink-0" />
                                 <span>{resp}</span>
                               </li>
                             ))}
@@ -379,16 +378,16 @@ export default function CareersPage() {
 
                         {/* Qualifications */}
                         <div>
-                          <h3 className="text-xs font-semibold tracking-wide text-[#1C3A62] mb-3">
+                          <h3 className="text-xs font-semibold tracking-wide text-ina-navy mb-3">
                             Qualifications & requirements
                           </h3>
                           <ul className="space-y-2.5">
                             {job.qualifications.map((qual, i) => (
                               <li
                                 key={i}
-                                className="flex items-start gap-2.5 text-sm sm:text-[15px] text-[#585858] leading-relaxed"
+                                className="flex items-start gap-2.5 text-sm sm:text-[15px] text-ina-grey leading-relaxed"
                               >
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#2495D3] mt-2 shrink-0" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-ina-blue mt-2 shrink-0" />
                                 <span>{qual}</span>
                               </li>
                             ))}
@@ -396,13 +395,13 @@ export default function CareersPage() {
                         </div>
 
                         {/* Bottom Apply Action */}
-                        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                          <p className="text-sm text-[#585858] font-medium">
+                        <div className="pt-6 border-t border-ina-tint-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                          <p className="text-sm text-ina-grey font-medium">
                             Ready to build your career with us?
                           </p>
                           <button
                             onClick={() => openApplyModal(job)}
-                            className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-7 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95 w-full sm:w-auto text-center"
+                            className="bg-ina-navy hover:bg-ina-blue text-white px-7 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:scale-95 w-full sm:w-auto text-center"
                           >
                             Apply for {job.title}
                           </button>
@@ -412,7 +411,8 @@ export default function CareersPage() {
                   </div>
                 </AnimateIn>
               );
-            })}
+            })
+            )}
           </div>
         </div>
       </div>
@@ -420,39 +420,39 @@ export default function CareersPage() {
       {/* Application Form Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-ina-night/60 backdrop-blur-md transition-opacity duration-300 animate-in fade-in"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeApplyModal();
           }}
         >
-          <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto border border-slate-200 transition-all duration-300 transform scale-100 p-5 sm:p-8">
+          <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto border border-ina-line transition-all duration-300 transform scale-100 p-5 sm:p-8">
             {/* Top Accent line */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2495D3] to-[#1C3A62]" />
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-ina-blue to-ina-navy" />
 
             {/* Modal Header */}
-            <div className="flex items-start justify-between pb-4 border-b border-slate-100 mb-6">
+            <div className="flex items-start justify-between pb-4 border-b border-ina-tint-8 mb-6">
               <div>
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-[#2495D3]/10 px-3 py-1 text-xs font-semibold tracking-wide text-[#2495D3] mb-2">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-ina-blue/10 px-3 py-1 text-xs font-semibold tracking-wide text-ina-blue mb-2">
                   <Briefcase className="w-3 h-3" />
                   <span>Job application</span>
                 </div>
-                <h3 className="text-2xl font-normal text-[#1C3A62] tracking-normal">
-                  Apply for {selectedJob.title}
+                <h3 className="text-2xl font-normal text-ina-navy tracking-normal">
+                  Apply for {selectedJob?.title || "Open Position"}
                 </h3>
-                <div className="flex flex-wrap items-center gap-2 text-xs text-[#585858] mt-1.5 font-medium">
+                <div className="flex flex-wrap items-center gap-2 text-xs text-ina-grey mt-1.5 font-medium">
                   <span className="flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#2495D3]" />
-                    {selectedJob.location}
+                    <MapPin className="w-3.5 h-3.5 text-ina-blue" />
+                    {selectedJob?.location || ""}
                   </span>
                   <span>•</span>
-                  <span>{selectedJob.department}</span>
+                  <span>{selectedJob?.department || ""}</span>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={closeApplyModal}
                 disabled={isSubmitting}
-                className="p-2 rounded-full text-slate-400 hover:text-[#1C3A62] hover:bg-slate-100 transition-colors cursor-pointer"
+                className="p-2 rounded-full text-ina-grey hover:text-ina-navy hover:bg-ina-tint-8 transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -465,19 +465,19 @@ export default function CareersPage() {
                 <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner border border-emerald-200">
                   <CheckCircle2 className="w-9 h-9" />
                 </div>
-                <h4 className="text-2xl font-normal text-[#1C3A62]">Application Submitted!</h4>
-                <p className="text-sm sm:text-base text-[#585858] max-w-md mx-auto leading-relaxed">
-                  Thank you, <strong className="text-[#1C3A62]">{name}</strong>. Your application for <strong className="text-[#2495D3]">{selectedJob.title}</strong> and resume have been sent directly to{" "}
-                  <strong className="text-[#2495D3]">jaisalil.s@inaspaceworks.com</strong>.
+                <h4 className="text-2xl font-normal text-ina-navy">Application Submitted!</h4>
+                <p className="text-sm sm:text-base text-ina-grey max-w-md mx-auto leading-relaxed">
+                  Thank you, <strong className="text-ina-navy">{name}</strong>. Your application for <strong className="text-ina-blue">{selectedJob?.title || "this position"}</strong> and resume have been sent directly to{" "}
+                  <strong className="text-ina-blue">jaisalil.s@inaspaceworks.com</strong>.
                 </p>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-ina-grey">
                   Our HR & Technical teams will review your profile and contact you soon.
                 </p>
                 <div className="pt-4">
                   <button
                     type="button"
                     onClick={closeApplyModal}
-                    className="bg-[#1C3A62] hover:bg-[#2495D3] text-white px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md cursor-pointer"
+                    className="bg-ina-navy hover:bg-ina-blue text-white px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md cursor-pointer"
                   >
                     Done
                   </button>
@@ -496,8 +496,8 @@ export default function CareersPage() {
 
                 {/* Candidate Name */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-[#2495D3]" />
+                  <label className="text-xs font-semibold tracking-wide text-ina-navy flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-ina-blue" />
                     Full name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -506,7 +506,7 @@ export default function CareersPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Enter your full name"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-ina-line bg-ina-tint-4/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue focus:border-transparent text-sm text-ina-navy transition-all"
                   />
                 </div>
 
@@ -514,8 +514,8 @@ export default function CareersPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Contact Number */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
-                      <Phone className="w-3.5 h-3.5 text-[#2495D3]" />
+                    <label className="text-xs font-semibold tracking-wide text-ina-navy flex items-center gap-1.5">
+                      <Phone className="w-3.5 h-3.5 text-ina-blue" />
                       Contact number <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -524,14 +524,14 @@ export default function CareersPage() {
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-ina-line bg-ina-tint-4/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue focus:border-transparent text-sm text-ina-navy transition-all"
                     />
                   </div>
 
                   {/* Email */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
-                      <Mail className="w-3.5 h-3.5 text-[#2495D3]" />
+                    <label className="text-xs font-semibold tracking-wide text-ina-navy flex items-center gap-1.5">
+                      <Mail className="w-3.5 h-3.5 text-ina-blue" />
                       Email address
                     </label>
                     <input
@@ -539,15 +539,15 @@ export default function CareersPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="your.email@example.com"
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-ina-line bg-ina-tint-4/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue focus:border-transparent text-sm text-ina-navy transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Address */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5 text-[#2495D3]" />
+                  <label className="text-xs font-semibold tracking-wide text-ina-navy flex items-center gap-1.5">
+                    <MapPin className="w-3.5 h-3.5 text-ina-blue" />
                     Current address <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -556,14 +556,14 @@ export default function CareersPage() {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Enter your current residential address or city"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#2495D3] focus:border-transparent text-sm text-[#1C3A62] transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-ina-line bg-ina-tint-4/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue focus:border-transparent text-sm text-ina-navy transition-all resize-none"
                   />
                 </div>
 
                 {/* Resume Upload Section */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold tracking-wide text-[#1C3A62] flex items-center gap-1.5">
-                    <FileText className="w-3.5 h-3.5 text-[#2495D3]" />
+                  <label className="text-xs font-semibold tracking-wide text-ina-navy flex items-center gap-1.5">
+                    <FileText className="w-3.5 h-3.5 text-ina-blue" />
                     Upload resume <span className="text-red-500">*</span>
                   </label>
 
@@ -582,31 +582,31 @@ export default function CareersPage() {
                       onDragLeave={handleDragLeave}
                       onDrop={handleDrop}
                       className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-200 ${isDragging
-                          ? 'border-[#2495D3] bg-[#2495D3]/5 scale-[0.99]'
-                          : 'border-slate-200 hover:border-[#2495D3] hover:bg-slate-50'
+                          ? 'border-ina-blue bg-ina-blue/5 scale-[0.99]'
+                          : 'border-ina-line hover:border-ina-blue hover:bg-ina-tint-4'
                         }`}
                     >
-                      <div className="w-12 h-12 rounded-xl bg-[#2495D3]/10 text-[#2495D3] flex items-center justify-center mx-auto mb-3">
+                      <div className="w-12 h-12 rounded-xl bg-ina-blue/10 text-ina-blue flex items-center justify-center mx-auto mb-3">
                         <UploadCloud className="w-6 h-6" />
                       </div>
-                      <p className="text-sm font-semibold text-[#1C3A62]">
+                      <p className="text-sm font-semibold text-ina-navy">
                         Click to upload or drag & drop
                       </p>
-                      <p className="text-xs text-slate-400 mt-1">
+                      <p className="text-xs text-ina-grey mt-1">
                         Supported formats: PDF, DOC, DOCX (Max 10MB)
                       </p>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between p-3.5 rounded-xl border border-[#2495D3]/30 bg-[#2495D3]/5">
+                    <div className="flex items-center justify-between p-3.5 rounded-xl border border-ina-blue/30 bg-ina-blue/5">
                       <div className="flex items-center gap-3 overflow-hidden">
-                        <div className="w-10 h-10 rounded-lg bg-[#2495D3] text-white flex items-center justify-center shrink-0">
+                        <div className="w-10 h-10 rounded-lg bg-ina-blue text-white flex items-center justify-center shrink-0">
                           <FileText className="w-5 h-5" />
                         </div>
                         <div className="truncate">
-                          <p className="text-sm font-semibold text-[#1C3A62] truncate">
+                          <p className="text-sm font-semibold text-ina-navy truncate">
                             {resumeFile.name}
                           </p>
-                          <p className="text-xs text-[#585858]">
+                          <p className="text-xs text-ina-grey">
                             {(resumeFile.size / 1024).toFixed(1)} KB
                           </p>
                         </div>
@@ -614,7 +614,7 @@ export default function CareersPage() {
                       <button
                         type="button"
                         onClick={removeFile}
-                        className="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-white transition-colors cursor-pointer"
+                        className="p-2 text-ina-grey hover:text-red-500 rounded-lg hover:bg-white transition-colors cursor-pointer"
                         title="Remove file"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -624,11 +624,11 @@ export default function CareersPage() {
                 </div>
 
                 {/* Send Info Note */}
-                <div className="rounded-xl bg-slate-50 p-3 text-xs text-[#585858] flex items-center gap-2 border border-slate-100">
-                  <Mail className="w-4 h-4 text-[#2495D3] shrink-0" />
+                <div className="rounded-xl bg-ina-tint-4 p-3 text-xs text-ina-grey flex items-center gap-2 border border-ina-tint-8">
+                  <Mail className="w-4 h-4 text-ina-blue shrink-0" />
                   <span>
                     Applications are directly dispatched to{" "}
-                    <strong className="text-[#1C3A62]">jaisalil.s@inaspaceworks.com</strong>
+                    <strong className="text-ina-navy">jaisalil.s@inaspaceworks.com</strong>
                   </span>
                 </div>
 
@@ -638,14 +638,14 @@ export default function CareersPage() {
                     type="button"
                     onClick={closeApplyModal}
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-[#585858] hover:bg-slate-50 transition-colors cursor-pointer text-center"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-ina-line text-sm font-semibold text-ina-grey hover:bg-ina-tint-4 transition-colors cursor-pointer text-center"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto bg-[#2495D3] hover:bg-[#1C3A62] disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                    className="w-full sm:w-auto bg-ina-blue-deep hover:bg-ina-navy disabled:bg-ina-line disabled:cursor-not-allowed text-white px-8 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                   >
                     {isSubmitting ? (
                       <>

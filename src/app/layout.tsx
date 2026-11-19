@@ -16,17 +16,18 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
+  themeColor: "#1A95D1",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://inatechfmglobal.com"),
   title: {
-    default: "Integrated Facility Management Services in India | INA TechFM",
-    template: "%s | INA TechFM",
+    default: "Integrated Facility Management Services in India | Ina TechFM",
+    template: "%s | Ina TechFM",
   },
   description:
     "Leading facility management company in India delivering integrated facility management services, technical engineering, MEP maintenance, energy management, and 24x7 operations across 55+ cities.",
-  applicationName: "INA TechFM",
+  applicationName: "Ina TechFM",
   alternates: {
     canonical: "https://inatechfmglobal.com",
   },
@@ -41,12 +42,12 @@ export const metadata: Metadata = {
     "Energy Management Services",
     "Facility Management Audits",
     "Allied Facility Management Services",
-    "INA TechFM",
+    "Ina TechFM",
     "Facility Management India",
   ],
-  authors: [{ name: "INA TechFM", url: "https://inatechfmglobal.com" }],
-  creator: "INA TechFM",
-  publisher: "INA TechFM",
+  authors: [{ name: "Ina TechFM", url: "https://inatechfmglobal.com" }],
+  creator: "Ina TechFM",
+  publisher: "Ina TechFM",
   icons: {
     icon: [
       { url: "/icon.png?v=3", type: "image/png", sizes: "512x512" },
@@ -62,8 +63,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://inatechfmglobal.com",
-    siteName: "INA TechFM",
-    title: "Integrated Facility Management Services in India | INA TechFM",
+    siteName: "Ina TechFM",
+    title: "Integrated Facility Management Services in India | Ina TechFM",
     description:
       "Leading facility management company in India delivering integrated facility management services, technical engineering, MEP maintenance, energy management, and 24x7 operations across 55+ cities.",
     images: [
@@ -71,21 +72,21 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "INA TechFM - Integrated Facility Management Services in India",
+        alt: "Ina TechFM - Integrated Facility Management Services in India",
         type: "image/png",
       },
       {
         url: "/Ina TechFM Logo white.png",
         width: 313,
         height: 179,
-        alt: "INA TechFM Logo",
+        alt: "Ina TechFM Logo",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Integrated Facility Management Services in India | INA TechFM",
+    title: "Integrated Facility Management Services in India | Ina TechFM",
     description:
       "Leading facility management company in India delivering integrated facility management services, technical engineering, MEP maintenance, energy management, and 24x7 operations across 55+ cities.",
     images: ["/og-image.png"],
@@ -95,8 +96,8 @@ export const metadata: Metadata = {
 const jsonLdOrganization = {
   "@context": "https://schema.org",
   "@type": "Corporation",
-  name: "INA TechFM",
-  alternateName: "Ina Tech FM Global",
+  name: "Ina TechFM",
+  alternateName: "Ina TechFM Global",
   url: "https://inatechfmglobal.com",
   logo: "https://inatechfmglobal.com/Ina%20TechFM%20Logo%20white.png",
   description:
@@ -181,9 +182,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${poppins.variable} h-full antialiased bg-[#D9EDF8] overflow-x-hidden max-w-full`}
+      className={`${poppins.variable} h-full antialiased bg-ina-tint-4 overflow-x-hidden max-w-full`}
     >
-      <body className="min-h-full flex flex-col bg-[#D9EDF8] text-[#383838] overflow-x-hidden max-w-full">
+      <body className="min-h-full flex flex-col bg-ina-tint-4 text-ina-ink overflow-x-hidden max-w-full">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}

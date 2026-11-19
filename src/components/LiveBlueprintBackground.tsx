@@ -13,7 +13,7 @@ export default function LiveBlueprintBackground({
   children,
   className = '',
   gridOpacity = 0.15,
-  lineColor = '#2495D3',
+  lineColor = '#1A95D1',
 }: LiveBlueprintBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -125,7 +125,7 @@ export default function LiveBlueprintBackground({
   }, [gridOpacity, lineColor]);
 
   return (
-    <div className={`relative min-h-screen w-full overflow-hidden bg-white text-slate-900 ${className}`}>
+    <div className={`relative min-h-screen w-full overflow-hidden bg-white text-ina-night ${className}`}>
       {/* Live Animated Canvas Layer */}
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none z-0" />
 

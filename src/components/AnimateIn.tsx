@@ -29,13 +29,13 @@ export function SectionSkeleton({
       style={{ minHeight: typeof height === 'number' ? `${height}px` : height }}
       className={`w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center justify-center bg-transparent ${className}`}
     >
-      <div className="w-full h-full min-h-[200px] rounded-3xl bg-white/40 border border-[#2495D3]/15 p-8 flex flex-col items-center justify-center">
-        <div className="h-4 w-32 bg-slate-200/70 rounded-full mb-4" />
-        <div className="h-8 w-64 max-w-full bg-slate-200/60 rounded-xl mb-6" />
+      <div className="w-full h-full min-h-[200px] rounded-3xl bg-white/40 border border-ina-blue/15 p-8 flex flex-col items-center justify-center">
+        <div className="h-4 w-32 bg-ina-line/70 rounded-full mb-4" />
+        <div className="h-8 w-64 max-w-full bg-ina-line/60 rounded-xl mb-6" />
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl opacity-70">
-          <div className="h-28 bg-slate-200/50 rounded-2xl" />
-          <div className="h-28 bg-slate-200/50 rounded-2xl hidden sm:block" />
-          <div className="h-28 bg-slate-200/50 rounded-2xl hidden sm:block" />
+          <div className="h-28 bg-ina-line/50 rounded-2xl" />
+          <div className="h-28 bg-ina-line/50 rounded-2xl hidden sm:block" />
+          <div className="h-28 bg-ina-line/50 rounded-2xl hidden sm:block" />
         </div>
       </div>
     </div>

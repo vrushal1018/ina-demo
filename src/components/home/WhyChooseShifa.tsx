@@ -21,10 +21,10 @@ export default function WhyChooseShifa() {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-8 sm:mb-10 text-left">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-[#1C3A62] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-ina-navy tracking-tight">
             Why Choose Shifa?
           </h2>
-          <p className="mt-2 sm:mt-3 text-sm sm:text-base lg:text-lg text-[#585858] font-medium">
+          <p className="mt-2 sm:mt-3 text-sm sm:text-base lg:text-lg text-ina-grey font-medium">
             Your health, our commitment – here’s what sets us apart.
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function WhyChooseShifa() {
 
           {/* Right: Key Features */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <h3 className="text-2xl sm:text-3xl font-medium text-[#383838] mb-5 sm:mb-6">
+            <h3 className="text-2xl sm:text-3xl font-medium text-ina-ink mb-5 sm:mb-6">
               Key Features
             </h3>
 
@@ -53,12 +53,12 @@ export default function WhyChooseShifa() {
               {features.map((feature) => (
                 <div
                   key={feature.id}
-                  className="flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl bg-[#F8FAFC] border border-[#2495D3]/10 hover:border-[#2495D3]/30 transition-colors duration-200"
+                  className="flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl bg-[#F8FAFC] border border-ina-blue/10 hover:border-ina-blue/30 transition-colors duration-200"
                 >
-                  <div className="flex-shrink-0 text-[#2495D3]">
+                  <div className="flex-shrink-0 text-ina-blue">
                     <CheckCheck className="w-5 h-5 stroke-[2.5]" />
                   </div>
-                  <span className="text-sm sm:text-base lg:text-lg font-semibold text-[#383838]">
+                  <span className="text-sm sm:text-base lg:text-lg font-semibold text-ina-ink">
                     {feature.text}
                   </span>
                 </div>

@@ -200,9 +200,9 @@ const HexItem = ({
         animationDelay: `${delay}ms`,
       }}
     >
-      <div className="filter drop-shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_12px_32px_rgba(36,149,211,0.28)] transition-all duration-300 transform hover:-translate-y-1.5">
+      <div className="filter drop-shadow-[0_4px_14px_rgba(8,35,54,0.06)] hover:drop-shadow-[0_12px_32px_rgba(26, 149, 209,0.28)] transition-all duration-300 transform hover:-translate-y-1.5">
         <div
-          className="w-[160px] h-[140px] bg-white flex flex-col items-center justify-center gap-2 cursor-pointer border border-slate-100/90 px-3 py-2"
+          className="w-[160px] h-[140px] bg-white flex flex-col items-center justify-center gap-2 cursor-pointer border border-ina-tint-8/90 px-3 py-2"
           style={{ clipPath: hexClipPath }}
           title={logo.name}
         >
@@ -214,7 +214,7 @@ const HexItem = ({
               decoding="async"
             />
           </div>
-          <span className="text-[11px] font-semibold text-[#1C3A62] text-center px-2 leading-tight line-clamp-2 max-w-[124px]">
+          <span className="text-[11px] font-semibold text-ina-navy text-center px-2 leading-tight line-clamp-2 max-w-[124px]">
             {logo.name}
           </span>
         </div>
@@ -300,7 +300,7 @@ export default function ClientsCorner() {
   ];
 
   return (
-    <section className="relative w-full py-10 sm:py-14 lg:py-16 overflow-visible bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans">
+    <section className="relative w-full py-10 sm:py-14 lg:py-16 overflow-visible bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 font-sans">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Blueprint grid accent */}
         <div className="absolute inset-0 blueprint-dots opacity-40 pointer-events-none" />
@@ -310,26 +310,26 @@ export default function ClientsCorner() {
 
       {/* Ambient Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-10 w-96 h-96 bg-[#2495D3]/10 rounded-full blur-3xl" />
-        <div className="absolute top-0 right-10 w-96 h-96 bg-[#1C3A62]/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-10 w-96 h-96 bg-ina-blue/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-10 w-96 h-96 bg-ina-navy/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         {/* Header Area */}
         <div className="text-center max-w-3xl mb-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ina-blue/10 border border-ina-blue/20 text-ina-blue text-xs font-semibold tracking-wide mb-3">
             <Handshake className="w-3.5 h-3.5" />
             <span>Clients Corner</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-[#1C3A62] mb-3 tracking-normal">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-ina-navy mb-3 tracking-normal">
             Technologies & Partners with INA
           </h1>
-          <p className="text-[#585858] text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+          <p className="text-ina-grey text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
             Our goals are ambitious and can only be achieved in partnership with others.
             We proudly deliver comprehensive engineering, facility management, and technical solutions
             to India&apos;s most prestigious healthcare institutions, hospitality landmarks, IT hubs, malls, and elite residential townships.
           </p>
-          <div className="w-16 h-1 bg-[#2495D3] mx-auto mt-4 rounded-full" />
+          <div className="w-16 h-1 bg-ina-blue mx-auto mt-4 rounded-full" />
         </div>
 
         {/* ================= MOBILE PHONE VIEW: Dropdown Selector & Search Bar ================= */}
@@ -341,19 +341,19 @@ export default function ClientsCorner() {
               onClick={() => setDropdownOpen((prev) => !prev)}
               aria-expanded={dropdownOpen}
               aria-haspopup="listbox"
-              className="w-full h-11 flex items-center justify-between gap-1.5 px-3 py-2 rounded-full bg-white/95 backdrop-blur-md border border-[#2495D3]/40 shadow-xs text-[#1C3A62] active:scale-[0.98] transition-all cursor-pointer"
+              className="w-full h-11 flex items-center justify-between gap-1.5 px-3 py-2 rounded-full bg-white/95 backdrop-blur-md border border-ina-blue/40 shadow-xs text-ina-navy active:scale-[0.98] transition-all cursor-pointer"
             >
               <div className="flex items-center gap-2 min-w-0">
-                <span className="w-6 h-6 rounded-full bg-[#1C3A62] text-white flex items-center justify-center shrink-0">
-                  <ActiveIcon className="w-3.5 h-3.5 text-[#2495D3]" />
+                <span className="w-6 h-6 rounded-full bg-ina-navy text-white flex items-center justify-center shrink-0">
+                  <ActiveIcon className="w-3.5 h-3.5 text-ina-blue" />
                 </span>
-                <span className="text-xs font-semibold text-[#1C3A62] truncate">
+                <span className="text-xs font-semibold text-ina-navy truncate">
                   {activeCategory.name}
                 </span>
               </div>
 
               <ChevronDown
-                className={`w-3.5 h-3.5 text-[#2495D3] shrink-0 transition-transform duration-200 ${
+                className={`w-3.5 h-3.5 text-ina-blue shrink-0 transition-transform duration-200 ${
                   dropdownOpen ? "rotate-180" : ""
                 }`}
               />
@@ -364,7 +364,7 @@ export default function ClientsCorner() {
               <div
                 role="listbox"
                 style={{ touchAction: 'pan-y' }}
-                className="absolute left-0 top-full mt-2 w-[220px] max-h-[260px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/98 backdrop-blur-2xl rounded-2xl border border-[#2495D3]/40 shadow-2xl z-50 p-2 pb-3.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
+                className="absolute left-0 top-full mt-2 w-[220px] max-h-[260px] overflow-y-auto overscroll-contain custom-dropdown-scrollbar bg-white/98 backdrop-blur-2xl rounded-2xl border border-ina-blue/40 shadow-2xl z-50 p-2 pb-3.5 space-y-1 animate-in fade-in zoom-in-95 duration-150"
               >
                 {CATEGORIES.map((cat, idx) => {
                   const isSelected = activeTab === idx;
@@ -381,21 +381,21 @@ export default function ClientsCorner() {
                       }}
                       className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                         isSelected
-                          ? "bg-[#1C3A62] text-white shadow-sm"
-                          : "text-slate-700 hover:bg-[#D9EDF8]/50 hover:text-[#1C3A62]"
+                          ? "bg-ina-navy text-white shadow-sm"
+                          : "text-ina-ink hover:bg-ina-tint-15/50 hover:text-ina-navy"
                       }`}
                     >
                       <div className="flex items-center gap-2.5">
                         <CatIcon
                           className={`w-4 h-4 shrink-0 ${
-                            isSelected ? "text-[#2495D3]" : "text-slate-400"
+                            isSelected ? "text-ina-blue" : "text-ina-grey"
                           }`}
                         />
                         <span>{cat.name}</span>
                       </div>
 
                       {isSelected && (
-                        <Check className="w-4 h-4 text-[#2495D3] shrink-0 stroke-[2.5]" />
+                        <Check className="w-4 h-4 text-ina-blue shrink-0 stroke-[2.5]" />
                       )}
                     </button>
                   );
@@ -406,7 +406,7 @@ export default function ClientsCorner() {
 
           {/* Quick Search Bar Beside Dropdown */}
           <div className="relative flex-1 min-w-0">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-3.5 h-3.5 text-ina-grey absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
@@ -419,13 +419,13 @@ export default function ClientsCorner() {
               onFocus={(e) => {
                 e.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest" });
               }}
-              className="w-full h-11 pl-8 pr-7 text-[16px] sm:text-xs rounded-full border border-slate-200/90 bg-white/95 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-[#2495D3]/40 focus:border-[#2495D3] transition-[border-color,box-shadow] text-[#1C3A62] placeholder:text-slate-400"
+              className="w-full h-11 pl-8 pr-7 text-[16px] sm:text-xs rounded-full border border-ina-line/90 bg-white/95 shadow-xs focus:outline-hidden focus:ring-2 focus:ring-ina-blue/40 focus:border-ina-blue transition-[border-color,box-shadow] text-ina-navy placeholder:text-ina-grey"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-sm text-slate-400 hover:text-slate-600 w-5 h-5 flex items-center justify-center rounded-full"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-sm text-ina-grey hover:text-ina-grey w-5 h-5 flex items-center justify-center rounded-full"
                 aria-label="Clear search"
               >
                 &times;
@@ -435,7 +435,7 @@ export default function ClientsCorner() {
         </div>
 
         {/* ================= DESKTOP/TABLET VIEW: Category Filter Tabs ================= */}
-        <div className="hidden sm:flex flex-wrap items-center justify-center gap-2 mb-2 sm:mb-3 bg-white/95 backdrop-blur-md p-2 rounded-2xl sm:rounded-full shadow-lg border border-slate-200/80 relative z-40">
+        <div className="hidden sm:flex flex-wrap items-center justify-center gap-2 mb-2 sm:mb-3 bg-white/95 backdrop-blur-md p-2 rounded-2xl sm:rounded-full shadow-lg border border-ina-line/80 relative z-40">
           {CATEGORIES.map((cat, idx) => {
             const Icon = cat.icon;
             const isActive = activeTab === idx;
@@ -444,11 +444,11 @@ export default function ClientsCorner() {
                 key={cat.id}
                 onClick={() => handleTabChange(idx)}
                 className={`inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${isActive
-                    ? "bg-[#1C3A62] text-white shadow-md scale-105 ring-2 ring-[#2495D3]/40"
-                    : "bg-transparent text-[#585858] hover:bg-slate-100 hover:text-[#1C3A62]"
+                    ? "bg-ina-navy text-white shadow-md scale-105 ring-2 ring-ina-blue/40"
+                    : "bg-transparent text-ina-grey hover:bg-ina-tint-8 hover:text-ina-navy"
                   }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-[#2495D3]" : "text-slate-400"}`} />
+                <Icon className={`w-3.5 h-3.5 ${isActive ? "text-ina-blue" : "text-ina-grey"}`} />
                 <span>{cat.name}</span>
               </button>
             );
@@ -477,7 +477,7 @@ export default function ClientsCorner() {
                 className="w-[360px] lg:w-[400px] h-[312px] lg:h-[346px] flex items-center justify-center relative overflow-hidden"
                 style={{ clipPath: hexClipPath }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-ina-navy via-ina-night to-ina-night" />
                 <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-8 text-center">
                   <Image
                     src="/Ina Logo-1.jpg.png"
@@ -487,10 +487,10 @@ export default function ClientsCorner() {
                     className="object-contain filter drop-shadow-2xl"
                     priority
                   />
-                  <span className="text-[11px] font-semibold tracking-wide text-[#2495D3] mt-2">
+                  <span className="text-[11px] font-semibold tracking-wide text-ina-blue mt-2">
                     Integrated facility management
                   </span>
-                  <span className="text-[10px] text-slate-300 mt-1">
+                  <span className="text-[10px] text-ina-mist mt-1">
                     {activeCategory.name} Showcase
                   </span>
                 </div>
@@ -513,18 +513,18 @@ export default function ClientsCorner() {
 
           {/* Honeycomb Pagination Controls (shown when category has > 10 logos) */}
           {totalHoneycombPages > 1 && (
-            <div className="flex items-center gap-4 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-slate-200 shadow-sm mt-2">
+            <div className="flex items-center gap-4 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-ina-line shadow-sm mt-2">
               <button
                 type="button"
                 onClick={() => setHoneycombPage((p) => Math.max(0, p - 1))}
                 disabled={honeycombPage === 0}
-                className="p-1.5 rounded-full hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-[#1C3A62] cursor-pointer"
+                className="p-1.5 rounded-full hover:bg-ina-tint-8 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-ina-navy cursor-pointer"
                 title="Previous page"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
 
-              <span className="text-xs font-semibold text-[#1C3A62]">
+              <span className="text-xs font-semibold text-ina-navy">
                 Page {honeycombPage + 1} of {totalHoneycombPages} &bull; Showing{" "}
                 {honeycombPage * itemsPerPage + 1}&ndash;
                 {Math.min((honeycombPage + 1) * itemsPerPage, activeLogos.length)} of{" "}
@@ -537,7 +537,7 @@ export default function ClientsCorner() {
                     key={i}
                     type="button"
                     onClick={() => setHoneycombPage(i)}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${honeycombPage === i ? "w-6 bg-[#2495D3]" : "w-2 bg-slate-300 hover:bg-slate-400"
+                    className={`h-2 rounded-full transition-all cursor-pointer ${honeycombPage === i ? "w-6 bg-ina-blue" : "w-2 bg-ina-line hover:bg-ina-grey"
                       }`}
                     title={`Go to page ${i + 1}`}
                   />
@@ -548,7 +548,7 @@ export default function ClientsCorner() {
                 type="button"
                 onClick={() => setHoneycombPage((p) => Math.min(totalHoneycombPages - 1, p + 1))}
                 disabled={honeycombPage === totalHoneycombPages - 1}
-                className="p-1.5 rounded-full hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-[#1C3A62] cursor-pointer"
+                className="p-1.5 rounded-full hover:bg-ina-tint-8 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-ina-navy cursor-pointer"
                 title="Next page"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -560,7 +560,7 @@ export default function ClientsCorner() {
         {/* Mobile View: Dedicated clean interactive cards with Center Emblem */}
         <div className="md:hidden w-full flex flex-col items-center gap-4 mb-6 sm:mb-8">
           {/* Mobile Center Emblem */}
-          <div className="w-full max-w-sm rounded-2xl bg-gradient-to-br from-[#1C3A62] via-[#0F223D] to-[#0A1629] p-6 text-center shadow-xl border border-white/10 flex flex-col items-center justify-center">
+          <div className="w-full max-w-sm rounded-2xl bg-gradient-to-br from-ina-navy via-ina-night to-ina-night p-6 text-center shadow-xl border border-white/10 flex flex-col items-center justify-center">
             <Image
               src="/Ina Logo-1.jpg.png"
               alt="INA Logo"
@@ -568,7 +568,7 @@ export default function ClientsCorner() {
               height={100}
               className="object-contain filter drop-shadow-2xl mb-2"
             />
-            <span className="text-[11px] font-semibold tracking-wide text-[#2495D3]">
+            <span className="text-[11px] font-semibold tracking-wide text-ina-blue">
               {searchQuery ? `Search Results (${filteredLogos.length})` : `${activeCategory.name} Partners`}
             </span>
           </div>
@@ -576,14 +576,14 @@ export default function ClientsCorner() {
           {/* Grid of partners */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full max-w-md">
             {filteredLogos.length === 0 ? (
-              <div className="w-full py-10 px-4 text-center bg-white/90 rounded-2xl border border-dashed border-slate-300 col-span-2 sm:col-span-3">
-                <p className="text-slate-500 text-xs font-medium">
+              <div className="w-full py-10 px-4 text-center bg-white/90 rounded-2xl border border-dashed border-ina-line col-span-2 sm:col-span-3">
+                <p className="text-ina-grey text-xs font-medium">
                   No clients found matching &ldquo;{searchQuery}&rdquo;.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="mt-2 text-xs text-[#2495D3] font-semibold hover:underline"
+                  className="mt-2 text-xs text-ina-blue font-semibold hover:underline"
                 >
                   Clear search filter
                 </button>
@@ -592,7 +592,7 @@ export default function ClientsCorner() {
               filteredLogos.map((logo, idx) => (
                 <div
                   key={`${logo.name}-${idx}`}
-                  className="bg-white rounded-xl p-3 border border-slate-200/80 shadow-xs flex flex-col items-center justify-center gap-2 text-center hover:border-[#2495D3]/40 transition-all"
+                  className="bg-white rounded-xl p-3 border border-ina-line/80 shadow-xs flex flex-col items-center justify-center gap-2 text-center hover:border-ina-blue/40 transition-all"
                 >
                   <div className="w-full h-12 flex items-center justify-center">
                     <img
@@ -602,7 +602,7 @@ export default function ClientsCorner() {
                       decoding="async"
                     />
                   </div>
-                  <span className="text-xs font-semibold text-[#1C3A62] line-clamp-2">
+                  <span className="text-xs font-semibold text-ina-navy line-clamp-2">
                     {logo.name}
                   </span>
                 </div>
@@ -612,20 +612,20 @@ export default function ClientsCorner() {
         </div>
 
         {/* Full Directory & Interactive Catalog Grid Section (Desktop only - removed in phone view) */}
-        <div className="hidden md:block w-full mt-2 pt-6 sm:pt-8 border-t border-slate-200/80">
+        <div className="hidden md:block w-full mt-2 pt-6 sm:pt-8 border-t border-ina-line/80">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-[#1C3A62]">
+              <h2 className="text-xl sm:text-2xl font-bold text-ina-navy">
                 Complete {activeCategory.name} Directory
               </h2>
-              <p className="text-slate-500 text-xs sm:text-sm mt-1">
+              <p className="text-ina-grey text-xs sm:text-sm mt-1">
                 Explore all verified client facilities, operations, and networks managed by INA
               </p>
             </div>
 
             {/* Quick Search */}
             <div className="relative w-full md:w-80">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Search className="w-4 h-4 text-ina-grey absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
@@ -635,13 +635,13 @@ export default function ClientsCorner() {
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck={false}
-                className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-full border border-slate-200 bg-white shadow-2xs focus:outline-hidden focus:ring-2 focus:ring-[#2495D3]/40 focus:border-[#2495D3] transition-[border-color,box-shadow]"
+                className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-full border border-ina-line bg-white shadow-2xs focus:outline-hidden focus:ring-2 focus:ring-ina-blue/40 focus:border-ina-blue transition-[border-color,box-shadow]"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-ina-grey hover:text-ina-grey"
                 >
                   &times;
                 </button>
@@ -651,14 +651,14 @@ export default function ClientsCorner() {
 
           {/* Logos Grid */}
           {filteredLogos.length === 0 ? (
-            <div className="w-full py-16 text-center bg-white rounded-2xl border border-dashed border-slate-300">
-              <p className="text-slate-500 text-sm font-medium">
+            <div className="w-full py-16 text-center bg-white rounded-2xl border border-dashed border-ina-line">
+              <p className="text-ina-grey text-sm font-medium">
                 No clients found matching &ldquo;{searchQuery}&rdquo; in {activeCategory.name}.
               </p>
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="mt-3 text-xs text-[#2495D3] font-semibold hover:underline"
+                className="mt-3 text-xs text-ina-blue font-semibold hover:underline"
               >
                 Clear search filter
               </button>
@@ -668,7 +668,7 @@ export default function ClientsCorner() {
               {filteredLogos.map((logo, idx) => (
                 <div
                   key={`${logo.name}-${idx}`}
-                  className="group bg-white rounded-xl sm:rounded-2xl p-4 border border-slate-200/80 shadow-2xs hover:shadow-md hover:border-[#2495D3]/50 transition-all duration-300 flex flex-col items-center justify-between min-h-[140px] text-center"
+                  className="group bg-white rounded-xl sm:rounded-2xl p-4 border border-ina-line/80 shadow-2xs hover:shadow-md hover:border-ina-blue/50 transition-all duration-300 flex flex-col items-center justify-between min-h-[140px] text-center"
                 >
                   <div className="w-full h-16 flex items-center justify-center p-1">
                     <img
@@ -678,8 +678,8 @@ export default function ClientsCorner() {
                       decoding="async"
                     />
                   </div>
-                  <div className="w-full mt-2 pt-2 border-t border-slate-100 flex flex-col items-center">
-                    <span className="text-xs font-semibold text-[#1C3A62] group-hover:text-[#2495D3] transition-colors line-clamp-2">
+                  <div className="w-full mt-2 pt-2 border-t border-ina-tint-8 flex flex-col items-center">
+                    <span className="text-xs font-semibold text-ina-navy group-hover:text-ina-blue transition-colors line-clamp-2">
                       {logo.name}
                     </span>
                   </div>
@@ -690,24 +690,24 @@ export default function ClientsCorner() {
         </div>
 
         {/* Partnership Call to Action Banner */}
-        <div className="w-full max-w-5xl mt-14 rounded-3xl bg-gradient-to-r from-[#1C3A62] via-[#163053] to-[#0F223D] p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
-          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-[#2495D3]/20 to-transparent pointer-events-none" />
+        <div className="w-full max-w-5xl mt-14 rounded-3xl bg-gradient-to-r from-ina-navy via-ina-navy to-ina-night p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
+          <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-ina-blue/20 to-transparent pointer-events-none" />
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-1.5 text-xs text-[#2495D3] font-semibold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-1.5 text-xs text-ina-blue font-semibold uppercase tracking-wider mb-2">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Pan-India Facility Management Network</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">
                 Partner with INA for Your Facilities
               </h3>
-              <p className="text-slate-300 text-xs sm:text-sm mt-2 max-w-xl">
+              <p className="text-ina-mist text-xs sm:text-sm mt-2 max-w-xl">
                 Experience comprehensive hard FM, technical engineering, IoT-driven audits, and bespoke facility operations trusted by India&apos;s leading brands.
               </p>
             </div>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#2495D3] hover:bg-[#1E7FB5] text-white text-sm font-semibold shadow-lg shadow-[#2495D3]/30 hover:scale-105 transition-all duration-300 w-full sm:w-auto shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-ina-blue-deep hover:bg-ina-navy text-white text-sm font-semibold shadow-lg shadow-ina-blue/30 hover:scale-105 transition-all duration-300 w-full sm:w-auto shrink-0"
             >
               <span>Get in Touch</span>
               <ArrowRight className="w-4 h-4" />

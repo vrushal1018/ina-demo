@@ -3,7 +3,7 @@
 import React, { useEffect, useState, type CSSProperties } from "react";
 
 /* ------------------------------------------------------------------ *
- *  DIWALI THEME – INA TechFM
+ *  DIWALI THEME – Ina TechFM
  *  ON : keep <DiwaliTheme /> in app/layout.tsx. It shows itself only
  *       between startDate and endDate.
  *  OFF: set enabled to false, or delete <DiwaliTheme /> from layout.tsx.
@@ -12,7 +12,7 @@ const CONFIG = {
   enabled: false,
   startDate: "2026-11-01", // first day shown (IST) - set to Nov 1 so it's live immediately
   endDate: "2026-11-12", // last day shown (IST)
-  greeting: "Happy Diwali from INA TechFM",
+  greeting: "Happy Diwali from Ina TechFM",
   message: "Wishing you and your teams a bright, prosperous festive season.",
   lanterns: true,
   embers: true,

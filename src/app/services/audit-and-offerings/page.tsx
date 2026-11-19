@@ -36,11 +36,11 @@ export default function AuditAndOfferingsPage() {
     <>
       <SiteHeader />
 
-      <div className="min-h-screen overflow-hidden bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] font-sans">
+      <div className="min-h-screen overflow-hidden bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 font-sans">
         {/* =========================================================
             HERO SECTION
         ========================================================== */}
-        <section className="relative min-h-[75vh] min-h-[75dvh] sm:min-h-[480px] lg:min-h-[520px] flex items-center bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] py-10 lg:py-14 overflow-hidden">
+        <section className="relative min-h-[75vh] min-h-[75dvh] sm:min-h-[480px] lg:min-h-[520px] flex items-center bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 py-10 lg:py-14 overflow-hidden">
           {/* Blueprint grid accent */}
           <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
           {/* Architectural linework stream */}
@@ -50,26 +50,26 @@ export default function AuditAndOfferingsPage() {
             <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-12">
               {/* LEFT CONTENT */}
               <div className="relative z-30">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] text-xs font-semibold tracking-wide mb-4">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ina-blue/10 border border-ina-blue/20 text-ina-blue text-xs font-semibold tracking-wide mb-4">
                   <FileCheck2 className="w-3.5 h-3.5" />
                   <span>Facility Management Audits & Diagnostics</span>
                 </div>
 
-                <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-[#1C3A62]">
+                <h1 className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.05] tracking-normal text-ina-navy">
                   Facility Management <br />
-                  <span className="text-[#2495D3]">Audits &amp;</span> Offerings
+                  <span className="text-ina-blue">Audits &amp;</span> Offerings
                 </h1>
-                <div className="w-20 h-1 bg-[#2495D3] mt-4 mb-6 rounded-full" />
+                <div className="w-20 h-1 bg-ina-blue mt-4 mb-6 rounded-full" />
 
-                <p className="max-w-xl text-base sm:text-lg leading-relaxed text-[#585858]">
+                <p className="max-w-xl text-base sm:text-lg leading-relaxed text-ina-grey">
                   Comprehensive facility management audits, technical safety diagnostics, and bespoke engineering solutions engineered to maximize asset efficiency and statutory compliance.
                 </p>
               </div>
 
               {/* RIGHT IMAGE - OVERLAPPING ARCHITECTURAL PANELS */}
               <div className="relative flex w-full items-center justify-center h-[380px] sm:h-[460px] lg:h-[520px]">
-                <div className="absolute left-[8%] top-[-40px] h-[580px] w-px bg-slate-200/80 hidden sm:block" />
-                <div className="absolute right-[8%] top-[-40px] h-[580px] w-px bg-slate-200/80 hidden sm:block" />
+                <div className="absolute left-[8%] top-[-40px] h-[580px] w-px bg-ina-line/80 hidden sm:block" />
+                <div className="absolute right-[8%] top-[-40px] h-[580px] w-px bg-ina-line/80 hidden sm:block" />
 
                 <div className="relative z-10 w-full h-full flex items-center justify-center">
                   <div className="absolute left-[2%] sm:left-[5%] z-0 h-[68%] w-[42%] overflow-hidden rounded-2xl shadow-xl border-2 border-white group">
@@ -88,15 +88,15 @@ export default function AuditAndOfferingsPage() {
                     />
                   </div>
 
-                  <div className="relative z-10 h-[88%] w-[48%] overflow-hidden rounded-2xl shadow-2xl ring-4 ring-white border border-slate-200/60 group">
+                  <div className="relative z-10 h-[88%] w-[48%] overflow-hidden rounded-2xl shadow-2xl ring-4 ring-white border border-ina-line/60 group">
                     <img
                       src="/auditmain.jpg"
                       alt="Main Audit & Offerings"
                       className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-lg bg-[#1C3A62]/90 backdrop-blur-md text-white text-xs font-semibold flex items-center justify-between">
+                    <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-lg bg-ina-navy/90 backdrop-blur-md text-white text-xs font-semibold flex items-center justify-between">
                       <span>ANSI Conformance</span>
-                      <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
+                      <span className="w-2 h-2 rounded-full bg-ina-blue animate-pulse" />
                     </div>
                   </div>
                 </div>
@@ -111,13 +111,13 @@ export default function AuditAndOfferingsPage() {
         <AnimateIn delay={0.1} minHeight="400px">
           <section className="bg-transparent py-8 lg:py-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-md p-6 sm:p-8 lg:p-10 border border-slate-200 shadow-xl">
+              <div className="relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-md p-6 sm:p-8 lg:p-10 border border-ina-line shadow-xl">
                 <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
 
                 <div className="relative z-10 grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
                   {/* OVERVIEW IMAGE */}
                   <div className="lg:col-span-5 relative flex h-[280px] sm:h-[320px] lg:h-[360px] items-center justify-center">
-                    <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-[#1C3A62] to-[#0F223D] p-6 flex items-center justify-center">
+                    <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl shadow-xl bg-gradient-to-br from-ina-navy to-ina-night p-6 flex items-center justify-center">
                       <img
                         src="/Audit%26Offerings.svg"
                         alt="Audit & Offerings Overview"
@@ -130,16 +130,16 @@ export default function AuditAndOfferingsPage() {
 
                   {/* OVERVIEW CONTENT */}
                   <div className="lg:col-span-7">
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#2495D3]/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-[#2495D3]">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-ina-blue/10 px-3.5 py-1 text-xs font-semibold tracking-wide text-ina-blue">
                       Overview
                     </div>
 
-                    <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-[#1C3A62]">
+                    <h2 className="text-3xl sm:text-4xl font-normal tracking-normal text-ina-navy">
                       What Are Audits & Offerings?
                     </h2>
-                    <div className="w-16 h-1 bg-[#2495D3] mt-3 mb-6 rounded-full" />
+                    <div className="w-16 h-1 bg-ina-blue mt-3 mb-6 rounded-full" />
 
-                    <p className="leading-relaxed text-[#585858] text-base sm:text-lg">
+                    <p className="leading-relaxed text-ina-grey text-base sm:text-lg">
                       Our audit services deliver professional, in-depth assessments of your facility&apos;s operations and performance. By providing tailored solutions and identifying key improvement opportunities, we help optimize your facility&apos;s overall effectiveness.
                     </p>
 
@@ -152,10 +152,10 @@ export default function AuditAndOfferingsPage() {
                       ].map((item, index) => (
                         <li
                           key={index}
-                          className="flex items-center gap-3 bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-sm"
+                          className="flex items-center gap-3 bg-white p-3.5 rounded-xl border border-ina-line/80 shadow-sm"
                         >
-                          <span className="h-2 w-2 rounded-full flex-shrink-0 bg-[#2495D3]" />
-                          <span className="font-semibold text-sm text-[#1C3A62]">
+                          <span className="h-2 w-2 rounded-full flex-shrink-0 bg-ina-blue" />
+                          <span className="font-semibold text-sm text-ina-navy">
                             {item}
                           </span>
                         </li>

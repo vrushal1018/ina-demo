@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Energy Management Services & Sustainability Solutions | INA TechFM",
+  title: "Energy Management Services & Sustainability Solutions | Ina TechFM",
   description:
     "Expert energy management services and sustainable facility solutions across India. Power consumption optimization, carbon footprint reduction, green audits, and ESG compliance.",
   alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "ESG Facility Management India",
   ],
   openGraph: {
-    title: "Energy Management Services & Sustainability Solutions | INA TechFM",
+    title: "Energy Management Services & Sustainability Solutions | Ina TechFM",
     description:
       "Enterprise energy management services and sustainability solutions for modern facilities across India.",
     url: "https://inatechfmglobal.com/services/sustainability-services",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Energy Management Services - INA TechFM",
+        alt: "Energy Management Services - Ina TechFM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Energy Management Services & Sustainability Solutions | INA TechFM",
+    title: "Energy Management Services & Sustainability Solutions | Ina TechFM",
     description:
       "Enterprise energy management services and sustainability solutions across India.",
     images: ["/og-image.png"],
@@ -46,7 +46,7 @@ const jsonLd = {
   serviceType: "Energy & Sustainability Management",
   provider: {
     "@type": "Corporation",
-    name: "INA TechFM",
+    name: "Ina TechFM",
     url: "https://inatechfmglobal.com",
   },
   areaServed: {

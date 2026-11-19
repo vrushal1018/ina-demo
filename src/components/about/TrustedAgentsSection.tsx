@@ -67,10 +67,10 @@ export default function TrustedAgentsSection() {
 
         {/* Section Heading */}
         <div className="text-center mb-8 sm:mb-10">
-          <span className="text-[#1C3A62] font-semibold tracking-wide text-xs sm:text-sm mb-2 block">
+          <span className="text-ina-navy font-semibold tracking-wide text-xs sm:text-sm mb-2 block">
             Leadership
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-[#1C3A62] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-ina-navy tracking-tight">
             Meet Our Board
           </h2>
         </div>
@@ -81,7 +81,7 @@ export default function TrustedAgentsSection() {
             <div key={agent.id} className="flex flex-col group p-4 rounded-2xl hover:bg-slate-50 transition-colors duration-300">
 
               {/* Agent Image Card */}
-              <div className="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] rounded-2xl overflow-hidden mb-4 bg-gradient-to-b from-[#F0F6FA] to-[#E2ECF4] border border-[#2495D3]/10">
+              <div className="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] rounded-2xl overflow-hidden mb-4 bg-gradient-to-b from-[#F0F6FA] to-[#E2ECF4] border border-ina-blue/10">
                 <Image
                   src={agent.image}
                   alt={agent.name}
@@ -93,13 +93,13 @@ export default function TrustedAgentsSection() {
 
               {/* Agent Info */}
               <div className="flex flex-col text-left px-1 pb-1">
-                <span className="inline-block w-fit px-3 py-1 rounded-full bg-[#2495D3]/10 text-[#2495D3] text-xs font-semibold tracking-wide mb-2">
+                <span className="inline-block w-fit px-3 py-1 rounded-full bg-ina-blue/10 text-ina-blue text-xs font-semibold tracking-wide mb-2">
                   Co-Founder
                 </span>
-                <h3 className="text-lg sm:text-xl font-medium text-[#1C3A62] group-hover:text-[#2495D3] transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-medium text-ina-navy group-hover:text-ina-blue transition-colors duration-300">
                   {agent.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#585858] font-medium mt-1 mb-3">
+                <p className="text-xs sm:text-sm text-ina-grey font-medium mt-1 mb-3">
                   {agent.role}
                 </p>
 
@@ -108,28 +108,28 @@ export default function TrustedAgentsSection() {
                   <a
                     href={agent.socials.facebook}
                     aria-label={`${agent.name}'s Facebook`}
-                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-[#585858] hover:border-[#2495D3] hover:bg-[#2495D3] hover:text-white transition-all duration-300"
+                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-ina-grey hover:border-ina-blue hover:bg-ina-blue hover:text-white transition-all duration-300"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                   </a>
                   <a
                     href={agent.socials.twitter}
                     aria-label={`${agent.name}'s Twitter`}
-                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-[#585858] hover:border-[#2495D3] hover:bg-[#2495D3] hover:text-white transition-all duration-300"
+                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-ina-grey hover:border-ina-blue hover:bg-ina-blue hover:text-white transition-all duration-300"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
                   </a>
                   <a
                     href={agent.socials.instagram}
                     aria-label={`${agent.name}'s Instagram`}
-                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-[#585858] hover:border-[#2495D3] hover:bg-[#2495D3] hover:text-white transition-all duration-300"
+                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-ina-grey hover:border-ina-blue hover:bg-ina-blue hover:text-white transition-all duration-300"
                   >
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                   </a>
                   <a
                     href={agent.socials.profile}
                     aria-label={`${agent.name}'s Profile`}
-                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-[#585858] hover:border-[#2495D3] hover:bg-[#2495D3] hover:text-white transition-all duration-300"
+                    className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-ina-grey hover:border-ina-blue hover:bg-ina-blue hover:text-white transition-all duration-300"
                   >
                     <User className="w-4 h-4" />
                   </a>

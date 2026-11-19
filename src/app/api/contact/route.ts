@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     const smtpFrom =
       process.env.SMTP_FROM && !process.env.SMTP_FROM.includes("your-email@gmail.com")
         ? process.env.SMTP_FROM
-        : `Ina Tech FM Website <${smtpUser}>`;
+        : `Ina TechFM Website <${smtpUser}>`;
 
     if (!smtpUser || !smtpPass || smtpUser === "your-email@gmail.com" || smtpPass === "your-smtp-password") {
       return NextResponse.json(
@@ -98,17 +98,17 @@ export async function POST(req: NextRequest) {
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333333; }
           .container { max-width: 620px; margin: 0 auto; background: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.06); border: 1px solid #eef0f3; }
-          .header { background: linear-gradient(135deg, #1C3A62 0%, #0F233D 100%); padding: 32px 24px; text-align: center; color: #ffffff; }
+          .header { background: linear-gradient(135deg, #0F3B57 0%, #082336 100%); padding: 32px 24px; text-align: center; color: #ffffff; }
           .header h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
           .header p { margin: 6px 0 0; font-size: 14px; opacity: 0.85; }
-          .badge { display: inline-block; background: #2495D3; color: #ffffff; font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 999px; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+          .badge { display: inline-block; background: #1A95D1; color: #ffffff; font-size: 12px; font-weight: 600; padding: 4px 14px; border-radius: 999px; margin-top: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
           .content { padding: 32px 28px; }
-          .section-title { font-size: 14px; font-weight: 700; color: #1C3A62; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 2px solid #2495D3; padding-bottom: 6px; }
+          .section-title { font-size: 14px; font-weight: 700; color: #0F3B57; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 2px solid #1A95D1; padding-bottom: 6px; }
           .info-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
           .info-table td { padding: 10px 12px; font-size: 14px; border-bottom: 1px solid #f0f2f5; }
-          .info-table td.label { font-weight: 600; color: #585858; width: 32%; background: #fafbfc; border-radius: 6px; }
-          .info-table td.value { font-weight: 500; color: #1C3A62; }
-          .message-box { background: #F8FAFC; border-left: 4px solid #2495D3; border-radius: 6px; padding: 16px 20px; font-size: 14px; line-height: 1.6; color: #2D3748; margin-top: 10px; }
+          .info-table td.label { font-weight: 600; color: #5C6E7A; width: 32%; background: #fafbfc; border-radius: 6px; }
+          .info-table td.value { font-weight: 500; color: #0F3B57; }
+          .message-box { background: #F8FAFC; border-left: 4px solid #1A95D1; border-radius: 6px; padding: 16px 20px; font-size: 14px; line-height: 1.6; color: #2D3748; margin-top: 10px; }
           .footer { background: #fafbfc; padding: 20px; text-align: center; font-size: 12px; color: #888888; border-top: 1px solid #f0f2f5; }
         </style>
       </head>
@@ -128,11 +128,11 @@ export async function POST(req: NextRequest) {
               </tr>
               <tr>
                 <td class="label">Email Address</td>
-                <td class="value"><a href="mailto:${safeEmail}" style="color: #2495D3; text-decoration: none; font-weight: 600;">${safeEmail}</a></td>
+                <td class="value"><a href="mailto:${safeEmail}" style="color: #1A95D1; text-decoration: none; font-weight: 600;">${safeEmail}</a></td>
               </tr>
               <tr>
                 <td class="label">Phone Number</td>
-                <td class="value">${phone ? `<a href="tel:${safePhone}" style="color: #2495D3; text-decoration: none; font-weight: 600;">${safePhone}</a>` : "Not provided"}</td>
+                <td class="value">${phone ? `<a href="tel:${safePhone}" style="color: #1A95D1; text-decoration: none; font-weight: 600;">${safePhone}</a>` : "Not provided"}</td>
               </tr>
               <tr>
                 <td class="label">Company</td>
@@ -154,7 +154,7 @@ export async function POST(req: NextRequest) {
             </div>
           </div>
           <div class="footer">
-            <p style="margin: 0;">This email was sent from the contact form on <strong>Ina Tech FM Global</strong> website to <strong>${recipientEmail}</strong>.</p>
+            <p style="margin: 0;">This email was sent from the contact form on <strong>Ina TechFM Global</strong> website to <strong>${recipientEmail}</strong>.</p>
             <p style="margin: 6px 0 0 0; color: #a0aec0; font-size: 11px;">You can reply directly to this email to contact the sender.</p>
           </div>
         </div>
@@ -163,7 +163,7 @@ export async function POST(req: NextRequest) {
     `;
 
     const plainText = `
-New Contact Inquiry from Ina Tech FM Website
+New Contact Inquiry from Ina TechFM Website
 
 Name: ${fullName}
 Email: ${email}

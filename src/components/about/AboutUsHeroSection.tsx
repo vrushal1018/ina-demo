@@ -38,7 +38,7 @@ export default function AboutUsHeroSection() {
   }, [mobileVideoRef, desktopVideoRef]);
 
   return (
-    <section className="relative w-full min-h-screen min-h-[100dvh] flex flex-col justify-start pt-8 sm:pt-10 lg:pt-12 pb-12 overflow-hidden bg-[#0A1629] text-white font-sans">
+    <section className="relative w-full min-h-screen min-h-[100dvh] flex flex-col justify-start pt-8 sm:pt-10 lg:pt-12 pb-12 overflow-hidden bg-ina-night text-white font-sans">
       {/* Background Video with continuous loop and zero-layout-shift responsive display */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Mobile Phone Hero Video - ALWAYS /demovideo_full_vertical.mp4 */}

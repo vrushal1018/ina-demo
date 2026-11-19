@@ -156,7 +156,7 @@ export default function ComprehensiveBuildingSolutions() {
   };
 
   return (
-    <section className="relative bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-t border-[#2495D3]/20">
+    <section className="relative bg-gradient-to-b from-ina-tint-8 to-ina-tint-15 py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 font-sans overflow-hidden border-t border-ina-blue/20">
       {/* Background blueprint dots */}
       <div className="absolute inset-0 blueprint-dots opacity-30 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream in Whitespace */}
@@ -166,33 +166,33 @@ export default function ComprehensiveBuildingSolutions() {
         {/* Header Section */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-8 sm:mb-10 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 text-xs rounded-full bg-[#2495D3]/10 border border-[#2495D3]/20 text-[#2495D3] font-semibold tracking-wide mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 text-xs rounded-full bg-ina-blue/10 border border-ina-blue/20 text-ina-blue font-semibold tracking-wide mb-3">
               <Layers className="w-3.5 h-3.5" />
               <span>See All Services</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#1C3A62] leading-[1.1] tracking-normal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-ina-navy leading-[1.1] tracking-normal">
               Comprehensive Facility <br className="hidden md:block" />
               Management Solutions
             </h2>
-            <div className="w-16 h-1 bg-[#2495D3] mt-3 rounded-full" />
+            <div className="w-16 h-1 bg-ina-blue mt-3 rounded-full" />
           </div>
 
           <div className="flex flex-col items-start lg:items-end gap-6">
-            <p className="text-[#585858] max-w-md text-sm sm:text-base leading-relaxed lg:text-right">
+            <p className="text-ina-grey max-w-md text-sm sm:text-base leading-relaxed lg:text-right">
               We provide specialized engineering and facility management services, ensuring your physical assets and critical systems operate at peak efficiency, reliability, and safety.
             </p>
             {/* Navigation Buttons */}
             <div className="flex gap-3">
               <button
                 onClick={() => scroll('left')}
-                className="w-12 h-12 rounded-xl border border-slate-200 flex items-center justify-center text-[#1C3A62] hover:border-[#2495D3] hover:bg-[#2495D3] hover:text-white transition-all duration-300 shadow-sm bg-white active:scale-95"
+                className="w-12 h-12 rounded-xl border border-ina-line flex items-center justify-center text-ina-navy hover:border-ina-blue hover:bg-ina-blue hover:text-white transition-all duration-300 shadow-sm bg-white active:scale-95"
                 aria-label="Scroll left"
               >
                 <ChevronLeft size={22} />
               </button>
               <button
                 onClick={() => scroll('right')}
-                className="w-12 h-12 rounded-xl border border-slate-200 flex items-center justify-center text-[#1C3A62] hover:border-[#2495D3] hover:bg-[#2495D3] hover:text-white transition-all duration-300 shadow-sm bg-white active:scale-95"
+                className="w-12 h-12 rounded-xl border border-ina-line flex items-center justify-center text-ina-navy hover:border-ina-blue hover:bg-ina-blue hover:text-white transition-all duration-300 shadow-sm bg-white active:scale-95"
                 aria-label="Scroll right"
               >
                 <ChevronRight size={22} />
@@ -211,8 +211,8 @@ export default function ComprehensiveBuildingSolutions() {
           }}
         >
           {/* Left & Right fade gradient (matching soft blue section background, desktop only) */}
-          <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-r from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
-          <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-l from-[#E2F1FA] to-transparent z-10 pointer-events-none" />
+          <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-r from-ina-tint-8 to-transparent z-10 pointer-events-none" />
+          <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-8 md:w-20 bg-gradient-to-l from-ina-tint-8 to-transparent z-10 pointer-events-none" />
 
           <div
             ref={scrollContainerRef}
@@ -240,7 +240,7 @@ export default function ComprehensiveBuildingSolutions() {
                 >
                   {/* Border Wrapper */}
                   <div
-                    className="h-full w-full bg-slate-200 group-hover:bg-[#2495D3] p-[1.5px] transition-all duration-500 group-hover:shadow-[0_20px_40px_rgba(36,149,211,0.2)] group-hover:-translate-y-2 pointer-events-auto"
+                    className="h-full w-full bg-ina-line group-hover:bg-ina-blue p-[1.5px] transition-all duration-500 group-hover:shadow-[0_20px_40px_rgba(26, 149, 209,0.2)] group-hover:-translate-y-2 pointer-events-auto"
                     style={{ clipPath }}
                   >
                     {/* Inner Card */}
@@ -249,20 +249,20 @@ export default function ComprehensiveBuildingSolutions() {
                       style={{ clipPath }}
                     >
                       {/* Icon Container */}
-                      <div className="w-14 h-14 bg-[#F0F7FD] rounded-xl flex items-center justify-center text-[#1C3A62] mb-6 transition-all duration-300 group-hover:scale-105 group-hover:bg-[#2495D3] group-hover:text-white shadow-sm">
+                      <div className="w-14 h-14 bg-ina-tint-15 rounded-xl flex items-center justify-center text-ina-navy mb-6 transition-all duration-300 group-hover:scale-105 group-hover:bg-ina-blue group-hover:text-white shadow-sm">
                         <Icon size={26} strokeWidth={2} />
                       </div>
 
                       {/* Content */}
-                      <h3 className="text-xl font-normal text-[#1C3A62] mb-3 pr-2 leading-snug group-hover:text-[#2495D3] transition-colors">
+                      <h3 className="text-xl font-normal text-ina-navy mb-3 pr-2 leading-snug group-hover:text-ina-blue transition-colors">
                         {service.title}
                       </h3>
-                      <p className="text-[#585858] text-[14px] mb-6 flex-grow leading-relaxed">
+                      <p className="text-ina-grey text-[14px] mb-6 flex-grow leading-relaxed">
                         {service.description}
                       </p>
 
                       {/* Action Link */}
-                      <div className="inline-flex items-center text-[#1C3A62] font-semibold text-xs tracking-wide group-hover:text-[#2495D3] transition-colors w-max mt-auto pointer-events-auto gap-1.5">
+                      <div className="inline-flex items-center text-ina-navy font-semibold text-xs tracking-wide group-hover:text-ina-blue transition-colors w-max mt-auto pointer-events-auto gap-1.5">
                         <span>Read more</span>
                         <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                       </div>

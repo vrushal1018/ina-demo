@@ -25,20 +25,20 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#0A1629] text-white pt-20 pb-12 overflow-hidden border-t border-[#1C3A62]">
+    <footer className="relative bg-ina-night text-white pt-20 pb-12 overflow-hidden border-t border-ina-navy">
       {/* Subtle Architectural Grid Background */}
       <div className="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" />
       {/* Authentic Architectural Linework Background in Dark Theme */}
       <ArchitecturalLineworkBackground theme="dark" opacity={0.25} mask="fade-top" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#2495D3]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1C3A62]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-ina-blue/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-ina-navy/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Highlight Banner */}
         <div className="pb-14 mb-16 border-b border-white/10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#2495D3]/15 border border-[#2495D3]/30 text-xs font-semibold text-[#2495D3] mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#2495D3] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ina-blue/15 border border-ina-blue/30 text-xs font-semibold text-ina-blue mb-4">
+              <span className="w-2 h-2 rounded-full bg-ina-blue animate-pulse" />
               <span>Pan-India Facility Engineering Excellence</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-normal text-white tracking-normal leading-snug">
@@ -52,7 +52,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#2495D3] hover:bg-[#488FCD] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-lg shadow-[#2495D3]/25 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-ina-blue hover:bg-ina-blue-deep text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-lg shadow-ina-blue/25 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto"
             >
               <span>Talk to our experts</span>
               <ArrowRight className="w-4 h-4" />
@@ -61,7 +61,7 @@ export default function Footer() {
               href="tel:+919326906715"
               className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-full border border-white/20 hover:border-white/50 text-white text-xs sm:text-sm font-semibold transition-all duration-300 hover:bg-white/5 w-full sm:w-auto"
             >
-              <Phone className="w-4 h-4 text-[#2495D3]" />
+              <Phone className="w-4 h-4 text-ina-blue" />
               <span>+91-9326906715</span>
             </a>
           </div>
@@ -74,7 +74,7 @@ export default function Footer() {
             <Link
               href="/"
               className="inline-block transition-transform hover:scale-105 active:scale-95"
-              title="INA TechFM"
+              title="Ina TechFM"
             >
               <img
                 src="/Ina%20TechFM%20Logo%20white.png"
@@ -83,15 +83,15 @@ export default function Footer() {
               />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              Ina Tech FM delivers integrated facility management and engineering services to improve efficiency, reliability, safety, and long-term asset performance.
+              Ina TechFM delivers integrated facility management and engineering services to improve efficiency, reliability, safety, and long-term asset performance.
             </p>
             <div className="pt-2 flex items-center gap-3 text-xs text-slate-300">
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-                <Building2 className="w-4 h-4 text-[#2495D3]" />
+                <Building2 className="w-4 h-4 text-ina-blue" />
                 <span>78 Mn+ Sq Ft</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
-                <ShieldCheck className="w-4 h-4 text-[#2495D3]" />
+                <ShieldCheck className="w-4 h-4 text-ina-blue" />
                 <span>290+ Clients</span>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function Footer() {
 
           {/* Col 2: Services */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-sm font-semibold tracking-wide text-[#2495D3]">
+            <h4 className="text-sm font-semibold tracking-wide text-ina-blue">
               Services
             </h4>
             <ul className="space-y-2.5">
@@ -107,9 +107,9 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-slate-300 hover:text-[#2495D3] transition-colors flex items-center group"
+                    className="text-sm text-slate-300 hover:text-ina-blue transition-colors flex items-center group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-[#2495D3] transition-colors mr-2.5" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-ina-grey group-hover:bg-ina-blue transition-colors mr-2.5" />
                     <span>{item.name}</span>
                   </Link>
                 </li>
@@ -119,7 +119,7 @@ export default function Footer() {
 
           {/* Col 3: Navigation */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-sm font-semibold tracking-wide text-[#2495D3]">
+            <h4 className="text-sm font-semibold tracking-wide text-ina-blue">
               Company
             </h4>
             <ul className="space-y-2.5">
@@ -127,9 +127,9 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-slate-300 hover:text-[#2495D3] transition-colors flex items-center group"
+                    className="text-sm text-slate-300 hover:text-ina-blue transition-colors flex items-center group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-[#2495D3] transition-colors mr-2.5" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-ina-grey group-hover:bg-ina-blue transition-colors mr-2.5" />
                     <span>{item.name}</span>
                   </Link>
                 </li>
@@ -139,25 +139,25 @@ export default function Footer() {
 
           {/* Col 4: Contact & HQ */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-sm font-semibold tracking-wide text-[#2495D3]">
+            <h4 className="text-sm font-semibold tracking-wide text-ina-blue">
               Headquarters
             </h4>
             <div className="space-y-3.5 text-xs sm:text-sm text-slate-300">
               <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#2495D3] shrink-0 mt-1" />
+                <MapPin className="w-4 h-4 text-ina-blue shrink-0 mt-1" />
                 <span className="leading-relaxed text-slate-400">
                   1st Floor, C-Wing, MBC Tech Park, Sainath Nagar, Kasarvadavli, Ghodbunder Road, Thane West, Maharashtra – 400615
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#2495D3] shrink-0" />
-                <a href="tel:+919326906715" className="hover:text-[#2495D3] text-slate-300 transition-colors">
+                <Phone className="w-4 h-4 text-ina-blue shrink-0" />
+                <a href="tel:+919326906715" className="hover:text-ina-blue text-slate-300 transition-colors">
                   +91-9326906715
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#2495D3] shrink-0" />
-                <a href="mailto:connect@inatechfmglobal.com" className="hover:text-[#2495D3] text-slate-300 transition-colors">
+                <Mail className="w-4 h-4 text-ina-blue shrink-0" />
+                <a href="mailto:connect@inatechfmglobal.com" className="hover:text-ina-blue text-slate-300 transition-colors">
                   connect@inatechfmglobal.com
                 </a>
               </div>
@@ -168,7 +168,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
           <div>
-            © {currentYear} Ina Tech FM. All rights reserved.
+            © {currentYear} Ina TechFM. All rights reserved.
           </div>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-4 gap-y-1.5 text-slate-400 text-[11px] sm:text-xs">
             <span>Pan-India Presence</span>

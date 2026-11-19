@@ -49,7 +49,7 @@ const stats: StatItem[] = [
 
 export default function StatsSection() {
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#E2F1FA] to-[#D9EDF8] py-8 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
+    <section className="relative w-full bg-gradient-to-b from-ina-tint-8 to-ina-tint-15 py-8 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-12 font-sans overflow-hidden">
       {/* Blueprint grid accent */}
       <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
       {/* Architectural linework stream */}
@@ -61,19 +61,19 @@ export default function StatsSection() {
             return (
               <div
                 key={stat.id}
-                className="group relative bg-transparent rounded-2xl p-6 flex flex-col justify-between min-h-[180px] transition-all duration-300 hover:shadow-xl hover:shadow-[#1C3A62]/6 border border-slate-200/80 hover:border-[#2495D3]/40 hover:-translate-y-1 overflow-hidden"
+                className="group relative bg-transparent rounded-2xl p-6 flex flex-col justify-between min-h-[180px] transition-all duration-300 hover:shadow-xl hover:shadow-ina-navy/6 border border-ina-line/80 hover:border-ina-blue/40 hover:-translate-y-1 overflow-hidden"
               >
                 {/* Top Icon Badge */}
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-slate-200/80 group-hover:bg-[#2495D3] group-hover:border-[#2495D3] flex items-center justify-center text-[#1C3A62] group-hover:text-white transition-all duration-300 shadow-xs">
+                  <div className="w-10 h-10 rounded-xl bg-white border border-ina-line/80 group-hover:bg-ina-blue group-hover:border-ina-blue flex items-center justify-center text-ina-navy group-hover:text-white transition-all duration-300 shadow-xs">
                     <Icon className="w-5 h-5 stroke-[1.75]" />
                   </div>
-                  <span className="w-2 h-2 rounded-full bg-[#2495D3] opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <span className="w-2 h-2 rounded-full bg-ina-blue opacity-60 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <div>
                   {/* Stat Number with animated counter effect */}
-                  <h3 className="text-3xl sm:text-4xl font-normal text-[#1C3A62] tracking-normal group-hover:text-[#2495D3] transition-colors duration-300 font-heading">
+                  <h3 className="text-3xl sm:text-4xl font-normal text-ina-navy tracking-normal group-hover:text-ina-blue transition-colors duration-300 font-heading">
                     <Counter
                       end={stat.end}
                       start={0}
@@ -85,13 +85,13 @@ export default function StatsSection() {
                   </h3>
 
                   {/* Stat Description */}
-                  <p className="text-sm sm:text-base text-[#585858] font-medium leading-relaxed mt-3">
+                  <p className="text-sm sm:text-base text-ina-grey font-medium leading-relaxed mt-3">
                     {stat.description}
                   </p>
                 </div>
 
                 {/* Bottom accent glow */}
-                <div className="mt-6 w-8 h-0.5 bg-slate-200 group-hover:w-full group-hover:bg-[#2495D3] transition-all duration-500 rounded-full" />
+                <div className="mt-6 w-8 h-0.5 bg-ina-line group-hover:w-full group-hover:bg-ina-blue transition-all duration-500 rounded-full" />
               </div>
             );
           })}

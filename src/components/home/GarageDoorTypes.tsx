@@ -61,24 +61,24 @@ export default function SectorsWeOperate() {
   return (
     <section
       id="sectors-section"
-      className="w-full py-8 sm:py-10 lg:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center bg-gradient-to-b from-[#D9EDF8] to-[#E2F1FA] text-[#383838] relative overflow-hidden"
+      className="w-full py-8 sm:py-10 lg:py-12 lg:min-h-screen lg:flex lg:flex-col lg:justify-center bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 text-ina-ink relative overflow-hidden"
     >
       {/* Background blueprint elements */}
       <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
       {/* Authentic Architectural Linework Drawing Stream */}
       <ArchitecturalLineworkBackground theme="light" opacity={0.32} flipY={true} mask="fade-edges" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(36,149,211,0.12)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(28,58,98,0.12)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(26, 149, 209,0.12)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(15, 59, 87,0.12)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10 w-full">
         {/* Section Header */}
         <div className="w-full mb-5 sm:mb-6 lg:mb-8 text-left">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal text-[#1C3A62] tracking-normal mb-2 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-normal text-ina-navy tracking-normal mb-2 leading-tight">
             Sectors We Operate
           </h2>
-          <p className="text-sm sm:text-base text-[#585858] leading-relaxed font-normal max-w-4xl">
+          <p className="text-sm sm:text-base text-ina-grey leading-relaxed font-normal max-w-4xl">
             From corporate workplaces to healthcare, hospitality, residential, and industrial
-            spaces, Ina Tech FM delivers tailored engineering and facility management
+            spaces, Ina TechFM delivers tailored engineering and facility management
             solutions that keep assets efficient, environments safe, and operations running
             seamlessly.
           </p>
@@ -90,13 +90,13 @@ export default function SectorsWeOperate() {
             <div
               key={idx}
 
-              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 bg-[#1C3A62] border border-[#1C3A62]/70 hover:border-[#2495D3] hover:-translate-y-1"
+              className="group relative flex flex-col rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 bg-ina-navy border border-ina-navy/70 hover:border-ina-blue hover:-translate-y-1"
             >
               {/* Top accent light on hover */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#2495D3] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-ina-blue to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none" />
 
               {/* Image Box with Zoom Effect & Gradient Vignette */}
-              <div className="relative h-44 sm:h-48 md:h-52 lg:h-40 xl:h-48 2xl:h-52 w-full overflow-hidden bg-slate-900">
+              <div className="relative h-44 sm:h-48 md:h-52 lg:h-40 xl:h-48 2xl:h-52 w-full overflow-hidden bg-ina-night">
                 <Image
                   src={door.image}
                   alt={door.alt}
@@ -106,17 +106,17 @@ export default function SectorsWeOperate() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out opacity-90 group-hover:opacity-100 transform-gpu will-change-transform"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3A62] via-transparent to-black/30 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ina-navy via-transparent to-ina-night/30 pointer-events-none" />
 
                 {/* Sector Tag Indicator */}
-                {/* <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-[#0A1629]/80 border border-white/20 text-white text-[11px] font-semibold tracking-wide shadow-sm">
+                {/* <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-ina-night/80 border border-white/20 text-white text-[11px] font-semibold tracking-wide shadow-sm">
                   Sector #{idx + 1}
                 </div> */}
               </div>
 
               {/* Card Footer */}
-              <div className="px-4 py-3 sm:py-3.5 bg-[#1C3A62] text-white flex items-center justify-start border-t border-white/10">
-                <h3 className="text-sm sm:text-base font-semibold text-white tracking-normal truncate group-hover:text-[#45B1E8] transition-colors">
+              <div className="px-4 py-3 sm:py-3.5 bg-ina-navy text-white flex items-center justify-start border-t border-white/10">
+                <h3 className="text-sm sm:text-base font-semibold text-white tracking-normal truncate group-hover:text-ina-sky transition-colors">
                   {door.title}
                 </h3>
 
