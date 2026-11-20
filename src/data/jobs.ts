@@ -18,6 +18,13 @@ export interface JobDetails {
   createdAt?: string;
 }
 
+export interface SaveJobResult {
+  success: boolean;
+  mongoSaved: boolean;
+  fileSaved: boolean;
+  error?: string;
+}
+
 const JOBS_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'jobs.json');
 
 // --- Synchronous File Operations (Fallback / Local / SSR Initial) ---
@@ -92,7 +99,9 @@ export async function getAllJobsAsync(): Promise<JobDetails[]> {
           .find({}, { projection: { _id: 0 } })
           .sort({ id: -1 })
           .toArray();
-        return jobs as JobDetails[];
+        if (jobs && jobs.length > 0) {
+          return jobs as JobDetails[];
+        }
       }
     } catch (error) {
       console.error('MongoDB query error in getAllJobsAsync, falling back to JSON:', error);
@@ -111,7 +120,9 @@ export async function getActiveJobsAsync(): Promise<JobDetails[]> {
           .find({ isActive: { $ne: false } }, { projection: { _id: 0 } })
           .sort({ id: -1 })
           .toArray();
-        return jobs as JobDetails[];
+        if (jobs && jobs.length > 0) {
+          return jobs as JobDetails[];
+        }
       }
     } catch (error) {
       console.error('MongoDB query error in getActiveJobsAsync, falling back to JSON:', error);
@@ -120,30 +131,42 @@ export async function getActiveJobsAsync(): Promise<JobDetails[]> {
   return getActiveJobs();
 }
 
-export async function addJobAsync(newJob: JobDetails): Promise<boolean> {
-  let mongoSuccess = false;
+export async function addJobAsync(newJob: JobDetails): Promise<SaveJobResult> {
+  let mongoSaved = false;
+  let mongoError: string | undefined;
 
   if (isMongoConfigured()) {
     try {
       const collection = await getJobsCollection();
       if (collection) {
         await collection.insertOne({ ...newJob } as any);
-        mongoSuccess = true;
+        mongoSaved = true;
+      } else {
+        mongoError = 'MongoDB connection timed out or was rejected. Check your Network Access (IP whitelist) in MongoDB Atlas.';
       }
-    } catch (error) {
+    } catch (error: any) {
+      mongoError = error?.message || 'MongoDB connection error';
       console.error('MongoDB insert error in addJobAsync:', error);
     }
   }
 
-  // Also update local file if possible (e.g. during local dev)
+  // Update local file storage
   const currentJobs = getJobsFromFile();
-  saveJobsToFile([newJob, ...currentJobs]);
+  const fileSaved = saveJobsToFile([newJob, ...currentJobs]);
 
-  return mongoSuccess || !isMongoConfigured();
+  const success = mongoSaved || fileSaved;
+
+  return {
+    success,
+    mongoSaved,
+    fileSaved,
+    error: !success ? (mongoError || 'Unable to save to persistent storage') : undefined,
+  };
 }
 
 export async function updateJobAsync(id: number, updates: Partial<JobDetails>): Promise<JobDetails | null> {
   let updatedJob: JobDetails | null = null;
+  let mongoUpdated = false;
 
   if (isMongoConfigured()) {
     try {
@@ -158,6 +181,7 @@ export async function updateJobAsync(id: number, updates: Partial<JobDetails>): 
         );
         if (result) {
           updatedJob = result as unknown as JobDetails;
+          mongoUpdated = true;
         }
       }
     } catch (error) {

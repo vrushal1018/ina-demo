@@ -1,9 +1,6 @@
 import { MongoClient, Db, Collection } from 'mongodb';
 import { JobDetails } from '@/data/jobs';
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = process.env.MONGODB_DB_NAME || 'inatechfm';
-
 let client: MongoClient | null = null;
 let clientPromise: Promise<MongoClient> | null = null;
 
@@ -13,29 +10,36 @@ declare global {
 }
 
 export function isMongoConfigured(): boolean {
-  return Boolean(process.env.MONGODB_URI && process.env.MONGODB_URI.startsWith('mongodb'));
+  const uri = process.env.MONGODB_URI?.trim();
+  return Boolean(uri && uri.startsWith('mongodb'));
+}
+
+export function getDbName(): string {
+  return process.env.MONGODB_DB_NAME?.trim() || 'inatechfm';
 }
 
 export async function getMongoClient(): Promise<MongoClient | null> {
-  if (!isMongoConfigured() || !MONGODB_URI) {
+  const uri = process.env.MONGODB_URI?.trim();
+  if (!uri || !uri.startsWith('mongodb')) {
     return null;
   }
 
   try {
     if (process.env.NODE_ENV === 'development') {
-      // In development mode, use a global variable so the connection is preserved across module reloads
+      // In development mode, reuse a global variable so the connection is preserved across module reloads
       if (!global._mongoClientPromise) {
-        client = new MongoClient(MONGODB_URI, {
+        client = new MongoClient(uri, {
           serverSelectionTimeoutMS: 5000,
+          connectTimeoutMS: 5000,
         });
         global._mongoClientPromise = client.connect();
       }
       return await global._mongoClientPromise;
     } else {
-      // In production mode, it's best to not use a global variable
       if (!clientPromise) {
-        client = new MongoClient(MONGODB_URI, {
+        client = new MongoClient(uri, {
           serverSelectionTimeoutMS: 5000,
+          connectTimeoutMS: 5000,
         });
         clientPromise = client.connect();
       }
@@ -43,6 +47,11 @@ export async function getMongoClient(): Promise<MongoClient | null> {
     }
   } catch (error) {
     console.error('Failed to connect to MongoDB Atlas:', error);
+    // Reset clientPromise so future requests can retry connecting
+    clientPromise = null;
+    if (process.env.NODE_ENV === 'development') {
+      global._mongoClientPromise = undefined;
+    }
     return null;
   }
 }
@@ -50,7 +59,7 @@ export async function getMongoClient(): Promise<MongoClient | null> {
 export async function getMongoDb(): Promise<Db | null> {
   const connectedClient = await getMongoClient();
   if (!connectedClient) return null;
-  return connectedClient.db(DB_NAME);
+  return connectedClient.db(getDbName());
 }
 
 export async function getJobsCollection(): Promise<Collection<JobDetails> | null> {
@@ -58,4 +67,3 @@ export async function getJobsCollection(): Promise<Collection<JobDetails> | null
   if (!db) return null;
   return db.collection<JobDetails>('jobs');
 }
-

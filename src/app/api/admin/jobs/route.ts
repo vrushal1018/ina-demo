@@ -102,11 +102,15 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    const saved = await addJobAsync(newJob);
+    const result = await addJobAsync(newJob);
 
-    if (!saved) {
+    if (!result.success) {
       return NextResponse.json(
-        { error: 'Failed to save job to persistent storage.' },
+        {
+          error:
+            result.error ||
+            'Failed to save job to persistent storage. If on Vercel, make sure 0.0.0.0/0 is added in MongoDB Network Access.',
+        },
         { status: 500 }
       );
     }

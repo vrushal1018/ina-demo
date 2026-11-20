@@ -27,7 +27,14 @@ import {
   SlidersHorizontal,
   ChevronRight,
   ShieldCheck,
+  Laptop,
+  Smartphone,
+  Monitor,
+  Globe,
+  ShieldAlert,
+  History,
 } from 'lucide-react';
+import { AdminLoginLog } from '@/lib/audit';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
 import { JobDetails } from '@/data/jobs';
 
@@ -60,6 +67,12 @@ export default function AdminPage() {
   const [isLoadingJobs, setIsLoadingJobs] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
+
+  // Security & Audit state
+  const [activeTab, setActiveTab] = useState<'jobs' | 'security'>('jobs');
+  const [securityLogs, setSecurityLogs] = useState<AdminLoginLog[]>([]);
+  const [isLoadingLogs, setIsLoadingLogs] = useState(false);
+  const [currentClient, setCurrentClient] = useState<{ ip: string; device: string; location: string } | null>(null);
 
   // Modal / Form state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -98,6 +111,7 @@ export default function AdminPage() {
         setIsAuthenticated(true);
         setAdminUser(data.user);
         fetchJobs();
+        fetchSecurityLogs();
       } else {
         setIsAuthenticated(false);
         setAdminUser(null);
@@ -105,6 +119,24 @@ export default function AdminPage() {
     } catch {
       setIsAuthenticated(false);
       setAdminUser(null);
+    }
+  };
+
+  const fetchSecurityLogs = async () => {
+    setIsLoadingLogs(true);
+    try {
+      const res = await fetch('/api/admin/security/logs');
+      if (res.ok) {
+        const data = await res.json();
+        setSecurityLogs(data.logs || []);
+        if (data.currentClient) {
+          setCurrentClient(data.currentClient);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load security logs:', err);
+    } finally {
+      setIsLoadingLogs(false);
     }
   };
 
@@ -159,6 +191,7 @@ export default function AdminPage() {
       setIsAuthenticated(true);
       setAdminUser(data.user);
       fetchJobs();
+      fetchSecurityLogs();
       showToast('Welcome back, Admin!');
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Invalid login credentials.';
@@ -576,6 +609,68 @@ export default function AdminPage() {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        {/* Navigation Tabs */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-ina-line pb-4 mb-8">
+          <div className="inline-flex rounded-2xl p-1.5 bg-white border border-ina-line shadow-xs">
+            <button
+              type="button"
+              onClick={() => setActiveTab('jobs')}
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                activeTab === 'jobs'
+                  ? 'bg-ina-navy text-white shadow-md'
+                  : 'text-ina-grey hover:text-ina-navy hover:bg-ina-tint-8'
+              }`}
+            >
+              <Briefcase className="w-4 h-4" />
+              <span>Job Postings ({jobs.length})</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('security');
+                fetchSecurityLogs();
+              }}
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                activeTab === 'security'
+                  ? 'bg-ina-navy text-white shadow-md'
+                  : 'text-ina-grey hover:text-ina-navy hover:bg-ina-tint-8'
+              }`}
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-500" />
+              <span>Security & Device Activity</span>
+              {securityLogs.length > 0 && (
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-ina-blue/15 text-ina-blue">
+                  {securityLogs.length}
+                </span>
+              )}
+            </button>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {activeTab === 'jobs' ? (
+              <button
+                onClick={handleOpenCreateModal}
+                className="inline-flex items-center justify-center gap-2 bg-ina-blue-deep hover:bg-ina-navy text-white px-5 py-2.5 rounded-xl font-semibold text-xs tracking-wide shadow-md hover:-translate-y-0.5 active:scale-95 transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Post New Job</span>
+              </button>
+            ) : (
+              <button
+                onClick={fetchSecurityLogs}
+                disabled={isLoadingLogs}
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-ina-tint-8 border border-ina-line text-ina-navy px-4 py-2.5 rounded-xl font-semibold text-xs transition-all shadow-xs cursor-pointer"
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${isLoadingLogs ? 'animate-spin text-ina-blue' : ''}`} />
+                <span>Refresh Activity</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {activeTab === 'jobs' ? (
+          <>
         {/* Page Title & Stats */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div>
@@ -847,6 +942,232 @@ export default function AdminPage() {
                 </div>
               );
             })}
+          </div>
+        )}
+          </>
+        ) : (
+          /* ================= SECURITY & DEVICE MONITOR TAB ================= */
+          <div className="space-y-8 animate-in fade-in duration-300">
+            {/* Header */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Login Audit & Access History</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-normal text-ina-navy">Security & Device Activity</h1>
+              <p className="text-sm text-ina-grey mt-1">
+                Monitor all devices, web browsers, IP addresses, and login attempts accessing your admin panel.
+              </p>
+            </div>
+
+            {/* Security Summary Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-white rounded-2xl p-5 border border-ina-line shadow-xs flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
+                    Total Logins Logged
+                  </p>
+                  <p className="text-2xl font-bold text-ina-navy mt-1">{securityLogs.length}</p>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-ina-tint-8 border border-ina-line flex items-center justify-center text-ina-blue">
+                  <History className="w-6 h-6" />
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-5 border border-ina-line shadow-xs flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
+                    Distinct Systems / IPs
+                  </p>
+                  <p className="text-2xl font-bold text-ina-navy mt-1">
+                    {new Set(securityLogs.map((l) => l.ip)).size}
+                  </p>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-ina-tint-8 border border-ina-line flex items-center justify-center text-ina-navy">
+                  <Globe className="w-6 h-6" />
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-5 border border-ina-line shadow-xs flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
+                    Failed Login Attempts
+                  </p>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className={`text-2xl font-bold ${
+                      securityLogs.filter((l) => l.status === 'FAILED').length > 0
+                        ? 'text-red-600'
+                        : 'text-ina-navy'
+                    }`}>
+                      {securityLogs.filter((l) => l.status === 'FAILED').length}
+                    </span>
+                    {securityLogs.filter((l) => l.status === 'FAILED').length > 0 && (
+                      <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-700">
+                        Attention
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600">
+                  <ShieldAlert className="w-6 h-6" />
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-5 border border-ina-line shadow-xs flex items-center justify-between">
+                <div>
+                  <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
+                    Your Current System
+                  </p>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-sm font-bold text-ina-navy truncate max-w-[150px]">
+                      {currentClient?.ip || 'Connected'}
+                    </span>
+                  </div>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+                  <Laptop className="w-6 h-6" />
+                </div>
+              </div>
+            </div>
+
+            {/* Audit Log Table */}
+            <div className="bg-white rounded-3xl border border-ina-line shadow-xs overflow-hidden">
+              <div className="p-5 sm:p-6 border-b border-ina-tint-8 flex items-center justify-between">
+                <div>
+                  <h3 className="text-base sm:text-lg font-semibold text-ina-navy">Device Access History</h3>
+                  <p className="text-xs text-ina-grey mt-0.5">
+                    Chronological record of every system and IP address that authenticated
+                  </p>
+                </div>
+                <button
+                  onClick={fetchSecurityLogs}
+                  disabled={isLoadingLogs}
+                  className="p-2 rounded-xl border border-ina-line bg-white hover:bg-ina-tint-8 text-ina-grey hover:text-ina-navy transition-colors cursor-pointer"
+                  title="Refresh activity logs"
+                >
+                  <RefreshCw className={`w-4 h-4 ${isLoadingLogs ? 'animate-spin' : ''}`} />
+                </button>
+              </div>
+
+              {isLoadingLogs && securityLogs.length === 0 ? (
+                <div className="py-20 text-center">
+                  <Loader2 className="w-8 h-8 text-ina-blue animate-spin mx-auto mb-3" />
+                  <p className="text-sm font-medium text-ina-grey">Retrieving security audit logs...</p>
+                </div>
+              ) : securityLogs.length === 0 ? (
+                <div className="py-16 text-center text-ina-grey">
+                  <ShieldCheck className="w-10 h-10 mx-auto mb-2 text-ina-mist" />
+                  <p className="text-sm">No login activity has been recorded yet.</p>
+                </div>
+              ) : (
+                <div className="divide-y divide-ina-tint-8">
+                  {securityLogs.map((log) => {
+                    const isSuccess = log.status === 'SUCCESS';
+                    const isThisDevice =
+                      currentClient &&
+                      (log.ip === currentClient.ip || log.ip.includes(currentClient.ip));
+
+                    // Choose appropriate device icon
+                    const isMobile =
+                      log.device.toLowerCase().includes('mobile') ||
+                      log.device.toLowerCase().includes('phone') ||
+                      log.device.toLowerCase().includes('ios') ||
+                      log.device.toLowerCase().includes('android');
+
+                    return (
+                      <div
+                        key={log.id}
+                        className="p-5 sm:p-6 hover:bg-ina-tint-4/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4"
+                      >
+                        {/* Device & Location Info */}
+                        <div className="flex items-start gap-4">
+                          <div
+                            className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border ${
+                              !isSuccess
+                                ? 'bg-red-50 border-red-200 text-red-600'
+                                : isThisDevice
+                                ? 'bg-emerald-50 border-emerald-200 text-emerald-600'
+                                : 'bg-ina-tint-8 border-ina-line text-ina-navy'
+                            }`}
+                          >
+                            {isMobile ? (
+                              <Smartphone className="w-5 h-5" />
+                            ) : (
+                              <Laptop className="w-5 h-5" />
+                            )}
+                          </div>
+
+                          <div className="space-y-1">
+                            <div className="flex flex-wrap items-center gap-2">
+                              <span className="font-semibold text-sm text-ina-navy">
+                                {log.device}
+                              </span>
+
+                              {isThisDevice && (
+                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                                  Your Current Device
+                                </span>
+                              )}
+
+                              <span
+                                className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${
+                                  isSuccess
+                                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                    : 'bg-red-50 text-red-700 border border-red-200'
+                                }`}
+                              >
+                                {isSuccess ? 'Login Successful' : 'Failed Attempt'}
+                              </span>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-y-1 gap-x-3 text-xs text-ina-grey font-medium">
+                              <span className="flex items-center gap-1">
+                                <Globe className="w-3.5 h-3.5 text-ina-blue" />
+                                IP: <strong className="text-ina-navy">{log.ip}</strong>
+                              </span>
+                              {log.location && log.location !== 'Local / Unknown Location' && (
+                                <>
+                                  <span className="w-1 h-1 rounded-full bg-ina-line" />
+                                  <span>{log.location}</span>
+                                </>
+                              )}
+                              <span className="w-1 h-1 rounded-full bg-ina-line" />
+                              <span>Account: {log.email}</span>
+                            </div>
+
+                            {log.reason && (
+                              <p className="text-xs text-red-600 mt-1 font-medium">
+                                Reason: {log.reason}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Timestamp */}
+                        <div className="text-left md:text-right shrink-0">
+                          <p className="text-xs font-semibold text-ina-navy">
+                            {new Date(log.timestamp).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric',
+                            })}
+                          </p>
+                          <p className="text-[11px] text-ina-grey">
+                            {new Date(log.timestamp).toLocaleTimeString('en-US', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              second: '2-digit',
+                            })}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </main>

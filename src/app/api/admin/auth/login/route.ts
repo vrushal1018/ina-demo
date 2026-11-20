@@ -4,8 +4,11 @@ import {
   createAdminToken,
   ADMIN_COOKIE_NAME,
 } from '@/lib/auth';
+import { logAdminLogin, parseClientInfo } from '@/lib/audit';
 
 export async function POST(req: NextRequest) {
+  const clientInfo = parseClientInfo(req);
+
   try {
     const body = await req.json();
     const { email, password } = body;
@@ -20,11 +23,38 @@ export async function POST(req: NextRequest) {
     const isValid = verifyAdminCredentials(email, password);
 
     if (!isValid) {
+      // Record failed security attempt
+      await logAdminLogin({
+        email: String(email).trim().toLowerCase(),
+        status: 'FAILED',
+        ip: clientInfo.ip,
+        location: clientInfo.location,
+        device: clientInfo.device,
+        browser: clientInfo.browser,
+        os: clientInfo.os,
+        userAgent: clientInfo.userAgent,
+        timestamp: new Date().toISOString(),
+        reason: 'Incorrect password or unauthorized email',
+      });
+
       return NextResponse.json(
         { error: 'Invalid admin email or password' },
         { status: 401 }
       );
     }
+
+    // Record successful login
+    await logAdminLogin({
+      email: email.trim().toLowerCase(),
+      status: 'SUCCESS',
+      ip: clientInfo.ip,
+      location: clientInfo.location,
+      device: clientInfo.device,
+      browser: clientInfo.browser,
+      os: clientInfo.os,
+      userAgent: clientInfo.userAgent,
+      timestamp: new Date().toISOString(),
+    });
 
     const token = createAdminToken(email);
 
@@ -58,4 +88,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-
