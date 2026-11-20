@@ -123,7 +123,7 @@ export default function Home() {
           />
         </div>
 
-        {/* Top-Left: Logo */}
+        {/* Top-Left: Logo & Tagline */}
         <div className="relative z-10 w-full px-5 sm:px-8 lg:px-12 pt-6 sm:pt-8 lg:pt-10 flex items-start">
           {/* Brand Logo in Hero at Left */}
           <div className="flex flex-col items-start">
@@ -141,6 +141,16 @@ export default function Home() {
             <h1 className="sr-only">
               Integrated Facility Management Services in India • Facility Management Company in India
             </h1>
+
+            {/* Phone View: Empowering People • Enriching Assets directly below logo */}
+            <div className="mt-2.5 flex flex-col items-start text-left md:hidden">
+              <div className="text-sm font-light tracking-wide text-white leading-tight drop-shadow-md">
+                Empowering People
+              </div>
+              <div className="text-sm font-medium tracking-wide text-ina-blue leading-tight mt-0.5 drop-shadow-md">
+                Enriching Assets
+              </div>
+            </div>
           </div>
         </div>
 
@@ -162,8 +172,8 @@ export default function Home() {
         {/* Bottom Verified Metrics & Tagline Band */}
         <div className="relative z-10 max-w-7xl w-full mx-auto px-5 sm:px-6 lg:px-8 pb-8 sm:pb-10 pt-6 mt-auto">
           <div className="w-full border-t border-white/15 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            {/* Left Corner of the Band: Empowering People • Enriching Assets */}
-            <div className="flex flex-col items-start text-left shrink-0">
+            {/* Left Corner of the Band (Desktop/Tablet): Empowering People • Enriching Assets */}
+            <div className="hidden md:flex flex-col items-start text-left shrink-0">
               <div className="text-base sm:text-lg lg:text-xl font-light tracking-wide text-white leading-tight drop-shadow-md">
                 Empowering People
               </div>
