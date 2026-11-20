@@ -20,9 +20,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const isValid = verifyAdminCredentials(email, password);
+    const authResult = verifyAdminCredentials(email, password);
 
-    if (!isValid) {
+    if (!authResult.valid || !authResult.role) {
       // Record failed security attempt
       await logAdminLogin({
         email: String(email).trim().toLowerCase(),
@@ -34,14 +34,16 @@ export async function POST(req: NextRequest) {
         os: clientInfo.os,
         userAgent: clientInfo.userAgent,
         timestamp: new Date().toISOString(),
-        reason: 'Incorrect password or unauthorized email',
+        reason: 'Incorrect password or unauthorized account',
       });
 
       return NextResponse.json(
-        { error: 'Invalid admin email or password' },
+        { error: 'Invalid email or password' },
         { status: 401 }
       );
     }
+
+    const sid = Math.random().toString(36).substring(2, 12) + Date.now().toString(36);
 
     // Record successful login
     await logAdminLogin({
@@ -54,16 +56,18 @@ export async function POST(req: NextRequest) {
       os: clientInfo.os,
       userAgent: clientInfo.userAgent,
       timestamp: new Date().toISOString(),
+      sid,
     });
 
-    const token = createAdminToken(email);
+    const token = createAdminToken(email, authResult.role, sid, clientInfo.ip);
 
     const response = NextResponse.json({
       success: true,
       message: 'Logged in successfully',
       user: {
         email: email.trim().toLowerCase(),
-        role: 'admin',
+        role: authResult.role,
+        isSuperAdmin: authResult.role === 'super_admin',
       },
     });
 

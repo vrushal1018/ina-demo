@@ -33,6 +33,7 @@ import {
   Globe,
   ShieldAlert,
   History,
+  UserX,
 } from 'lucide-react';
 import { AdminLoginLog } from '@/lib/audit';
 import ArchitecturalLineworkBackground from '@/components/ArchitecturalLineworkBackground';
@@ -55,7 +56,19 @@ const PREDEFINED_TYPES = ['Full-Time', 'Part-Time', 'Contract', 'On-site', 'Hybr
 export default function AdminPage() {
   // Auth state
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const [adminUser, setAdminUser] = useState<{ email: string; role: string } | null>(null);
+  const [adminUser, setAdminUser] = useState<{
+    email: string;
+    role: 'super_admin' | 'staff';
+    isSuperAdmin: boolean;
+  } | null>(null);
+  const [isSecurityUnlocked, setIsSecurityUnlocked] = useState(false);
+  const [pinInput, setPinInput] = useState('');
+  const [pinError, setPinError] = useState<string | null>(null);
+  const [isVerifyingPin, setIsVerifyingPin] = useState(false);
+
+  // Device Revocation state
+  const [deviceToRevoke, setDeviceToRevoke] = useState<AdminLoginLog | null>(null);
+  const [isRevokingDevice, setIsRevokingDevice] = useState(false);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -111,7 +124,11 @@ export default function AdminPage() {
         setIsAuthenticated(true);
         setAdminUser(data.user);
         fetchJobs();
-        fetchSecurityLogs();
+        if (data.user.isSuperAdmin) {
+          fetchSecurityLogs();
+        } else {
+          setActiveTab('jobs');
+        }
       } else {
         setIsAuthenticated(false);
         setAdminUser(null);
@@ -120,6 +137,99 @@ export default function AdminPage() {
       setIsAuthenticated(false);
       setAdminUser(null);
     }
+  };
+
+  const handleConfirmRevoke = async () => {
+    if (!deviceToRevoke) return;
+    setIsRevokingDevice(true);
+    try {
+      const res = await fetch('/api/admin/security/revoke', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          logId: deviceToRevoke.id,
+          ip: deviceToRevoke.ip,
+          sid: deviceToRevoke.sid,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to revoke device session.');
+      }
+
+      setSecurityLogs((prev) =>
+        prev.map((l) =>
+          l.id === deviceToRevoke.id
+            ? { ...l, status: 'REVOKED', isRevoked: true, revokedAt: new Date().toISOString() }
+            : l
+        )
+      );
+      showToast(`Device "${deviceToRevoke.device}" disconnected & blocked!`);
+      setDeviceToRevoke(null);
+    } catch (err: any) {
+      showToast(err.message || 'Error disconnecting device.', 'error');
+    } finally {
+      setIsRevokingDevice(false);
+    }
+  };
+
+  const handleDeleteLog = async (logId: string) => {
+    try {
+      const res = await fetch('/api/admin/security/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ logId }),
+      });
+
+      if (res.ok) {
+        setSecurityLogs((prev) => prev.filter((l) => l.id !== logId));
+        showToast('Record removed from history.');
+      } else {
+        showToast('Failed to delete log entry.', 'error');
+      }
+    } catch {
+      showToast('Network error while deleting record.', 'error');
+    }
+  };
+
+  const handleUnlockWithPin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPinError(null);
+
+    if (!pinInput.trim()) {
+      setPinError('Please enter your 4-digit security PIN.');
+      return;
+    }
+
+    setIsVerifyingPin(true);
+    try {
+      const res = await fetch('/api/admin/security/verify-pin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pin: pinInput.trim() }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Incorrect security PIN.');
+      }
+
+      setIsSecurityUnlocked(true);
+      fetchSecurityLogs();
+      showToast('Security Panel Unlocked');
+    } catch (err: any) {
+      setPinError(err.message || 'Invalid PIN.');
+    } finally {
+      setIsVerifyingPin(false);
+    }
+  };
+
+  const handleLockSecurity = () => {
+    setIsSecurityUnlocked(false);
+    setPinInput('');
+    setPinError(null);
+    showToast('Security Panel Locked');
   };
 
   const fetchSecurityLogs = async () => {
@@ -191,7 +301,11 @@ export default function AdminPage() {
       setIsAuthenticated(true);
       setAdminUser(data.user);
       fetchJobs();
-      fetchSecurityLogs();
+      if (data.user.isSuperAdmin) {
+        fetchSecurityLogs();
+      } else {
+        setActiveTab('jobs');
+      }
       showToast('Welcome back, Admin!');
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Invalid login credentials.';
@@ -211,12 +325,6 @@ export default function AdminPage() {
       setAdminUser(null);
       setLoginPassword('');
     }
-  };
-
-  const fillDemoCredentials = () => {
-    setLoginEmail('admin@inatechfm.com');
-    setLoginPassword('InaTechFM@2025!');
-    setLoginError(null);
   };
 
   // Open modal for creating new job
@@ -464,7 +572,7 @@ export default function AdminPage() {
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                     required
-                    placeholder="admin@inatechfm.com"
+                    placeholder="e.g. name@inatechfm.com"
                     className="block w-full pl-10 pr-4 py-3 bg-ina-tint-4/60 border border-ina-line rounded-xl text-ina-navy text-sm placeholder:text-ina-grey/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue/30 focus:border-ina-blue transition-all"
                   />
                 </div>
@@ -514,19 +622,6 @@ export default function AdminPage() {
                 )}
               </button>
             </form>
-
-            {/* Quick Demo Credentials Assistant */}
-            <div className="mt-6 pt-5 border-t border-ina-tint-8 text-center">
-              <p className="text-xs text-ina-grey mb-2">Default configured administrator account:</p>
-              <button
-                type="button"
-                onClick={fillDemoCredentials}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ina-tint-8 hover:bg-ina-tint-15 border border-ina-line text-xs font-semibold text-ina-navy transition-all cursor-pointer"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-ina-blue" />
-                <span>Auto-fill Credentials</span>
-              </button>
-            </div>
           </div>
 
           <div className="mt-6 text-center">
@@ -582,9 +677,16 @@ export default function AdminPage() {
 
             {/* Right actions */}
             <div className="flex items-center gap-2 sm:gap-4">
-              <span className="hidden md:inline-block text-xs font-medium text-ina-grey">
-                Signed in as: <strong className="text-ina-navy">{adminUser?.email}</strong>
-              </span>
+              <div className="hidden md:flex items-center gap-2 text-xs font-medium text-ina-grey">
+                <span>{adminUser?.email}</span>
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                  adminUser?.isSuperAdmin
+                    ? 'bg-purple-50 text-purple-700 border border-purple-200'
+                    : 'bg-blue-50 text-blue-700 border border-blue-200'
+                }`}>
+                  {adminUser?.isSuperAdmin ? 'Super Admin (Owner)' : 'Staff (Job Editor)'}
+                </span>
+              </div>
 
               <Link
                 href="/careers"
@@ -625,26 +727,33 @@ export default function AdminPage() {
               <span>Job Postings ({jobs.length})</span>
             </button>
 
-            <button
-              type="button"
-              onClick={() => {
-                setActiveTab('security');
-                fetchSecurityLogs();
-              }}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                activeTab === 'security'
-                  ? 'bg-ina-navy text-white shadow-md'
-                  : 'text-ina-grey hover:text-ina-navy hover:bg-ina-tint-8'
-              }`}
-            >
-              <ShieldCheck className="w-4 h-4 text-emerald-500" />
-              <span>Security & Device Activity</span>
-              {securityLogs.length > 0 && (
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-ina-blue/15 text-ina-blue">
-                  {securityLogs.length}
-                </span>
-              )}
-            </button>
+            {adminUser?.isSuperAdmin && (
+              <button
+                type="button"
+                onClick={() => {
+                  setActiveTab('security');
+                  if (isSecurityUnlocked) {
+                    fetchSecurityLogs();
+                  }
+                }}
+                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                  activeTab === 'security'
+                    ? 'bg-ina-navy text-white shadow-md'
+                    : 'text-ina-grey hover:text-ina-navy hover:bg-ina-tint-8'
+                }`}
+              >
+                <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                <span>Security & Device Activity</span>
+                {!isSecurityUnlocked && (
+                  <Lock className="w-3.5 h-3.5 text-amber-500 ml-0.5" />
+                )}
+                {isSecurityUnlocked && securityLogs.length > 0 && (
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-ina-blue/15 text-ina-blue">
+                    {securityLogs.length}
+                  </span>
+                )}
+              </button>
+            )}
           </div>
 
           <div className="flex items-center gap-2">
@@ -657,14 +766,28 @@ export default function AdminPage() {
                 <span>Post New Job</span>
               </button>
             ) : (
-              <button
-                onClick={fetchSecurityLogs}
-                disabled={isLoadingLogs}
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-ina-tint-8 border border-ina-line text-ina-navy px-4 py-2.5 rounded-xl font-semibold text-xs transition-all shadow-xs cursor-pointer"
-              >
-                <RefreshCw className={`w-3.5 h-3.5 ${isLoadingLogs ? 'animate-spin text-ina-blue' : ''}`} />
-                <span>Refresh Activity</span>
-              </button>
+              <div className="flex items-center gap-2">
+                {isSecurityUnlocked && (
+                  <>
+                    <button
+                      onClick={handleLockSecurity}
+                      className="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-50 border border-ina-line text-ina-grey hover:text-ina-navy px-3.5 py-2.5 rounded-xl font-semibold text-xs transition-all shadow-xs cursor-pointer"
+                      title="Lock security view"
+                    >
+                      <Lock className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Lock View</span>
+                    </button>
+                    <button
+                      onClick={fetchSecurityLogs}
+                      disabled={isLoadingLogs}
+                      className="inline-flex items-center justify-center gap-2 bg-white hover:bg-ina-tint-8 border border-ina-line text-ina-navy px-4 py-2.5 rounded-xl font-semibold text-xs transition-all shadow-xs cursor-pointer"
+                    >
+                      <RefreshCw className={`w-3.5 h-3.5 ${isLoadingLogs ? 'animate-spin text-ina-blue' : ''}`} />
+                      <span>Refresh</span>
+                    </button>
+                  </>
+                )}
+              </div>
             )}
           </div>
         </div>
@@ -947,7 +1070,80 @@ export default function AdminPage() {
           </>
         ) : (
           /* ================= SECURITY & DEVICE MONITOR TAB ================= */
-          <div className="space-y-8 animate-in fade-in duration-300">
+          !isSecurityUnlocked ? (
+            /* PIN Gate Modal / Card */
+            <div className="max-w-md mx-auto my-12 animate-in fade-in zoom-in-95 duration-200">
+              <div className="relative bg-white rounded-3xl p-6 sm:p-8 border border-ina-line shadow-xl text-center overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-ina-blue to-ina-navy" />
+                
+                <div className="w-16 h-16 rounded-2xl bg-ina-tint-8 border border-ina-line flex items-center justify-center mx-auto mb-4 text-ina-navy shadow-inner">
+                  <Lock className="w-8 h-8 text-ina-blue" />
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-semibold mb-3">
+                  <ShieldCheck className="w-3.5 h-3.5 text-amber-600" />
+                  <span>Owner Verification Required</span>
+                </div>
+
+                <h2 className="text-xl sm:text-2xl font-normal text-ina-navy mb-2">
+                  Enter Security PIN
+                </h2>
+                <p className="text-xs text-ina-grey leading-relaxed mb-6">
+                  This device audit and access panel is restricted to the site owner. Please enter your Master Security PIN to view device activity.
+                </p>
+
+                {pinError && (
+                  <div className="mb-5 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center justify-center gap-2">
+                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                    <span>{pinError}</span>
+                  </div>
+                )}
+
+                <form onSubmit={handleUnlockWithPin} className="space-y-4">
+                  <div>
+                    <input
+                      type="password"
+                      maxLength={8}
+                      value={pinInput}
+                      onChange={(e) => setPinInput(e.target.value)}
+                      placeholder="Enter PIN (e.g. 2025)"
+                      autoFocus
+                      className="w-full text-center tracking-widest text-lg font-bold py-3 px-4 bg-ina-tint-4/60 border border-ina-line rounded-xl text-ina-navy focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue/30 focus:border-ina-blue transition-all"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isVerifyingPin}
+                    className="w-full bg-ina-blue-deep hover:bg-ina-navy text-white py-3 px-4 rounded-xl font-semibold text-xs uppercase tracking-wider shadow-md hover:-translate-y-0.5 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70"
+                  >
+                    {isVerifyingPin ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>Verifying...</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShieldCheck className="w-4 h-4" />
+                        <span>Unlock Security Panel</span>
+                      </>
+                    )}
+                  </button>
+                </form>
+
+                <div className="mt-5 pt-4 border-t border-ina-tint-8">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('jobs')}
+                    className="text-xs font-medium text-ina-grey hover:text-ina-navy transition-colors cursor-pointer"
+                  >
+                    ← Return to Job Postings
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-8 animate-in fade-in duration-300">
             {/* Header */}
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-2">
@@ -1145,22 +1341,68 @@ export default function AdminPage() {
                           </div>
                         </div>
 
-                        {/* Timestamp */}
-                        <div className="text-left md:text-right shrink-0">
-                          <p className="text-xs font-semibold text-ina-navy">
-                            {new Date(log.timestamp).toLocaleDateString('en-US', {
-                              month: 'short',
-                              day: 'numeric',
-                              year: 'numeric',
-                            })}
-                          </p>
-                          <p className="text-[11px] text-ina-grey">
-                            {new Date(log.timestamp).toLocaleTimeString('en-US', {
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              second: '2-digit',
-                            })}
-                          </p>
+                        {/* Timestamp & Actions */}
+                        <div className="flex flex-col md:items-end justify-between gap-3 shrink-0">
+                          <div className="text-left md:text-right">
+                            <p className="text-xs font-semibold text-ina-navy">
+                              {new Date(log.timestamp).toLocaleDateString('en-US', {
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric',
+                              })}
+                            </p>
+                            <p className="text-[11px] text-ina-grey">
+                              {new Date(log.timestamp).toLocaleTimeString('en-US', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                              })}
+                            </p>
+                          </div>
+
+                          {/* Device Actions */}
+                          <div className="flex items-center gap-2">
+                            {log.isRevoked || log.status === 'REVOKED' ? (
+                              <div className="flex items-center gap-2">
+                                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-red-100 text-red-800 border border-red-200">
+                                  <UserX className="w-3.5 h-3.5" />
+                                  <span>Disconnected / Blocked</span>
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => handleDeleteLog(log.id)}
+                                  className="p-1.5 rounded-lg text-ina-grey hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                                  title="Remove from history"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            ) : isThisDevice ? (
+                              <span className="text-xs text-emerald-600 font-semibold px-2 py-1 bg-emerald-50 rounded-lg border border-emerald-200">
+                                Active (Your Session)
+                              </span>
+                            ) : (
+                              <div className="flex items-center gap-2">
+                                <button
+                                  type="button"
+                                  onClick={() => setDeviceToRevoke(log)}
+                                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 text-xs font-semibold transition-all cursor-pointer shadow-xs hover:shadow-sm"
+                                  title="Disconnect this device immediately"
+                                >
+                                  <UserX className="w-3.5 h-3.5" />
+                                  <span>Disconnect Device</span>
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleDeleteLog(log.id)}
+                                  className="p-1.5 rounded-lg text-ina-grey hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                                  title="Dismiss record"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     );
@@ -1169,6 +1411,7 @@ export default function AdminPage() {
               )}
             </div>
           </div>
+          )
         )}
       </main>
 
@@ -1427,6 +1670,58 @@ export default function AdminPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* DISCONNECT / REVOKE DEVICE MODAL */}
+      {deviceToRevoke && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ina-night/60 backdrop-blur-md animate-in fade-in">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full border border-ina-line shadow-2xl">
+            <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 border border-red-200 flex items-center justify-center mx-auto mb-4">
+              <UserX className="w-6 h-6" />
+            </div>
+
+            <h3 className="text-xl font-semibold text-ina-navy text-center mb-2">
+              Disconnect Suspicious Device?
+            </h3>
+            
+            <p className="text-xs sm:text-sm text-ina-grey text-center leading-relaxed mb-4">
+              Are you sure you want to revoke access and disconnect this system? It will be forcefully logged out and blocked from this admin panel.
+            </p>
+
+            <div className="p-3.5 rounded-xl bg-ina-tint-4 border border-ina-line mb-6 text-xs text-ina-navy space-y-1.5">
+              <div><strong className="text-ina-grey">Device:</strong> {deviceToRevoke.device}</div>
+              <div><strong className="text-ina-grey">IP Address:</strong> {deviceToRevoke.ip}</div>
+              {deviceToRevoke.location && <div><strong className="text-ina-grey">Location:</strong> {deviceToRevoke.location}</div>}
+              <div><strong className="text-ina-grey">Logged in at:</strong> {new Date(deviceToRevoke.timestamp).toLocaleString()}</div>
+            </div>
+
+            <div className="flex items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setDeviceToRevoke(null)}
+                disabled={isRevokingDevice}
+                className="flex-1 px-4 py-2.5 rounded-xl border border-ina-line text-xs font-semibold text-ina-grey hover:text-ina-navy transition-all cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmRevoke}
+                disabled={isRevokingDevice}
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-xl font-semibold text-xs tracking-wide shadow-md transition-all cursor-pointer disabled:opacity-70"
+              >
+                {isRevokingDevice ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Disconnecting...</span>
+                  </>
+                ) : (
+                  <span>Yes, Disconnect</span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       )}

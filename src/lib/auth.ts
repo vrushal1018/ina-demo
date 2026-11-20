@@ -1,6 +1,7 @@
 import crypto from 'crypto';
 import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
+import { isSessionOrIpRevoked } from '@/lib/audit';
 
 export const ADMIN_COOKIE_NAME = 'ina_admin_session';
 
@@ -14,39 +15,70 @@ function getSecretKey(): string {
   );
 }
 
-export function getAdminCredentials() {
-  const email = (process.env.ADMIN_EMAIL || 'admin@inatechfm.com').trim().toLowerCase();
-  const password = process.env.ADMIN_PASSWORD || 'InaTechFM@2025!';
-  return { email, password };
+export function getSecurityPin(): string {
+  return (process.env.SECURITY_PIN || '2025').trim();
 }
 
-export function verifyAdminCredentials(inputEmail: string, inputPassword: string): boolean {
-  const { email, password } = getAdminCredentials();
-  if (!inputEmail || !inputPassword) return false;
-  
+export function verifySecurityPin(inputPin: string): boolean {
+  if (!inputPin) return false;
+  const masterPin = getSecurityPin();
+  return inputPin.trim() === masterPin;
+}
+
+export interface AuthVerificationResult {
+  valid: boolean;
+  role: 'super_admin' | 'staff' | null;
+}
+
+export function verifyAdminCredentials(inputEmail: string, inputPassword: string): AuthVerificationResult {
+  if (!inputEmail || !inputPassword) {
+    return { valid: false, role: null };
+  }
+
   const normalizedInputEmail = inputEmail.trim().toLowerCase();
-  
-  // Use constant-time comparison for password where possible
-  const isEmailMatch = normalizedInputEmail === email;
-  const isPasswordMatch = inputPassword === password;
-  
-  return isEmailMatch && isPasswordMatch;
+
+  // 1. Check Super Admin (Owner - Full Access including Security)
+  const superAdminEmail = (process.env.ADMIN_EMAIL || 'admin@inatechfm.com').trim().toLowerCase();
+  const superAdminPassword = process.env.ADMIN_PASSWORD || 'InaTechFM@2025!';
+
+  if (normalizedInputEmail === superAdminEmail && inputPassword === superAdminPassword) {
+    return { valid: true, role: 'super_admin' };
+  }
+
+  // 2. Check Staff / Job Poster (Can post jobs, CANNOT see security panel)
+  const staffEmail = (process.env.STAFF_EMAIL || 'jobs@inatechfm.com').trim().toLowerCase();
+  const staffPassword = process.env.STAFF_PASSWORD || 'InaJobs@2025!';
+
+  if (normalizedInputEmail === staffEmail && inputPassword === staffPassword) {
+    return { valid: true, role: 'staff' };
+  }
+
+  return { valid: false, role: null };
 }
 
 export interface AdminSession {
   email: string;
-  role: 'admin';
+  role: 'super_admin' | 'staff';
   exp: number; // timestamp in ms
+  sid?: string; // unique session id
+  ip?: string; // login ip
 }
 
 /**
  * Creates a signed session token using HMAC-SHA256
  */
-export function createAdminToken(email: string): string {
+export function createAdminToken(
+  email: string,
+  role: 'super_admin' | 'staff' = 'super_admin',
+  sid?: string,
+  ip?: string
+): string {
   const payload: AdminSession = {
     email: email.trim().toLowerCase(),
-    role: 'admin',
+    role,
     exp: Date.now() + TOKEN_MAX_AGE_SECONDS * 1000,
+    sid,
+    ip,
   };
 
   const payloadBase64 = Buffer.from(JSON.stringify(payload)).toString('base64url');
@@ -73,7 +105,6 @@ export function verifyAdminToken(token: string): AdminSession | null {
       .update(payloadBase64)
       .digest('base64url');
 
-    // Constant-time comparison to prevent timing attacks
     const providedBuffer = Buffer.from(providedSignature);
     const expectedBuffer = Buffer.from(expectedSignature);
 
@@ -88,6 +119,16 @@ export function verifyAdminToken(token: string): AdminSession | null {
     const payload = JSON.parse(payloadJson) as AdminSession;
 
     if (!payload || !payload.exp || payload.exp <= Date.now()) {
+      return null;
+    }
+
+    // Default to super_admin if older session token format
+    if (!payload.role) {
+      payload.role = 'super_admin';
+    }
+
+    // Check if session or IP was revoked
+    if (isSessionOrIpRevoked(payload.sid, payload.ip)) {
       return null;
     }
 
@@ -119,4 +160,3 @@ export function getRequestAdminSession(req: NextRequest): AdminSession | null {
   if (!token) return null;
   return verifyAdminToken(token);
 }
-
