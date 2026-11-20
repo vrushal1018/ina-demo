@@ -23,49 +23,49 @@ export default function RepairsAndServicing() {
     {
       num: "01",
       title: "Preventive and predictive maintenance",
-      description: "Proactive condition-based monitoring and scheduled servicing to eliminate unexpected equipment downtime.",
+      description: "Implementing proactive, condition-based monitoring and scheduled servicing to prevent equipment failures and minimize downtime.",
       icon: Activity,
     },
     {
       num: "02",
       title: "Electrical and HVAC maintenance",
-      description: "Precision upkeep of transformers, chillers, AHUs, and high-load power distribution systems.",
+      description: "Ensuring reliable performance of transformers, chillers, AHUs and power distribution systems through precision maintenance.",
       icon: Zap,
     },
     {
       num: "03",
       title: "Engineering asset management",
-      description: "Systematic lifecycle tracking and performance optimization of critical building infrastructure.",
+      description: "Tracking asset lifecycles and optimizing the performance of critical building infrastructure.",
       icon: Settings,
     },
     {
       num: "04",
       title: "MEP equipment testing and commissioning",
-      description: "Comprehensive mechanical, electrical, and plumbing validation to guarantee peak reliability.",
+      description: "Conducting comprehensive mechanical, electrical and plumbing inspections to ensure equipment reliability and operational readiness.",
       icon: Gauge,
     },
     {
       num: "05",
       title: "Asset performance and lifecycle enhancement",
-      description: "Targeted maintenance and refurbishment programs that extend operating life and maximize asset ROI.",
+      description: " Extending asset life and improving performance through targeted maintenance and refurbishment programs.",
       icon: TrendingUp,
     },
     {
       num: "06",
       title: "Energy audits and sustainability solutions",
-      description: "Data-driven energy conservation studies, efficiency retrofits, and carbon reduction measures.",
+      description: "Driving energy efficiency through data-led audits, efficiency upgrades and carbon reduction initiatives.",
       icon: Leaf,
     },
     {
       num: "07",
       title: "Safety and compliance audits",
-      description: "Strict adherence to statutory safety norms, fire life safety guidelines, and risk assessments.",
+      description: "Ensuring adherence to statutory safety standards, fire safety regulations and risk management requirements.",
       icon: ShieldCheck,
     },
     {
       num: "08",
       title: "Repair, refurbishment and technical support",
-      description: "Rapid on-ground engineering support and turnkey restoration across mission-critical systems.",
+      description: " Providing on-ground engineering support, equipment repairs and turnkey restoration of critical systems.",
       icon: Wrench,
     },
   ];
@@ -76,9 +76,8 @@ export default function RepairsAndServicing() {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
         <picture
-          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${
-            isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
-          }`}
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${isVideoPlaying ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
         >
           <source media="(max-width: 768px)" srcSet="/repairs-mobile-preview.webp" />
           <source media="(min-width: 769px)" srcSet="/commercial.jpg" />

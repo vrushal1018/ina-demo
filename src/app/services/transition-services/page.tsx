@@ -176,7 +176,7 @@ export default function TransitionServicesPage() {
                     <div className="w-16 h-1 bg-ina-blue mt-3 mb-6 rounded-full" />
 
                     <p className="leading-relaxed text-ina-grey text-base sm:text-lg">
-                      Transition Services offer a structured and systematic approach to mobilization and operational handover. We ensure that facility management transitions are smooth, efficient, and minimize disruption to your core business operations.
+                      At INA TechFM, we ensure seamless facility management transitions through structured planning, systematic mobilization and efficient operational handovers. Our approach ensures a smooth takeover, minimal disruption and business continuity while maintaining service standards.
                     </p>
 
                     <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">

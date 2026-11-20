@@ -140,7 +140,7 @@ export default function AuditAndOfferingsPage() {
                     <div className="w-16 h-1 bg-ina-blue mt-3 mb-6 rounded-full" />
 
                     <p className="leading-relaxed text-ina-grey text-base sm:text-lg">
-                      Our audit services deliver professional, in-depth assessments of your facility&apos;s operations and performance. By providing tailored solutions and identifying key improvement opportunities, we help optimize your facility&apos;s overall effectiveness.
+                      At INA TechFM, we conduct comprehensive facility audits to evaluate operational performance, identify improvement opportunities and uncover potential cost savings. Through detailed assessments and tailored solutions, we help businesses enhance efficiency, optimize resources and achieve better facility performance.
                     </p>
 
                     <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
