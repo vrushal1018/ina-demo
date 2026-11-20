@@ -8,7 +8,7 @@ export default function ClientsCornerPage() {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-ina-tint-15 to-ina-tint-8">
       <SiteHeader />
-      <main className="pt-14 sm:pt-16">
+      <main className="pt-24 sm:pt-28">
         <ClientsCorner />
       </main>
     </div>

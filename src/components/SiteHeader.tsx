@@ -55,33 +55,18 @@ export default function SiteHeader() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Prevent background scroll and page dragging when fullscreen menu is open
+  // Prevent background scroll when fullscreen menu is open without breaking window scroll position
   useEffect(() => {
     if (isOpen) {
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-      }
     }
     return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-      }
     };
   }, [isOpen]);
 
@@ -145,7 +130,7 @@ export default function SiteHeader() {
           TOP FIXED NAVBAR BAR (Matching inaspaceworks.com header.bar)
       ========================================================== */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-40 transform-gpu transition-all duration-300 ease-out ${
           isScrolled || !hasDarkHero
             ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-ina-line/70 py-3 sm:py-3.5"
             : "bg-transparent py-4 sm:py-5"

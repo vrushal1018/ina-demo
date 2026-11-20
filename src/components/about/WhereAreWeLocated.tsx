@@ -28,6 +28,7 @@ interface Location {
   lat: number;
   lng: number;
   chip: [number, number];
+  mobileChip: [number, number];
 }
 
 const locations: Location[] = [
@@ -40,6 +41,7 @@ const locations: Location[] = [
     lat: 19.2684,
     lng: 72.9669,
     chip: [-95, -15],
+    mobileChip: [-42, -12],
   },
   {
     id: 2,
@@ -50,6 +52,7 @@ const locations: Location[] = [
     lat: 9.9982,
     lng: 76.3078,
     chip: [-115, 20],
+    mobileChip: [-40, 14],
   },
   {
     id: 3,
@@ -60,6 +63,7 @@ const locations: Location[] = [
     lat: 17.4583,
     lng: 78.4419,
     chip: [160, -10],
+    mobileChip: [46, -8],
   },
   {
     id: 4,
@@ -70,6 +74,7 @@ const locations: Location[] = [
     lat: 22.7161,
     lng: 75.8823,
     chip: [-145, 12],
+    mobileChip: [-44, 8],
   },
   {
     id: 5,
@@ -80,6 +85,7 @@ const locations: Location[] = [
     lat: 22.5833,
     lng: 88.4667,
     chip: [55, -30],
+    mobileChip: [40, -18],
   },
   {
     id: 6,
@@ -90,6 +96,7 @@ const locations: Location[] = [
     lat: 12.9719,
     lng: 77.6974,
     chip: [85, 42],
+    mobileChip: [44, 18],
   },
   {
     id: 7,
@@ -100,6 +107,7 @@ const locations: Location[] = [
     lat: 12.9224,
     lng: 80.2505,
     chip: [55, 12],
+    mobileChip: [42, 6],
   },
   {
     id: 8,
@@ -110,6 +118,7 @@ const locations: Location[] = [
     lat: 28.628,
     lng: 77.3789,
     chip: [-100, -35],
+    mobileChip: [-44, -20],
   },
   {
     id: 9,
@@ -120,6 +129,7 @@ const locations: Location[] = [
     lat: 23.0487,
     lng: 72.5273,
     chip: [-95, -20],
+    mobileChip: [-44, -12],
   },
   {
     id: 10,
@@ -130,6 +140,7 @@ const locations: Location[] = [
     lat: 18.5039,
     lng: 73.9288,
     chip: [-115, 20],
+    mobileChip: [-42, 14],
   },
   {
     id: 11,
@@ -140,6 +151,7 @@ const locations: Location[] = [
     lat: 15.4989,
     lng: 73.8278,
     chip: [-105, 0],
+    mobileChip: [-38, 0],
   },
   {
     id: 12,
@@ -150,6 +162,7 @@ const locations: Location[] = [
     lat: 20.2961,
     lng: 85.8245,
     chip: [100, 0],
+    mobileChip: [42, 0],
   },
 ];
 
@@ -382,6 +395,16 @@ function ArcGisGlobe({
   const focusedRef = useRef(focused);
   const onSelectRef = useRef(onSelect);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(typeof window !== "undefined" && window.innerWidth < 640);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     onSelectRef.current = onSelect;
@@ -525,9 +548,13 @@ function ArcGisGlobe({
             const t = ++token;
             if (on) {
               mode = "focus";
+              const isSmall = typeof window !== "undefined" && window.innerWidth < 480;
+              const isMed = typeof window !== "undefined" && window.innerWidth < 768;
+              const targetZ = isSmall ? 8_400_000 : isMed ? 6_600_000 : 4_800_000;
+              const targetLat = isSmall ? 20.2 : 21;
               view
                 .goTo(
-                  new Camera({ position: INDIA_VIEW, heading: 0, tilt: 0 }),
+                  new Camera({ position: { longitude: 79, latitude: targetLat, z: targetZ }, heading: 0, tilt: 0 }),
                   { duration: 1500, easing: "out-cubic" }
                 )
                 .catch(() => { });
@@ -822,6 +849,7 @@ function ArcGisGlobe({
         {/* 12 REGIONAL OFFICES: Distinct leader lines, city pins & office chips */}
         {locations.map((l) => {
           const isSel = activeId === l.id;
+          const activeChip = isMobile ? l.mobileChip : l.chip;
           return (
             <div
               key={`office-${l.id}`}
@@ -845,7 +873,7 @@ function ArcGisGlobe({
                 <circle
                   cx="0"
                   cy="0"
-                  r="8"
+                  r={isMobile ? "6" : "8"}
                   fill="rgba(0, 229, 255, 0.2)"
                   stroke={isSel ? "#FFFFFF" : "#00E5FF"}
                   strokeWidth="1.2"
@@ -855,33 +883,33 @@ function ArcGisGlobe({
                 <circle
                   cx="0"
                   cy="0"
-                  r="4"
+                  r={isMobile ? "3" : "4"}
                   fill={isSel ? "#FFFFFF" : "#1A95D1"}
                   stroke="#FFFFFF"
-                  strokeWidth="1.8"
+                  strokeWidth={isMobile ? "1.5" : "1.8"}
                 />
                 {/* Center contrast dot */}
                 <circle
                   cx="0"
                   cy="0"
-                  r="1.8"
+                  r={isMobile ? "1.4" : "1.8"}
                   fill={isSel ? "#0F3B57" : "#FFFFFF"}
                 />
                 {/* Connecting leader line from pin to office badge */}
                 <line
                   x1="0"
                   y1="0"
-                  x2={l.chip[0]}
-                  y2={l.chip[1]}
+                  x2={activeChip[0]}
+                  y2={activeChip[1]}
                   stroke={isSel ? "#FFFFFF" : "#00E5FF"}
                   strokeOpacity={isSel ? "1" : "0.9"}
-                  strokeWidth={isSel ? "2" : "1.5"}
+                  strokeWidth={isSel ? "1.8" : "1.2"}
                 />
                 {/* Connection target dot */}
                 <circle
-                  cx={l.chip[0]}
-                  cy={l.chip[1]}
-                  r="2.5"
+                  cx={activeChip[0]}
+                  cy={activeChip[1]}
+                  r={isMobile ? "2" : "2.5"}
                   fill={isSel ? "#FFFFFF" : "#00E5FF"}
                 />
               </svg>
@@ -892,19 +920,21 @@ function ArcGisGlobe({
                   openGoogleMaps(l);
                 }}
                 style={{
-                  transform: `translate(${l.chip[0]}px, ${l.chip[1]}px) translate(-50%, -50%)`,
+                  transform: `translate(${activeChip[0]}px, ${activeChip[1]}px) translate(-50%, -50%)`,
                 }}
-                className={`pointer-events-auto absolute left-0 top-0 flex items-center gap-1.5 whitespace-nowrap rounded-lg border px-2.5 py-1 text-[10px] sm:text-[11px] font-semibold text-white shadow-xl backdrop-blur-md transition-all duration-200 hover:scale-105 cursor-pointer ${isSel
-                    ? "border-white bg-gradient-to-r from-ina-blue to-ina-blue-deep shadow-ina-blue/50 ring-2 ring-white/50"
+                className={`pointer-events-auto absolute left-0 top-0 flex items-center gap-1 sm:gap-1.5 whitespace-nowrap rounded-lg border px-1.5 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[11px] font-semibold text-white shadow-xl backdrop-blur-md transition-all duration-200 hover:scale-105 cursor-pointer ${isSel
+                    ? "border-white bg-gradient-to-r from-ina-blue to-ina-blue-deep shadow-ina-blue/50 ring-1 sm:ring-2 ring-white/50"
                     : "border-ina-sky/60 bg-ina-night/90 hover:border-ina-sky hover:bg-ina-navy"
                   }`}
               >
                 <span
-                  className={`h-2 w-2 rounded-full ${isSel ? "bg-white shadow-[0_0_6px_#fff]" : "bg-ina-blue shadow-[0_0_6px_#1A95D1]"
+                  className={`h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full ${isSel ? "bg-white shadow-[0_0_6px_#fff]" : "bg-ina-blue shadow-[0_0_6px_#1A95D1]"
                     }`}
                 />
-                <span className="tracking-wide">{l.city}</span>
-                <ExternalLink className="h-3 w-3 opacity-70" />
+                <span className="tracking-wide">
+                  {isMobile && l.city.includes("·") ? l.city.split("·")[0].trim() : l.city}
+                </span>
+                <ExternalLink className="h-2.5 w-2.5 sm:h-3 sm:w-3 opacity-70 hidden sm:inline-block" />
               </button>
             </div>
           );
@@ -1023,7 +1053,7 @@ export default function WhereAreWeLocated() {
             onPointerEnter={() => setFocus(true)}
             onPointerLeave={() => setFocus(false)}
             onTouchStart={() => setFocus(true)}
-            className="relative h-[380px] w-full overflow-hidden rounded-2xl bg-ina-night sm:h-[440px] lg:col-span-8 lg:h-[520px]"
+            className="relative h-[430px] w-full overflow-hidden rounded-2xl bg-ina-night sm:h-[460px] lg:col-span-8 lg:h-[520px]"
           >
             {hasEnteredProximity ? (
               <ArcGisGlobe
@@ -1040,23 +1070,24 @@ export default function WhereAreWeLocated() {
             )}
 
             {/* Top-Left Badge */}
-            <div className="pointer-events-none absolute left-4 top-4 z-30 flex items-center gap-2 rounded-lg border border-white/10 bg-ina-navy/80 px-3 py-2 text-xs text-white/80 backdrop-blur-md">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-[#00E5FF]" />
-              <span>INA TECHFM • PAN-INDIA NETWORK</span>
+            <div className="pointer-events-none absolute left-3 top-3 sm:left-4 sm:top-4 z-30 flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/10 bg-ina-navy/85 px-2.5 py-1.5 sm:px-3 sm:py-2 text-[10px] sm:text-xs text-white/85 backdrop-blur-md">
+              <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 animate-pulse rounded-full bg-[#00E5FF]" />
+              <span className="hidden sm:inline">INA TECHFM • PAN-INDIA NETWORK</span>
+              <span className="inline sm:hidden">PAN-INDIA</span>
             </div>
 
             {/* Bottom-Left Dynamic Instruction Badge */}
-            <div className="pointer-events-none absolute bottom-4 left-4 z-30 flex items-center gap-2 rounded-lg border border-white/10 bg-ina-navy/80 px-3 py-2 text-[10px] text-white/80 backdrop-blur-md sm:text-xs">
-              <MousePointer2 className="h-3.5 w-3.5 shrink-0 text-[#00E5FF]" />
+            <div className="pointer-events-none absolute bottom-3 left-3 sm:bottom-4 sm:left-4 z-30 flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/10 bg-ina-navy/85 px-2.5 py-1.5 sm:px-3 sm:py-2 text-[9.5px] sm:text-xs text-white/85 backdrop-blur-md">
+              <MousePointer2 className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-[#00E5FF]" />
               <span>
                 {focused
-                  ? "Hover blinking dots to reveal city names • Click to view in Maps"
-                  : "Hover the globe to focus on India & view our operations network"}
+                  ? "Tap any office to open in Google Maps • Hover dots for city names"
+                  : "Tap or hover the globe to zoom into India"}
               </span>
             </div>
 
             {/* Top-Right Counter Badge */}
-            <div className="pointer-events-none absolute right-4 top-4 z-30 rounded-lg border border-white/10 bg-ina-navy/80 px-3 py-2 text-xs text-white/80 backdrop-blur-md">
+            <div className="pointer-events-none absolute right-3 top-3 sm:right-4 sm:top-4 z-30 rounded-lg border border-white/10 bg-ina-navy/85 px-2.5 py-1.5 sm:px-3 sm:py-2 text-[10px] sm:text-xs text-white/85 backdrop-blur-md">
               <span className="font-semibold text-ina-blue">
                 {locations.length}
               </span>{" "}
@@ -1064,7 +1095,7 @@ export default function WhereAreWeLocated() {
               <span className="font-semibold text-[#00E5FF]">
                 {operationalLocations.length}
               </span>{" "}
-              Operations
+              Cities
             </div>
           </div>
 

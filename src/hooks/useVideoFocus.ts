@@ -40,6 +40,8 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "true");
+    video.setAttribute("disablepictureinpicture", "true");
+    video.setAttribute("disableremoteplayback", "true");
 
     let isVisibleInViewport = false;
     let isWindowActive = typeof document !== "undefined" ? !document.hidden : true;
@@ -80,7 +82,18 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
     };
     video.addEventListener("ended", handleEnded);
 
-    // Mobile fallback: When the mobile user touches or scrolls, attempt to play if visible
+    // Mobile gesture fallback: Unbind once playback starts to avoid scroll/gesture overhead
+    const detachUserGesture = () => {
+      window.removeEventListener("touchstart", handleUserGesture);
+      window.removeEventListener("pointerdown", handleUserGesture);
+      window.removeEventListener("click", handleUserGesture);
+    };
+
+    const handlePlaying = () => {
+      detachUserGesture();
+    };
+    video.addEventListener("playing", handlePlaying);
+
     const handleUserGesture = () => {
       isWindowActive = true;
       if (isVisibleInViewport && video.paused) {
@@ -88,7 +101,7 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
       }
     };
     window.addEventListener("touchstart", handleUserGesture, { passive: true });
-    window.addEventListener("scroll", handleUserGesture, { passive: true });
+    window.addEventListener("pointerdown", handleUserGesture, { passive: true });
     window.addEventListener("click", handleUserGesture, { passive: true });
 
     // IntersectionObserver to detect when the video component is within the viewport
@@ -138,11 +151,10 @@ export function useVideoFocus(options: UseVideoFocusOptions = {}) {
 
     return () => {
       video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("playing", handlePlaying);
       if (observer) observer.disconnect();
       document.removeEventListener("visibilitychange", handleVisibilityChange);
-      window.removeEventListener("touchstart", handleUserGesture);
-      window.removeEventListener("scroll", handleUserGesture);
-      window.removeEventListener("click", handleUserGesture);
+      detachUserGesture();
       if (pauseOnBlur) {
         window.removeEventListener("focus", handleFocus);
         window.removeEventListener("blur", handleBlur);

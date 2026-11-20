@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import {
   Clock,
-  Play,
   Link as LinkIcon,
   ArrowLeft,
   Check,
@@ -48,7 +47,6 @@ export default function BlogDetailPage() {
 
   const [copied, setCopied] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const post: BlogPost =
     (slug ? getBlogBySlug(slug) : undefined) || blogs[0];
@@ -124,7 +122,7 @@ export default function BlogDetailPage() {
     <>
       <SiteHeader />
 
-      <div className="bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 min-h-screen font-sans text-ina-ink relative pt-8 pb-24 overflow-hidden">
+      <div className="bg-gradient-to-b from-ina-tint-15 to-ina-tint-8 min-h-screen font-sans text-ina-ink relative pt-24 sm:pt-28 lg:pt-32 pb-24 overflow-hidden">
         {/* Blueprint dots accent */}
         <div className="absolute inset-0 blueprint-dots opacity-20 pointer-events-none" />
         {/* Architectural linework stream */}
@@ -168,7 +166,7 @@ export default function BlogDetailPage() {
               {post.description}
             </p>
 
-            {/* Featured Image / Video Container */}
+            {/* Featured Image Container */}
             <div className="relative w-full aspect-video rounded-3xl overflow-hidden border border-ina-line/80 shadow-2xl flex items-center justify-center group mb-6 bg-ina-night">
               <img
                 src={post.imageUrl || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200'}
@@ -180,17 +178,6 @@ export default function BlogDetailPage() {
                     encodeURIComponent(post.title);
                 }}
               />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent z-10" />
-
-              {/* Play video button */}
-              <button
-                onClick={() => setIsPlaying(true)}
-                className="relative z-20 flex items-center gap-2.5 bg-ina-blue hover:bg-ina-navy text-white px-7 py-3 md:px-8 md:py-3.5 rounded-full font-semibold transition-all transform group-hover:scale-105 shadow-xl cursor-pointer"
-              >
-                <Play size={20} fill="currentColor" />
-                <span>{isPlaying ? 'Video Playing' : 'Play video'}</span>
-              </button>
             </div>
 
             {/* Meta Info */}
