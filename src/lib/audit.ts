@@ -6,7 +6,7 @@ import { getMongoDb, isMongoConfigured } from '@/lib/mongodb';
 export interface AdminLoginLog {
   id: string;
   email: string;
-  status: 'SUCCESS' | 'FAILED';
+  status: 'SUCCESS' | 'FAILED' | 'REVOKED';
   ip: string;
   location: string;
   device: string;
@@ -15,9 +15,22 @@ export interface AdminLoginLog {
   userAgent: string;
   timestamp: string;
   reason?: string;
+  sid?: string;
+  isRevoked?: boolean;
+  revokedAt?: string;
+}
+
+export interface RevokedEntry {
+  sid?: string;
+  ip?: string;
+  revokedAt: string;
 }
 
 const LOGS_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'admin_logs.json');
+const REVOKED_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'revoked_sessions.json');
+
+// In-memory cache of revoked SIDs and IPs for instant lookup
+const inMemoryRevoked = new Set<string>();
 
 export function parseClientInfo(req: NextRequest) {
   // Extract client IP
@@ -96,12 +109,47 @@ function saveLocalLogs(logs: AdminLoginLog[]) {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    // Keep at most 200 logs
     const trimmed = logs.slice(0, 200);
     fs.writeFileSync(LOGS_FILE_PATH, JSON.stringify(trimmed, null, 2), 'utf-8');
   } catch (err) {
-    // Expected on read-only serverless filesystems
+    // Read-only serverless environment
   }
+}
+
+function getLocalRevoked(): RevokedEntry[] {
+  try {
+    if (fs.existsSync(REVOKED_FILE_PATH)) {
+      const data = fs.readFileSync(REVOKED_FILE_PATH, 'utf-8');
+      return JSON.parse(data) as RevokedEntry[];
+    }
+  } catch (err) {
+    console.error('Error reading local revoked entries:', err);
+  }
+  return [];
+}
+
+function saveLocalRevoked(entries: RevokedEntry[]) {
+  try {
+    const dir = path.dirname(REVOKED_FILE_PATH);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(REVOKED_FILE_PATH, JSON.stringify(entries, null, 2), 'utf-8');
+  } catch (err) {
+    // Read-only serverless environment
+  }
+}
+
+export function isSessionOrIpRevoked(sid?: string, ip?: string): boolean {
+  if (sid && inMemoryRevoked.has(sid)) return true;
+  if (ip && inMemoryRevoked.has(ip)) return true;
+
+  const localEntries = getLocalRevoked();
+  for (const entry of localEntries) {
+    if (sid && entry.sid === sid) return true;
+    if (ip && entry.ip === ip) return true;
+  }
+  return false;
 }
 
 export async function logAdminLogin(entry: Omit<AdminLoginLog, 'id'>) {
@@ -110,7 +158,6 @@ export async function logAdminLogin(entry: Omit<AdminLoginLog, 'id'>) {
     id: `${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
   };
 
-  // 1. Save to MongoDB Atlas if available
   if (isMongoConfigured()) {
     try {
       const db = await getMongoDb();
@@ -122,13 +169,11 @@ export async function logAdminLogin(entry: Omit<AdminLoginLog, 'id'>) {
     }
   }
 
-  // 2. Save to local fallback file if possible
   const currentLogs = getLocalLogs();
   saveLocalLogs([logItem, ...currentLogs]);
 }
 
 export async function getAdminLoginLogs(limit = 50): Promise<AdminLoginLog[]> {
-  // 1. Try MongoDB Atlas first
   if (isMongoConfigured()) {
     try {
       const db = await getMongoDb();
@@ -148,7 +193,78 @@ export async function getAdminLoginLogs(limit = 50): Promise<AdminLoginLog[]> {
     }
   }
 
-  // 2. Fallback to local logs
   return getLocalLogs().slice(0, limit);
 }
 
+/**
+ * Revokes and blocks a device or session from accessing the admin panel
+ */
+export async function revokeDeviceSession(logId: string, ip?: string, sid?: string): Promise<boolean> {
+  const now = new Date().toISOString();
+
+  // Add to memory
+  if (sid) inMemoryRevoked.add(sid);
+  if (ip && ip !== 'Unknown IP' && !ip.includes('127.0.0.1')) {
+    inMemoryRevoked.add(ip);
+  }
+
+  // 1. Update in MongoDB Atlas if available
+  if (isMongoConfigured()) {
+    try {
+      const db = await getMongoDb();
+      if (db) {
+        await db.collection('admin_logs').updateOne(
+          { id: logId },
+          { $set: { status: 'REVOKED', isRevoked: true, revokedAt: now } }
+        );
+
+        await db.collection('revoked_sessions').insertOne({
+          logId,
+          sid: sid || null,
+          ip: ip || null,
+          revokedAt: now,
+        } as any);
+      }
+    } catch (err) {
+      console.error('Failed to update revocation in MongoDB Atlas:', err);
+    }
+  }
+
+  // 2. Update local fallback
+  const logs = getLocalLogs();
+  const index = logs.findIndex((l) => l.id === logId);
+  if (index !== -1) {
+    logs[index].status = 'REVOKED';
+    logs[index].isRevoked = true;
+    logs[index].revokedAt = now;
+    saveLocalLogs(logs);
+  }
+
+  const revokedEntries = getLocalRevoked();
+  revokedEntries.push({ sid, ip, revokedAt: now });
+  saveLocalRevoked(revokedEntries);
+
+  return true;
+}
+
+/**
+ * Deletes a specific audit log record
+ */
+export async function deleteAuditLog(logId: string): Promise<boolean> {
+  if (isMongoConfigured()) {
+    try {
+      const db = await getMongoDb();
+      if (db) {
+        await db.collection('admin_logs').deleteOne({ id: logId });
+      }
+    } catch (err) {
+      console.error('Failed to delete audit log from MongoDB Atlas:', err);
+    }
+  }
+
+  const logs = getLocalLogs();
+  const filtered = logs.filter((l) => l.id !== logId);
+  saveLocalLogs(filtered);
+
+  return true;
+}

@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     user: {
       email: session.email,
       role: session.role,
+      isSuperAdmin: session.role === 'super_admin',
     },
   });
 }
-
