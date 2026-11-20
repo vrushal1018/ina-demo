@@ -173,7 +173,7 @@ export default function TechnicalServicesPage() {
                     <div className="w-16 h-1 bg-ina-blue mt-3 mb-6 rounded-full" />
 
                     <p className="leading-relaxed text-ina-grey text-base sm:text-lg">
-                      Technical Services provide specialized support and deep engineering expertise for your facility&apos;s most critical systems. We focus on preventive maintenance and rapid problem resolution to ensure consistent, reliable performance.
+                      At INA TechFM, we deliver specialized engineering expertise and technical support to keep critical facility systems performing at their best. Through preventive maintenance, expert interventions and timely problem resolution, we ensure equipment reliability, operational efficiency and extended asset life.
                     </p>
 
                     <ul className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">

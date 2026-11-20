@@ -18,42 +18,42 @@ const SERVICES: ServiceItem[] = [
     id: 'Hard FM',
     icon: '/facility-management.png',
     title: 'Hard FM',
-    description: 'Strategic guidance to align your technology stack with long-term business objectives, ensuring agility and growth.',
+    description: 'Managing and maintaining critical building infrastructure, including electrical, mechanical, HVAC, plumbing and other engineering systems.',
     href: '/services/hard-fm',
   },
   {
     id: 'Transition Services',
     icon: '/transition services.png',
     title: 'Transition services',
-    description: 'Transform raw data into actionable insights that drive smarter decisions, improved forecasting, and business innovation.',
+    description: 'Ensuring seamless takeover and handover of facility management operations with minimal disruption to business activities.',
     href: '/services/transition-services',
   },
   {
     id: 'Sustainability Services',
     icon: '/Sustainability Services.png',
     title: 'Sustainability services',
-    description: 'Responsive, user-centric websites built with modern frameworks to deliver performance, accessibility, and brand impact.',
+    description: ' Implementing energy-efficient and environmentally responsible solutions to reduce resource consumption and promote sustainability.',
     href: '/services/sustainability-services',
   },
   {
     id: 'Technical Services',
     icon: '/technical services.png',
     title: 'Technical services',
-    description: 'We help you design, deploy, and manage secure, scalable, and high-performance cloud infrastructure that supports modern business.',
+    description: 'Providing specialized technical support, AMC/CAMC, repairs, maintenance and project execution to ensure optimal asset performance.',
     href: '/services/technical-services',
   },
   {
     id: 'Audit & Offerings',
     icon: '/audit offerings.png',
     title: 'Audit & offerings',
-    description: 'We identify system vulnerabilities, assess potential threats, and implement advanced security protocols to safeguard your data and digital assets.',
+    description: 'Conducting comprehensive facility audits to identify gaps, assess performance and recommend cost-effective improvement solutions.',
     href: '/services/audit-and-offerings',
   },
   {
     id: 'Allied Services',
     icon: '/allied services.png',
     title: 'Allied services',
-    description: 'Our team builds secure, scalable SaaS products from the ground up—ensuring seamless performance, intuitive user experiences.',
+    description: '6. Delivering complementary facility support services to enhance operational efficiency, workplace experience and overall facility management.',
     href: '/services/allied-services',
   },
 ];
@@ -211,11 +211,10 @@ export default function ServicesSection() {
                 key={idx}
                 onClick={() => setMobileIndex(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  mobileIndex === idx
-                    ? "w-6 bg-ina-blue"
-                    : "w-2 bg-ina-navy/20 hover:bg-ina-navy/40"
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${mobileIndex === idx
+                  ? "w-6 bg-ina-blue"
+                  : "w-2 bg-ina-navy/20 hover:bg-ina-navy/40"
+                  }`}
               />
             ))}
           </div>
@@ -234,13 +233,13 @@ export default function ServicesSection() {
       {/* =========================================================
           DESKTOP/TABLET VIEW (hidden sm:block): Continuous Marquee Slider
       ========================================================== */}
-      <div 
+      <div
         className="hidden sm:block w-full relative overflow-hidden py-2 [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)] sm:[mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-80px),transparent_100%)]"
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
       >
         {/* Track with Hardware Acceleration on Desktop & Mobile */}
-        <div 
+        <div
           className="flex gap-4 sm:gap-6 w-max px-4 animate-services-track"
           style={isPaused ? { animationPlayState: 'paused' } : undefined}
           onMouseEnter={() => setIsPaused(true)}
