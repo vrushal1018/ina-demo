@@ -42,7 +42,7 @@ export default function Home() {
       <SiteHeader />
 
       {/* Hero Section - Loads immediately (above the fold) */}
-      <section className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-ina-night">
+      <section className="relative w-full min-h-[100dvh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-ina-night">
         {/* Background Video with continuous loop and instant responsive preview poster */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {/* LCP Resource hints - Preload the high-priority hero poster */}
@@ -90,6 +90,8 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
+            disablePictureInPicture
+            disableRemotePlayback
             src="/inatechphoneview1.mp4"
             onPlaying={() => setIsVideoPlaying(true)}
             onEnded={(e) => {
@@ -108,6 +110,8 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
+            disablePictureInPicture
+            disableRemotePlayback
             src="/itf-hero-optimized.mp4"
             onPlaying={() => setIsVideoPlaying(true)}
             onEnded={(e) => {

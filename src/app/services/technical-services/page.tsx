@@ -44,7 +44,7 @@ export default function TechnicalServicesPage() {
         {/* =========================================================
             HERO SECTION WITH BACKGROUND VIDEO
         ========================================================== */}
-        <section className="relative min-h-[80vh] min-h-[80dvh] sm:min-h-[520px] lg:min-h-[580px] flex items-center py-12 sm:py-12 lg:py-16 overflow-hidden bg-ina-night">
+        <section className="relative min-h-[80vh] min-h-[80dvh] sm:min-h-[520px] lg:min-h-[580px] flex items-center pt-24 sm:pt-28 lg:pt-32 pb-14 sm:pb-16 overflow-hidden bg-ina-night">
           {/* Background Video with continuous loop and responsive preview */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Responsive Preview Poster (Tailored for mobile vs desktop with zero awkward zoom) */}
@@ -59,11 +59,14 @@ export default function TechnicalServicesPage() {
             </picture>
             <video
               ref={videoRef}
+              src="/technical%20services.mp4"
               autoPlay
               loop
               muted
               playsInline
               preload="auto"
+              disablePictureInPicture
+              disableRemotePlayback
               onPlaying={() => setIsVideoPlaying(true)}
               className="absolute inset-0 w-full h-full object-cover object-center scale-100 sm:scale-105"
             >

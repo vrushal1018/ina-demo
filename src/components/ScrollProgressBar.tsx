@@ -35,7 +35,7 @@ export default function ScrollProgressBar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[9999] pointer-events-none">
       {/* Subtle track background */}
-      <div className="w-full h-[3.5px] bg-ina-night/10 backdrop-blur-xs" />
+      <div className="w-full h-[3.5px] bg-ina-night/10" />
 
       {/* Animated progress fill (GPU accelerated transform) */}
       <div

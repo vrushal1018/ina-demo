@@ -182,9 +182,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${poppins.variable} h-full antialiased bg-ina-tint-4 overflow-x-hidden max-w-full`}
+      className={`${poppins.variable} antialiased bg-ina-tint-4 max-w-full`}
     >
-      <body className="min-h-full flex flex-col bg-ina-tint-4 text-ina-ink overflow-x-hidden max-w-full">
+      <body className="min-h-screen flex flex-col bg-ina-tint-4 text-ina-ink max-w-full overflow-x-clip">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdOrganization) }}
