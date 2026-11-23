@@ -820,117 +820,234 @@ export default function AdminPage() {
           </button>
         </div>
 
-        {/* Stats Summary Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-2xl p-5 border border-ina-line shadow-xs flex items-center justify-between">
+        {/* Stats Summary Cards (Clickable to switch view instantly) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          {/* Card 1: All Jobs */}
+          <button
+            type="button"
+            onClick={() => setStatusFilter('all')}
+            className={`text-left rounded-2xl p-5 border transition-all cursor-pointer flex items-center justify-between ${
+              statusFilter === 'all'
+                ? 'bg-ina-tint-8 border-ina-blue ring-2 ring-ina-blue/30 shadow-md -translate-y-0.5'
+                : 'bg-white border-ina-line hover:border-ina-blue/40 hover:bg-slate-50/60 shadow-xs'
+            }`}
+          >
             <div>
-              <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
-                Total Job Postings
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
+                  Total Job Postings
+                </p>
+                {statusFilter === 'all' && (
+                  <span className="text-[10px] font-bold text-ina-blue bg-ina-blue/15 px-2 py-0.5 rounded-full">
+                    Active View
+                  </span>
+                )}
+              </div>
               <p className="text-2xl font-bold text-ina-navy mt-1">{jobs.length}</p>
+              <p className="text-[11px] text-ina-grey mt-1 font-medium">Click to view all jobs</p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-ina-tint-8 border border-ina-line flex items-center justify-center text-ina-blue">
+            <div className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-colors ${
+              statusFilter === 'all'
+                ? 'bg-ina-blue text-white border-ina-blue'
+                : 'bg-ina-tint-8 border-ina-line text-ina-blue'
+            }`}>
               <Briefcase className="w-6 h-6" />
             </div>
-          </div>
+          </button>
 
-          <div className="bg-white rounded-2xl p-5 border border-ina-line shadow-xs flex items-center justify-between">
+          {/* Card 2: Live on Careers */}
+          <button
+            type="button"
+            onClick={() => setStatusFilter('active')}
+            className={`text-left rounded-2xl p-5 border transition-all cursor-pointer flex items-center justify-between ${
+              statusFilter === 'active'
+                ? 'bg-emerald-50/80 border-emerald-400 ring-2 ring-emerald-500/30 shadow-md -translate-y-0.5'
+                : 'bg-white border-ina-line hover:border-emerald-300 hover:bg-emerald-50/30 shadow-xs'
+            }`}
+          >
             <div>
-              <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
-                Live on Careers
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
+                  Live on Careers
+                </p>
+                {statusFilter === 'active' && (
+                  <span className="text-[10px] font-bold text-emerald-800 bg-emerald-200/80 px-2 py-0.5 rounded-full">
+                    Active View
+                  </span>
+                )}
+              </div>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-2xl font-bold text-emerald-700">{activeJobsCount}</span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse mr-1" />
                   Live
                 </span>
               </div>
+              <p className="text-[11px] text-emerald-700 mt-1 font-medium">Click to filter live positions</p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
+            <div className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-colors ${
+              statusFilter === 'active'
+                ? 'bg-emerald-600 text-white border-emerald-600'
+                : 'bg-emerald-50 border-emerald-100 text-emerald-600'
+            }`}>
               <Globe className="w-6 h-6" />
             </div>
-          </div>
+          </button>
 
-          <div className="bg-white rounded-2xl p-5 border border-ina-line shadow-xs flex items-center justify-between">
+          {/* Card 3: Draft Postings */}
+          <button
+            type="button"
+            onClick={() => setStatusFilter('inactive')}
+            className={`text-left rounded-2xl p-5 border transition-all cursor-pointer flex items-center justify-between ${
+              statusFilter === 'inactive'
+                ? 'bg-amber-50 border-amber-400 ring-2 ring-amber-500/30 shadow-md -translate-y-0.5'
+                : 'bg-white border-ina-line hover:border-amber-300 hover:bg-amber-50/30 shadow-xs'
+            }`}
+          >
             <div>
-              <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
-                Draft Postings
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="text-xs font-semibold text-ina-grey uppercase tracking-wider">
+                  Draft Postings
+                </p>
+                {statusFilter === 'inactive' ? (
+                  <span className="text-[10px] font-bold text-amber-800 bg-amber-200/80 px-2 py-0.5 rounded-full">
+                    Active View
+                  </span>
+                ) : inactiveJobsCount > 0 ? (
+                  <span className="text-[10px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded-full">
+                    {inactiveJobsCount} in Draft
+                  </span>
+                ) : null}
+              </div>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-2xl font-bold text-amber-700">{inactiveJobsCount}</span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
                   Drafts
                 </span>
               </div>
+              <p className="text-[11px] text-amber-700 mt-1 font-semibold flex items-center gap-1">
+                <span>Click here to view drafts & restore</span>
+                <span>→</span>
+              </p>
             </div>
-            <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600">
+            <div className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-colors ${
+              statusFilter === 'inactive'
+                ? 'bg-amber-600 text-white border-amber-600'
+                : 'bg-amber-50 border-amber-100 text-amber-600'
+            }`}>
               <EyeOff className="w-6 h-6" />
             </div>
-          </div>
+          </button>
         </div>
 
-        {/* Filter and Search Bar */}
-        <div className="bg-white rounded-2xl p-4 border border-ina-line shadow-xs mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="relative w-full sm:w-80">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-ina-grey" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by title, department, or tags..."
-              className="w-full pl-10 pr-4 py-2 bg-ina-tint-4/60 border border-ina-line rounded-xl text-sm text-ina-navy placeholder:text-ina-grey/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue/30 focus:border-ina-blue transition-all"
-            />
-          </div>
-
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-            <div className="inline-flex rounded-xl p-1 bg-ina-tint-4 border border-ina-line text-xs font-semibold">
+        {/* Filter Tabs and Search Bar */}
+        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-ina-line shadow-xs mb-6 space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            {/* Prominent Tab Pills */}
+            <div className="inline-flex p-1 bg-ina-tint-4/80 border border-ina-line rounded-xl text-xs sm:text-sm font-semibold w-full sm:w-auto">
               <button
                 type="button"
                 onClick={() => setStatusFilter('all')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`flex-1 sm:flex-initial px-4 py-2 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-2 ${
                   statusFilter === 'all'
-                    ? 'bg-white text-ina-navy shadow-xs font-bold'
+                    ? 'bg-white text-ina-navy shadow-xs font-bold border border-ina-line/40'
                     : 'text-ina-grey hover:text-ina-navy'
                 }`}
               >
-                All Posts ({jobs.length})
+                <Briefcase className="w-4 h-4 text-ina-blue" />
+                <span>All Openings</span>
+                <span className="px-2 py-0.5 rounded-full bg-ina-tint-8 text-ina-navy text-[11px] font-bold">
+                  {jobs.length}
+                </span>
               </button>
+
               <button
                 type="button"
                 onClick={() => setStatusFilter('active')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`flex-1 sm:flex-initial px-4 py-2 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-2 ${
                   statusFilter === 'active'
-                    ? 'bg-white text-emerald-700 shadow-xs font-bold'
-                    : 'text-ina-grey hover:text-ina-navy'
+                    ? 'bg-emerald-600 text-white shadow-xs font-bold'
+                    : 'text-emerald-700 hover:text-emerald-900 hover:bg-emerald-50/50'
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                Live ({activeJobsCount})
+                <Globe className="w-4 h-4" />
+                <span>Live on Careers</span>
+                <span className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                  statusFilter === 'active' ? 'bg-white/20 text-white' : 'bg-emerald-100 text-emerald-800'
+                }`}>
+                  {activeJobsCount}
+                </span>
               </button>
+
               <button
                 type="button"
                 onClick={() => setStatusFilter('inactive')}
-                className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`flex-1 sm:flex-initial px-4 py-2 rounded-lg transition-all cursor-pointer flex items-center justify-center gap-2 ${
                   statusFilter === 'inactive'
-                    ? 'bg-white text-amber-700 shadow-xs font-bold'
-                    : 'text-ina-grey hover:text-ina-navy'
+                    ? 'bg-amber-600 text-white shadow-xs font-bold'
+                    : 'text-amber-800 hover:text-amber-900 hover:bg-amber-50/50'
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                Drafts ({inactiveJobsCount})
+                <EyeOff className="w-4 h-4" />
+                <span>Drafts / Unlived</span>
+                <span className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                  statusFilter === 'inactive' ? 'bg-white/20 text-white' : 'bg-amber-100 text-amber-900 border border-amber-300'
+                }`}>
+                  {inactiveJobsCount}
+                </span>
               </button>
             </div>
 
-            <button
-              onClick={fetchJobs}
-              disabled={isLoadingJobs}
-              className="p-2 rounded-xl border border-ina-line bg-white hover:bg-ina-tint-8 text-ina-grey hover:text-ina-navy transition-colors cursor-pointer"
-              title="Refresh job list"
-            >
-              <RefreshCw className={`w-4 h-4 ${isLoadingJobs ? 'animate-spin' : ''}`} />
-            </button>
+            {/* Search Input & Refresh Button */}
+            <div className="flex items-center gap-2 w-full md:w-auto">
+              <div className="relative flex-1 md:w-72">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-ina-grey" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search openings..."
+                  className="w-full pl-10 pr-4 py-2 bg-ina-tint-4/60 border border-ina-line rounded-xl text-xs sm:text-sm text-ina-navy placeholder:text-ina-grey/60 focus:bg-white focus:outline-none focus:ring-2 focus:ring-ina-blue/30 focus:border-ina-blue transition-all"
+                />
+              </div>
+
+              <button
+                onClick={fetchJobs}
+                disabled={isLoadingJobs}
+                className="p-2.5 rounded-xl border border-ina-line bg-white hover:bg-ina-tint-8 text-ina-grey hover:text-ina-navy transition-colors cursor-pointer shrink-0"
+                title="Refresh job list"
+              >
+                <RefreshCw className={`w-4 h-4 ${isLoadingJobs ? 'animate-spin text-ina-blue' : ''}`} />
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Draft Notice Banner (Shown when viewing Drafts) */}
+        {statusFilter === 'inactive' && (
+          <div className="bg-amber-50 border border-amber-300 rounded-2xl p-4 sm:p-5 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
+            <div className="flex items-start sm:items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-amber-100 border border-amber-300 flex items-center justify-center text-amber-800 shrink-0">
+                <EyeOff className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-amber-950 flex items-center gap-2">
+                  <span>Draft Postings ({filteredJobs.length} role{filteredJobs.length === 1 ? '' : 's'})</span>
+                </h3>
+                <p className="text-xs text-amber-800 mt-0.5">
+                  These positions are hidden from candidates on the public Careers page. To publish any role back to the Careers page at any time, click <strong>"Make Live (Publish on Careers)"</strong> on that card.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setStatusFilter('active')}
+              className="self-start sm:self-auto text-xs font-semibold px-4 py-2 rounded-xl bg-white border border-amber-300 text-amber-900 hover:bg-amber-100 transition-colors shrink-0 shadow-xs cursor-pointer"
+            >
+              View Live Roles ({activeJobsCount}) →
+            </button>
+          </div>
+        )}
 
         {/* Jobs List */}
         {isLoadingJobs && jobs.length === 0 ? (
@@ -940,22 +1057,47 @@ export default function AdminPage() {
           </div>
         ) : filteredJobs.length === 0 ? (
           <div className="bg-white rounded-3xl p-10 text-center border border-ina-line shadow-xs max-w-xl mx-auto my-8">
-            <div className="w-16 h-16 rounded-2xl bg-ina-tint-8 border border-ina-line flex items-center justify-center mx-auto mb-4 text-ina-grey">
-              <Briefcase className="w-8 h-8" />
+            <div className={`w-16 h-16 rounded-2xl border flex items-center justify-center mx-auto mb-4 ${
+              statusFilter === 'inactive'
+                ? 'bg-amber-50 border-amber-200 text-amber-600'
+                : 'bg-ina-tint-8 border-ina-line text-ina-grey'
+            }`}>
+              {statusFilter === 'inactive' ? <EyeOff className="w-8 h-8" /> : <Briefcase className="w-8 h-8" />}
             </div>
-            <h3 className="text-lg font-semibold text-ina-navy mb-1">No job postings found</h3>
+            <h3 className="text-lg font-bold text-ina-navy mb-1">
+              {statusFilter === 'inactive'
+                ? 'No Draft Positions'
+                : statusFilter === 'active'
+                ? 'No Live Positions on Careers'
+                : 'No Job Openings Found'}
+            </h3>
             <p className="text-sm text-ina-grey mb-6">
-              {searchQuery || statusFilter !== 'all'
-                ? 'Try adjusting your search criteria or filter status.'
+              {statusFilter === 'inactive'
+                ? 'All positions are currently live on the Careers page. To unlive a position and store it here as a draft, click "Unlive (Move to Draft)" on any active job.'
+                : statusFilter === 'active'
+                ? 'There are currently no active job openings published on the Careers page. Candidates see the "No Openings" notice.'
+                : searchQuery
+                ? 'Try adjusting your search criteria or clear the search input.'
                 : 'Get started by creating your first job opening to display on the Careers page.'}
             </p>
-            <button
-              onClick={handleOpenCreateModal}
-              className="inline-flex items-center gap-2 bg-ina-blue hover:bg-ina-blue-deep text-white px-5 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all shadow-md cursor-pointer"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Post a New Job</span>
-            </button>
+            {statusFilter === 'inactive' ? (
+              <button
+                type="button"
+                onClick={() => setStatusFilter('active')}
+                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all shadow-md cursor-pointer"
+              >
+                <Globe className="w-4 h-4" />
+                <span>View Live Openings ({activeJobsCount})</span>
+              </button>
+            ) : (
+              <button
+                onClick={handleOpenCreateModal}
+                className="inline-flex items-center gap-2 bg-ina-blue hover:bg-ina-blue-deep text-white px-5 py-2.5 rounded-xl font-semibold text-xs tracking-wide transition-all shadow-md cursor-pointer"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Post a New Job</span>
+              </button>
+            )}
           </div>
         ) : (
           <div className="space-y-4">
@@ -964,7 +1106,11 @@ export default function AdminPage() {
               return (
                 <div
                   key={job.id}
-                  className="bg-white rounded-2xl p-5 sm:p-6 border border-ina-line shadow-xs hover:border-ina-blue/30 transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+                  className={`bg-white rounded-2xl p-5 sm:p-6 border shadow-xs transition-all flex flex-col lg:flex-row lg:items-center justify-between gap-6 ${
+                    isActive
+                      ? 'border-ina-line hover:border-ina-blue/30'
+                      : 'border-amber-200 bg-amber-50/20 hover:border-amber-400'
+                  }`}
                 >
                   {/* Job Details Left */}
                   <div className="flex-1 space-y-3">
@@ -974,7 +1120,7 @@ export default function AdminPage() {
                         className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
                           isActive
                             ? 'bg-emerald-50 text-emerald-800 border border-emerald-300'
-                            : 'bg-amber-50 text-amber-800 border border-amber-300'
+                            : 'bg-amber-100 text-amber-900 border border-amber-300'
                         }`}
                       >
                         <span
@@ -1033,10 +1179,10 @@ export default function AdminPage() {
                     <button
                       type="button"
                       onClick={() => handleToggleActive(job)}
-                      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border text-xs font-semibold shadow-xs transition-all cursor-pointer active:scale-95 ${
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-bold shadow-xs transition-all cursor-pointer active:scale-95 ${
                         isActive
                           ? 'bg-amber-50 text-amber-900 border-amber-300 hover:bg-amber-100 hover:border-amber-400'
-                          : 'bg-emerald-50 text-emerald-900 border-emerald-300 hover:bg-emerald-100 hover:border-emerald-400'
+                          : 'bg-emerald-600 text-white border-emerald-600 hover:bg-emerald-700 shadow-md hover:shadow-lg'
                       }`}
                       title={isActive ? 'Unlive this job opening and move to Drafts' : 'Make this job opening Live on Careers'}
                     >
@@ -1047,8 +1193,8 @@ export default function AdminPage() {
                         </>
                       ) : (
                         <>
-                          <Globe className="w-3.5 h-3.5 text-emerald-700" />
-                          <span>Make Live (Publish)</span>
+                          <Globe className="w-4 h-4 text-emerald-100" />
+                          <span>Make Live (Publish on Careers)</span>
                         </>
                       )}
                     </button>
