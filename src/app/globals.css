@@ -98,7 +98,8 @@
   h4,
   h5,
   h6,
-  .font-heading {
+  .font-heading,
+  [role="heading"] {
     font-family: var(--font-heading);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

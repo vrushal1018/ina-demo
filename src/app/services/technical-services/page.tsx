@@ -9,7 +9,7 @@ import InteractiveServiceCards from '@/components/InteractiveServiceCards';
 
 const technicalServices = [
   {
-    title: "Retrofit and Mini projects, Spares & Consumables",
+    title: "Retrofit and Mini Projects, Spares & Consumables",
     icon: Wrench,
     description: "Retrofit & Mini Project team support our customers by execution of the small retrofit's jobs and mini projects jobs with best quality & cost effectively. Our supply chain will provide the spares & consumables depends on your specified requirements. We also do installation, commissioning, testing and endurance trials of all type of engineering equipment's and its ancillaries."
   },

@@ -544,7 +544,7 @@ export const SECTORS_DATA: SectorData[] = [
   {
     slug: "commercial-corporate",
     aliases: ["commercial", "corporate", "commercial-and-corporate"],
-    title: "Commercial & corporate",
+    title: "Commercial & Corporate",
     badge: "Lorem Ipsum",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     description: LOREM_HERO,

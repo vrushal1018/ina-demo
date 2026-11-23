@@ -41,7 +41,7 @@ const VALUES: ValueItem[] = [
   {
     id: 3,
     number: '03',
-    title: 'People first',
+    title: 'People First',
     description:
       'We prioritize team and customer satisfaction.',
     icon: Users,
@@ -57,7 +57,7 @@ const VALUES: ValueItem[] = [
   {
     id: 5,
     number: '05',
-    title: 'Customer first',
+    title: 'Customer First',
     description:
       'Customer in the centre of all our actions.',
     icon: HeartHandshake,
