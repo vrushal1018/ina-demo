@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import jobsData from './jobs.json';
-import { getJobsCollection, isMongoConfigured } from '@/lib/mongodb';
+import { getJobsCollection, getMongoDb, isMongoConfigured } from '@/lib/mongodb';
 
 export interface JobDetails {
   id: number;
@@ -65,7 +65,7 @@ export function getActiveJobs(): JobDetails[] {
   return allJobs.filter((job) => job.isActive !== false);
 }
 
-// --- Asynchronous MongoDB Operations (With Automatic Fallback & Auto-Seed) ---
+// --- Asynchronous MongoDB Operations (With Automatic Fallback & Seed Guard) ---
 
 let isSeeded = false;
 
@@ -74,6 +74,16 @@ async function ensureMongoSeeded() {
   try {
     const collection = await getJobsCollection();
     if (!collection) return;
+    const db = await getMongoDb();
+    if (!db) return;
+
+    // Use metadata collection to ensure seeding happens ONLY once, never resurrecting deleted/unlived jobs
+    const metaCollection = db.collection('system_meta');
+    const seedMeta = await metaCollection.findOne({ key: 'jobs_initial_seed' });
+    if (seedMeta) {
+      isSeeded = true;
+      return;
+    }
 
     const count = await collection.countDocuments();
     if (count === 0) {
@@ -83,6 +93,12 @@ async function ensureMongoSeeded() {
         console.log(`Auto-seeded ${fileJobs.length} initial jobs to MongoDB Atlas`);
       }
     }
+
+    await metaCollection.updateOne(
+      { key: 'jobs_initial_seed' },
+      { $set: { key: 'jobs_initial_seed', seededAt: new Date().toISOString() } },
+      { upsert: true }
+    );
     isSeeded = true;
   } catch (error) {
     console.error('Error ensuring MongoDB seed:', error);
@@ -99,7 +115,7 @@ export async function getAllJobsAsync(): Promise<JobDetails[]> {
           .find({}, { projection: { _id: 0 } })
           .sort({ id: -1 })
           .toArray();
-        if (jobs && jobs.length > 0) {
+        if (jobs) {
           return jobs as JobDetails[];
         }
       }
@@ -120,7 +136,8 @@ export async function getActiveJobsAsync(): Promise<JobDetails[]> {
           .find({ isActive: { $ne: false } }, { projection: { _id: 0 } })
           .sort({ id: -1 })
           .toArray();
-        if (jobs && jobs.length > 0) {
+        // If MongoDB query succeeded, return results even if empty [] (do not resurrect old jobs!)
+        if (jobs) {
           return jobs as JobDetails[];
         }
       }
@@ -166,7 +183,7 @@ export async function addJobAsync(newJob: JobDetails): Promise<SaveJobResult> {
 
 export async function updateJobAsync(id: number, updates: Partial<JobDetails>): Promise<JobDetails | null> {
   let updatedJob: JobDetails | null = null;
-  let mongoUpdated = false;
+  const numId = Number(id);
 
   if (isMongoConfigured()) {
     try {
@@ -174,14 +191,18 @@ export async function updateJobAsync(id: number, updates: Partial<JobDetails>): 
       if (collection) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { id: _, ...fieldsToSet } = updates;
-        const result = await collection.findOneAndUpdate(
-          { id },
-          { $set: fieldsToSet },
-          { returnDocument: 'after', projection: { _id: 0 } }
+        await collection.updateOne(
+          { $or: [{ id: numId }, { id: String(numId) as any }] },
+          { $set: fieldsToSet }
         );
-        if (result) {
-          updatedJob = result as unknown as JobDetails;
-          mongoUpdated = true;
+
+        const doc = await collection.findOne(
+          { $or: [{ id: numId }, { id: String(numId) as any }] },
+          { projection: { _id: 0 } }
+        );
+
+        if (doc) {
+          updatedJob = doc as JobDetails;
         }
       }
     } catch (error) {
@@ -191,13 +212,15 @@ export async function updateJobAsync(id: number, updates: Partial<JobDetails>): 
 
   // Update local file if available
   const currentJobs = getJobsFromFile();
-  const index = currentJobs.findIndex((j) => j.id === id);
+  const index = currentJobs.findIndex((j) => Number(j.id) === numId);
   if (index !== -1) {
     currentJobs[index] = { ...currentJobs[index], ...updates };
     saveJobsToFile(currentJobs);
     if (!updatedJob) {
       updatedJob = currentJobs[index];
     }
+  } else if (updatedJob) {
+    saveJobsToFile([updatedJob, ...currentJobs]);
   }
 
   return updatedJob;
@@ -205,12 +228,15 @@ export async function updateJobAsync(id: number, updates: Partial<JobDetails>): 
 
 export async function deleteJobAsync(id: number): Promise<boolean> {
   let mongoDeleted = false;
+  const numId = Number(id);
 
   if (isMongoConfigured()) {
     try {
       const collection = await getJobsCollection();
       if (collection) {
-        const result = await collection.deleteOne({ id });
+        const result = await collection.deleteOne({
+          $or: [{ id: numId }, { id: String(numId) as any }],
+        });
         mongoDeleted = result.deletedCount > 0;
       }
     } catch (error) {
@@ -220,7 +246,7 @@ export async function deleteJobAsync(id: number): Promise<boolean> {
 
   // Update local file if available
   const currentJobs = getJobsFromFile();
-  const filtered = currentJobs.filter((j) => j.id !== id);
+  const filtered = currentJobs.filter((j) => Number(j.id) !== numId);
   const fileSuccess = saveJobsToFile(filtered);
 
   return mongoDeleted || fileSuccess;
