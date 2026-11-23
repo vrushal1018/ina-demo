@@ -22,15 +22,33 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const prevPathnameRef = useRef(pathname);
 
-  // Track scroll position to transition the top bar from transparent to solid frosted glass
+  // Determine whether the current route has a dark hero background
+  const hasDarkHero =
+    pathname === "/" ||
+    pathname === "/about" ||
+    pathname === "/blogs" ||
+    (pathname.startsWith("/services/") && pathname !== "/services/audit-and-offerings");
+
+  // Track scroll position to transition the navbar when leaving the hero section
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      const threshold = hasDarkHero
+        ? typeof window !== "undefined"
+          ? window.innerHeight - 80
+          : 600
+        : 20;
+      setIsScrolled(window.scrollY > threshold);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [hasDarkHero]);
+
+  const isDarkNavbar = hasDarkHero && !isScrolled;
 
   // Close menu on route navigation
   useEffect(() => {
@@ -69,14 +87,6 @@ export default function SiteHeader() {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
-
-  // Determine whether the current route has a dark hero background
-  const isHomePage = pathname === "/";
-  const hasDarkHero =
-    isHomePage ||
-    pathname === "/about" ||
-    pathname === "/blogs" ||
-    (pathname.startsWith("/services/") && pathname !== "/services/audit-and-offerings");
 
   const servicesList = [
     {
@@ -130,36 +140,26 @@ export default function SiteHeader() {
           TOP FIXED NAVBAR BAR (Matching inaspaceworks.com header.bar)
       ========================================================== */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transform-gpu transition-all duration-300 ease-out ${
-          isScrolled || !hasDarkHero
-            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-ina-line/70 py-3 sm:py-3.5"
-            : "bg-transparent py-4 sm:py-5"
+        className={`fixed top-0 left-0 right-0 z-40 transform-gpu transition-all duration-300 ease-out py-3 sm:py-3.5 ${
+          isDarkNavbar
+            ? "bg-ina-night/30 backdrop-blur-md border-b border-white/10"
+            : "bg-white/75 backdrop-blur-md shadow-xs border-b border-ina-line/60"
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
-          {/* Brand Logo & Lockup */}
-          <div
-            className={`flex items-center gap-3 sm:gap-4 transition-opacity duration-300 ${
-              isHomePage && !isScrolled
-                ? "opacity-0 pointer-events-none"
-                : "opacity-100"
-            }`}
-          >
+          {/* Brand Logo & Lockup - Blue Logo Only */}
+          <div className="flex items-center gap-3 sm:gap-4 transition-opacity duration-300 opacity-100">
             <Link
               href="/"
               className="inline-block transition-transform hover:scale-105 active:scale-95"
               title="Ina TechFM - Integrated Facility Management Services in India"
             >
               <img
-                src={
-                  isScrolled || !hasDarkHero
-                    ? "/Ina Logo-1.jpg.png"
-                    : "/Ina%20TechFM%20Logo%20white.png"
-                }
+                src="/Ina Logo-1.jpg.png"
                 alt="Ina TechFM"
                 width={190}
                 height={55}
-                className="h-10 sm:h-12 md:h-13 w-auto object-contain transition-all duration-300 drop-shadow-md"
+                className="h-10 sm:h-12 md:h-13 w-auto object-contain transition-all duration-300 drop-shadow-xs"
               />
             </Link>
           </div>
@@ -168,9 +168,9 @@ export default function SiteHeader() {
           <button
             onClick={() => setIsOpen(true)}
             className={`flex items-center gap-2.5 sm:gap-3 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 transition-all duration-300 group active:scale-95 ${
-              isScrolled || !hasDarkHero
-                ? "text-ina-navy hover:text-ina-blue"
-                : "text-white hover:text-ina-blue"
+              isDarkNavbar
+                ? "text-white hover:text-ina-blue"
+                : "text-ina-navy hover:text-ina-blue"
             }`}
             aria-expanded={isOpen}
             aria-controls="site-menu"
@@ -209,30 +209,34 @@ export default function SiteHeader() {
         </div>
 
         {/* Top Header inside Menu */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between border-b border-white/10 shrink-0">
-          <Link
-            href="/"
-            onClick={() => setIsOpen(false)}
-            className="inline-block transition-transform hover:scale-105 active:scale-95"
-            title="Ina TechFM"
-          >
-            <img
-              src="/Ina%20TechFM%20Logo%20white.png"
-              alt="Ina TechFM"
-              width={190}
-              height={55}
-              className="h-9 sm:h-12 md:h-13 w-auto object-contain drop-shadow-md"
-            />
-          </Link>
+        <div className="relative z-10 w-full border-b border-white/10 py-3 sm:py-3.5 shrink-0">
+          <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <Link
+                href="/"
+                onClick={() => setIsOpen(false)}
+                className="inline-block transition-transform hover:scale-105 active:scale-95"
+                title="Ina TechFM"
+              >
+                <img
+                  src="/Ina Logo-1.jpg.png"
+                  alt="Ina TechFM"
+                  width={190}
+                  height={55}
+                  className="h-10 sm:h-12 md:h-13 w-auto object-contain transition-all duration-300 drop-shadow-xs"
+                />
+              </Link>
+            </div>
 
-          <button
-            onClick={() => setIsOpen(false)}
-            className="flex items-center gap-2 sm:gap-2.5 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 text-white hover:text-ina-sky transition-colors group active:scale-95"
-            aria-label="Close navigation menu"
-          >
-            <span className="tracking-[0.22em] font-medium select-none">Close</span>
-            <X className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90 text-ina-sky" />
-          </button>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2 sm:gap-2.5 bg-transparent border-0 font-medium text-xs sm:text-sm tracking-[0.22em] uppercase cursor-pointer py-2 px-1 text-white hover:text-ina-sky transition-colors group active:scale-95"
+              aria-label="Close navigation menu"
+            >
+              <span className="tracking-[0.22em] font-medium select-none">Close</span>
+              <X className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90 text-ina-sky" />
+            </button>
+          </div>
         </div>
 
         {/* Main Content Area (2-Column Grid on Desktop matching inaspaceworks.com) */}
@@ -246,22 +250,22 @@ export default function SiteHeader() {
                 </div>
                 <div className="space-y-2 text-2xl font-light tracking-wide text-ina-line">
                   <div>
-                    <span className="text-ina-sky font-medium">engineering</span> O&amp;M
+                    <span className="text-ina-sky font-medium">Engineering</span> O&amp;M
                   </div>
                   <div>
-                    <span className="text-ina-sky font-medium">hard</span> FM
+                    <span className="text-ina-sky font-medium">Hard</span> FM
                   </div>
                   <div>
-                    <span className="text-ina-sky font-medium">technical</span> services
+                    <span className="text-ina-sky font-medium">Technical</span> Services
                   </div>
                   <div>
-                    <span className="text-ina-sky font-medium">sustainability</span> FM
+                    <span className="text-ina-sky font-medium">Sustainability</span> FM
                   </div>
                   <div>
-                    <span className="text-ina-sky font-medium">transition</span> ops
+                    <span className="text-ina-sky font-medium">Transition</span> Ops
                   </div>
                   <div>
-                    <span className="text-ina-sky font-medium">allied</span> support
+                    <span className="text-ina-sky font-medium">Allied</span> Support
                   </div>
                 </div>
               </div>
