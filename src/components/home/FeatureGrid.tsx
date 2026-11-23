@@ -9,49 +9,49 @@ export default function FeatureGrid() {
     {
       num: "01",
       icon: Heart,
-      title: "Client-centric approach",
+      title: "Client-Centric Approach",
       description: "We put our clients and their needs at the core of everything we do."
     },
     {
       num: "02",
       icon: Settings,
-      title: "Seamless operations",
+      title: "Seamless Operations",
       description: "We ensure smooth and efficient utility operations and client engagement."
     },
     {
       num: "03",
       icon: MessageSquare,
-      title: "“We hear you” philosophy",
+      title: "“We Hear You” Philosophy",
       description: "We actively listen to our clients and understand their requirements."
     },
     {
       num: "04",
       icon: Star,
-      title: "Exceptional customer experience",
+      title: "Exceptional Customer Experience",
       description: "We strive to deliver an unparalleled customer experience every time."
     },
     {
       num: "05",
       icon: Target,
-      title: "Long-term focus",
+      title: "Long-Term Focus",
       description: "We prioritize sustainable, long-term benefits over short-term gains."
     },
     {
       num: "06",
       icon: LineChart,
-      title: "Sustainable results",
+      title: "Sustainable Results",
       description: "Our approach is focused on delivering effective and lasting results."
     },
     {
       num: "07",
       icon: Smile,
-      title: "Positive work environment",
+      title: "Positive Work Environment",
       description: "We aim to create a great, collaborative, and productive working environment."
     },
     {
       num: "08",
       icon: Wrench,
-      title: "Predictive maintenance",
+      title: "Predictive Maintenance",
       description: "We proactively maintain critical systems and assets to ensure reliability, efficiency, and uninterrupted operations."
     },
   ];

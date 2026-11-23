@@ -14,25 +14,25 @@ interface Step {
 const STEPS: Step[] = [
   {
     number: "01",
-    title: "Understand your requirements",
+    title: "Understand Your Requirements",
     description:
       "We begin by understanding your facility, operational requirements, engineering assets, challenges, and business objectives to identify the right approach for your site.",
   },
   {
     number: "02",
-    title: "Assess and advise",
+    title: "Assess and Advise",
     description:
       "Our technical experts assess your engineering systems and assets, identify potential risks and improvement opportunities, and recommend practical solutions tailored to your facility.",
   },
   {
     number: "03",
-    title: "Implement the right solution",
+    title: "Implement The Right Solution",
     description:
       "From Hard FM and technical services to transition, audits and sustainability solutions, our teams implement the required services with a focus on safety, reliability and operational continuity.",
   },
   {
     number: "04",
-    title: "Optimise for the long term",
+    title: "Optimise For The Long Term",
     description:
       "We continuously monitor asset performance, preventive maintenance and operational efficiency to extend asset life, reduce downtime, optimise costs and create sustainable value.",
   },

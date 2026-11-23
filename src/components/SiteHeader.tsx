@@ -239,55 +239,10 @@ export default function SiteHeader() {
           </div>
         </div>
 
-        {/* Main Content Area (2-Column Grid on Desktop matching inaspaceworks.com) */}
+        {/* Main Content Area (2-Column Grid on Desktop: Nav Links on Left, Core Capabilities on Right) */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex-1 flex flex-col justify-start lg:justify-center py-6 sm:py-8 lg:py-12">
           <nav className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center" aria-label="Main Navigation">
-            {/* Left Column (Aside on Desktop) */}
-            <aside className="hidden lg:flex lg:col-span-5 flex-col justify-between h-full max-h-[480px] pr-10 border-r border-white/10">
-              <div>
-                <div className="text-xs font-semibold tracking-[0.25em] text-ina-sky uppercase mb-4">
-                  Core Capabilities
-                </div>
-                <div className="space-y-2 text-2xl font-light tracking-wide text-ina-line">
-                  <div>
-                    <span className="text-ina-sky font-medium">Engineering</span> O&amp;M
-                  </div>
-                  <div>
-                    <span className="text-ina-sky font-medium">Hard</span> FM
-                  </div>
-                  <div>
-                    <span className="text-ina-sky font-medium">Technical</span> Services
-                  </div>
-                  <div>
-                    <span className="text-ina-sky font-medium">Sustainability</span> FM
-                  </div>
-                  <div>
-                    <span className="text-ina-sky font-medium">Transition</span> Ops
-                  </div>
-                  <div>
-                    <span className="text-ina-sky font-medium">Allied</span> Support
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-8 border-t border-white/10 space-y-2">
-                <div className="text-xs font-semibold tracking-wider text-ina-sky uppercase">
-                  Direct Support
-                </div>
-                <a
-                  href="tel:+919326906715"
-                  className="block text-white hover:text-ina-sky font-medium text-lg transition-colors"
-                >
-                  +91 9326906715
-                </a>
-                <div className="text-xs text-ina-mist">info@inatechfmglobal.com</div>
-                <div className="text-xs text-ina-mist pt-1">
-                  3,000+ Employees • Pan-India across 55+ Cities
-                </div>
-              </div>
-            </aside>
-
-            {/* Right Column (Large Typographic Navigation Links) */}
+            {/* Left Column (Large Typographic Navigation Links) */}
             <div className="lg:col-span-7 flex flex-col justify-center">
               <ul className="list-none m-0 p-0 flex flex-col space-y-2.5 sm:space-y-3.5 lg:space-y-4">
                 {/* Home */}
@@ -453,6 +408,51 @@ export default function SiteHeader() {
                 </div>
               </div>
             </div>
+
+            {/* Right Column (Core Capabilities & Direct Support Aside) */}
+            <aside className="hidden lg:flex lg:col-span-5 flex-col justify-between h-full max-h-[480px] pl-10 lg:pl-16 border-l border-white/10">
+              <div>
+                <div className="text-xs font-semibold tracking-[0.25em] text-ina-sky uppercase mb-4">
+                  Core Capabilities
+                </div>
+                <div className="space-y-2 text-2xl font-light tracking-wide text-ina-line">
+                  <div>
+                    <span className="text-ina-sky font-medium">Engineering</span> O&amp;M
+                  </div>
+                  <div>
+                    <span className="text-ina-sky font-medium">Hard</span> FM
+                  </div>
+                  <div>
+                    <span className="text-ina-sky font-medium">Technical</span> Services
+                  </div>
+                  <div>
+                    <span className="text-ina-sky font-medium">Sustainability</span> FM
+                  </div>
+                  <div>
+                    <span className="text-ina-sky font-medium">Transition</span> Ops
+                  </div>
+                  <div>
+                    <span className="text-ina-sky font-medium">Allied</span> Support
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-8 border-t border-white/10 space-y-2">
+                <div className="text-xs font-semibold tracking-wider text-ina-sky uppercase">
+                  Direct Support
+                </div>
+                <a
+                  href="tel:+919326906715"
+                  className="block text-white hover:text-ina-sky font-medium text-lg transition-colors"
+                >
+                  +91 9326906715
+                </a>
+                <div className="text-xs text-ina-mist">info@inatechfmglobal.com</div>
+                <div className="text-xs text-ina-mist pt-1">
+                  3,000+ Employees • Pan-India across 55+ Cities
+                </div>
+              </div>
+            </aside>
           </nav>
         </div>
       </div>

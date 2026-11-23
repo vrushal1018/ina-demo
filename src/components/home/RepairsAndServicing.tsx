@@ -22,49 +22,49 @@ export default function RepairsAndServicing() {
   const expertiseList = [
     {
       num: "01",
-      title: "Preventive and predictive maintenance",
+      title: "Preventive and Predictive Maintenance",
       description: "Implementing proactive, condition-based monitoring and scheduled servicing to prevent equipment failures and minimize downtime.",
       icon: Activity,
     },
     {
       num: "02",
-      title: "Electrical and HVAC maintenance",
+      title: "Electrical and HVAC Maintenance",
       description: "Ensuring reliable performance of transformers, chillers, AHUs and power distribution systems through precision maintenance.",
       icon: Zap,
     },
     {
       num: "03",
-      title: "Engineering asset management",
+      title: "Engineering Asset Management",
       description: "Tracking asset lifecycles and optimizing the performance of critical building infrastructure.",
       icon: Settings,
     },
     {
       num: "04",
-      title: "MEP equipment testing and commissioning",
+      title: "MEP Equipment Testing and Commissioning",
       description: "Conducting comprehensive mechanical, electrical and plumbing inspections to ensure equipment reliability and operational readiness.",
       icon: Gauge,
     },
     {
       num: "05",
-      title: "Asset performance and lifecycle enhancement",
+      title: "Asset Performance and Lifecycle Enhancement",
       description: " Extending asset life and improving performance through targeted maintenance and refurbishment programs.",
       icon: TrendingUp,
     },
     {
       num: "06",
-      title: "Energy audits and sustainability solutions",
+      title: "Energy Audits and Sustainability Solutions",
       description: "Driving energy efficiency through data-led audits, efficiency upgrades and carbon reduction initiatives.",
       icon: Leaf,
     },
     {
       num: "07",
-      title: "Safety and compliance audits",
+      title: "Safety and Compliance Audits",
       description: "Ensuring adherence to statutory safety standards, fire safety regulations and risk management requirements.",
       icon: ShieldCheck,
     },
     {
       num: "08",
-      title: "Repair, refurbishment and technical support",
+      title: "Repair, Refurbishment and Technical Support",
       description: " Providing on-ground engineering support, equipment repairs and turnkey restoration of critical systems.",
       icon: Wrench,
     },
@@ -166,7 +166,7 @@ export default function RepairsAndServicing() {
         <div className="flex items-center justify-between mb-5 pb-3 border-t border-white/10 pt-5">
           <p className="text-sm sm:text-base font-semibold text-white flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-ina-blue" />
-            <span>Our Engineering And Facility Management Expertise Includes:</span>
+            <span>Our Engineering and Facility Management Expertise Includes:</span>
           </p>
 
           <span className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold text-ina-mist">

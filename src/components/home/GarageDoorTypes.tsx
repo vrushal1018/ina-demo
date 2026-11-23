@@ -45,7 +45,7 @@ export default function SectorsWeOperate() {
       alt: "Industrial manufacturing rolling shutter",
     },
     {
-      title: "Commercial & corporate",
+      title: "Commercial & Corporate",
       slug: "commercial-corporate",
       image: "/commercial.jpg",
       alt: "Commercial building glass door system",
