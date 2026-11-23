@@ -21,7 +21,7 @@
       "Experience in key account management and knowledge of building systems.",
       "Based in Goa or willing to relocate."
     ],
-    "isActive": false,
+    "isActive": true,
     "createdAt": "2026-11-19T00:00:00.000Z"
   },
   {
@@ -46,7 +46,7 @@
       "Strong technical troubleshooting skills and solid understanding of building management systems (BMS).",
       "Excellent leadership, problem-solving, and communication skills."
     ],
-    "isActive": false,
+    "isActive": true,
     "createdAt": "2026-11-19T00:00:00.000Z"
   }
 ]
