@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import initialJobsData from '@/data/jobs.json';
 import SiteHeader from '@/components/SiteHeader';
 import {
   ChevronDown,
@@ -42,30 +41,34 @@ interface JobDetails {
 
 
 export default function CareersPage() {
-  const [jobs, setJobs] = useState<JobDetails[]>(() =>
-    (initialJobsData as JobDetails[]).filter((j) => j.isActive !== false)
-  );
-  const [openJobIds, setOpenJobIds] = useState<number[]>([1]);
-  const [selectedJob, setSelectedJob] = useState<JobDetails | null>(
-    () => (initialJobsData as JobDetails[]).find((j) => j.isActive !== false) || null
-  );
+  const [jobs, setJobs] = useState<JobDetails[]>([]);
+  const [isLoadingJobs, setIsLoadingJobs] = useState(true);
+  const [openJobIds, setOpenJobIds] = useState<number[]>([]);
+  const [selectedJob, setSelectedJob] = useState<JobDetails | null>(null);
 
-  // Fetch latest active jobs from API
+  // Fetch latest active jobs from API (ensuring drafts are hidden and old posts never reappear)
   useEffect(() => {
     async function loadActiveJobs() {
       try {
+        setIsLoadingJobs(true);
         const res = await fetch('/api/jobs', { cache: 'no-store' });
         if (res.ok) {
           const data = await res.json();
           if (data.jobs && Array.isArray(data.jobs)) {
             setJobs(data.jobs);
-            if (data.jobs.length > 0 && !selectedJob) {
+            if (data.jobs.length > 0) {
               setSelectedJob(data.jobs[0]);
+              setOpenJobIds([data.jobs[0].id]);
+            } else {
+              setSelectedJob(null);
+              setOpenJobIds([]);
             }
           }
         }
       } catch (err) {
         console.error('Failed to load active jobs:', err);
+      } finally {
+        setIsLoadingJobs(false);
       }
     }
     loadActiveJobs();
@@ -244,7 +247,12 @@ export default function CareersPage() {
 
           {/* Job Listings List */}
           <div className="space-y-6">
-            {jobs.length === 0 ? (
+            {isLoadingJobs ? (
+              <div className="bg-white rounded-3xl p-12 text-center border border-ina-line shadow-lg max-w-xl mx-auto">
+                <Loader2 className="w-8 h-8 text-ina-blue animate-spin mx-auto mb-3" />
+                <p className="text-sm font-medium text-ina-grey">Checking for open positions...</p>
+              </div>
+            ) : jobs.length === 0 ? (
               <div className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-ina-line shadow-lg max-w-xl mx-auto">
                 <div className="w-16 h-16 rounded-2xl bg-ina-tint-8 border border-ina-line flex items-center justify-center mx-auto mb-4 text-ina-blue">
                   <Briefcase className="w-8 h-8" />

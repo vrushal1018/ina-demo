@@ -144,7 +144,7 @@ export async function PUT(req: NextRequest) {
     }
 
     const currentJobs = await getAllJobsAsync();
-    const existingJob = currentJobs.find((j) => j.id === Number(id));
+    const existingJob = currentJobs.find((j) => Number(j.id) === Number(id));
 
     if (!existingJob) {
       return NextResponse.json({ error: 'Job not found' }, { status: 404 });
