@@ -172,7 +172,7 @@ export default function AlliedServicesPage() {
                     <div className="w-16 h-1 bg-ina-blue mt-3 mb-6 rounded-full" />
 
                     <p className="leading-relaxed text-ina-grey text-base sm:text-lg">
-                      At INA TechFM, our Allied Services bring together specialized soft services, clubhouse management and concierge solutions to meet diverse facility requirements. Whether for everyday workplace support or specialized projects, we deliver reliable, customized services with a focus on quality, efficiency and timely execution.
+                      At Ina TechFM, our Allied Services bring together specialized soft services, clubhouse management and concierge solutions to meet diverse facility requirements. Whether for everyday workplace support or specialized projects, we deliver reliable, customized services with a focus on quality, efficiency and timely execution.
                     </p>
                   </div>
                 </div>

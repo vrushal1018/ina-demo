@@ -68,7 +68,7 @@ export default function FeatureGrid() {
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           {/* <div className="inline-block rounded-full bg-ina-blue/15 border border-ina-blue/30 px-3.5 py-1 text-xs font-semibold tracking-wide text-ina-navy mb-3">
-            Why INA Tech FM
+            Why Ina Tech FM
           </div> */}
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-ina-navy mb-2 tracking-normal">
             Why Ina TechFM?

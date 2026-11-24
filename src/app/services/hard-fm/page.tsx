@@ -181,7 +181,7 @@ export default function HardFMPage() {
                         Hard Facilities Management (Hard FM) focuses on maintaining the essential engineering systems and infrastructure that keep buildings safe, efficient, reliable, and fully operational.
                       </p>
                       <p>
-                        At INA TechFM, we combine advanced technology, predictive maintenance strategies, and engineering expertise to optimize asset performance, extend equipment lifespan, minimize operational downtime, and ensure uninterrupted business operations.
+                        At Ina TechFM, we combine advanced technology, predictive maintenance strategies, and engineering expertise to optimize asset performance, extend equipment lifespan, minimize operational downtime, and ensure uninterrupted business operations.
                       </p>
                     </div>
 

@@ -62,7 +62,7 @@ The gold set (#FFD37A, #FFC14D, #FFE3A0, #C9A45A and the cream toast) belongs to
 4. **Small text is never Ina Blue on white.** At 3.4:1 it fails; use Ina Blue Deep for links and small blue labels.
 5. **Buttons:** primary = Ina Blue Deep fill, white text, hover Ina Navy. On dark grounds, primary = white fill, Ina Navy text; secondary = white outline.
 6. **Dark sections** (hero overlay, services, footer) use Ina Navy and Ina Night only, with Ina Sky for blue accents and Ina Mist for small text.
-7. **Name:** write "Ina TechFM" in all visible text and meta titles. The site currently mixes "INA TechFM" and "Ina Tech FM".
+7. **Name:** write "Ina TechFM" in all visible text and meta titles. The site currently uses "Ina TechFM".
 
 ## Code for the developer
 
@@ -120,7 +120,7 @@ Step three, by hand, because they depend on the background:
 - [ ] Run the step-two replacements and review the diff
 - [ ] Fix slate-400/300 labels and small blue text by hand (step three)
 - [ ] Swap in the all-blue and white logo files
-- [ ] Change "INA TechFM" and "Ina Tech FM" to "Ina TechFM" in text, alt text and page titles
+- [x] Use "Ina TechFM" in text, alt text and page titles
 - [ ] Set the meta theme colour to #1A95D1
 - [ ] Check the home, services, clients, careers, blog and contact pages on desktop and phone
 - [ ] Remove the Diwali lanterns, diya and greeting after the festival

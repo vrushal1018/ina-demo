@@ -322,7 +322,7 @@ export default function ClientsCorner() {
             <span>Clients Corner</span>
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal text-ina-navy mb-3 tracking-normal">
-            Technologies & Partners with INA
+            Technologies & Partners with Ina
           </h1>
           <p className="text-ina-grey text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
             Our goals are ambitious and can only be achieved in partnership with others.
@@ -481,7 +481,7 @@ export default function ClientsCorner() {
                 <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-8 text-center">
                   <Image
                     src="/Ina Logo-1.jpg.png"
-                    alt="INA Logo"
+                    alt="Ina Logo"
                     width={220}
                     height={120}
                     className="object-contain filter drop-shadow-2xl"
@@ -563,7 +563,7 @@ export default function ClientsCorner() {
           <div className="w-full max-w-sm rounded-2xl bg-gradient-to-br from-ina-navy via-ina-night to-ina-night p-6 text-center shadow-xl border border-white/10 flex flex-col items-center justify-center">
             <Image
               src="/Ina Logo-1.jpg.png"
-              alt="INA Logo"
+              alt="Ina Logo"
               width={180}
               height={100}
               className="object-contain filter drop-shadow-2xl mb-2"
@@ -619,7 +619,7 @@ export default function ClientsCorner() {
                 Complete {activeCategory.name} Directory
               </h2>
               <p className="text-ina-grey text-xs sm:text-sm mt-1">
-                Explore all verified client facilities, operations, and networks managed by INA
+                Explore all verified client facilities, operations, and networks managed by Ina
               </p>
             </div>
 
@@ -699,7 +699,7 @@ export default function ClientsCorner() {
                 <span>Pan-India Facility Management Network</span>
               </div>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">
-                Partner with INA for Your Facilities
+                Partner with Ina for Your Facilities
               </h3>
               <p className="text-ina-mist text-xs sm:text-sm mt-2 max-w-xl">
                 Experience comprehensive hard FM, technical engineering, IoT-driven audits, and bespoke facility operations trusted by India&apos;s leading brands.

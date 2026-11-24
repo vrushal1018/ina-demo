@@ -167,7 +167,7 @@ const locations: Location[] = [
 ];
 
 /* =========================================================
-   55 OPERATIONAL LOCATIONS OF INA TECH FM
+   55 OPERATIONAL LOCATIONS OF Ina TECH FM
    Small blinking dots on exact geographic coordinates.
    Names are hidden by default and revealed smoothly on hover.
 ========================================================= */
@@ -1072,7 +1072,7 @@ export default function WhereAreWeLocated() {
             {/* Top-Left Badge */}
             <div className="pointer-events-none absolute left-3 top-3 sm:left-4 sm:top-4 z-30 flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/10 bg-ina-navy/85 px-2.5 py-1.5 sm:px-3 sm:py-2 text-[10px] sm:text-xs text-white/85 backdrop-blur-md">
               <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 animate-pulse rounded-full bg-[#00E5FF]" />
-              <span className="hidden sm:inline">INA TECHFM • PAN-INDIA NETWORK</span>
+              <span className="hidden sm:inline">Ina TechFM • Pan-India Network</span>
               <span className="inline sm:hidden">PAN-INDIA</span>
             </div>
 
