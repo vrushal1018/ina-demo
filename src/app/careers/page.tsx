@@ -234,7 +234,7 @@ export default function CareersPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ina-blue/10 border border-ina-blue/20 text-ina-blue text-xs font-semibold tracking-wide mb-3">
               <Briefcase className="w-3.5 h-3.5" />
-              <span>Careers at INA Tech FM</span>
+              <span>Careers at Ina Tech FM</span>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-normal text-ina-navy mb-3 tracking-normal">
               Currently Open Positions
