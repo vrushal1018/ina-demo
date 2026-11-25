@@ -53,7 +53,7 @@ const SERVICES: ServiceItem[] = [
     id: 'Allied Services',
     icon: '/allied services.png',
     title: 'Allied Services',
-    description: '6. Delivering complementary facility support services to enhance operational efficiency, workplace experience and overall facility management.',
+    description: 'Delivering complementary facility support services to enhance operational efficiency, workplace experience and overall facility management.',
     href: '/services/allied-services',
   },
 ];
