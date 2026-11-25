@@ -32,39 +32,39 @@ export interface SectorData {
 }
 
 const LOREM_HERO =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+  "Ina TechFM delivers specialized engineering operations, planned preventive maintenance, and responsive facility management solutions tailored to the unique operational demands and compliance standards of each sector.";
 
 const LOREM_DESC_1 =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  "We provide comprehensive mechanical, electrical, plumbing, and climate control engineering to ensure asset longevity, environmental safety, and zero operational downtime.";
 
 const LOREM_DESC_2 =
-  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.";
+  "Our specialized facility operations combine certified on-site engineering crews, predictive telemetry audits, and automated scheduling to maximize reliability and tenant satisfaction.";
 
 const ACC_LOREM_1 =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+  "Systematic scheduled inspections and real-time monitoring to detect thermal, electrical, and mechanical anomalies before failure occurs, ensuring uninterrupted operation.";
 
 const ACC_LOREM_2 =
-  "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.";
+  "Precision calibration and multi-stage filtration to maintain optimal indoor environmental quality, temperature stability, and statutory regulatory adherence.";
 
 const ACC_LOREM_3 =
-  "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.";
+  "Dedicated 24/7 on-site technical teams equipped with rapid triage protocols to resolve service requests and emergency escalations within defined SLA windows.";
 
 const ACC_LOREM_4 =
-  "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+  "End-to-end lifecycle governance, energy conservation audits, and preventative maintenance routines designed to reduce operational expenditure while preserving capital assets.";
 
 const DEMO_CONTAINER_STATS = [
-  { label: "Lorem ipsum dolor", value: "Lorem Ipsum" },
-  { label: "Consectetur adipiscing", value: "Dolor Sit" },
-  { label: "Sed do eiusmod", value: "Consectetur" },
-  { label: "Tempor incididunt", value: "Adipiscing" },
+  { label: "Engineering Uptime", value: "99.98%" },
+  { label: "Pan-India Presence", value: "55+ Cities" },
+  { label: "Trained Workforce", value: "3,000+" },
+  { label: "Managed Area", value: "78 Mn+ Sq Ft" },
 ];
 
 export const SECTORS_DATA: SectorData[] = [
   {
     slug: "hospitality",
     title: "Hospitality",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/hospitality.jpg",
     stats: DEMO_CONTAINER_STATS,
@@ -149,8 +149,8 @@ export const SECTORS_DATA: SectorData[] = [
     slug: "malls",
     aliases: ["retail", "shopping-malls"],
     title: "Malls",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/mall.jpg",
     stats: DEMO_CONTAINER_STATS,
@@ -233,8 +233,8 @@ export const SECTORS_DATA: SectorData[] = [
     slug: "healthcare",
     aliases: ["hospitals", "medical"],
     title: "Healthcare",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/healthcare.jpg",
     stats: DEMO_CONTAINER_STATS,
@@ -309,8 +309,8 @@ export const SECTORS_DATA: SectorData[] = [
     slug: "it-ites",
     aliases: ["it", "ites", "tech-parks"],
     title: "IT/ITES",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/IT.jpg",
     stats: DEMO_CONTAINER_STATS,
@@ -393,8 +393,8 @@ export const SECTORS_DATA: SectorData[] = [
     slug: "residential",
     aliases: ["gated-communities", "townships"],
     title: "Residential",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/residential.jpg",
     stats: DEMO_CONTAINER_STATS,
@@ -469,8 +469,8 @@ export const SECTORS_DATA: SectorData[] = [
     slug: "manufacturing",
     aliases: ["industrial", "factories"],
     title: "Manufacturing",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/manufacturing.jpg",
     stats: DEMO_CONTAINER_STATS,
@@ -545,8 +545,8 @@ export const SECTORS_DATA: SectorData[] = [
     slug: "commercial-corporate",
     aliases: ["commercial", "corporate", "commercial-and-corporate"],
     title: "Commercial & Corporate",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/commercial.jpg",
     stats: DEMO_CONTAINER_STATS,
@@ -627,8 +627,8 @@ export const SECTORS_DATA: SectorData[] = [
   {
     slug: "institution",
     title: "Institution",
-    badge: "Lorem Ipsum",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    badge: "Specialized Sector",
+    subtitle: "Tailored engineering and facility operations for mission-critical reliability",
     description: LOREM_HERO,
     coverImage: "/institution.jpg",
     stats: DEMO_CONTAINER_STATS,
